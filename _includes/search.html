@@ -1,5 +1,67 @@
-<form action="{{ '/preprints/' | relative_url }}" method="get" class="search-form">
-  <input type="search" name="q" placeholder="Search preprints..." aria-label="Search" />
-  <button type="submit">Search</button>
-</form>
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Search preprints..." aria-label="Search preprints">
+  <button type="button" id="search-button" aria-label="Search">🔍</button>
+  <div id="search-results" class="search-results"></div>
+</div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+  const searchResults = document.getElementById('search-results');
+  
+  // Simple search functionality - you may want to implement Lunr.js for better search
+  function performSearch(query) {
+    if (!query.trim()) {
+      searchResults.style.display = 'none';
+      return;
+    }
+    
+    // This is a basic implementation - in a real site you'd want more sophisticated search
+    const preprints = [
+      {% for preprint in site['pupilla-preprints'] %}
+      {
+        title: "{{ preprint.title | escape }}",
+        authors: "{{ preprint.authors | join: ', ' | escape }}",
+        abstract: "{{ preprint.abstract | escape }}",
+        url: "{{ preprint.url | relative_url }}"
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ];
+    
+    const results = preprints.filter(preprint => 
+      preprint.title.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.authors.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.abstract.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    if (results.length > 0) {
+      searchResults.innerHTML = results.slice(0, 5).map(result => 
+        `<a href="${result.url}" class="search-result">
+          <strong>${result.title}</strong>
+          <span class="search-authors">${result.authors}</span>
+        </a>`
+      ).join('');
+      searchResults.style.display = 'block';
+    } else {
+      searchResults.innerHTML = '<div class="no-results">No results found</div>';
+      searchResults.style.display = 'block';
+    }
+  }
+  
+  searchInput.addEventListener('input', function() {
+    performSearch(this.value);
+  });
+  
+  searchButton.addEventListener('click', function() {
+    performSearch(searchInput.value);
+  });
+  
+  // Hide results when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+      searchResults.style.display = 'none';
+    }
+  });
+});
+</script>

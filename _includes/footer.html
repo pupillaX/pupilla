@@ -1,6 +1,48 @@
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+  <div class="footer-content">
+    <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. Inspired by the spirituality of unity.</p>
+    <p class="footer-links">
+      <a href="{{ '/privacy/' | relative_url }}">Privacy Policy</a> • 
+      <a href="{{ '/terms/' | relative_url }}">Terms of Use</a> • 
+      <a href="{{ '/feed.xml' | relative_url }}">RSS Feed</a>
+    </p>
   </div>
 </footer>
 
+<!-- Mobile menu functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const nav = document.querySelector('.mobile-nav');
+  
+  if (toggle && nav) {
+    toggle.addEventListener('click', function() {
+      nav.classList.toggle('active');
+      toggle.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        nav.classList.remove('active');
+        toggle.classList.remove('active');
+      });
+    });
+  }
+});
+
+// PDF download tracking
+document.addEventListener('DOMContentLoaded', function() {
+  const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+  pdfLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'pdf_download', {
+          'file_name': this.getAttribute('href'),
+          'page_title': document.title
+        });
+      }
+    });
+  });
+});
+</script>

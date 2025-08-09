@@ -1,24 +1,27 @@
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>{{ page.title | default: site.title }} | {{ site.title }}</title>
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
-<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}" />
-<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<title>{% if page.title %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
+<link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+<link rel="icon" type="image/x-icon" href="{{ "/assets/images/favicon_io/favicon.ico" | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "/assets/images/favicon_io/apple-touch-icon.png" | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "/assets/images/favicon_io/favicon-32x32.png" | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "/assets/images/favicon_io/favicon-16x16.png" | relative_url }}">
+<link rel="manifest" href="{{ "/assets/images/favicon_io/site.webmanifest" | relative_url }}">
 
-{% if site.google_analytics %}
+<!-- Google Analytics -->
+{% if jekyll.environment == 'production' and site.google_analytics %}
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', '{{ site.google_analytics }}');
-  document.addEventListener('DOMContentLoaded', function() {
-    var pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
-    pdfLinks.forEach(function(link){
-      link.addEventListener('click', function(){
-        try { gtag('event', 'download', { event_category: 'PDF', event_label: link.href }); } catch(e) {}
-      });
-    });
-  });
-  </script>
+</script>
 {% endif %}

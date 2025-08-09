@@ -1,0 +1,27 @@
+Configuration file: /Users/pmorovic/Documents/GitHub/pupilla/_config.yml
+To use retry middleware with Faraday v2.0+, install `faraday-retry` gem
+            Source: /Users/pmorovic/Documents/GitHub/pupilla
+       Destination: /Users/pmorovic/Documents/GitHub/pupilla/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+       Jekyll Feed: Generating feed for posts
+                    done in 0.585 seconds.
+ Auto-regeneration: enabled for '/Users/pmorovic/Documents/GitHub/pupilla'
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+      Regenerating: 1 file(s) changed at 2025-08-09 15:34:11
+                    assets/css/main.scss
+       Jekyll Feed: Generating feed for posts
+                    ...done in 0.573436 seconds.
+                    
+      Regenerating: 1 file(s) changed at 2025-08-09 15:34:20
+                    assets/css/main.css
+       Jekyll Feed: Generating feed for posts
+                    ...done in 0.575607 seconds.
+                    
+      Regenerating: 2 file(s) changed at 2025-08-09 15:34:30
+                    jekyll.log
+                    restart-server.sh
+       Jekyll Feed: Generating feed for posts
+                    ...done in 0.571584 seconds.
+                    

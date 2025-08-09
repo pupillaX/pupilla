@@ -1,10 +1,51 @@
+<div class="sidebar-header">
+  <a href="{{ '/' | relative_url }}" class="logo-link">
+    <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Pupilla logo" class="logo">
+    <h1 class="site-title">{{ site.title }}</h1>
+  </a>
+  <p class="site-tagline">{{ site.description }}</p>
+</div>
+
 <nav class="sidebar-nav">
   <ul>
-    <li><a href="{{ '/' | relative_url }}">Home</a></li>
-    <li><a href="{{ '/preprints/' | relative_url }}">Preprints</a></li>
-    <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-    <li><a href="{{ '/contributors/' | relative_url }}">Contributors</a></li>
-    <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+    <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+    <li><a href="{{ '/preprints/' | relative_url }}" {% if page.url contains '/preprints' %}class="active"{% endif %}>Browse Preprints</a></li>
+    <li><a href="{{ '/submit/' | relative_url }}" {% if page.url == '/submit/' %}class="active"{% endif %}>Submit</a></li>
+    <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a></li>
+    <li><a href="{{ '/contributors/' | relative_url }}" {% if page.url == '/contributors/' %}class="active"{% endif %}>Contributors</a></li>
+    <li><a href="{{ '/contact/' | relative_url }}" {% if page.url == '/contact/' %}class="active"{% endif %}>Contact</a></li>
   </ul>
 </nav>
 
+<div class="sidebar-section">
+  <h3>Quick Links</h3>
+  <ul class="quick-links">
+    <li><a href="https://arxiv.org/" target="_blank" rel="noopener">arXiv</a></li>
+    <li><a href="https://www.biorxiv.org/" target="_blank" rel="noopener">bioRxiv</a></li>
+    <li><a href="https://philpapers.org/" target="_blank" rel="noopener">PhilPapers</a></li>
+    <li><a href="https://osf.io/preprints/" target="_blank" rel="noopener">OSF Preprints</a></li>
+  </ul>
+</div>
+
+<div class="sidebar-section">
+  <h3>By Discipline</h3>
+  <ul class="discipline-tags">
+    {% assign disciplines = site['pupilla-preprints'] | map: 'discipline' | uniq | sort %}
+    {% for discipline in disciplines limit: 8 %}
+      {% if discipline %}
+        <li><a href="{{ '/preprints/' | relative_url }}?discipline={{ discipline | slugify }}">{{ discipline }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="sidebar-footer">
+  <div class="stats">
+    <span class="stat">{{ site['pupilla-preprints'].size }} preprints</span>
+  </div>
+  <div class="social-links">
+    {% if site.twitter %}<a href="https://twitter.com/{{ site.twitter }}" target="_blank" rel="noopener" aria-label="Twitter">📱</a>{% endif %}
+    {% if site.github %}<a href="https://github.com/{{ site.github }}" target="_blank" rel="noopener" aria-label="GitHub">⚡</a>{% endif %}
+    <a href="{{ '/feed.xml' | relative_url }}" aria-label="RSS Feed">📡</a>
+  </div>
+</div>

@@ -6,7 +6,7 @@ title: Home
 <section class="hero">
   <div class="hero-text">
     <h1 class="site-title">Pupilla</h1>
-    <p class="site-blurb">A multidisciplinary preprint archive inspired by Chiara Lubich’s spirituality of unity.</p>
+    <p class="site-blurb">A multidisciplinary preprint archive inspired by the spirituality of unity.</p>
     {% include search.html %}
   </div>
   <div class="hero-media">
