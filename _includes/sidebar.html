@@ -17,13 +17,18 @@
   </ul>
 </nav>
 
+
+
 <div class="sidebar-section">
-  <h3>Quick Links</h3>
+  <h3>Links</h3>
   <ul class="quick-links">
+    <li><a href="https://www.focolare.org" target="_blank" rel="noopener">Focolare</a></li>
+    <li><a href="https://chiaralubich.org/en/centro-chiara-lubich/" target="_blank" rel="noopener">Centro Chiara Lubich</a></li>
+    <li><a href="https://www.cittanuova.it/nuova-umanita-rivista-copertine/" target="_blank" rel="noopener">Nuova Umanita</a></li>
+    <li><a href="https://docs.lib.purdue.edu/claritas/" target="_blank" rel="noopener">Claritas</a></li>
+    <li><a href="https://www.newcity.co.uk" target="_blank" rel="noopener">New City</a></li>
+    <li><a href="https://www.sophiauniversity.org/it/" target="_blank" rel="noopener">Sophia University</a></li>
     <li><a href="https://arxiv.org/" target="_blank" rel="noopener">arXiv</a></li>
-    <li><a href="https://www.biorxiv.org/" target="_blank" rel="noopener">bioRxiv</a></li>
-    <li><a href="https://philpapers.org/" target="_blank" rel="noopener">PhilPapers</a></li>
-    <li><a href="https://osf.io/preprints/" target="_blank" rel="noopener">OSF Preprints</a></li>
   </ul>
 </div>
 
@@ -34,6 +39,30 @@
     {% for discipline in disciplines limit: 8 %}
       {% if discipline %}
         <li><a href="{{ '/preprints/' | relative_url }}?discipline={{ discipline | slugify }}">{{ discipline }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="sidebar-section">
+  <h3>By Language</h3>
+  <ul class="language-tags">
+    {% assign all_languages = '' | split: '' %}
+    {% for preprint in site['pupilla-preprints'] %}
+      {% if preprint.language %}
+        {% if preprint.language.size %}
+          {% for lang in preprint.language %}
+            {% assign all_languages = all_languages | push: lang %}
+          {% endfor %}
+        {% else %}
+          {% assign all_languages = all_languages | push: preprint.language %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% assign languages = all_languages | uniq | sort %}
+    {% for language in languages limit: 8 %}
+      {% if language %}
+        <li><a href="{{ '/preprints/' | relative_url }}?language={{ language | slugify }}">{{ language }}</a></li>
       {% endif %}
     {% endfor %}
   </ul>

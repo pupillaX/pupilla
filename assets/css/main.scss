@@ -443,3 +443,78 @@ input:focus {
 html {
   scroll-behavior: smooth;
 }
+
+/* Tags and Badges */
+.preprint-tags {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-md);
+}
+
+.tags-section {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-xs);
+}
+
+.discipline-tag, .discipline-badge {
+  background: var(--secondary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.language-tag, .language-badge {
+  background: var(--accent-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Browse page filter styling */
+.filter-section {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.filter-section label {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-right: var(--spacing-xs);
+}
+
+.filter-section select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--background-card);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+/* Responsive adjustments for filter section */
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+  }
+  
+  .filter-section > div {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+}

@@ -7,9 +7,20 @@ layout: default
     {% if page.authors %}
     <p class="authors">{{ page.authors | join: ', ' }}</p>
     {% endif %}
-    {% if page.discipline %}
-    <p class="meta">Discipline: {{ page.discipline }}</p>
-    {% endif %}
+    <div class="preprint-tags">
+      {% if page.discipline %}
+        <span class="discipline-tag">{{ page.discipline }}</span>
+      {% endif %}
+      {% if page.language %}
+        {% if page.language.size %}
+          {% for lang in page.language %}
+            <span class="language-tag">{{ lang }}</span>
+          {% endfor %}
+        {% else %}
+          <span class="language-tag">{{ page.language }}</span>
+        {% endif %}
+      {% endif %}
+    </div>
     {% if page.doi %}
     <p class="meta">DOI: {{ page.doi }}</p>
     {% endif %}

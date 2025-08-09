@@ -5,6 +5,9 @@ authors:
   - Ján Morovic
   - Peter Morovic
 discipline: "Philosophy"
+language: 
+  - "English"
+  - "Italian"
 doi: "10.1234/example1"
 abstract: >
   

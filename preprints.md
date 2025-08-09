@@ -25,6 +25,29 @@ Explore our collection of scholarly works:
       {% endfor %}
     </select>
     
+    <label for="language-filter">Filter by Language:</label>
+    <select id="language-filter">
+      <option value="all">All Languages</option>
+      {% assign all_languages = '' | split: '' %}
+      {% for preprint in site['pupilla-preprints'] %}
+        {% if preprint.language %}
+          {% if preprint.language.size %}
+            {% for lang in preprint.language %}
+              {% assign all_languages = all_languages | push: lang %}
+            {% endfor %}
+          {% else %}
+            {% assign all_languages = all_languages | push: preprint.language %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% assign languages = all_languages | uniq | sort %}
+      {% for language in languages %}
+        {% if language %}
+          <option value="{{ language | slugify }}">{{ language }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    
     <label for="sort-order">Sort by:</label>
     <select id="sort-order">
       <option value="date-desc">Newest First</option>
@@ -41,12 +64,31 @@ Explore our collection of scholarly works:
 <div id="preprints-container" class="preprints-listing">
   {% assign all_preprints = site['pupilla-preprints'] | sort: 'date' | reverse %}
   {% for preprint in all_preprints %}
-    <article class="preprint-item" data-discipline="{{ preprint.discipline | slugify }}" data-date="{{ preprint.date | date: '%Y-%m-%d' }}" data-title="{{ preprint.title | downcase }}" data-author="{{ preprint.authors | first | downcase }}">
+    {% assign preprint_languages = '' %}
+    {% if preprint.language %}
+      {% if preprint.language.size %}
+        {% assign preprint_languages = preprint.language | join: ' ' | slugify %}
+      {% else %}
+        {% assign preprint_languages = preprint.language | slugify %}
+      {% endif %}
+    {% endif %}
+    <article class="preprint-item" data-discipline="{{ preprint.discipline | slugify }}" data-languages="{{ preprint_languages }}" data-date="{{ preprint.date | date: '%Y-%m-%d' }}" data-title="{{ preprint.title | downcase }}" data-author="{{ preprint.authors | first | downcase }}">
       <div class="preprint-content">
         <div class="preprint-meta">
-          {% if preprint.discipline %}
-            <span class="discipline-badge">{{ preprint.discipline }}</span>
-          {% endif %}
+          <div class="tags-section">
+            {% if preprint.discipline %}
+              <span class="discipline-badge">{{ preprint.discipline }}</span>
+            {% endif %}
+            {% if preprint.language %}
+              {% if preprint.language.size %}
+                {% for lang in preprint.language %}
+                  <span class="language-badge">{{ lang }}</span>
+                {% endfor %}
+              {% else %}
+                <span class="language-badge">{{ preprint.language }}</span>
+              {% endif %}
+            {% endif %}
+          </div>
           {% if preprint.date %}
             <time class="publish-date" datetime="{{ preprint.date | date: '%Y-%m-%d' }}">
               {{ preprint.date | date: '%B %d, %Y' }}
@@ -114,12 +156,14 @@ Explore our collection of scholarly works:
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const disciplineFilter = document.getElementById('discipline-filter');
+  const languageFilter = document.getElementById('language-filter');
   const sortOrder = document.getElementById('sort-order');
   const preprintsContainer = document.getElementById('preprints-container');
   const noResults = document.getElementById('no-results');
   
   function filterAndSort() {
     const selectedDiscipline = disciplineFilter.value;
+    const selectedLanguage = languageFilter.value;
     const selectedSort = sortOrder.value;
     const preprints = Array.from(document.querySelectorAll('.preprint-item'));
     
@@ -127,7 +171,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let visibleCount = 0;
     preprints.forEach(preprint => {
       const discipline = preprint.dataset.discipline;
-      const shouldShow = selectedDiscipline === 'all' || discipline === selectedDiscipline;
+      const languages = preprint.dataset.languages;
+      
+      const disciplineMatch = selectedDiscipline === 'all' || discipline === selectedDiscipline;
+      const languageMatch = selectedLanguage === 'all' || (languages && languages.includes(selectedLanguage));
+      
+      const shouldShow = disciplineMatch && languageMatch;
       preprint.style.display = shouldShow ? 'block' : 'none';
       if (shouldShow) visibleCount++;
     });
@@ -165,6 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   disciplineFilter.addEventListener('change', filterAndSort);
+  languageFilter.addEventListener('change', filterAndSort);
   sortOrder.addEventListener('change', filterAndSort);
   
   // Global function for discipline links
