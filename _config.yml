@@ -1,0 +1,25 @@
+title: Pupilla
+description: "A multidisciplinary preprint archive inspired by Chiara Lubich’s spirituality of unity."
+# For GitHub Pages project site, set baseurl to the repository name prefixed with a slash.
+# Locally this still works when using the relative_url filter for links.
+baseurl: "/pupilla"
+# Do not include the baseurl here; this should be the site domain only.
+url: "https://pupillax.github.io"
+google_analytics: "G-XXXXXXXXXX"
+collections:
+  pupilla-preprints:
+    output: true
+    permalink: /preprints/:name/
+defaults:
+  - scope:
+      path: ""
+      type: pupilla-preprints
+    values:
+      layout: preprint
+plugins:
+  - jekyll-feed
+exclude:
+  - node_modules
+  - vendor
+  - Gemfile
+  - Gemfile.lock

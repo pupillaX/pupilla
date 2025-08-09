@@ -1,0 +1,24 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ page.title | default: site.title }} | {{ site.title }}</title>
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}" />
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" />
+
+{% if site.google_analytics %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} 
+  gtag('js', new Date());
+  gtag('config', '{{ site.google_analytics }}');
+  document.addEventListener('DOMContentLoaded', function() {
+    var pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+    pdfLinks.forEach(function(link){
+      link.addEventListener('click', function(){
+        try { gtag('event', 'download', { event_category: 'PDF', event_label: link.href }); } catch(e) {}
+      });
+    });
+  });
+  </script>
+{% endif %}

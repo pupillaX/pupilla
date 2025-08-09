@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Home | Pupilla</title>
+<link rel="stylesheet" href="/assets/css/style.css" />
+<link rel="alternate" type="application/atom+xml" title="Pupilla" href="/feed.xml" />
+<link rel="icon" href="/favicon.ico" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);} 
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+  document.addEventListener('DOMContentLoaded', function() {
+    var pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+    pdfLinks.forEach(function(link){
+      link.addEventListener('click', function(){
+        try { gtag('event', 'download', { event_category: 'PDF', event_label: link.href }); } catch(e) {}
+      });
+    });
+  });
+  </script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="site-title" href="/">Pupilla</a>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/preprints/">Preprints</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="container layout">
+  <aside class="sidebar">
+    <nav class="sidebar-nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/preprints/">Preprints</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/contributors/">Contributors</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  <main class="content"><section class="hero">
+  <div class="hero-text">
+    <h1 class="site-title">Pupilla</h1>
+    <p class="site-blurb">A multidisciplinary preprint archive inspired by Chiara Lubich’s spirituality of unity.</p>
+    <form action="/preprints/" method="get" class="search-form">
+  <input type="search" name="q" placeholder="Search preprints..." aria-label="Search" />
+  <button type="submit">Search</button>
+</form>
+
+
+  </div>
+  <div class="hero-media">
+    <img src="/assets/images/logo.png" alt="Pupilla logo" />
+  </div>
+</section>
+
+<section>
+  <h2>Latest preprints</h2>
+  <ul class="preprint-list">
+    
+    
+      <li>
+        <a href="/preprints/sample2/">L’ateismo Cristiano di Slavoj Žižek</a>
+        <span class="authors">— Peter Morovic, Ján Morovic</span>
+      </li>
+    
+      <li>
+        <a href="/preprints/sample1/">Who are Chiara’s “two or three”?</a>
+        <span class="authors">— Ján Morovic, Peter Morovic</span>
+      </li>
+    
+  </ul>
+</section>
+</main>
+</div>
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 Pupilla. All rights reserved.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>
