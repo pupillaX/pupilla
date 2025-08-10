@@ -3,7 +3,7 @@ description: "A multidisciplinary preprint archive inspired by Chiara Lubich's s
 # Update these URLs when you deploy to your custom domain
 baseurl: "/pupilla"  # This is correct!
 url: "https://pupillax.github.io"
-google_analytics: "G-XXXXXXXXXX"  # Replace with your actual GA4 measurement ID
+google_analytics: "G-DV0FTGQGH0"  # Your Google Analytics 4 measurement ID
 
 # Site metadata
 author: Pupilla Team
