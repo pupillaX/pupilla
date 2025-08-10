@@ -20,13 +20,30 @@ layout: default
           <span class="language-tag">{{ page.language }}</span>
         {% endif %}
       {% endif %}
+      {% if page.coming_soon %}
+        <span class="coming-soon-tag">COMING SOON</span>
+      {% endif %}
     </div>
     {% if page.doi %}
     <p class="meta">DOI: {{ page.doi }}</p>
     {% endif %}
-    {% if page.date %}
+    {% if page.date and page.coming_soon != true %}
     <p class="meta">Date: {{ page.date | date: '%Y-%m-%d' }}</p>
     {% endif %}
+    
+    <!-- Visit and Download Counters -->
+    <div class="preprint-stats">
+      <span class="stat-item">
+        <span class="stat-icon">👁</span>
+        <span id="visit-count">Loading...</span> visits
+      </span>
+      {% if page.pdf %}
+      <span class="stat-item">
+        <span class="stat-icon">📥</span>
+        <span id="download-count">Loading...</span> downloads
+      </span>
+      {% endif %}
+    </div>
   </header>
   {% if page.abstract %}
   <section class="abstract">
@@ -34,11 +51,100 @@ layout: default
     <p>{{ page.abstract }}</p>
   </section>
   {% endif %}
-  {% if page.pdf %}
-  <p><a class="btn" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener">Download PDF</a></p>
+  
+  <!-- PDF Downloads Section -->
+  {% if page.pdfs %}
+    <!-- Multiple language-specific PDFs -->
+    <div class="pdf-downloads">
+      <h3>Download PDF</h3>
+      <div class="pdf-buttons">
+        {% for pdf in page.pdfs %}
+          <a class="btn pdf-btn" href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" onclick="incrementDownloadCount('{{ pdf.language }}')" data-lang="{{ pdf.language | downcase }}">
+            <span class="flag-icon">{{ pdf.flag | default: "📄" }}</span>
+            {{ pdf.language }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  {% elsif page.pdf %}
+    <!-- Single PDF -->
+    <p><a class="btn download-btn" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener" onclick="incrementDownloadCount()">📄 Download PDF</a></p>
+  {% elsif page.coming_soon %}
+    <p><span class="btn btn-disabled">📄 PDF Coming Soon</span></p>
   {% endif %}
   <section class="content">
     {{ content }}
   </section>
 </article>
+
+<script>
+// Simple counter system using localStorage
+// In a production environment, you'd want to use a proper analytics service
+
+function getStorageKey(type) {
+  return `pupilla_${type}_${window.location.pathname}`;
+}
+
+function getCount(type) {
+  return parseInt(localStorage.getItem(getStorageKey(type)) || '0');
+}
+
+function setCount(type, count) {
+  localStorage.setItem(getStorageKey(type), count.toString());
+}
+
+function incrementCount(type) {
+  const currentCount = getCount(type);
+  const newCount = currentCount + 1;
+  setCount(type, newCount);
+  return newCount;
+}
+
+function incrementVisitCount() {
+  const count = incrementCount('visits');
+  document.getElementById('visit-count').textContent = count;
+}
+
+function incrementDownloadCount(language) {
+  // If language is specified, track language-specific downloads
+  const downloadType = language ? `downloads_${language}` : 'downloads';
+  const count = incrementCount(downloadType);
+  
+  // Update total download count
+  const totalCount = incrementCount('downloads');
+  const downloadCountEl = document.getElementById('download-count');
+  if (downloadCountEl) {
+    downloadCountEl.textContent = totalCount;
+  }
+  
+  // Update language-specific count if element exists
+  if (language) {
+    const langCountEl = document.getElementById(`download-count-${language}`);
+    if (langCountEl) {
+      langCountEl.textContent = count;
+    }
+  }
+}
+
+// Initialize counters on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if this is a new visit (not just a page refresh)
+  const sessionKey = `pupilla_session_${window.location.pathname}`;
+  const hasVisitedThisSession = sessionStorage.getItem(sessionKey);
+  
+  if (!hasVisitedThisSession) {
+    incrementVisitCount();
+    sessionStorage.setItem(sessionKey, 'true');
+  } else {
+    // Just display current count
+    document.getElementById('visit-count').textContent = getCount('visits');
+  }
+  
+  // Display download count
+  const downloadCountEl = document.getElementById('download-count');
+  if (downloadCountEl) {
+    downloadCountEl.textContent = getCount('downloads');
+  }
+});
+</script>
 

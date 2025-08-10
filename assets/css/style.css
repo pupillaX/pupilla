@@ -855,6 +855,133 @@ html {
   letter-spacing: 0.025em;
 }
 
+/* Preprint tags container */
+.preprint-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.preprint-tags > * {
+  margin-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Language tags */
+.language-tag {
+  background: var(--accent-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* Note: Coming soon tag styles are now defined in main.scss */
+
+/* Visit and download counters */
+.preprint-stats {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: var(--background-light);
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.stat-icon {
+  font-size: 1rem;
+}
+
+/* Disabled button for coming soon */
+.btn-disabled {
+  background-color: var(--text-muted) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
+
+.btn-disabled:hover {
+  background-color: var(--text-muted) !important;
+  transform: none !important;
+}
+
+/* PDF Downloads Section */
+.pdf-downloads {
+  margin: var(--spacing-lg) 0;
+}
+
+.pdf-downloads h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+  font-size: 1.125rem;
+}
+
+.pdf-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: var(--primary-color);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  border: 2px solid var(--primary-color);
+}
+
+.pdf-btn:hover {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.flag-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Language-specific flag icons */
+.pdf-btn .flag-icon {
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+}
+
+/* Language flag defaults - can be overridden in front matter */
+.pdf-btn[data-lang="english"] .flag-icon::before { content: "🇺🇸"; }
+.pdf-btn[data-lang="italiano"] .flag-icon::before { content: "🇮🇹"; }
+.pdf-btn[data-lang="italian"] .flag-icon::before { content: "🇮🇹"; }
+.pdf-btn[data-lang="français"] .flag-icon::before { content: "🇫🇷"; }
+.pdf-btn[data-lang="french"] .flag-icon::before { content: "🇫🇷"; }
+.pdf-btn[data-lang="deutsch"] .flag-icon::before { content: "🇩🇪"; }
+.pdf-btn[data-lang="german"] .flag-icon::before { content: "🇩🇪"; }
+.pdf-btn[data-lang="español"] .flag-icon::before { content: "🇪🇸"; }
+.pdf-btn[data-lang="spanish"] .flag-icon::before { content: "🇪🇸"; }
+.pdf-btn[data-lang="português"] .flag-icon::before { content: "🇵🇹"; }
+.pdf-btn[data-lang="portuguese"] .flag-icon::before { content: "🇵🇹"; }
+.pdf-btn[data-lang="中文"] .flag-icon::before { content: "🇨🇳"; }
+.pdf-btn[data-lang="chinese"] .flag-icon::before { content: "🇨🇳"; }
+.pdf-btn[data-lang="日本語"] .flag-icon::before { content: "🇯🇵"; }
+.pdf-btn[data-lang="japanese"] .flag-icon::before { content: "🇯🇵"; }
+
 .date {
   color: var(--text-muted);
   font-size: 0.875rem;
@@ -1023,6 +1150,17 @@ html {
   .about-preview {
     padding: var(--spacing-lg);
   }
+  
+  /* Mobile responsive styles for new features */
+  .preprint-stats {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    text-align: center;
+  }
+  
+  .preprint-tags {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1039,6 +1177,27 @@ html {
   
   .discipline-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  
+  /* Mobile responsive styles for very small screens */
+  .stat-item {
+    font-size: 0.8rem;
+  }
+  
+  .coming-soon-tag,
+  .discipline-tag,
+  .language-tag {
+    font-size: 0.7rem;
+    padding: calc(var(--spacing-xs) * 0.8) var(--spacing-xs);
+  }
+  
+  .pdf-buttons {
+    flex-direction: column;
+  }
+  
+  .pdf-btn {
+    justify-content: center;
+    width: 100%;
   }
 }
 
