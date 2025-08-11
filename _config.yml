@@ -1,15 +1,16 @@
 title: Pupilla
 description: "A multidisciplinary preprint archive inspired by Chiara Lubich's spirituality of unity."
-# Update these URLs when you deploy to your custom domain
-baseurl: "/pupilla"  # This is correct!
-url: "https://pupillax.github.io"
-google_analytics: "G-DV0FTGQGH0"  # Your Google Analytics 4 measurement ID
+
+# Custom domain configuration
+baseurl: ""  # Empty for custom domain
+url: "https://pupilla.org"  # Your custom domain
+google_analytics: "G-DV0FTGQGH0"
 
 # Site metadata
 author: Pupilla Team
 email: info@pupilla.org
-twitter: pupillaorg  # Optional: your Twitter handle
-github: pupillax     # Optional: your GitHub username
+twitter: pupillaorg
+github: pupillax
 
 # Collections
 collections:
@@ -51,14 +52,13 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# Exclude from processing
+# Exclude from processing (removed CNAME from exclusions)
 exclude:
   - node_modules
   - vendor
   - Gemfile
   - Gemfile.lock
   - README.md
-  - CNAME
   - .gitignore
   - .git
   - .sass-cache
@@ -72,10 +72,6 @@ include:
 sass:
   sass_dir: _sass
   style: compressed
-
-# Pagination disabled for now
-# paginate: 10
-# paginate_path: "/page:num/"
 
 # Archive settings
 archive:

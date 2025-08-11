@@ -13,8 +13,9 @@ Pupilla is a multidisciplinary preprint archive dedicated to fostering scholarly
 The site's name takes inspiration from a profound term used by Chiara Lubich: "[…] la Ferita dell'Abbandono che è la pupilla dell'Occhio di Dio sul mondo: un Vuoto Infinito attraverso il quale Dio guarda noi: la finestra di Dio spalancata sul mondo e la finestra dell'umanità attraverso la quale si vede Dio" (P'49 §415).
 
 The name also embraces multiple layers of meaning:
-- "Pupil" as student – recognizing that we are all learners, positioned equally to discover together the "beyond that is already here"
-- "Pupus" or "pupa" – from Latin roots meaning little boy or little girl, echoing the Trent dialect terms "popo" or "popa" that Lubich used affectionately for those who lived like evangelical children, particularly her companions who shared the ideal of unity
+
+- **"Pupil" as student** – recognizing that we are all learners, positioned equally to discover together the "beyond that is already here"
+- **"Pupus" or "pupa"** – from Latin roots meaning little boy or little girl, echoing the Trent dialect terms "popo" or "popa" that Lubich used affectionately for those who lived like evangelical children, particularly her companions who shared the ideal of unity
 
 ## Our Vision
 
