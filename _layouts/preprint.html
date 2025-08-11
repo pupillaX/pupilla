@@ -103,6 +103,16 @@ function incrementCount(type) {
 function incrementVisitCount() {
   const count = incrementCount('visits');
   document.getElementById('visit-count').textContent = count;
+  
+  // Track page view in Google Analytics
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'page_view', {
+      'page_title': '{{ page.title }}',
+      'page_location': window.location.href,
+      'content_group1': '{{ page.discipline }}',
+      'custom_parameter_1': 'preprint_view'
+    });
+  }
 }
 
 function incrementDownloadCount(language) {
@@ -124,27 +134,49 @@ function incrementDownloadCount(language) {
       langCountEl.textContent = count;
     }
   }
+  
+  // Track download in Google Analytics
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'pdf_download', {
+      'file_name': language ? `{{ page.title }}_${language}` : '{{ page.title }}',
+      'page_title': '{{ page.title }}',
+      'content_group1': '{{ page.discipline }}',
+      'language': language || 'default',
+      'value': 1
+    });
+  }
 }
 
 // Initialize counters on page load
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('Pupilla: Initializing counters for:', '{{ page.title }}');
+  
   // Check if this is a new visit (not just a page refresh)
   const sessionKey = `pupilla_session_${window.location.pathname}`;
   const hasVisitedThisSession = sessionStorage.getItem(sessionKey);
   
   if (!hasVisitedThisSession) {
+    console.log('Pupilla: New session, incrementing visit count');
     incrementVisitCount();
     sessionStorage.setItem(sessionKey, 'true');
   } else {
+    console.log('Pupilla: Returning visitor in same session');
     // Just display current count
-    document.getElementById('visit-count').textContent = getCount('visits');
+    const visitCount = getCount('visits');
+    document.getElementById('visit-count').textContent = visitCount;
+    console.log('Pupilla: Visit count:', visitCount);
   }
   
   // Display download count
   const downloadCountEl = document.getElementById('download-count');
   if (downloadCountEl) {
-    downloadCountEl.textContent = getCount('downloads');
+    const downloadCount = getCount('downloads');
+    downloadCountEl.textContent = downloadCount;
+    console.log('Pupilla: Download count:', downloadCount);
   }
+  
+  // Check if Google Analytics is loaded
+  console.log('Pupilla: Google Analytics available:', typeof gtag !== 'undefined');
 });
 </script>
 
