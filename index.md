@@ -71,10 +71,10 @@ title: Home
           <a href="{{ item.url | relative_url }}" class="read-more">Read More</a>
           {% if item.pdfs %}
             {% for pdf in item.pdfs %}
-              <a href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'pdf_download', {'file_name': '{{ pdf.url }}', 'page_title': '{{ item.title }}'});">{{ pdf.flag }}</a>
+              <a href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'file_download', {'file_name': '{{ pdf.url }}', 'file_extension': 'pdf', 'page_title': '{{ item.title }}', 'language': '{{ pdf.language }}', 'send_to': '{{ site.google_analytics }}'});">{{ pdf.flag }}</a>
             {% endfor %}
           {% elsif item.pdf %}
-            <a href="{{ item.pdf | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'pdf_download', {'file_name': '{{ item.pdf }}', 'page_title': '{{ item.title }}'});">📄</a>
+            <a href="{{ item.pdf | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'file_download', {'file_name': '{{ item.pdf }}', 'file_extension': 'pdf', 'page_title': '{{ item.title }}', 'send_to': '{{ site.google_analytics }}'});">📄</a>
           {% endif %}
         </div>
       </article>

@@ -37,7 +37,7 @@ layout: default
         <span class="stat-icon">👁</span>
         <span id="visit-count">Loading...</span> visits
       </span>
-      {% if page.pdf %}
+      {% if page.pdf or page.pdfs %}
       <span class="stat-item">
         <span class="stat-icon">📥</span>
         <span id="download-count">Loading...</span> downloads
@@ -59,7 +59,7 @@ layout: default
       <h3>Download PDF</h3>
       <div class="pdf-buttons">
         {% for pdf in page.pdfs %}
-          <a class="btn pdf-btn" href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" onclick="incrementDownloadCount('{{ pdf.language }}')" data-lang="{{ pdf.language | downcase }}">
+          <a class="btn pdf-btn" href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" data-lang="{{ pdf.language | downcase }}" onclick="handlePDFDownload('{{ pdf.url }}', '{{ pdf.language }}')">
             <span class="flag-icon">{{ pdf.flag | default: "📄" }}</span>
             {{ pdf.language }}
           </a>
@@ -68,7 +68,7 @@ layout: default
     </div>
   {% elsif page.pdf %}
     <!-- Single PDF -->
-    <p><a class="btn download-btn" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener" onclick="incrementDownloadCount()">📄 Download PDF</a></p>
+    <p><a class="btn download-btn" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener" onclick="handlePDFDownload('{{ page.pdf }}', 'default')">📄 Download PDF</a></p>
   {% elsif page.coming_soon %}
     <p><span class="btn btn-disabled">📄 PDF Coming Soon</span></p>
   {% endif %}
@@ -78,105 +78,159 @@ layout: default
 </article>
 
 <script>
-// Simple counter system using localStorage
-// In a production environment, you'd want to use a proper analytics service
+// Global Analytics Tracking System
+// Combines Google Analytics for worldwide data with localStorage for immediate feedback
 
 function getStorageKey(type) {
   return `pupilla_${type}_${window.location.pathname}`;
 }
 
-function getCount(type) {
+function getLocalCount(type) {
   return parseInt(localStorage.getItem(getStorageKey(type)) || '0');
 }
 
-function setCount(type, count) {
+function setLocalCount(type, count) {
   localStorage.setItem(getStorageKey(type), count.toString());
 }
 
-function incrementCount(type) {
-  const currentCount = getCount(type);
+function incrementLocalCount(type) {
+  const currentCount = getLocalCount(type);
   const newCount = currentCount + 1;
-  setCount(type, newCount);
+  setLocalCount(type, newCount);
   return newCount;
 }
 
-function incrementVisitCount() {
-  const count = incrementCount('visits');
-  document.getElementById('visit-count').textContent = count;
-  
-  // Track page view in Google Analytics
+// Google Analytics Events
+function trackPageView() {
   if (typeof gtag !== 'undefined') {
     gtag('event', 'page_view', {
-      'page_title': '{{ page.title }}',
+      'page_title': '{{ page.title | escape }}',
       'page_location': window.location.href,
-      'content_group1': '{{ page.discipline }}',
-      'custom_parameter_1': 'preprint_view'
+      'content_group1': '{{ page.discipline | escape }}',
+      'custom_parameter_1': 'preprint_view',
+      'send_to': '{{ site.google_analytics }}'
     });
+    console.log('GA: Page view tracked for:', '{{ page.title | escape }}');
+  } else {
+    console.log('GA: Not available, page view not tracked');
   }
 }
 
-function incrementDownloadCount(language) {
-  // If language is specified, track language-specific downloads
-  const downloadType = language ? `downloads_${language}` : 'downloads';
-  const count = incrementCount(downloadType);
+function trackDownload(filename, language) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'file_download', {
+      'file_name': filename,
+      'file_extension': 'pdf',
+      'page_title': '{{ page.title | escape }}',
+      'content_group1': '{{ page.discipline | escape }}',
+      'language': language || 'default',
+      'link_url': filename,
+      'value': 1,
+      'send_to': '{{ site.google_analytics }}'
+    });
+    console.log('GA: Download tracked:', filename);
+  } else {
+    console.log('GA: Not available, download not tracked');
+  }
+}
+
+function incrementVisitCount() {
+  // Track in Google Analytics for global data
+  trackPageView();
   
-  // Update total download count
-  const totalCount = incrementCount('downloads');
+  // Update local counter for immediate feedback
+  const count = incrementLocalCount('visits');
+  updateVisitDisplay(count);
+  
+  return count;
+}
+
+function incrementDownloadCount(filename, language) {
+  // Track in Google Analytics for global data
+  trackDownload(filename, language);
+  
+  // Update local counters for immediate feedback
+  const downloadType = language ? `downloads_${language}` : 'downloads';
+  const langCount = incrementLocalCount(downloadType);
+  const totalCount = incrementLocalCount('downloads');
+  
+  updateDownloadDisplay(totalCount, language, langCount);
+  
+  return totalCount;
+}
+
+function updateVisitDisplay(count) {
+  const visitCountEl = document.getElementById('visit-count');
+  if (visitCountEl) {
+    visitCountEl.textContent = count + '+'; // '+' indicates this is a minimum count
+  }
+}
+
+function updateDownloadDisplay(totalCount, language, langCount) {
   const downloadCountEl = document.getElementById('download-count');
   if (downloadCountEl) {
-    downloadCountEl.textContent = totalCount;
+    downloadCountEl.textContent = totalCount + '+'; // '+' indicates this is a minimum count
   }
   
   // Update language-specific count if element exists
   if (language) {
     const langCountEl = document.getElementById(`download-count-${language}`);
     if (langCountEl) {
-      langCountEl.textContent = count;
+      langCountEl.textContent = langCount + '+';
     }
-  }
-  
-  // Track download in Google Analytics
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'pdf_download', {
-      'file_name': language ? `{{ page.title }}_${language}` : '{{ page.title }}',
-      'page_title': '{{ page.title }}',
-      'content_group1': '{{ page.discipline }}',
-      'language': language || 'default',
-      'value': 1
-    });
   }
 }
 
-// Initialize counters on page load
+// Enhanced download tracking for PDF links
+function handlePDFDownload(pdfUrl, language) {
+  const filename = pdfUrl.split('/').pop();
+  incrementDownloadCount(pdfUrl, language);
+}
+
+// Initialize counters and tracking
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Pupilla: Initializing counters for:', '{{ page.title }}');
+  console.log('Pupilla Analytics: Initializing for:', '{{ page.title | escape }}');
   
   // Check if this is a new visit (not just a page refresh)
   const sessionKey = `pupilla_session_${window.location.pathname}`;
   const hasVisitedThisSession = sessionStorage.getItem(sessionKey);
   
   if (!hasVisitedThisSession) {
-    console.log('Pupilla: New session, incrementing visit count');
+    console.log('Pupilla Analytics: New session, tracking visit');
     incrementVisitCount();
     sessionStorage.setItem(sessionKey, 'true');
   } else {
-    console.log('Pupilla: Returning visitor in same session');
-    // Just display current count
-    const visitCount = getCount('visits');
-    document.getElementById('visit-count').textContent = visitCount;
-    console.log('Pupilla: Visit count:', visitCount);
+    console.log('Pupilla Analytics: Returning visitor in same session');
+    // Just display current local count with note about global data
+    const visitCount = getLocalCount('visits');
+    updateVisitDisplay(visitCount);
   }
   
   // Display download count
   const downloadCountEl = document.getElementById('download-count');
   if (downloadCountEl) {
-    const downloadCount = getCount('downloads');
-    downloadCountEl.textContent = downloadCount;
-    console.log('Pupilla: Download count:', downloadCount);
+    const downloadCount = getLocalCount('downloads');
+    updateDownloadDisplay(downloadCount);
   }
   
-  // Check if Google Analytics is loaded
-  console.log('Pupilla: Google Analytics available:', typeof gtag !== 'undefined');
+  // Add click tracking to all PDF download links
+  const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+  pdfLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const pdfUrl = this.getAttribute('href');
+      const language = this.getAttribute('data-lang') || 
+                      this.textContent.match(/\(([^)]+)\)/)?.[1] || 
+                      'default';
+      
+      // Small delay to ensure tracking fires before navigation
+      setTimeout(() => {
+        handlePDFDownload(pdfUrl, language);
+      }, 100);
+    });
+  });
+  
+  console.log('Pupilla Analytics: Google Analytics available:', typeof gtag !== 'undefined');
+  console.log('Pupilla Analytics: Tracking ID:', '{{ site.google_analytics }}');
 });
 </script>
 
