@@ -15,13 +15,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{ "/assets/images/favicon_io/favicon-16x16.png" | relative_url }}">
 <link rel="manifest" href="{{ "/assets/images/favicon_io/site.webmanifest" | relative_url }}">
 
-<!-- Google Analytics -->
+<!-- Google Analytics - Loaded conditionally with consent -->
 {% if site.google_analytics %}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', '{{ site.google_analytics }}');
-</script>
+<!-- Analytics will be loaded by cookie consent script -->
 {% endif %}

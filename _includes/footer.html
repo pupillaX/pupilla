@@ -2,12 +2,30 @@
   <div class="footer-content">
     <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}.</p>
     <p class="footer-links">
-      <a href="{{ '/privacy/' | relative_url }}">Privacy Policy</a> • 
-      <a href="{{ '/terms/' | relative_url }}">Terms of Use</a> • 
-      <a href="{{ '/feed.xml' | relative_url }}">RSS Feed</a>
+      <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a> • 
+      <a href="{{ '/contact/' | relative_url }}">Contact</a> • 
+      <a href="{{ '/feed.xml' | relative_url }}">RSS Feed</a> •
+      <a href="#" id="cookie-settings-link">Cookie Settings</a>
     </p>
   </div>
 </footer>
+
+<script>
+// Cookie settings link functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const cookieSettingsLink = document.getElementById('cookie-settings-link');
+  if (cookieSettingsLink) {
+    cookieSettingsLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Reset consent and show banner again
+      localStorage.removeItem('cookieConsent');
+      localStorage.removeItem('googleAnalyticsConsent');
+      // Reload page to show consent banner
+      window.location.reload();
+    });
+  }
+});
+</script>
 
 <!-- Mobile menu functionality -->
 <script>
@@ -37,10 +55,13 @@ document.addEventListener('DOMContentLoaded', function() {
   pdfLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       if (typeof gtag !== 'undefined') {
+        console.log('PDF download tracked:', this.getAttribute('href'));
         gtag('event', 'pdf_download', {
           'file_name': this.getAttribute('href'),
           'page_title': document.title
         });
+      } else {
+        console.log('gtag not available');
       }
     });
   });
