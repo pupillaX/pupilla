@@ -43,8 +43,6 @@ layout: default
         <span id="download-count">Loading...</span> downloads
       </span>
       {% endif %}
-      <!-- Debug button - remove after testing -->
-      <button onclick="testCounters()" style="margin-left: 10px; padding: 5px; font-size: 12px;">Test Counters</button>
     </div>
   </header>
   {% if page.abstract %}
@@ -238,26 +236,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   console.log('Pupilla Analytics: Google Analytics available:', typeof gtag !== 'undefined');
   console.log('Pupilla Analytics: Tracking ID:', '{{ site.google_analytics }}');
-  
-  // Debug function for testing
-  window.testCounters = function() {
-    console.log('=== COUNTER TEST ===');
-    console.log('Visit count:', getLocalCount('visits'));
-    console.log('Download count:', getLocalCount('downloads'));
-    console.log('Visit element:', document.getElementById('visit-count'));
-    console.log('Download element:', document.getElementById('download-count'));
-    
-    // Test increment
-    const newVisit = incrementLocalCount('visits');
-    const newDownload = incrementLocalCount('downloads');
-    console.log('New visit count:', newVisit);
-    console.log('New download count:', newDownload);
-    
-    // Update display
-    updateVisitDisplay(newVisit);
-    updateDownloadDisplay(newDownload);
-    console.log('=== END TEST ===');
-  };
 });
 </script>
 
