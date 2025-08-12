@@ -6,8 +6,8 @@ title: Home
 <section class="hero">
   <div class="hero-text">
     <h1 class="site-title">Pupilla</h1>
-    <p class="site-blurb">A multidisciplinary preprint archive inspired by the spirituality of unity.</p>
-    {% include search.html %}
+    <p class="site-blurb">A multidisciplinary preprint archive with the aim of building bridges and striving for unity in diversity.</p>
+    <!-- {% include search.html %} -->
   </div>
   <div class="hero-media">
     <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Pupilla logo" />
@@ -21,7 +21,20 @@ title: Home
   </div>
   
   <div class="preprint-grid">
-    {% assign items = site['pupilla-preprints'] | sort: 'date' | reverse | slice: 0, 5 %}
+    {% assign all_preprints = site['pupilla-preprints'] | sort: 'date' | reverse %}
+    {% assign dated_items = "" | split: "" %}
+    {% assign coming_soon_items = "" | split: "" %}
+    
+    {% for preprint in all_preprints %}
+      {% if preprint.date and preprint.coming_soon != true %}
+        {% assign dated_items = dated_items | push: preprint %}
+      {% elsif preprint.coming_soon == true %}
+        {% assign coming_soon_items = coming_soon_items | push: preprint %}
+      {% endif %}
+    {% endfor %}
+    
+    {% assign sorted_items = dated_items | concat: coming_soon_items %}
+    {% assign items = sorted_items | slice: 0, 5 %}
     {% for item in items %}
       <article class="preprint-card preprint-card-compact">
         <div class="preprint-meta">

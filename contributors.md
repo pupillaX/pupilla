@@ -10,43 +10,6 @@ permalink: /contributors/
 <div class="contributors-grid">
   <div class="contributor-card">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/jan-morovic.png' | relative_url }}" alt="Ján Morovic" />
-    </div>
-    <div class="contributor-info">
-      <h2>Ján Morovic</h2>
-      <p class="role">Author, Editor and co-founder</p>
-      
-      <div class="bio-section">
-        <h3>Short Bio</h3>
-        <p>Ph.D. Color Science from the University of Derby, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School. Married with two children and living in the UK.</p>
-      </div>
-      
-      <div class="contributor-details">
-        <p><strong>Expertise:</strong> Color Science, AI, Technology, Interdisciplinary Studies</p>
-        <!-- <p><strong>Location:</strong> United Kingdom</p> -->
-        <p><strong>Affiliation:</strong> HP Inc., Abba School</p>
-        
-        <div class="contributor-links">
-          <h4>Academic & Professional Links</h4>
-          <div class="link-group">
-            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=BVmnUEMAAAAJ&hl=en" target="_blank" rel="noopener">View Publications</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/janmorovic" target="_blank" rel="noopener">Professional Profile</a></p>
-            <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0002-9983-8211" target="_blank" rel="noopener">0000-0002-9983-8211</a></p>
-            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Jan-Morovic" target="_blank" rel="noopener">Research Profile</a></p>
-          </div>
-          
-          <h4>Personal & Blog Links</h4>
-          <div class="link-group">
-            <p><strong>Bluesky:</strong> <a href="https://bsky.app/profile/janmorovic.bsky.social" target="_blank" rel="noopener">@janmorovic.bsky.social</a></p>
-            <p><strong>Blog:</strong> <a href="https://ayebeleef.design.blog" target="_blank" rel="noopener">Articles & Thoughts</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="contributor-card">
-    <div class="contributor-photo">
       <img src="{{ '/assets/images/peter-morovic.png' | relative_url }}" alt="Peter Morovic" />
     </div>
     <div class="contributor-info">
@@ -57,11 +20,6 @@ permalink: /contributors/
         <h3>Short Bio</h3>
         <p>Ph.D. in Computer Science from the University of East Anglia, Norwich, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School. Married and living in Catalunya.</p>
       </div>
-      
-      <div class="contributor-details">
-        <p><strong>Expertise:</strong> Computer Science, Color Science, Mathematics, Interdisciplinary Studies</p>
-        <!-- <p><strong>Location:</strong> Catalunya, Spain</p> -->
-        <p><strong>Affiliation:</strong> HP Inc., Abba School</p>
         
         <div class="contributor-links">
           <h4>Academic & Professional Links</h4>
@@ -78,7 +36,37 @@ permalink: /contributors/
             <p><strong>Medium:</strong> <a href="https://medium.com/@pezike" target="_blank" rel="noopener">Articles & Thoughts</a></p>
           </div>
         </div>
+    </div>
+  </div>
+
+  <div class="contributor-card">
+    <div class="contributor-photo">
+      <img src="{{ '/assets/images/jan-morovic.png' | relative_url }}" alt="Ján Morovic" />
+    </div>
+    <div class="contributor-info">
+      <h2>Ján Morovic</h2>
+      <p class="role">Author, Editor and co-founder</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Ph.D. Color Science from the University of Derby, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School. Married with two children and living in the UK.</p>
       </div>
+      
+        <div class="contributor-links">
+          <h4>Academic & Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=BVmnUEMAAAAJ&hl=en" target="_blank" rel="noopener">View Publications</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/janmorovic" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0002-9983-8211" target="_blank" rel="noopener">0000-0002-9983-8211</a></p>
+            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Jan-Morovic" target="_blank" rel="noopener">Research Profile</a></p>
+          </div>
+          
+          <h4>Personal & Blog Links</h4>
+          <div class="link-group">
+            <p><strong>Bluesky:</strong> <a href="https://bsky.app/profile/janmorovic.bsky.social" target="_blank" rel="noopener">@janmorovic.bsky.social</a></p>
+            <p><strong>Blog:</strong> <a href="https://ayebeleef.design.blog" target="_blank" rel="noopener">Articles & Thoughts</a></p>
+          </div>
+        </div>
     </div>
   </div>
 </div>

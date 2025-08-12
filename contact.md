@@ -7,7 +7,9 @@ permalink: /contact/
 ## Contact Pupilla
 
 We welcome inquiries, submissions, and collaboration opportunities. Please don't hesitate to reach out to us.
-**Email:** [info@pupilla.org](mailto:info@pupilla.org)
+<br>
+<br>
+**Email:** [pupillarXiv@gmail.com](mailto:pupillarXiv@gmail.com)
 
 <!-- ## General Inquiries
 
@@ -35,9 +37,9 @@ Having trouble accessing articles or using the site? Let us know:
 
 **Support:** [support@pupilla.org](mailto:support@pupilla.org) -->
 
-## Social Media & Updates
+<!-- ## Social Media & Updates
 
 Stay connected with Pupilla's latest developments:
 
 - **Newsletter:** [Subscribe here](mailto:newsletter@pupilla.org?subject=Newsletter%20Subscription)
-- **RSS Feed:** [{{ '/feed.xml' | absolute_url }}]({{ '/feed.xml' | absolute_url }})
+- **RSS Feed:** [{{ '/feed.xml' | absolute_url }}]({{ '/feed.xml' | absolute_url }}) -->

@@ -13,7 +13,19 @@ permalink: /preprints/
 <section class="preprints-listing">
   <div class="preprint-grid">
     {% assign all_preprints = site['pupilla-preprints'] | sort: 'date' | reverse %}
-    {% for item in all_preprints %}
+    {% assign dated_preprints = "" | split: "" %}
+    {% assign coming_soon_preprints = "" | split: "" %}
+    
+    {% for preprint in all_preprints %}
+      {% if preprint.date and preprint.coming_soon != true %}
+        {% assign dated_preprints = dated_preprints | push: preprint %}
+      {% elsif preprint.coming_soon == true %}
+        {% assign coming_soon_preprints = coming_soon_preprints | push: preprint %}
+      {% endif %}
+    {% endfor %}
+    
+    {% assign sorted_preprints = dated_preprints | concat: coming_soon_preprints %}
+    {% for item in sorted_preprints %}
       <article class="preprint-card">
         <div class="preprint-meta">
           {% if item.discipline %}

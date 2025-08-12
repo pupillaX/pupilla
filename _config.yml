@@ -1,10 +1,10 @@
 title: Pupilla
-description: "A multidisciplinary preprint archive inspired by Chiara Lubich's spirituality of unity."
+description: "A multidisciplinary preprint archive with the aim of building bridges and striving for unity in diversity."
 
 # Custom domain configuration
 baseurl: ""  # Empty for custom domain
 url: "https://pupilla.org"  # Your custom domain
-google_analytics: "G-DV0FTGQGH0"
+google_analytics: "G-VETQ7ZZ4FM"
 
 # Site metadata
 author: Pupilla Team

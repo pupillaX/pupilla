@@ -6,7 +6,7 @@ permalink: /submit/
 
 ## Submit Your Work to Pupilla
 
-We welcome contributions that embody the spirit of unity in diversity, fostering dialogue across disciplines and cultures. Pupilla publishes pre-prints that have not yet undergone traditional peer review but offer valuable insights and contribute to the advancement of knowledge.
+We welcome contributions that embody the spirit of unity in diversity, fostering dialogue across disciplines and cultures. Pupilla publishes pre-prints that have not yet undergone peer review but offer valuable insights and contribute to the advancement of knowledge.
 
 <!-- ## What We Accept
 
