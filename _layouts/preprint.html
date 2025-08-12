@@ -43,6 +43,8 @@ layout: default
         <span id="download-count">Loading...</span> downloads
       </span>
       {% endif %}
+      <!-- Debug button - remove after testing -->
+      <button onclick="testCounters()" style="margin-left: 10px; padding: 5px; font-size: 12px;">Test Counters</button>
     </div>
   </header>
   {% if page.abstract %}
@@ -59,7 +61,7 @@ layout: default
       <h3>Download PDF</h3>
       <div class="pdf-buttons">
         {% for pdf in page.pdfs %}
-          <a class="btn pdf-btn" href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" data-lang="{{ pdf.language | downcase }}" onclick="handlePDFDownload('{{ pdf.url }}', '{{ pdf.language }}')">
+          <a class="btn pdf-btn" href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" data-lang="{{ pdf.language | downcase }}">
             <span class="flag-icon">{{ pdf.flag | default: "📄" }}</span>
             {{ pdf.language }}
           </a>
@@ -68,7 +70,7 @@ layout: default
     </div>
   {% elsif page.pdf %}
     <!-- Single PDF -->
-    <p><a class="btn download-btn" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener" onclick="handlePDFDownload('{{ page.pdf }}', 'default')">📄 Download PDF</a></p>
+    <p><a class="btn download-btn" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener">📄 Download PDF</a></p>
   {% elsif page.coming_soon %}
     <p><span class="btn btn-disabled">📄 PDF Coming Soon</span></p>
   {% endif %}
@@ -162,21 +164,21 @@ function incrementDownloadCount(filename, language) {
 function updateVisitDisplay(count) {
   const visitCountEl = document.getElementById('visit-count');
   if (visitCountEl) {
-    visitCountEl.textContent = count + '+'; // '+' indicates this is a minimum count
+    visitCountEl.textContent = count;
   }
 }
 
 function updateDownloadDisplay(totalCount, language, langCount) {
   const downloadCountEl = document.getElementById('download-count');
   if (downloadCountEl) {
-    downloadCountEl.textContent = totalCount + '+'; // '+' indicates this is a minimum count
+    downloadCountEl.textContent = totalCount;
   }
   
   // Update language-specific count if element exists
   if (language) {
     const langCountEl = document.getElementById(`download-count-${language}`);
     if (langCountEl) {
-      langCountEl.textContent = langCount + '+';
+      langCountEl.textContent = langCount;
     }
   }
 }
@@ -201,8 +203,9 @@ document.addEventListener('DOMContentLoaded', function() {
     sessionStorage.setItem(sessionKey, 'true');
   } else {
     console.log('Pupilla Analytics: Returning visitor in same session');
-    // Just display current local count with note about global data
+    // Just display current local count
     const visitCount = getLocalCount('visits');
+    console.log('Pupilla Analytics: Current visit count:', visitCount);
     updateVisitDisplay(visitCount);
   }
   
@@ -210,27 +213,51 @@ document.addEventListener('DOMContentLoaded', function() {
   const downloadCountEl = document.getElementById('download-count');
   if (downloadCountEl) {
     const downloadCount = getLocalCount('downloads');
+    console.log('Pupilla Analytics: Current download count:', downloadCount);
     updateDownloadDisplay(downloadCount);
+  } else {
+    console.log('Pupilla Analytics: No download counter element found');
   }
   
   // Add click tracking to all PDF download links
-  const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+  const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[href*=".pdf"]');
   pdfLinks.forEach(link => {
-    link.addEventListener('click', function() {
+    link.addEventListener('click', function(e) {
       const pdfUrl = this.getAttribute('href');
       const language = this.getAttribute('data-lang') || 
-                      this.textContent.match(/\(([^)]+)\)/)?.[1] || 
+                      this.textContent.match(/\(([^)]+)\)/)?.[1] ||
+                      this.textContent.trim() || 
                       'default';
       
-      // Small delay to ensure tracking fires before navigation
-      setTimeout(() => {
-        handlePDFDownload(pdfUrl, language);
-      }, 100);
+      console.log('PDF link clicked:', pdfUrl, 'Language:', language);
+      handlePDFDownload(pdfUrl, language);
     });
   });
   
+  console.log('Pupilla Analytics: Found', pdfLinks.length, 'PDF links');
+  
   console.log('Pupilla Analytics: Google Analytics available:', typeof gtag !== 'undefined');
   console.log('Pupilla Analytics: Tracking ID:', '{{ site.google_analytics }}');
+  
+  // Debug function for testing
+  window.testCounters = function() {
+    console.log('=== COUNTER TEST ===');
+    console.log('Visit count:', getLocalCount('visits'));
+    console.log('Download count:', getLocalCount('downloads'));
+    console.log('Visit element:', document.getElementById('visit-count'));
+    console.log('Download element:', document.getElementById('download-count'));
+    
+    // Test increment
+    const newVisit = incrementLocalCount('visits');
+    const newDownload = incrementLocalCount('downloads');
+    console.log('New visit count:', newVisit);
+    console.log('New download count:', newDownload);
+    
+    // Update display
+    updateVisitDisplay(newVisit);
+    updateDownloadDisplay(newDownload);
+    console.log('=== END TEST ===');
+  };
 });
 </script>
 
