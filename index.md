@@ -3,16 +3,16 @@ layout: default
 title: Home
 ---
 
-<section class="hero">
+<!-- <section class="hero">
   <div class="hero-text">
     <h1 class="site-title">Pupilla</h1>
     <p class="site-blurb">A multidisciplinary preprint archive with the aim of building bridges and striving for unity in diversity.</p>
-    <!-- {% include search.html %} -->
+    <!-- {% include search.html %}
   </div>
   <div class="hero-media">
     <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Pupilla logo" />
   </div>
-</section>
+</section> -->
 
 <section class="latest-preprints">
   <div class="section-header">
@@ -38,20 +38,6 @@ title: Home
     {% for item in items %}
       <article class="preprint-card preprint-card-compact">
         <div class="preprint-meta">
-          {% if item.discipline %}
-            <span class="discipline-tag">{{ item.discipline }}</span>
-          {% endif %}
-          
-          {% if item.language %}
-            {% if item.language.size %}
-              {% for lang in item.language %}
-                <span class="language-tag">{{ lang }}</span>
-              {% endfor %}
-            {% else %}
-              <span class="language-tag">{{ item.language }}</span>
-            {% endif %}
-          {% endif %}
-          
           {% if item.coming_soon %}
             <span class="coming-soon-tag">COMING SOON</span>
           {% elsif item.date %}

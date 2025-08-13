@@ -16,10 +16,10 @@ abstract: >
 date: 2025-08-08
 pdfs:
   - language: "English"
-    url: "/assets/pdfs/20250809_PUPILLA_ChiarasTwoOrThre_en.pdf"
+    url: "/assets/pdfs/20250815_PUPILLA_ChiarasTwoOrThree_en.pdf"
     flag: "🇬🇧"
   - language: "Italiano" 
-    url: "/assets/pdfs/20250809_PUPILLA_ChiarasTwoOrThre_it.pdf"
+    url: "/assets/pdfs/20250815_PUPILLA_ChiarasTwoOrThree_it.pdf"
     flag: "🇮🇹"
 tags:
   - unity

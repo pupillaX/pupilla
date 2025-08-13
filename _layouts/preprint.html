@@ -8,9 +8,11 @@ layout: default
     <p class="authors">{{ page.authors | join: ', ' }}</p>
     {% endif %}
     <div class="preprint-tags">
+      {% comment %}
       {% if page.discipline %}
         <span class="discipline-tag">{{ page.discipline }}</span>
       {% endif %}
+      {% endcomment %}
       {% if page.language %}
         {% if page.language.size %}
           {% for lang in page.language %}
@@ -106,7 +108,6 @@ function trackPageView() {
     gtag('event', 'page_view', {
       'page_title': '{{ page.title | escape }}',
       'page_location': window.location.href,
-      'content_group1': '{{ page.discipline | escape }}',
       'custom_parameter_1': 'preprint_view',
       'send_to': '{{ site.google_analytics }}'
     });
@@ -122,7 +123,6 @@ function trackDownload(filename, language) {
       'file_name': filename,
       'file_extension': 'pdf',
       'page_title': '{{ page.title | escape }}',
-      'content_group1': '{{ page.discipline | escape }}',
       'language': language || 'default',
       'link_url': filename,
       'value': 1,

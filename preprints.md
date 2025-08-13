@@ -9,11 +9,14 @@ permalink: /preprints/
 Explore our collection of scholarly works:
 
 <div class="browse-controls">
+  <!-- Search section commented out - can be restored later
   <div class="search-section">
     {% include search.html %}
   </div>
+  -->
   
   <div class="filter-section">
+    <!-- Discipline filter commented out - can be restored later
     <label for="discipline-filter">Filter by Discipline:</label>
     <select id="discipline-filter">
       <option value="all">All Disciplines</option>
@@ -24,6 +27,7 @@ Explore our collection of scholarly works:
         {% endif %}
       {% endfor %}
     </select>
+    -->
     
     <label for="language-filter">Filter by Language:</label>
     <select id="language-filter">
@@ -76,9 +80,11 @@ Explore our collection of scholarly works:
       <div class="preprint-content">
         <div class="preprint-meta">
           <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
             {% if preprint.discipline %}
               <span class="discipline-badge">{{ preprint.discipline }}</span>
             {% endif %}
+            -->
             {% if preprint.language %}
               {% if preprint.language.size %}
                 {% for lang in preprint.language %}
@@ -88,8 +94,11 @@ Explore our collection of scholarly works:
                 <span class="language-badge">{{ preprint.language }}</span>
               {% endif %}
             {% endif %}
+            {% if preprint.coming_soon %}
+              <span class="coming-soon-tag">COMING SOON</span>
+            {% endif %}
           </div>
-          {% if preprint.date %}
+          {% if preprint.date and preprint.coming_soon != true %}
             <time class="publish-date" datetime="{{ preprint.date | date: '%Y-%m-%d' }}">
               {{ preprint.date | date: '%B %d, %Y' }}
             </time>
@@ -109,7 +118,7 @@ Explore our collection of scholarly works:
         {% endif %}
         
         {% if preprint.abstract %}
-          <p class="preprint-summary">{{ preprint.abstract | truncate: 200 }}</p>
+          <p class="preprint-summary">{{ preprint.abstract | truncate: 350 }}</p>
         {% endif %}
         
         <div class="preprint-links">
@@ -134,6 +143,7 @@ Explore our collection of scholarly works:
   <p>No preprints match your current filters. Try adjusting your search terms or discipline filter.</p>
 </div>
 
+<!-- Browse by Discipline section commented out - can be restored later
 ## Browse by Discipline
 
 <div class="discipline-overview">
@@ -152,6 +162,7 @@ Explore our collection of scholarly works:
     {% endif %}
   {% endfor %}
 </div>
+End of commented discipline section -->
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -162,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const noResults = document.getElementById('no-results');
   
   function filterAndSort() {
-    const selectedDiscipline = disciplineFilter.value;
+    const selectedDiscipline = disciplineFilter ? disciplineFilter.value : 'all';
     const selectedLanguage = languageFilter.value;
     const selectedSort = sortOrder.value;
     const preprints = Array.from(document.querySelectorAll('.preprint-item'));
@@ -213,15 +224,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  disciplineFilter.addEventListener('change', filterAndSort);
+  // Add event listeners only if elements exist
+  if (disciplineFilter) {
+    disciplineFilter.addEventListener('change', filterAndSort);
+  }
   languageFilter.addEventListener('change', filterAndSort);
   sortOrder.addEventListener('change', filterAndSort);
   
   // Global function for discipline links
   window.filterByDiscipline = function(discipline) {
-    disciplineFilter.value = discipline;
-    filterAndSort();
-    document.getElementById('preprints-container').scrollIntoView({ behavior: 'smooth' });
+    if (disciplineFilter) {
+      disciplineFilter.value = discipline;
+      filterAndSort();
+      document.getElementById('preprints-container').scrollIntoView({ behavior: 'smooth' });
+    }
   };
 });
 </script>

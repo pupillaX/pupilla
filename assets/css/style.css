@@ -123,6 +123,7 @@ a:hover {
 .mobile-logo img {
   width: 32px;
   height: 32px;
+  border-radius: 6px;
 }
 
 .mobile-menu-toggle {
@@ -209,10 +210,10 @@ a:hover {
 .logo {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 12px;
   margin: 0 auto var(--spacing-md);
   display: block;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   transition: transform var(--transition-normal);
 }
 

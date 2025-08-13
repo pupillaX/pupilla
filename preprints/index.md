@@ -7,7 +7,8 @@ permalink: /preprints/
 <section class="browse-header">
   <h1>Browse Preprints</h1>
   <p>Explore our collection of multidisciplinary research papers</p>
-  {% include search.html %}
+  <!-- Search commented out - can be restored later -->
+  <!-- {% include search.html %} -->
 </section>
 
 <section class="preprints-listing">
@@ -28,9 +29,7 @@ permalink: /preprints/
     {% for item in sorted_preprints %}
       <article class="preprint-card">
         <div class="preprint-meta">
-          {% if item.discipline %}
-            <span class="discipline-tag">{{ item.discipline }}</span>
-          {% endif %}
+          <!-- Discipline tags removed - can be restored if needed -->
           
           {% if item.language %}
             {% if item.language.size %}

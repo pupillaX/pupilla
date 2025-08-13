@@ -18,7 +18,7 @@ permalink: /contributors/
       
       <div class="bio-section">
         <h3>Short Bio</h3>
-        <p>Ph.D. in Computer Science from the University of East Anglia, Norwich, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School. Married and living in Catalunya.</p>
+        <p>Ph.D. in Computer Science from the University of East Anglia, Norwich, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School.</p>
       </div>
         
         <div class="contributor-links">
@@ -49,7 +49,7 @@ permalink: /contributors/
       
       <div class="bio-section">
         <h3>Short Bio</h3>
-        <p>Ph.D. Color Science from the University of Derby, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School. Married with two children and living in the UK.</p>
+        <p>Ph.D. Color Science from the University of Derby, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School.</p>
       </div>
       
         <div class="contributor-links">
@@ -64,7 +64,7 @@ permalink: /contributors/
           <h4>Personal & Blog Links</h4>
           <div class="link-group">
             <p><strong>Bluesky:</strong> <a href="https://bsky.app/profile/janmorovic.bsky.social" target="_blank" rel="noopener">@janmorovic.bsky.social</a></p>
-            <p><strong>Blog:</strong> <a href="https://ayebeleef.design.blog" target="_blank" rel="noopener">Articles & Thoughts</a></p>
+            <p><strong>Blog:</strong> <a href="https://ayebeleef.design.blog/author/jmorovic" target="_blank" rel="noopener">Articles & Thoughts</a></p>
           </div>
         </div>
     </div>
