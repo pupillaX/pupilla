@@ -23,10 +23,31 @@ Your website now tracks **all visits and downloads from users worldwide** using 
 ### **Google Analytics Dashboard**
 1. Go to [analytics.google.com](https://analytics.google.com)
 2. Select your property (Pupilla - G-VETQ7ZZ4FM)
-3. Key sections:
-   - **Real-time**: See current visitors
-   - **Engagement > Pages and screens**: Page view counts
-   - **Engagement > Events**: Download events
+3. Key sections for PDF downloads:
+   - **Real-time > Events**: See download events happening now
+   - **Reports > Engagement > Events**: Historical download data
+   - **Reports > Engagement > Conversions**: If you mark downloads as conversions
+
+### **Finding PDF Download Data** 🔍
+1. **Real-time Downloads** (happening now):
+   - Go to **Real-time** → **Events**
+   - Look for event: `file_download`
+   - Shows downloads happening in the last 30 minutes
+
+2. **Historical Download Data**:
+   - Go to **Reports** → **Engagement** → **Events**
+   - Look for event: `file_download`
+   - Click on `file_download` to see details
+   - Use the secondary dimension to see:
+     - `file_name` - which PDFs were downloaded
+     - `language` - which language versions
+     - `page_title` - from which preprint pages
+
+3. **Custom Report for Downloads**:
+   - Go to **Explore** → **Blank report**
+   - Add dimensions: `Event name`, `File name`, `Page title`
+   - Add metrics: `Event count`
+   - Filter: `Event name` = `file_download`
 
 ### **Key Reports for Your Data**
 

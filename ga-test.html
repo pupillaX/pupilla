@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Analytics Test - Pupilla</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VETQ7ZZ4FM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VETQ7ZZ4FM');
+    </script>
+</head>
+<body>
+    <h1>Google Analytics Test Page</h1>
+    
+    <p>This page helps test Google Analytics tracking for Pupilla.</p>
+    
+    <div id="status"></div>
+    
+    <h2>Test PDF Download Tracking</h2>
+    <button onclick="testDownload()">Test PDF Download Event</button>
+    
+    <h2>Test Results</h2>
+    <div id="results"></div>
+    
+    <script>
+        // Check if Google Analytics is loaded
+        function checkGA() {
+            const status = document.getElementById('status');
+            if (typeof gtag !== 'undefined') {
+                status.innerHTML = '<p style="color: green;">✅ Google Analytics is loaded correctly!</p>';
+                status.innerHTML += '<p>Tracking ID: G-VETQ7ZZ4FM</p>';
+                status.innerHTML += '<p>DataLayer entries: ' + (window.dataLayer ? window.dataLayer.length : 0) + '</p>';
+                return true;
+            } else {
+                status.innerHTML = '<p style="color: red;">❌ Google Analytics is NOT loaded</p>';
+                return false;
+            }
+        }
+        
+        // Test PDF download event
+        function testDownload() {
+            const results = document.getElementById('results');
+            
+            if (typeof gtag !== 'undefined') {
+                // Send test download event
+                gtag('event', 'file_download', {
+                    'file_name': 'test-pdf.pdf',
+                    'file_extension': 'pdf',
+                    'page_title': 'GA Test Page',
+                    'language': 'test',
+                    'value': 1
+                });
+                
+                results.innerHTML += '<p style="color: green;">✅ PDF download event sent successfully!</p>';
+                results.innerHTML += '<p>Check Google Analytics Real-time > Events to see this event.</p>';
+                
+                console.log('Test download event sent to GA');
+            } else {
+                results.innerHTML += '<p style="color: red;">❌ Cannot send event - Google Analytics not loaded</p>';
+            }
+        }
+        
+        // Run checks when page loads
+        window.onload = function() {
+            checkGA();
+            
+            // Show dataLayer contents for debugging
+            console.log('DataLayer:', window.dataLayer);
+        };
+    </script>
+</body>
+</html>
