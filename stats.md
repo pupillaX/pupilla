@@ -90,6 +90,22 @@ permalink: /stats/
         <strong>Google Analytics Status:</strong>
         <span id="ga-status">Checking...</span>
       </div>
+      
+      <div class="local-metric">
+        <strong>Cookie Consent:</strong>
+        <span id="cookie-status">Checking...</span>
+      </div>
+    </div>
+    
+    <div id="analytics-help" class="analytics-help" style="display: none;">
+      <h4>🍪 About Cookie Consent & Analytics</h4>
+      <p>This website uses GDPR-compliant cookie consent. Google Analytics only loads after you accept cookies for the best privacy protection.</p>
+      <p><strong>What this means:</strong></p>
+      <ul>
+        <li>Analytics respect your privacy choices</li>
+        <li>No tracking without explicit consent</li>
+        <li>You can change your choice anytime</li>
+      </ul>
     </div>
   </div>
 
@@ -227,6 +243,29 @@ permalink: /stats/
   margin-bottom: 8px;
 }
 
+.analytics-help {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.analytics-help h4 {
+  margin: 0 0 10px 0;
+  color: #856404;
+}
+
+.analytics-help p {
+  margin: 0 0 8px 0;
+  color: #856404;
+}
+
+.analytics-help ul {
+  margin: 8px 0 0 0;
+  color: #856404;
+}
+
 @media (max-width: 768px) {
   .link-grid {
     grid-template-columns: 1fr;
@@ -249,7 +288,27 @@ class SimpleAnalytics {
   init() {
     this.startTimer();
     this.checkGoogleAnalytics();
+    this.checkCookieConsent();
     this.trackPageViews();
+  }
+  
+  checkCookieConsent() {
+    const statusEl = document.getElementById('cookie-status');
+    const helpEl = document.getElementById('analytics-help');
+    const consentStatus = localStorage.getItem('cookie-consent');
+    
+    if (consentStatus === 'accepted') {
+      statusEl.textContent = '✅ Accepted';
+      statusEl.style.color = '#28a745';
+    } else if (consentStatus === 'rejected') {
+      statusEl.textContent = '🚫 Rejected';
+      statusEl.style.color = '#dc3545';
+      helpEl.style.display = 'block';
+    } else {
+      statusEl.textContent = '⏳ Pending';
+      statusEl.style.color = '#ffc107';
+      helpEl.style.display = 'block';
+    }
   }
   
   startTimer() {
@@ -265,12 +324,30 @@ class SimpleAnalytics {
   checkGoogleAnalytics() {
     const statusEl = document.getElementById('ga-status');
     
-    if (typeof gtag !== 'undefined') {
-      statusEl.textContent = '✅ Active';
-      statusEl.style.color = '#28a745';
+    // Check cookie consent first
+    const consentStatus = localStorage.getItem('cookie-consent');
+    
+    if (consentStatus === 'rejected') {
+      statusEl.textContent = '🚫 Disabled (cookies rejected)';
+      statusEl.style.color = '#ffc107';
+    } else if (consentStatus === 'accepted') {
+      // User accepted cookies, check if GA is loaded
+      if (typeof gtag !== 'undefined') {
+        statusEl.textContent = '✅ Active & Tracking';
+        statusEl.style.color = '#28a745';
+      } else {
+        statusEl.textContent = '⏳ Loading...';
+        statusEl.style.color = '#007bff';
+        // Check again in a moment
+        setTimeout(() => this.checkGoogleAnalytics(), 2000);
+      }
     } else {
-      statusEl.textContent = '❌ Not loaded';
-      statusEl.style.color = '#dc3545';
+      // No consent given yet
+      statusEl.textContent = '⚠️ Waiting for cookie consent';
+      statusEl.style.color = '#ffc107';
+      
+      // Check again periodically until consent is given
+      setTimeout(() => this.checkGoogleAnalytics(), 3000);
     }
   }
   
