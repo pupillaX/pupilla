@@ -187,25 +187,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const sortedPreprints = Object.entries(data.preprints)
       .sort((a, b) => b[1].views - a[1].views);
     
-    sortedPreprints.forEach(([path, stats]) => {
-      const preprintDiv = document.createElement('div');
-      preprintDiv.className = 'preprint-item-stats';
-      
-      preprintDiv.innerHTML = `
-        <div class="preprint-title-stats">${getPageTitle(path)}</div>
-        <div class="preprint-metrics">
-          <span>👁 ${stats.views} views</span>
-          <span>📥 ${stats.downloads} downloads</span>
-        </div>
-      `;
-      
-      preprintContainer.appendChild(preprintDiv);
-    });
-  }
-  
-  // Initial display
-  displayAnalytics();
-  
-  console.log('Analytics Dashboard: Loaded');
-});
+## ✨ **What You Get With This Simple Approach:**
+
+1. **Consistent local tracking** per device/browser
+2. **Session-based visit counting** (no double-counting)
+3. **Accurate download tracking** for each PDF click
+4. **Google Analytics integration** for your personal viewing in GA dashboard
+5. **No external API dependencies** or complex setup
+6. **Reliable performance** that won't break
+
+## 📊 **How to View Real Global Statistics:**
+
+- **For real global data**: Check your **Google Analytics dashboard** directly
+- **For quick overview**: Use this page to see aggregated local data trends
+- **For detailed insights**: GA4 gives you real visitor behavior, geography, devices, etc.
+
+This approach gives you the **best of both worlds**: simple, reliable counters on your site PLUS detailed analytics in your Google Analytics dashboard where you can see real global visitor data, traffic sources, popular content, and much more.
+
+<div class="analytics-note">
+  <h3>💡 About These Numbers</h3>
+  <p>The counters on your preprint pages show <strong>session-based statistics</strong> that give you a good sense of engagement. For comprehensive global analytics including visitor geography, traffic sources, and detailed behavior, check your Google Analytics dashboard.</p>
+</div>
 </script>

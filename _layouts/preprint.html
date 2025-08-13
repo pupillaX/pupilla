@@ -185,72 +185,132 @@ function updateDownloadDisplay(count) {
   }
 }
 
-// Initialize counters with real GA data integration
+// Global counter system using simple external service
+const PAGE_SLUG = PAGE_PATH.replace(/[^a-zA-Z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+
+// Initialize global counters
 async function initializeCounters() {
-  console.log('Pupilla Analytics: Initializing counters for:', PAGE_PATH);
+  console.log('Pupilla Analytics: Initializing global counters for:', PAGE_PATH);
   
-  // Try to get real analytics data from Jekyll data file
   try {
-    // Try multiple possible paths for the analytics data
-    let response;
-    const possiblePaths = [
-      '{{ "/assets/data/analytics.json" | relative_url }}',
-      '/assets/data/analytics.json',
-      '/pupilla/assets/data/analytics.json'
-    ];
+    // Use Goat Counter (privacy-friendly, GDPR compliant)
+    // Alternative: Use a simple counter API that works with static sites
     
-    for (const path of possiblePaths) {
-      try {
-        response = await fetch(path);
-        if (response.ok) {
-          console.log('Pupilla Analytics: Found analytics data at:', path);
-          break;
-        }
-      } catch (e) {
-        console.log('Pupilla Analytics: Failed to fetch from:', path);
-      }
+    // For now, use a simple approach with Firebase or similar
+    // This creates truly global counters shared across all devices
+    
+    const sessionKey = `pupilla-session-${PAGE_SLUG}`;
+    const isNewSession = !sessionStorage.getItem(sessionKey);
+    
+    if (isNewSession) {
+      // Increment global visit counter
+      await incrementGlobalVisitCounter();
+      sessionStorage.setItem(sessionKey, 'true');
+      console.log('Pupilla Analytics: New global session recorded');
     }
     
-    if (response && response.ok) {
-      const analyticsData = await response.json();
-      const pageData = analyticsData.preprints[PAGE_PATH];
-      
-      if (pageData) {
-        updateVisitDisplay(pageData.views || 0);
-        updateDownloadDisplay(pageData.downloads || 0);
-        console.log('Pupilla Analytics: Using real Google Analytics data');
-        console.log('Views:', pageData.views, 'Downloads:', pageData.downloads);
-        
-        // Still track the current session for immediate feedback
-        trackPageView();
-        return;
-      }
+    // Load current global counts
+    await loadGlobalCounts();
+    
+  } catch (error) {
+    console.error('Pupilla Analytics: Error with global counters:', error);
+    // Fallback to local if global service fails
+    initializeLocalCounters();
+  }
+}
+
+// Global counter functions using a simple API
+async function incrementGlobalVisitCounter() {
+  try {
+    // Using a simple counter service that provides global counting
+    const response = await fetch(`https://api.countapi.xyz/hit/pupilla-org-v2/visits-${PAGE_SLUG}`, {
+      method: 'GET',
+      mode: 'cors'
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      updateVisitDisplay(data.value || 1);
+      console.log('Pupilla Analytics: Global visit count:', data.value);
+    } else {
+      throw new Error('Global counter service unavailable');
     }
   } catch (error) {
-    console.log('Pupilla Analytics: Could not fetch real analytics data, using local fallback');
+    console.warn('Pupilla Analytics: Global visit counter failed, using local');
+    const count = incrementLocalCount('visits');
+    updateVisitDisplay(count);
   }
+}
+
+async function incrementGlobalDownloadCounter() {
+  try {
+    const response = await fetch(`https://api.countapi.xyz/hit/pupilla-org-v2/downloads-${PAGE_SLUG}`, {
+      method: 'GET',
+      mode: 'cors'
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      updateDownloadDisplay(data.value || 1);
+      console.log('Pupilla Analytics: Global download count:', data.value);
+      return data.value;
+    } else {
+      throw new Error('Global counter service unavailable');
+    }
+  } catch (error) {
+    console.warn('Pupilla Analytics: Global download counter failed, using local');
+    const count = incrementLocalCount('downloads');
+    updateDownloadDisplay(count);
+    return count;
+  }
+}
+
+async function loadGlobalCounts() {
+  try {
+    // Load current visit count
+    const visitResponse = await fetch(`https://api.countapi.xyz/get/pupilla-org-v2/visits-${PAGE_SLUG}`, {
+      mode: 'cors'
+    });
+    
+    if (visitResponse.ok) {
+      const visitData = await visitResponse.json();
+      updateVisitDisplay(visitData.value || 0);
+    }
+    
+    // Load current download count
+    const downloadResponse = await fetch(`https://api.countapi.xyz/get/pupilla-org-v2/downloads-${PAGE_SLUG}`, {
+      mode: 'cors'
+    });
+    
+    if (downloadResponse.ok) {
+      const downloadData = await downloadResponse.json();
+      updateDownloadDisplay(downloadData.value || 0);
+    }
+    
+    console.log('Pupilla Analytics: Global counts loaded successfully');
+    
+  } catch (error) {
+    console.warn('Pupilla Analytics: Could not load global counts');
+    // Show local counts as fallback
+    updateVisitDisplay(getLocalCount('visits'));
+    updateDownloadDisplay(getLocalCount('downloads'));
+  }
+}
+
+// Fallback to local counters
+function initializeLocalCounters() {
+  const sessionKey = `pupilla-session-${PAGE_SLUG}`;
+  const isNewSession = !sessionStorage.getItem(sessionKey);
   
-  // Fallback to local tracking with session management
-  console.log('Pupilla Analytics: Using local tracking with GA integration');
-  
-  const sessionKey = `pupilla-session-${PAGE_PATH}`;
-  if (!sessionStorage.getItem(sessionKey)) {
+  if (isNewSession) {
     const visitCount = incrementLocalCount('visits');
     updateVisitDisplay(visitCount);
     sessionStorage.setItem(sessionKey, 'true');
-    console.log('Pupilla Analytics: New session, visit count:', visitCount);
-    
-    // Only track in GA if it's not blocked
-    if (typeof gtag !== 'undefined') {
-      trackPageView();
-      console.log('Pupilla Analytics: Google Analytics tracking enabled');
-    } else {
-      console.log('Pupilla Analytics: Google Analytics blocked or not loaded');
-    }
+    console.log('Pupilla Analytics: Local fallback - new session, visit count:', visitCount);
   } else {
     const visitCount = getLocalCount('visits');
     updateVisitDisplay(visitCount);
-    console.log('Pupilla Analytics: Returning session, visit count:', visitCount);
+    console.log('Pupilla Analytics: Local fallback - returning session, visit count:', visitCount);
   }
   
   const downloadCount = getLocalCount('downloads');
@@ -258,10 +318,8 @@ async function initializeCounters() {
 }
 
 function incrementDownloadCounter() {
-  const count = incrementLocalCount('downloads');
-  updateDownloadDisplay(count);
-  console.log('Pupilla Analytics: Download count incremented to:', count);
-  return count;
+  // Use global counter, fallback to local if failed
+  return incrementGlobalDownloadCounter();
 }
 
 function handlePDFDownload(pdfUrl, language) {
