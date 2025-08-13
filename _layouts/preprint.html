@@ -357,7 +357,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   console.log('Pupilla Analytics: Found', pdfLinks.length, 'PDF links');
-  console.log('Pupilla Analytics: Google Analytics available:', typeof gtag !== 'undefined');
-  console.log('Pupilla Analytics: Tracking ID:', '{{ site.google_analytics }}');
+  
+  // Only log GA status if in development
+  if (window.location.hostname === 'localhost') {
+    console.log('Pupilla Analytics: Google Analytics available:', typeof gtag !== 'undefined');
+    console.log('Pupilla Analytics: Tracking ID:', '{{ site.google_analytics }}');
+  }
 });
 </script>
