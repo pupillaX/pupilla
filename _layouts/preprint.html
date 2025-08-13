@@ -80,29 +80,61 @@ layout: default
 </article>
 
 <script>
-// Global Analytics Tracking System
-// Combines Google Analytics for worldwide data with localStorage for immediate feedback
+// Pupilla Analytics - Enhanced with server-side counters
+console.log('Pupilla Analytics: Starting initialization');
 
-function getStorageKey(type) {
-  return `pupilla_${type}_${window.location.pathname}`;
+// Server-side counter using CountAPI (free service)
+const COUNTER_API_BASE = 'https://api.countapi.xyz';
+const SITE_NAMESPACE = 'pupilla-preprints';
+const PAGE_KEY = '{{ page.url | slugify }}';
+
+// Initialize real server-side counters
+async function initializeCounters() {
+  try {
+    // Get or create visit counter
+    const visitResponse = await fetch(`${COUNTER_API_BASE}/hit/${SITE_NAMESPACE}/visits-${PAGE_KEY}`);
+    const visitData = await visitResponse.json();
+    
+    if (visitData.value) {
+      updateVisitDisplay(visitData.value);
+      console.log('Pupilla Analytics: Visit count loaded:', visitData.value);
+    }
+    
+    // Get download counter (don't auto-increment)
+    const downloadResponse = await fetch(`${COUNTER_API_BASE}/get/${SITE_NAMESPACE}/downloads-${PAGE_KEY}`);
+    const downloadData = await downloadResponse.json();
+    
+    if (downloadData.value) {
+      updateDownloadDisplay(downloadData.value);
+      console.log('Pupilla Analytics: Download count loaded:', downloadData.value);
+    } else {
+      // Initialize download counter if it doesn't exist
+      await fetch(`${COUNTER_API_BASE}/set/${SITE_NAMESPACE}/downloads-${PAGE_KEY}?value=0`);
+      updateDownloadDisplay(0);
+    }
+  } catch (error) {
+    console.error('Pupilla Analytics: Error loading counters:', error);
+    updateVisitDisplay('--');
+    updateDownloadDisplay('--');
+  }
 }
 
-function getLocalCount(type) {
-  return parseInt(localStorage.getItem(getStorageKey(type)) || '0');
+// Increment download counter when PDF is downloaded
+async function incrementDownloadCounter() {
+  try {
+    const response = await fetch(`${COUNTER_API_BASE}/hit/${SITE_NAMESPACE}/downloads-${PAGE_KEY}`);
+    const data = await response.json();
+    
+    if (data.value) {
+      updateDownloadDisplay(data.value);
+      console.log('Pupilla Analytics: Download count incremented to:', data.value);
+    }
+  } catch (error) {
+    console.error('Pupilla Analytics: Error incrementing download counter:', error);
+  }
 }
 
-function setLocalCount(type, count) {
-  localStorage.setItem(getStorageKey(type), count.toString());
-}
-
-function incrementLocalCount(type) {
-  const currentCount = getLocalCount(type);
-  const newCount = currentCount + 1;
-  setLocalCount(type, newCount);
-  return newCount;
-}
-
-// Google Analytics Events
+// Google Analytics Events (keep for data collection)
 function trackPageView() {
   if (typeof gtag !== 'undefined') {
     gtag('event', 'page_view', {
@@ -134,31 +166,6 @@ function trackDownload(filename, language) {
   }
 }
 
-function incrementVisitCount() {
-  // Track in Google Analytics for global data
-  trackPageView();
-  
-  // Update local counter for immediate feedback
-  const count = incrementLocalCount('visits');
-  updateVisitDisplay(count);
-  
-  return count;
-}
-
-function incrementDownloadCount(filename, language) {
-  // Track in Google Analytics for global data
-  trackDownload(filename, language);
-  
-  // Update local counters for immediate feedback
-  const downloadType = language ? `downloads_${language}` : 'downloads';
-  const langCount = incrementLocalCount(downloadType);
-  const totalCount = incrementLocalCount('downloads');
-  
-  updateDownloadDisplay(totalCount, language, langCount);
-  
-  return totalCount;
-}
-
 function updateVisitDisplay(count) {
   const visitCountEl = document.getElementById('visit-count');
   if (visitCountEl) {
@@ -166,56 +173,33 @@ function updateVisitDisplay(count) {
   }
 }
 
-function updateDownloadDisplay(totalCount, language, langCount) {
+function updateDownloadDisplay(count) {
   const downloadCountEl = document.getElementById('download-count');
   if (downloadCountEl) {
-    downloadCountEl.textContent = totalCount;
-  }
-  
-  // Update language-specific count if element exists
-  if (language) {
-    const langCountEl = document.getElementById(`download-count-${language}`);
-    if (langCountEl) {
-      langCountEl.textContent = langCount;
-    }
+    downloadCountEl.textContent = count;
   }
 }
 
 // Enhanced download tracking for PDF links
-function handlePDFDownload(pdfUrl, language) {
+async function handlePDFDownload(pdfUrl, language) {
   const filename = pdfUrl.split('/').pop();
-  incrementDownloadCount(pdfUrl, language);
+  
+  // Track in Google Analytics
+  trackDownload(pdfUrl, language);
+  
+  // Increment server-side counter
+  await incrementDownloadCounter();
 }
 
 // Initialize counters and tracking
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Pupilla Analytics: Initializing for:', '{{ page.title | escape }}');
   
-  // Check if this is a new visit (not just a page refresh)
-  const sessionKey = `pupilla_session_${window.location.pathname}`;
-  const hasVisitedThisSession = sessionStorage.getItem(sessionKey);
+  // Initialize server-side counters
+  initializeCounters();
   
-  if (!hasVisitedThisSession) {
-    console.log('Pupilla Analytics: New session, tracking visit');
-    incrementVisitCount();
-    sessionStorage.setItem(sessionKey, 'true');
-  } else {
-    console.log('Pupilla Analytics: Returning visitor in same session');
-    // Just display current local count
-    const visitCount = getLocalCount('visits');
-    console.log('Pupilla Analytics: Current visit count:', visitCount);
-    updateVisitDisplay(visitCount);
-  }
-  
-  // Display download count
-  const downloadCountEl = document.getElementById('download-count');
-  if (downloadCountEl) {
-    const downloadCount = getLocalCount('downloads');
-    console.log('Pupilla Analytics: Current download count:', downloadCount);
-    updateDownloadDisplay(downloadCount);
-  } else {
-    console.log('Pupilla Analytics: No download counter element found');
-  }
+  // Track page view in Google Analytics
+  trackPageView();
   
   // Add click tracking to all PDF download links
   const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[href*=".pdf"]');
@@ -233,9 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   console.log('Pupilla Analytics: Found', pdfLinks.length, 'PDF links');
-  
   console.log('Pupilla Analytics: Google Analytics available:', typeof gtag !== 'undefined');
   console.log('Pupilla Analytics: Tracking ID:', '{{ site.google_analytics }}');
 });
 </script>
-
