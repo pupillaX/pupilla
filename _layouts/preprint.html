@@ -80,57 +80,122 @@ layout: default
 </article>
 
 <script>
-// Pupilla Analytics - Enhanced with server-side counters
+// Pupilla Analytics - Hybrid counter system with fallback
 console.log('Pupilla Analytics: Starting initialization');
 
-// Server-side counter using CountAPI (free service)
-const COUNTER_API_BASE = 'https://api.countapi.xyz';
-const SITE_NAMESPACE = 'pupilla-preprints';
 const PAGE_KEY = '{{ page.url | slugify }}';
+const STORAGE_PREFIX = 'pupilla-analytics';
 
-// Initialize real server-side counters
+// Fallback localStorage functions
+function getLocalCount(type) {
+  const key = `${STORAGE_PREFIX}-${type}-${PAGE_KEY}`;
+  const count = localStorage.getItem(key);
+  return count ? parseInt(count, 10) : 0;
+}
+
+function setLocalCount(type, count) {
+  const key = `${STORAGE_PREFIX}-${type}-${PAGE_KEY}`;
+  localStorage.setItem(key, count.toString());
+}
+
+function incrementLocalCount(type) {
+  const currentCount = getLocalCount(type);
+  const newCount = currentCount + 1;
+  setLocalCount(type, newCount);
+  return newCount;
+}
+
+// Server-side counter with fallback
 async function initializeCounters() {
+  console.log('Pupilla Analytics: Initializing counters for page:', PAGE_KEY);
+  
   try {
-    // Get or create visit counter
-    const visitResponse = await fetch(`${COUNTER_API_BASE}/hit/${SITE_NAMESPACE}/visits-${PAGE_KEY}`);
-    const visitData = await visitResponse.json();
+    // Try using a different free counter service (api.countapi.xyz might be down)
+    const visitUrl = `https://api.countapi.xyz/hit/pupilla-org/visits-${PAGE_KEY}`;
+    console.log('Pupilla Analytics: Attempting to fetch visit count from:', visitUrl);
     
-    if (visitData.value) {
-      updateVisitDisplay(visitData.value);
-      console.log('Pupilla Analytics: Visit count loaded:', visitData.value);
-    }
+    const visitResponse = await fetch(visitUrl, {
+      method: 'GET',
+      mode: 'cors'
+    });
     
-    // Get download counter (don't auto-increment)
-    const downloadResponse = await fetch(`${COUNTER_API_BASE}/get/${SITE_NAMESPACE}/downloads-${PAGE_KEY}`);
-    const downloadData = await downloadResponse.json();
-    
-    if (downloadData.value) {
-      updateDownloadDisplay(downloadData.value);
-      console.log('Pupilla Analytics: Download count loaded:', downloadData.value);
+    if (visitResponse.ok) {
+      const visitData = await visitResponse.json();
+      console.log('Pupilla Analytics: Server response for visits:', visitData);
+      
+      if (visitData.value !== undefined) {
+        updateVisitDisplay(visitData.value);
+        console.log('Pupilla Analytics: Visit count from server:', visitData.value);
+      } else {
+        throw new Error('Invalid server response for visits');
+      }
     } else {
-      // Initialize download counter if it doesn't exist
-      await fetch(`${COUNTER_API_BASE}/set/${SITE_NAMESPACE}/downloads-${PAGE_KEY}?value=0`);
-      updateDownloadDisplay(0);
+      throw new Error(`Server responded with status: ${visitResponse.status}`);
     }
+    
+    // Get download counter
+    const downloadUrl = `https://api.countapi.xyz/get/pupilla-org/downloads-${PAGE_KEY}`;
+    const downloadResponse = await fetch(downloadUrl, { mode: 'cors' });
+    
+    if (downloadResponse.ok) {
+      const downloadData = await downloadResponse.json();
+      console.log('Pupilla Analytics: Server response for downloads:', downloadData);
+      
+      if (downloadData.value !== undefined) {
+        updateDownloadDisplay(downloadData.value);
+        console.log('Pupilla Analytics: Download count from server:', downloadData.value);
+      } else {
+        // Initialize download counter
+        await fetch(`https://api.countapi.xyz/set/pupilla-org/downloads-${PAGE_KEY}?value=0`, { mode: 'cors' });
+        updateDownloadDisplay(0);
+      }
+    } else {
+      updateDownloadDisplay(getLocalCount('downloads'));
+    }
+    
   } catch (error) {
-    console.error('Pupilla Analytics: Error loading counters:', error);
-    updateVisitDisplay('--');
-    updateDownloadDisplay('--');
+    console.warn('Pupilla Analytics: Server counters failed, using local fallback:', error);
+    
+    // Fallback to localStorage
+    const visitCount = getLocalCount('visits');
+    const downloadCount = getLocalCount('downloads');
+    
+    // Auto-increment visit count for new sessions
+    const sessionKey = `pupilla-session-${PAGE_KEY}`;
+    if (!sessionStorage.getItem(sessionKey)) {
+      const newVisitCount = incrementLocalCount('visits');
+      updateVisitDisplay(newVisitCount);
+      sessionStorage.setItem(sessionKey, 'true');
+      console.log('Pupilla Analytics: New session, visit count incremented to:', newVisitCount);
+    } else {
+      updateVisitDisplay(visitCount);
+      console.log('Pupilla Analytics: Returning session, visit count:', visitCount);
+    }
+    
+    updateDownloadDisplay(downloadCount);
+    console.log('Pupilla Analytics: Using local download count:', downloadCount);
   }
 }
 
-// Increment download counter when PDF is downloaded
+// Increment download counter
 async function incrementDownloadCounter() {
   try {
-    const response = await fetch(`${COUNTER_API_BASE}/hit/${SITE_NAMESPACE}/downloads-${PAGE_KEY}`);
-    const data = await response.json();
+    const response = await fetch(`https://api.countapi.xyz/hit/pupilla-org/downloads-${PAGE_KEY}`, { mode: 'cors' });
     
-    if (data.value) {
-      updateDownloadDisplay(data.value);
-      console.log('Pupilla Analytics: Download count incremented to:', data.value);
+    if (response.ok) {
+      const data = await response.json();
+      if (data.value !== undefined) {
+        updateDownloadDisplay(data.value);
+        console.log('Pupilla Analytics: Server download count incremented to:', data.value);
+        return;
+      }
     }
+    throw new Error('Server increment failed');
   } catch (error) {
-    console.error('Pupilla Analytics: Error incrementing download counter:', error);
+    console.warn('Pupilla Analytics: Server download increment failed, using local:', error);
+    const count = incrementLocalCount('downloads');
+    updateDownloadDisplay(count);
+    console.log('Pupilla Analytics: Local download count incremented to:', count);
   }
 }
 
