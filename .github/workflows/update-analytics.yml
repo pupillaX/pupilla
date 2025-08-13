@@ -1,0 +1,165 @@
+name: Update Analytics Data
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-analytics:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install googleapis@latest
+          
+      - name: Fetch Google Analytics Data
+        env:
+          GA_PROPERTY_ID: ${{ secrets.GA_PROPERTY_ID }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        run: |
+          cat << 'EOF' > fetch-analytics.js
+          const { BetaAnalyticsDataClient } = require('@google-analytics/data');
+          const fs = require('fs');
+          
+          async function fetchAnalyticsData() {
+            try {
+              // Initialize the client with service account credentials
+              const analyticsDataClient = new BetaAnalyticsDataClient({
+                credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
+              });
+              
+              const propertyId = process.env.GA_PROPERTY_ID;
+              
+              // Fetch page views for preprints
+              const [pageViewsResponse] = await analyticsDataClient.runReport({
+                property: `properties/${propertyId}`,
+                dateRanges: [
+                  {
+                    startDate: '2024-01-01',
+                    endDate: 'today',
+                  },
+                ],
+                dimensions: [
+                  { name: 'pagePath' },
+                  { name: 'pageTitle' },
+                ],
+                metrics: [
+                  { name: 'screenPageViews' },
+                ],
+                dimensionFilter: {
+                  filter: {
+                    fieldName: 'pagePath',
+                    stringFilter: {
+                      matchType: 'CONTAINS',
+                      value: '/preprints/',
+                    },
+                  },
+                },
+              });
+              
+              // Fetch download events
+              const [downloadsResponse] = await analyticsDataClient.runReport({
+                property: `properties/${propertyId}`,
+                dateRanges: [
+                  {
+                    startDate: '2024-01-01',
+                    endDate: 'today',
+                  },
+                ],
+                dimensions: [
+                  { name: 'pagePath' },
+                  { name: 'fileName' },
+                ],
+                metrics: [
+                  { name: 'eventCount' },
+                ],
+                dimensionFilter: {
+                  filter: {
+                    fieldName: 'eventName',
+                    stringFilter: {
+                      matchType: 'EXACT',
+                      value: 'file_download',
+                    },
+                  },
+                },
+              });
+              
+              // Process the data
+              const analytics = {
+                lastUpdated: new Date().toISOString(),
+                totalViews: 0,
+                totalDownloads: 0,
+                preprints: {}
+              };
+              
+              // Process page views
+              pageViewsResponse.rows?.forEach(row => {
+                const pagePath = row.dimensionValues[0].value;
+                const pageTitle = row.dimensionValues[1].value;
+                const views = parseInt(row.metricValues[0].value);
+                
+                analytics.totalViews += views;
+                
+                if (!analytics.preprints[pagePath]) {
+                  analytics.preprints[pagePath] = {
+                    title: pageTitle,
+                    views: 0,
+                    downloads: 0
+                  };
+                }
+                analytics.preprints[pagePath].views = views;
+              });
+              
+              // Process downloads
+              downloadsResponse.rows?.forEach(row => {
+                const pagePath = row.dimensionValues[0].value;
+                const downloads = parseInt(row.metricValues[0].value);
+                
+                analytics.totalDownloads += downloads;
+                
+                if (!analytics.preprints[pagePath]) {
+                  analytics.preprints[pagePath] = {
+                    title: 'Unknown',
+                    views: 0,
+                    downloads: 0
+                  };
+                }
+                analytics.preprints[pagePath].downloads += downloads;
+              });
+              
+              // Write to file
+              fs.writeFileSync('_data/analytics.json', JSON.stringify(analytics, null, 2));
+              console.log('Analytics data updated successfully');
+              console.log(`Total views: ${analytics.totalViews}`);
+              console.log(`Total downloads: ${analytics.totalDownloads}`);
+              
+            } catch (error) {
+              console.error('Error fetching analytics data:', error);
+              process.exit(1);
+            }
+          }
+          
+          fetchAnalyticsData();
+          EOF
+          
+          node fetch-analytics.js
+          
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _data/analytics.json
+          git diff --staged --quiet || git commit -m "Update analytics data"
+          git push
