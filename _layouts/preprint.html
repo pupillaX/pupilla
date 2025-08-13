@@ -191,8 +191,27 @@ async function initializeCounters() {
   
   // Try to get real analytics data from Jekyll data file
   try {
-    const response = await fetch('/pupilla/_data/analytics.json');
-    if (response.ok) {
+    // Try multiple possible paths for the analytics data
+    let response;
+    const possiblePaths = [
+      '{{ "/assets/data/analytics.json" | relative_url }}',
+      '/assets/data/analytics.json',
+      '/pupilla/assets/data/analytics.json'
+    ];
+    
+    for (const path of possiblePaths) {
+      try {
+        response = await fetch(path);
+        if (response.ok) {
+          console.log('Pupilla Analytics: Found analytics data at:', path);
+          break;
+        }
+      } catch (e) {
+        console.log('Pupilla Analytics: Failed to fetch from:', path);
+      }
+    }
+    
+    if (response && response.ok) {
       const analyticsData = await response.json();
       const pageData = analyticsData.preprints[PAGE_PATH];
       
@@ -208,7 +227,7 @@ async function initializeCounters() {
       }
     }
   } catch (error) {
-    console.log('Pupilla Analytics: Could not fetch real analytics data:', error);
+    console.log('Pupilla Analytics: Could not fetch real analytics data, using local fallback');
   }
   
   // Fallback to local tracking with session management
@@ -221,7 +240,13 @@ async function initializeCounters() {
     sessionStorage.setItem(sessionKey, 'true');
     console.log('Pupilla Analytics: New session, visit count:', visitCount);
     
-    trackPageView();
+    // Only track in GA if it's not blocked
+    if (typeof gtag !== 'undefined') {
+      trackPageView();
+      console.log('Pupilla Analytics: Google Analytics tracking enabled');
+    } else {
+      console.log('Pupilla Analytics: Google Analytics blocked or not loaded');
+    }
   } else {
     const visitCount = getLocalCount('visits');
     updateVisitDisplay(visitCount);
