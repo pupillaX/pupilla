@@ -406,24 +406,17 @@ class PupillaAnalytics {
   }
   
   async loadMetrics(startDate, endDate) {
-    // Simulate API response
-    const metrics = {
-      totalUsers: Math.floor(Math.random() * 1000) + 100,
-      pageViews: Math.floor(Math.random() * 5000) + 500,
-      sessions: Math.floor(Math.random() * 2000) + 200,
-      pdfDownloads: Math.floor(Math.random() * 200) + 20
-    };
+    // Show message that this is a demo
+    document.getElementById('total-users').innerHTML = '<span style="color: #dc3545;">Demo Mode</span>';
+    document.getElementById('page-views').innerHTML = '<span style="color: #dc3545;">Demo Mode</span>';
+    document.getElementById('sessions').innerHTML = '<span style="color: #dc3545;">Demo Mode</span>';
+    document.getElementById('pdf-downloads').innerHTML = '<span style="color: #dc3545;">Demo Mode</span>';
     
-    document.getElementById('total-users').textContent = metrics.totalUsers.toLocaleString();
-    document.getElementById('page-views').textContent = metrics.pageViews.toLocaleString();
-    document.getElementById('sessions').textContent = metrics.sessions.toLocaleString();
-    document.getElementById('pdf-downloads').textContent = metrics.pdfDownloads.toLocaleString();
-    
-    // Add change indicators
-    this.addChangeIndicator('users-change', 12.5);
-    this.addChangeIndicator('views-change', 8.3);
-    this.addChangeIndicator('sessions-change', -2.1);
-    this.addChangeIndicator('downloads-change', 15.7);
+    // Show setup instructions
+    this.addChangeIndicator('users-change', 'Setup API for real data');
+    this.addChangeIndicator('views-change', 'See DASHBOARD_SETUP.md');
+    this.addChangeIndicator('sessions-change', 'Configure credentials');
+    this.addChangeIndicator('downloads-change', 'Enable Google Analytics API');
   }
   
   async loadPageViews(startDate, endDate) {
