@@ -6,10 +6,7 @@ permalink: /contact/
 
 ## Contact Pupilla
 
-We welcome inquiries, submissions, and collaboration opportunities. Please don't hesitate to reach out to us.
-<br>
-<br>
-**Email:** [pupillarXiv@gmail.com](mailto:pupillarXiv@gmail.com)
+We welcome comments, inquiries, proposals for submissions and collaboration. Please don't hesitate to reach out to us at [pupillarXiv@gmail.com](mailto:pupillarXiv@gmail.com)
 
 <!-- ## General Inquiries
 

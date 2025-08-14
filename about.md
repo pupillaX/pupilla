@@ -23,7 +23,7 @@ Our vision is rooted in the conviction that knowledge flourishes when shared acr
 - **PDF downloads** available in multiple languages when applicable
 - **Author contact information** for direct academic dialogue
 - **Search and filtering** by discipline, language, and topic
-- **No fees”** - there are no fees or costs for article submission
+- **No fees** - there are no fees or costs for article submission
 - **No paywalls** – all content freely accessible
 - **Relevance** to themes of unity, dialogue, and interdisciplinary understanding
 

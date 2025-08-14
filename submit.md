@@ -2,7 +2,14 @@
 layout: default
 title: Submit Your Work
 permalink: /submit/
+published: false
+# Temporarily disabled - will be worked on later
 ---
+
+<!-- 
+SUBMIT PAGE TEMPORARILY DISABLED
+This page is being worked on and will be available soon.
+-->
 
 ## Submit Your Work to Pupilla
 
@@ -157,11 +164,8 @@ A: Absolutely. Please ensure all authors have approved the submission.
 A: We welcome submissions from non-native English speakers and will work with you to ensure clarity while preserving your voice.
 
 ---
+-->
 
-## Ready to Submit?
+We look forward to receiving your contribution – or any comments and inputs:
 
-We look forward to receiving your contribution to the growing body of scholarship inspired by unity in diversity.
-
-**Submit now:** [submit@pupilla.org](mailto:submit@pupilla.org)
-
-*"In the field of knowledge, as in all fields of human endeavor, unity is not uniformity but the harmonious integration of diverse gifts and perspectives."* -->
+**Submit now:** [pupillarXiv@gmail.com](mailto:pupillarXiv@gmail.com)

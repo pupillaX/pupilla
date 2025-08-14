@@ -75,9 +75,7 @@ We may update this privacy policy from time to time. We will notify users of any
 
 ## Contact Information
 
-If you have any questions about this Privacy Policy, please contact us:
-- Email: info@pupilla.org
-- Website: [Contact Page]({{ '/contact/' | relative_url }})
+If you have any questions about this Privacy Policy, please contact us.
 
 ## Legal Basis (GDPR)
 

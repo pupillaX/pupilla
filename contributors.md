@@ -18,7 +18,7 @@ permalink: /contributors/
       
       <div class="bio-section">
         <h3>Short Bio</h3>
-        <p>Ph.D. in Computer Science from the University of East Anglia, Norwich, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School.</p>
+        <p>Ph.D. in Computer Science from the University of East Anglia, Norwich, UK; Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study.</p>
       </div>
         
         <div class="contributor-links">
@@ -49,7 +49,7 @@ permalink: /contributors/
       
       <div class="bio-section">
         <h3>Short Bio</h3>
-        <p>Ph.D. Color Science from the University of Derby, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School.</p>
+        <p>Ph.D. Color Science from the University of Derby, UK; Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study.</p>
       </div>
       
         <div class="contributor-links">
@@ -71,7 +71,8 @@ permalink: /contributors/
   </div>
 </div>
 
-**Interested in contributing?** Visit our [submission guidelines]({{ '/submit/' | relative_url }}) or [contact us]({{ '/contact/' | relative_url }}) directly.
+**Interested in contributing?** [Contact us]({{ '/contact/' | relative_url }}) directly.
+<!-- Visit our [submission guidelines]({{ '/submit/' | relative_url }}) or [contact us]({{ '/contact/' | relative_url }}) directly. -->
 
 <style>
 .contributors-grid {
