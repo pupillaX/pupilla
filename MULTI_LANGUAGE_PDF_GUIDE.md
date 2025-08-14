@@ -37,19 +37,10 @@ The system automatically detects flags for common languages:
 
 - English → 🇺🇸
 - Italiano/Italian → 🇮🇹  
-- Français/French → 🇫🇷
 - Deutsch/German → 🇩🇪
 - Español/Spanish → 🇪🇸
-- Português/Portuguese → 🇵🇹
-- 中文/Chinese → 🇨🇳
+- Catalan → 🏴󠁥󠁳󠁣󠁴󠁿
 - 日本語/Japanese → 🇯🇵
-
-### Features:
-
-✅ **Individual download tracking**: Each language PDF is tracked separately  
-✅ **Responsive design**: Buttons stack vertically on mobile  
-✅ **Accessibility**: Proper ARIA labels and keyboard navigation  
-✅ **Fallback support**: Still works with single `pdf` field for backward compatibility  
 
 ### Migration from Single PDF:
 
