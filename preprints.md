@@ -66,7 +66,8 @@ Explore our collection of scholarly works:
 ## All Preprints ({{ site['pupilla-preprints'].size }})
 
 <div id="preprints-container" class="preprints-listing">
-  {% assign all_preprints = site['pupilla-preprints'] | sort: 'date' | reverse %}
+  {% assign dated_preprints = site['pupilla-preprints'] | where_exp: 'item', 'item.date' %}
+  {% assign all_preprints = dated_preprints | sort: 'date' | reverse %}
   {% for preprint in all_preprints %}
     {% assign preprint_languages = '' %}
     {% if preprint.language %}
@@ -123,10 +124,16 @@ Explore our collection of scholarly works:
         
         <div class="preprint-links">
           <a href="{{ preprint.url | relative_url }}" class="read-link">Read Article</a>
-          {% if preprint.pdf %}
-            <a href="{{ preprint.pdf | relative_url }}" target="_blank" rel="noopener" class="pdf-link" onclick="gtag('event', 'pdf_download', {'file_name': '{{ preprint.pdf }}', 'page_title': '{{ preprint.title }}'});">
-              📄 Download PDF
-            </a>
+          {% if preprint.coming_soon %}
+            <span class="pdf-link disabled" title="PDF will be available soon">
+              📄 PDF (Coming Soon)
+            </span>
+          {% else %}
+            {% if preprint.pdf %}
+              <a href="{{ preprint.pdf | relative_url }}" target="_blank" rel="noopener" class="pdf-link" onclick="gtag('event', 'pdf_download', {'file_name': '{{ preprint.pdf }}', 'page_title': '{{ preprint.title }}'});">
+                📄 Download PDF
+              </a>
+            {% endif %}
           {% endif %}
           {% if preprint.doi %}
             <a href="https://doi.org/{{ preprint.doi }}" target="_blank" rel="noopener" class="doi-link">

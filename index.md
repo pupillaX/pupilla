@@ -55,12 +55,23 @@ title: Home
         
         <div class="preprint-actions">
           <a href="{{ item.url | relative_url }}" class="read-more">Read More</a>
-          {% if item.pdfs %}
-            {% for pdf in item.pdfs %}
-              <a href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'file_download', {'file_name': '{{ pdf.url }}', 'file_extension': 'pdf', 'page_title': '{{ item.title }}', 'language': '{{ pdf.language }}', 'send_to': '{{ site.google_analytics }}'});">{{ pdf.flag }}</a>
-            {% endfor %}
-          {% elsif item.pdf %}
-            <a href="{{ item.pdf | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'file_download', {'file_name': '{{ item.pdf }}', 'file_extension': 'pdf', 'page_title': '{{ item.title }}', 'send_to': '{{ site.google_analytics }}'});">📄</a>
+          {% if item.coming_soon %}
+            <!-- Show disabled PDF buttons for coming soon items -->
+            {% if item.abstracts %}
+              {% for abstract in item.abstracts %}
+                <span class="download-pdf download-pdf-compact disabled" title="PDF will be available soon">{{ abstract.flag | default: "📄" }}</span>
+              {% endfor %}
+            {% else %}
+              <span class="download-pdf download-pdf-compact disabled" title="PDF will be available soon">📄</span>
+            {% endif %}
+          {% else %}
+            {% if item.pdfs %}
+              {% for pdf in item.pdfs %}
+                <a href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'file_download', {'file_name': '{{ pdf.url }}', 'file_extension': 'pdf', 'page_title': '{{ item.title }}', 'language': '{{ pdf.language }}', 'send_to': '{{ site.google_analytics }}'});">{{ pdf.flag }}</a>
+              {% endfor %}
+            {% elsif item.pdf %}
+              <a href="{{ item.pdf | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'file_download', {'file_name': '{{ item.pdf }}', 'file_extension': 'pdf', 'page_title': '{{ item.title }}', 'send_to': '{{ site.google_analytics }}'});">📄</a>
+            {% endif %}
           {% endif %}
         </div>
       </article>

@@ -1,19 +1,25 @@
 ---
 layout: default
 ---
-<article class="preprint">
-  <header>
+
+<article class="preprint-detail">
+  <header class="preprint-header">
     <h1>{{ page.title }}</h1>
+    
     {% if page.authors %}
     <p class="authors">{{ page.authors | join: ', ' }}</p>
     {% endif %}
+    
     <div class="preprint-tags">
-      {% comment %}
       {% if page.discipline %}
         <span class="discipline-tag">{{ page.discipline }}</span>
       {% endif %}
-      {% endcomment %}
-      {% if page.language %}
+      
+      {% if page.languages %}
+        {% for lang in page.languages %}
+          <span class="language-tag">{{ lang }}</span>
+        {% endfor %}
+      {% elsif page.language %}
         {% if page.language.size %}
           {% for lang in page.language %}
             <span class="language-tag">{{ lang }}</span>
@@ -22,46 +28,240 @@ layout: default
           <span class="language-tag">{{ page.language }}</span>
         {% endif %}
       {% endif %}
+      
       {% if page.coming_soon %}
         <span class="coming-soon-tag">COMING SOON</span>
       {% endif %}
     </div>
+    
     {% if page.doi %}
-    <p class="meta">DOI: {{ page.doi }}</p>
+    <p class="meta">DOI: <a href="https://doi.org/{{ page.doi }}" target="_blank" rel="noopener">{{ page.doi }}</a></p>
     {% endif %}
+    
     {% if page.date and page.coming_soon != true %}
-    <p class="meta">Date: {{ page.date | date: '%Y-%m-%d' }}</p>
+    <p class="meta">Date: {{ page.date | date: '%B %d, %Y' }}</p>
     {% endif %}
-  </header>
-  {% if page.abstract %}
-  <section class="abstract">
-    <h2>Abstract</h2>
-    <p>{{ page.abstract }}</p>
-  </section>
-  {% endif %}
-  
-  <!-- PDF Downloads Section -->
-  {% if page.pdfs %}
-    <!-- Multiple language-specific PDFs -->
-    <div class="pdf-downloads">
-      <h3>Download PDF</h3>
-      <div class="pdf-buttons">
-        {% for pdf in page.pdfs %}
-          <a class="btn pdf-btn" href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" data-lang="{{ pdf.language | downcase }}">
-            <span class="flag-icon">{{ pdf.flag | default: "📄" }}</span>
-            {{ pdf.language }}
-          </a>
-        {% endfor %}
-      </div>
+
+    <!-- Visit and Download Counters -->
+    <div class="preprint-stats">
+      <span class="stat-item">
+        <span class="stat-icon">👁</span>
+        <span id="visit-count">Loading...</span> visits
+      </span>
+      {% unless page.coming_soon %}
+      <span class="stat-item">
+        <span class="stat-icon">📥</span>
+        <span id="download-count">Loading...</span> downloads
+      </span>
+      {% endunless %}
     </div>
-  {% elsif page.pdf %}
-    <!-- Single PDF -->
-    <p><a class="btn download-btn" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener">📄 Download PDF</a></p>
-  {% elsif page.coming_soon %}
-    <p><span class="btn btn-disabled">📄 PDF Coming Soon</span></p>
+  </header>
+
+  <!-- Multiple Abstracts Section -->
+  {% if page.abstracts %}
+    <section class="abstracts-section">
+      {% for abstract in page.abstracts %}
+        <div class="abstract-block" data-language="{{ abstract.language }}">
+          <div class="abstract-header">
+            <h3 class="abstract-title">
+              <span class="abstract-flag">{{ abstract.flag | default: "🌐" }}</span>
+              Abstract ({{ abstract.language }})
+            </h3>
+            
+            <!-- PDF Download for this language -->
+            {% assign matching_pdf = page.pdfs | where: "language", abstract.language | first %}
+            {% if matching_pdf and page.coming_soon != true %}
+              <a href="{{ matching_pdf.url | relative_url }}" 
+                 class="pdf-download-inline" 
+                 target="_blank" 
+                 rel="noopener"
+                 onclick="incrementDownloadCount('{{ matching_pdf.language }}', '{{ page.title }}', '{{ page.discipline }}', '{{ matching_pdf.url }}')"
+                 data-language="{{ matching_pdf.language }}">
+                <span class="pdf-icon">📄</span>
+                <span class="pdf-label">PDF</span>
+              </a>
+            {% elsif page.coming_soon %}
+              <span class="pdf-download-inline disabled" 
+                    title="PDF will be available soon"
+                    data-language="{{ abstract.language }}">
+                <span class="pdf-icon">📄</span>
+                <span class="pdf-label">PDF (Coming Soon)</span>
+              </span>
+            {% endif %}
+          </div>
+          
+          <div class="abstract-content">
+            {{ abstract.content }}
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+  {% elsif page.abstract %}
+    <!-- Fallback for single abstract -->
+    <section class="abstracts-section">
+      <div class="abstract-block">
+        <div class="abstract-header">
+          <h3 class="abstract-title">Abstract</h3>
+          
+          <!-- Single PDF download -->
+          {% if page.pdf and page.coming_soon != true %}
+            <a href="{{ page.pdf | relative_url }}" 
+               class="pdf-download-inline" 
+               target="_blank" 
+               rel="noopener"
+               onclick="incrementDownloadCount('{{ page.language | default: "Unknown" }}', '{{ page.title }}', '{{ page.discipline }}', '{{ page.pdf }}')"
+               data-language="{{ page.language | default: 'Default' }}">
+              <span class="pdf-icon">📄</span>
+              <span class="pdf-label">PDF</span>
+            </a>
+          {% elsif page.coming_soon %}
+            <span class="pdf-download-inline disabled" 
+                  title="PDF will be available soon">
+              <span class="pdf-icon">📄</span>
+              <span class="pdf-label">PDF (Coming Soon)</span>
+            </span>
+          {% endif %}
+        </div>
+        
+        <div class="abstract-content">
+          {{ page.abstract }}
+        </div>
+      </div>
+    </section>
   {% endif %}
-  <section class="content">
+
+  <!-- Additional PDFs Section (for PDFs without matching abstracts) -->
+  {% unless page.coming_soon %}
+    {% if page.pdfs %}
+      {% assign unmatched_pdfs = "" | split: "" %}
+      {% for pdf in page.pdfs %}
+        {% assign has_matching_abstract = false %}
+        {% if page.abstracts %}
+          {% for abstract in page.abstracts %}
+            {% if abstract.language == pdf.language %}
+              {% assign has_matching_abstract = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% unless has_matching_abstract %}
+          {% assign unmatched_pdfs = unmatched_pdfs | push: pdf %}
+        {% endunless %}
+      {% endfor %}
+      
+      {% if unmatched_pdfs.size > 0 %}
+        <section class="additional-pdfs">
+          <h3>Additional Downloads</h3>
+          <div class="pdf-buttons-grid">
+            {% for pdf in unmatched_pdfs %}
+              <a href="{{ pdf.url | relative_url }}" 
+                 class="pdf-download-btn" 
+                 target="_blank" 
+                 rel="noopener"
+                 onclick="incrementDownloadCount('{{ pdf.language }}', '{{ page.title }}', '{{ page.discipline }}', '{{ pdf.url }}')"
+                 data-language="{{ pdf.language }}">
+                <span class="pdf-flag">{{ pdf.flag | default: "📄" }}</span>
+                <span class="pdf-text">
+                  <strong>{{ pdf.language }}</strong>
+                  <small>PDF</small>
+                </span>
+              </a>
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
+    {% endif %}
+  {% endunless %}
+
+  <!-- Content -->
+  <div class="preprint-content">
     {{ content }}
-  </section>
+  </div>
 </article>
+
+<script>
+// Counter functions
+function getCount(type) {
+  const pageKey = window.location.pathname;
+  return parseInt(localStorage.getItem(`pupilla_${type}_${pageKey}`) || 0);
+}
+
+function incrementCount(type) {
+  const pageKey = window.location.pathname;
+  let count = getCount(type);
+  count++;
+  localStorage.setItem(`pupilla_${type}_${pageKey}`, count);
+  return count;
+}
+
+function incrementVisitCount() {
+  const count = incrementCount('visits');
+  document.getElementById('visit-count').textContent = count;
+  
+  // Track page view in Google Analytics
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'page_view', {
+      'page_title': '{{ page.title }}',
+      'page_location': window.location.href,
+      'content_group1': '{{ page.discipline }}',
+      'custom_parameter_1': 'preprint_view'
+    });
+  }
+}
+
+function incrementDownloadCount(language, title, discipline, url) {
+  // Increment total download count
+  const totalCount = incrementCount('downloads');
+  const downloadCountEl = document.getElementById('download-count');
+  if (downloadCountEl) {
+    downloadCountEl.textContent = totalCount;
+  }
+  
+  // Track download in Google Analytics
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'pdf_download', {
+      'event_category': 'Downloads',
+      'event_label': title,
+      'file_name': url.split('/').pop(),
+      'language': language,
+      'discipline': discipline,
+      'value': totalCount
+    });
+  }
+  
+  console.log('Download tracked:', language, title);
+}
+
+// Initialize counters on page load
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Pupilla: Initializing preprint page');
+  
+  // Check if this is a new visit (not just a page refresh)
+  const sessionKey = `pupilla_session_${window.location.pathname}`;
+  const hasVisitedThisSession = sessionStorage.getItem(sessionKey);
+  
+  if (!hasVisitedThisSession) {
+    console.log('Pupilla: New session, incrementing visit count');
+    incrementVisitCount();
+    sessionStorage.setItem(sessionKey, 'true');
+  } else {
+    console.log('Pupilla: Returning visitor in same session');
+    // Just display current count
+    const visitCount = getCount('visits');
+    document.getElementById('visit-count').textContent = visitCount;
+    console.log('Pupilla: Visit count:', visitCount);
+  }
+  
+  // Display download count
+  const downloadCountEl = document.getElementById('download-count');
+  if (downloadCountEl) {
+    const downloadCount = getCount('downloads');
+    downloadCountEl.textContent = downloadCount;
+    console.log('Pupilla: Download count:', downloadCount);
+  }
+  
+  // Check if Google Analytics is loaded
+  console.log('Pupilla: Google Analytics available:', typeof gtag !== 'undefined');
+});
+</script>
 
