@@ -11,6 +11,7 @@ layout: default
     {% endif %}
     
     <div class="preprint-tags">
+      <!-- Discipline and language tags commented out for now
       {% if page.discipline %}
         <span class="discipline-tag">{{ page.discipline }}</span>
       {% endif %}
@@ -28,6 +29,7 @@ layout: default
           <span class="language-tag">{{ page.language }}</span>
         {% endif %}
       {% endif %}
+      -->
       
       {% if page.coming_soon %}
         <span class="coming-soon-tag">COMING SOON</span>
@@ -42,7 +44,7 @@ layout: default
     <p class="meta">Date: {{ page.date | date: '%B %d, %Y' }}</p>
     {% endif %}
 
-    <!-- Visit and Download Counters -->
+    <!-- Visit and Download Counters commented out for now
     <div class="preprint-stats">
       <span class="stat-item">
         <span class="stat-icon">👁</span>
@@ -55,6 +57,7 @@ layout: default
       </span>
       {% endunless %}
     </div>
+    -->
   </header>
 
   <!-- Multiple Abstracts Section -->
