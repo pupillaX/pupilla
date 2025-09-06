@@ -8,7 +8,7 @@ permalink: /contributors/
 
 
 <div class="contributors-grid">
-  <div class="contributor-card">
+  <div class="contributor-card" id="peter-morovic">
     <div class="contributor-photo">
       <img src="{{ '/assets/images/peter-morovic.png' | relative_url }}" alt="Peter Morovic" />
     </div>
@@ -39,7 +39,7 @@ permalink: /contributors/
     </div>
   </div>
 
-  <div class="contributor-card">
+  <div class="contributor-card" id="jan-morovic">
     <div class="contributor-photo">
       <img src="{{ '/assets/images/jan-morovic.png' | relative_url }}" alt="Ján Morovic" />
     </div>
@@ -69,6 +69,52 @@ permalink: /contributors/
         </div>
     </div>
   </div>
+
+  <div class="contributor-card" id="jordi-rodriguez-salleras">
+    <div class="contributor-photo">
+      <img src="{{ '/assets/images/jordi_rodriguez.png' | relative_url }}" alt="Jordi Rodriguez Salleras" />
+    </div>
+    <div class="contributor-info">
+      <h2>Jordi Rodrìguez Salleras</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Double Bachelor of Arts degree in Humanities and Law from Universitat Pompeu Fabra, Barcelona, Catalonia (Spain), Masters degree in Eduction from the Universitat de Barcelona, Catalonia, (Spain); working in mathematics and science education as well as applications of AI in education.</p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic & Professional Links</h4>
+          <div class="link-group">
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jordi-rodríguez-salleras/" target="_blank" rel="noopener">Professional Profile</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- <div class="contributor-card" id="lucas-cervino">
+    <div class="contributor-photo">
+      <img src="{{ '/assets/images/lucas_cervino.png' | relative_url }}" alt="Lucas Cervino" />
+    </div>
+    <div class="contributor-info">
+      <h2>Lucas Cerviño</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Doctor en Teología fundamental y licenciatura eclesial en Misionología. Docente en el Instituto de Misionología (Facultad de Teología San Pablo, Cochabamba-Bolivia) y en el Centro de Estudios Filosóficos y Teológicos (Córdoba, Argentina). Miembro del grupo interdisciplinar de estudios Escuela Abba.</p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic & Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Sophia ALC:</strong> <a href="https://sophiaalc.com/nuestro-equipo/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>Ciudad Nueva:</strong> <a href="https://libros.ciudadnueva.com.ar/etiqueta-producto/lucas-cervino/" target="_blank" rel="noopener">Publishing</a></p>
+          </div>
+        </div>
+    </div>
+  </div> -->
+
 </div>
 
 **Interested in contributing?** [Contact us]({{ '/contact/' | relative_url }}) directly.
