@@ -75,7 +75,7 @@ permalink: /contributors/
       <img src="{{ '/assets/images/jordi_rodriguez.png' | relative_url }}" alt="Jordi Rodriguez Salleras" />
     </div>
     <div class="contributor-info">
-      <h2>Jordi Rodrìguez Salleras</h2>
+      <h2>Jordi Rodríguez Salleras</h2>
       <p class="role">Author</p>
       
       <div class="bio-section">
