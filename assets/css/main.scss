@@ -373,6 +373,17 @@ a:hover {
   color: var(--text-muted);
   font-size: 0.875rem;
   margin-top: var(--spacing-xs);
+  
+  .author-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+    
+    &:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+  }
 }
 
 /* Footer */
@@ -601,6 +612,17 @@ html {
   font-size: 0.9rem;
   margin-bottom: var(--spacing-md);
   font-style: italic;
+}
+
+.author-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+  
+  &:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+  }
 }
 
 .preprint-abstract {

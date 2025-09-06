@@ -1210,3 +1210,48 @@ html {
 .mt-lg { margin-top: var(--spacing-lg); }
 .hidden { display: none; }
 .visible { display: block; }
+
+/* Language indicator flags (non-clickable) */
+.language-indicator {
+  cursor: default !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: 1.2rem !important;
+  margin: 0 var(--spacing-xs) !important;
+  transition: opacity var(--transition-fast) !important;
+  display: inline !important;
+  opacity: 0.8;
+  text-decoration: none !important;
+}
+
+.language-indicator:hover {
+  opacity: 1 !important;
+  transform: none !important;
+  background: none !important;
+  color: inherit !important;
+  border-color: transparent !important;
+}
+
+/* Disabled flag styling for coming soon items */
+.download-pdf.disabled.language-indicator {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  opacity: 0.5 !important;
+}
+
+/* Citation section spacing to match content dividing line */
+.preprint-content + .abstracts-section {
+  margin-top: var(--spacing-xl) !important;
+}
+
+/* Keywords styling */
+.keywords {
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-style: italic;
+}

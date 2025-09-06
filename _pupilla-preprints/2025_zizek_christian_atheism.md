@@ -4,6 +4,7 @@ title: "L'ateismo Cristiano di Slavoj Žižek"
 authors:
   - Peter Morovic
   - Ján Morovic
+keywords: ["Slavoj Žižek", "Christian atheism", "Holy Spirit", "egalitarian community", "Chiara Lubich", "Focolare spirituality", "comparative theology"]
 discipline: "Philosophy"
 languages: ["English", "Italiano"]
 date: 2025-08-12
@@ -24,6 +25,9 @@ pdfs:
   - language: "Italiano"
     url: "/assets/pdfs/zizek-christian-atheism-it.pdf"
     flag: "🇮🇹"
+
+pupilla_citation: "Morovic, P., & Morovic, J., L'ateismo Cristiano di Slavoj Žižek, Pupilla (2025), https://pupilla.org/preprints/2025-zizek-christian-atheism/"
+
 tags:
   - philosophy
   - theology

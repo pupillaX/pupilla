@@ -50,27 +50,48 @@ title: Home
         </h3>
         
         {% if item.authors %}
-          <p class="preprint-authors">{{ item.authors | join: ', ' }}</p>
+          <p class="preprint-authors">
+            {% for author in item.authors %}
+              {% if author == "Ján Morovic" %}
+                <a href="{{ '/contributors/' | relative_url }}#jan-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Peter Morovic" %}
+                <a href="{{ '/contributors/' | relative_url }}#peter-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Jordi Rodriguez Salleras" %}
+                <a href="{{ '/contributors/' | relative_url }}#jordi-rodriguez-salleras" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% else %}
+                {{ author }}{% unless forloop.last %}, {% endunless %}
+              {% endif %}
+            {% endfor %}
+          </p>
         {% endif %}
         
         <div class="preprint-actions">
           <a href="{{ item.url | relative_url }}" class="read-more">Read More</a>
           {% if item.coming_soon %}
-            <!-- Show disabled PDF buttons for coming soon items -->
-            {% if item.abstracts %}
-              {% for abstract in item.abstracts %}
-                <span class="download-pdf download-pdf-compact disabled" title="PDF will be available soon">{{ abstract.flag | default: "📄" }}</span>
-              {% endfor %}
-            {% else %}
-              <span class="download-pdf download-pdf-compact disabled" title="PDF will be available soon">📄</span>
-            {% endif %}
-          {% else %}
+            <!-- Show language indicators for coming soon items, only for languages with planned PDFs -->
             {% if item.pdfs %}
               {% for pdf in item.pdfs %}
-                <a href="{{ pdf.url | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'file_download', {'file_name': '{{ pdf.url }}', 'file_extension': 'pdf', 'page_title': '{{ item.title }}', 'language': '{{ pdf.language }}', 'send_to': '{{ site.google_analytics }}'});">{{ pdf.flag }}</a>
+                <span class="language-indicator" title="PDF will be available soon in {{ pdf.language }}">{{ pdf.flag | default: "📄" }}</span>
+              {% endfor %}
+            {% elsif item.abstracts %}
+              {% for abstract in item.abstracts %}
+                <span class="language-indicator" title="PDF will be available soon in {{ abstract.language }}">{{ abstract.flag | default: "📄" }}</span>
+              {% endfor %}
+            {% else %}
+              <span class="language-indicator" title="PDF will be available soon">📄</span>
+            {% endif %}
+          {% else %}
+            <!-- Show non-clickable flags for available languages -->
+            {% if item.pdfs %}
+              {% for pdf in item.pdfs %}
+                <span class="language-indicator" title="Available in {{ pdf.language }}">{{ pdf.flag }}</span>
+              {% endfor %}
+            {% elsif item.abstracts %}
+              {% for abstract in item.abstracts %}
+                <span class="language-indicator" title="Available in {{ abstract.language }}">{{ abstract.flag | default: "📄" }}</span>
               {% endfor %}
             {% elsif item.pdf %}
-              <a href="{{ item.pdf | relative_url }}" target="_blank" rel="noopener" class="download-pdf download-pdf-compact" onclick="gtag('event', 'file_download', {'file_name': '{{ item.pdf }}', 'file_extension': 'pdf', 'page_title': '{{ item.title }}', 'send_to': '{{ site.google_analytics }}'});">📄</a>
+              <span class="language-indicator" title="PDF available">📄</span>
             {% endif %}
           {% endif %}
         </div>

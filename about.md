@@ -16,7 +16,7 @@ Our vision is rooted in the conviction that knowledge flourishes when shared acr
 
 ### What we offer
 
-- **Preprint articles** across multiple disciplines including philosophy, theology, spirituality, and interdisciplinary studies
+- **Preprint articles** across multiple disciplines including philosophy, theology, spirituality, mathematics, natural sciences and interdisciplinary studies
 - **Multilingual publications** primarily in English and Italian, with openness to Spanish, Catalan, and other languages
 - **Original research** that explores themes of unity, dialogue, and human relationships
 - **Scholarly essays** that bridge academic rigor with spiritual insight

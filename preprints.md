@@ -9,13 +9,10 @@ permalink: /preprints/
 Explore our collection of scholarly works:
 
 <div class="browse-controls">
-  <!-- Search section commented out - can be restored later
-  <div class="search-section">
-    {% include search.html %}
-  </div>
-  -->
-  
   <div class="filter-section">
+    <label for="search-input">Search:</label>
+    <input type="text" id="search-input" placeholder="Search titles and abstracts..." />
+    
     <!-- Discipline filter commented out - can be restored later
     <label for="discipline-filter">Filter by Discipline:</label>
     <select id="discipline-filter">
@@ -34,7 +31,11 @@ Explore our collection of scholarly works:
       <option value="all">All Languages</option>
       {% assign all_languages = '' | split: '' %}
       {% for preprint in site['pupilla-preprints'] %}
-        {% if preprint.language %}
+        {% if preprint.languages %}
+          {% for lang in preprint.languages %}
+            {% assign all_languages = all_languages | push: lang %}
+          {% endfor %}
+        {% elsif preprint.language %}
           {% if preprint.language.size %}
             {% for lang in preprint.language %}
               {% assign all_languages = all_languages | push: lang %}
@@ -48,6 +49,25 @@ Explore our collection of scholarly works:
       {% for language in languages %}
         {% if language %}
           <option value="{{ language | slugify }}">{{ language }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    
+    <label for="author-filter">Filter by Author:</label>
+    <select id="author-filter">
+      <option value="all">All Authors</option>
+      {% assign all_authors = '' | split: '' %}
+      {% for preprint in site['pupilla-preprints'] %}
+        {% if preprint.authors %}
+          {% for author in preprint.authors %}
+            {% assign all_authors = all_authors | push: author %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+      {% assign authors = all_authors | uniq | sort %}
+      {% for author in authors %}
+        {% if author %}
+          <option value="{{ author | slugify }}">{{ author }}</option>
         {% endif %}
       {% endfor %}
     </select>
@@ -70,14 +90,33 @@ Explore our collection of scholarly works:
   {% assign all_preprints = dated_preprints | sort: 'date' | reverse %}
   {% for preprint in all_preprints %}
     {% assign preprint_languages = '' %}
-    {% if preprint.language %}
+    {% if preprint.languages %}
+      {% assign preprint_languages = preprint.languages | join: ' ' | slugify %}
+    {% elsif preprint.language %}
       {% if preprint.language.size %}
         {% assign preprint_languages = preprint.language | join: ' ' | slugify %}
       {% else %}
         {% assign preprint_languages = preprint.language | slugify %}
       {% endif %}
     {% endif %}
-    <article class="preprint-item" data-discipline="{{ preprint.discipline | slugify }}" data-languages="{{ preprint_languages }}" data-date="{{ preprint.date | date: '%Y-%m-%d' }}" data-title="{{ preprint.title | downcase }}" data-author="{{ preprint.authors | first | downcase }}">
+    {% assign search_content = preprint.title | downcase %}
+    {% if preprint.abstract %}
+      {% assign search_content = search_content | append: ' ' | append: preprint.abstract | downcase %}
+    {% endif %}
+    {% if preprint.abstracts %}
+      {% for abstract in preprint.abstracts %}
+        {% assign search_content = search_content | append: ' ' | append: abstract.content | downcase %}
+      {% endfor %}
+    {% endif %}
+    {% if preprint.keywords %}
+      {% assign keywords_string = preprint.keywords | join: ' ' | downcase %}
+      {% assign search_content = search_content | append: ' ' | append: keywords_string %}
+    {% endif %}
+    {% if preprint.authors %}
+      {% assign authors_string = preprint.authors | join: ' ' | downcase %}
+      {% assign search_content = search_content | append: ' ' | append: authors_string %}
+    {% endif %}
+    <article class="preprint-item" data-discipline="{{ preprint.discipline | slugify }}" data-languages="{{ preprint_languages }}" data-date="{{ preprint.date | date: '%Y-%m-%d' }}" data-title="{{ preprint.title | downcase }}" data-author="{{ preprint.authors | first | downcase }}" data-authors="{{ preprint.authors | join: '|' | slugify }}" data-search="{{ search_content | strip | replace: '"', '&quot;' }}">
       <div class="preprint-content">
         <div class="preprint-meta">
           <div class="tags-section">
@@ -86,7 +125,11 @@ Explore our collection of scholarly works:
               <span class="discipline-badge">{{ preprint.discipline }}</span>
             {% endif %}
             -->
-            {% if preprint.language %}
+            {% if preprint.languages %}
+              {% for lang in preprint.languages %}
+                <span class="language-badge">{{ lang }}</span>
+              {% endfor %}
+            {% elsif preprint.language %}
               {% if preprint.language.size %}
                 {% for lang in preprint.language %}
                   <span class="language-badge">{{ lang }}</span>
@@ -113,7 +156,15 @@ Explore our collection of scholarly works:
         {% if preprint.authors %}
           <p class="preprint-authors">
             {% for author in preprint.authors %}
-              <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
+              {% if author == "Ján Morovic" %}
+                <a href="{{ '/contributors/' | relative_url }}#jan-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Peter Morovic" %}
+                <a href="{{ '/contributors/' | relative_url }}#peter-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Jordi Rodriguez Salleras" %}
+                <a href="{{ '/contributors/' | relative_url }}#jordi-rodriguez-salleras" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% else %}
+                <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
+              {% endif %}
             {% endfor %}
           </p>
         {% endif %}
@@ -125,9 +176,7 @@ Explore our collection of scholarly works:
         <div class="preprint-links">
           <a href="{{ preprint.url | relative_url }}" class="read-link">Read Article</a>
           {% if preprint.coming_soon %}
-            <span class="pdf-link disabled" title="PDF will be available soon">
-              📄 PDF (Coming Soon)
-            </span>
+            <!-- No PDF buttons shown for coming soon items in browse view -->
           {% else %}
             {% if preprint.pdf %}
               <a href="{{ preprint.pdf | relative_url }}" target="_blank" rel="noopener" class="pdf-link" onclick="gtag('event', 'pdf_download', {'file_name': '{{ preprint.pdf }}', 'page_title': '{{ preprint.title }}'});">
@@ -147,7 +196,7 @@ Explore our collection of scholarly works:
 </div>
 
 <div id="no-results" class="no-results" style="display: none;">
-  <p>No preprints match your current filters. Try adjusting your search terms or discipline filter.</p>
+  <p>No preprints match your current search and filters. Try adjusting your search terms or filter settings.</p>
 </div>
 
 <!-- Browse by Discipline section commented out - can be restored later
@@ -175,6 +224,8 @@ End of commented discipline section -->
 document.addEventListener('DOMContentLoaded', function() {
   const disciplineFilter = document.getElementById('discipline-filter');
   const languageFilter = document.getElementById('language-filter');
+  const authorFilter = document.getElementById('author-filter');
+  const searchInput = document.getElementById('search-input');
   const sortOrder = document.getElementById('sort-order');
   const preprintsContainer = document.getElementById('preprints-container');
   const noResults = document.getElementById('no-results');
@@ -182,6 +233,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function filterAndSort() {
     const selectedDiscipline = disciplineFilter ? disciplineFilter.value : 'all';
     const selectedLanguage = languageFilter.value;
+    const selectedAuthor = authorFilter.value;
+    const searchQuery = searchInput.value.toLowerCase().trim();
     const selectedSort = sortOrder.value;
     const preprints = Array.from(document.querySelectorAll('.preprint-item'));
     
@@ -190,11 +243,15 @@ document.addEventListener('DOMContentLoaded', function() {
     preprints.forEach(preprint => {
       const discipline = preprint.dataset.discipline;
       const languages = preprint.dataset.languages;
+      const authors = preprint.dataset.authors;
+      const searchContent = preprint.dataset.search;
       
       const disciplineMatch = selectedDiscipline === 'all' || discipline === selectedDiscipline;
-      const languageMatch = selectedLanguage === 'all' || (languages && languages.includes(selectedLanguage));
+      const languageMatch = selectedLanguage === 'all' || (languages && languages.split('-').includes(selectedLanguage));
+      const authorMatch = selectedAuthor === 'all' || (authors && authors.includes(selectedAuthor));
+      const searchMatch = searchQuery === '' || (searchContent && searchContent.includes(searchQuery));
       
-      const shouldShow = disciplineMatch && languageMatch;
+      const shouldShow = disciplineMatch && languageMatch && authorMatch && searchMatch;
       preprint.style.display = shouldShow ? 'block' : 'none';
       if (shouldShow) visibleCount++;
     });
@@ -236,6 +293,8 @@ document.addEventListener('DOMContentLoaded', function() {
     disciplineFilter.addEventListener('change', filterAndSort);
   }
   languageFilter.addEventListener('change', filterAndSort);
+  authorFilter.addEventListener('change', filterAndSort);
+  searchInput.addEventListener('input', filterAndSort);
   sortOrder.addEventListener('change', filterAndSort);
   
   // Global function for discipline links
@@ -277,13 +336,35 @@ document.addEventListener('DOMContentLoaded', function() {
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid var(--border-color);
   border-radius: 6px;
+  background: var(--background);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+.filter-section input[type="text"] {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 200px;
+  transition: border-color var(--transition-fast);
+}
+
+.filter-section input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
   font-size: 0.875rem;
 }
 
 .preprints-listing {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-xl);
 }
 
 .preprint-item {
@@ -304,6 +385,17 @@ document.addEventListener('DOMContentLoaded', function() {
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-md);
+}
+
+.preprint-item .tags-section {
+  margin-bottom: 0;
+}
+
+/* Override preprint-content styling for browse view */
+.preprint-item .preprint-content {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .discipline-badge {

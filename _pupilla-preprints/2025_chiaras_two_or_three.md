@@ -1,9 +1,10 @@
 ---
 layout: preprint
-title: "Who are Chiara's 'two or three'?"
+title: "Who are Chiara Lubich's 'two or three'?"
 authors:
   - Ján Morovic
   - Peter Morovic
+keywords: ["Chiara Lubich", "Matthew 18:20", "divine presence", "interfaith dialogue", "reciprocal love", "spiritual community"]
 discipline: "Philosophy"
 languages: ["English", "Italiano"]
 date: 2025-08-11
@@ -23,6 +24,9 @@ pdfs:
   - language: "Italiano" 
     url: "/assets/pdfs/20250815_PUPILLA_ChiarasTwoOrThree_it.pdf"
     flag: "🇮🇹"
+
+pupilla_citation: "Morovic, J., Morovic, P., Who are Chiara Lubich's 'two or three'?, Pupilla (2025), https://pupilla.org/preprints/2025-chiaras-two-or-three/"
+
 tags:
   - unity
   - interfaith-dialogue

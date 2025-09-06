@@ -7,7 +7,25 @@ layout: default
     <h1>{{ page.title }}</h1>
     
     {% if page.authors %}
-    <p class="authors">{{ page.authors | join: ', ' }}</p>
+    <p class="authors">
+      {% for author in page.authors %}
+        {% if author == "Ján Morovic" %}
+          <a href="{{ '/contributors/' | relative_url }}#jan-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+        {% elsif author == "Peter Morovic" %}
+          <a href="{{ '/contributors/' | relative_url }}#peter-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+        {% elsif author == "Jordi Rodriguez Salleras" %}
+          <a href="{{ '/contributors/' | relative_url }}#jordi-rodriguez-salleras" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+        {% else %}
+          {{ author }}{% unless forloop.last %}, {% endunless %}
+        {% endif %}
+      {% endfor %}
+    </p>
+    {% endif %}
+    
+    {% if page.keywords %}
+    <p class="keywords">
+      <strong>Keywords:</strong> {{ page.keywords | join: ', ' }}
+    </p>
     {% endif %}
     
     <div class="preprint-tags">
@@ -83,7 +101,7 @@ layout: default
                 <span class="pdf-icon">📄</span>
                 <span class="pdf-label">PDF</span>
               </a>
-            {% elsif page.coming_soon %}
+            {% elsif page.coming_soon and matching_pdf %}
               <span class="pdf-download-inline disabled" 
                     title="PDF will be available soon"
                     data-language="{{ abstract.language }}">
@@ -180,21 +198,65 @@ layout: default
   <div class="preprint-content">
     {{ content }}
   </div>
+
+  <!-- Citation Section -->
+  <section class="abstracts-section">
+    {% if page.external_citation %}
+      <!-- External publication citation -->
+      <div class="abstract-block">
+        <div class="abstract-header">
+          <h3 class="abstract-title">
+            <span class="abstract-flag">📝</span>
+            Cite as (Original Publication)
+          </h3>
+        </div>
+        <div class="abstract-content">
+          {{ page.external_citation }}
+          {% if page.external_citation_note %}
+            <br><br><em>{{ page.external_citation_note }}</em>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+    
+    {% if page.pupilla_citation %}
+      <div class="abstract-block">
+        <div class="abstract-header">
+          <h3 class="abstract-title">
+            <span class="abstract-flag">📝</span>
+            {% if page.external_citation %}Cite as (Pupilla Preprint){% else %}Cite as{% endif %}
+          </h3>
+        </div>
+        <div class="abstract-content">
+          {{ page.pupilla_citation }}
+          {% if page.pupilla_citation_note %}
+            <br><br><em>{{ page.pupilla_citation_note }}</em>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </section>
 </article>
 
 <script>
 // Counter functions
 function getCount(type) {
   const pageKey = window.location.pathname;
-  return parseInt(localStorage.getItem(`pupilla_${type}_${pageKey}`) || 0);
+  const key = `pupilla_${type}_${pageKey}`;
+  return parseInt(localStorage.getItem(key) || '0');
+}
+
+function setCount(type, count) {
+  const pageKey = window.location.pathname;
+  const key = `pupilla_${type}_${pageKey}`;
+  localStorage.setItem(key, count.toString());
 }
 
 function incrementCount(type) {
-  const pageKey = window.location.pathname;
-  let count = getCount(type);
-  count++;
-  localStorage.setItem(`pupilla_${type}_${pageKey}`, count);
-  return count;
+  const currentCount = getCount(type);
+  const newCount = currentCount + 1;
+  setCount(type, newCount);
+  return newCount;
 }
 
 function incrementVisitCount() {
