@@ -1,6 +1,6 @@
 ---
 layout: preprint
-title: "Who are Chiara Lubich's 'two or three'?"
+title: "Who are Chiara Lubich's «two or three»?"
 authors:
   - Ján Morovic
   - Peter Morovic

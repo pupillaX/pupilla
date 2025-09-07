@@ -160,8 +160,10 @@ Explore our collection of scholarly works:
                 <a href="{{ '/contributors/' | relative_url }}#jan-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% elsif author == "Peter Morovic" %}
                 <a href="{{ '/contributors/' | relative_url }}#peter-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Jordi Rodriguez Salleras" %}
+              {% elsif author == "Jordi Rodriguez Salleras" or author == "Jordi Rodríguez Salleras" %}
                 <a href="{{ '/contributors/' | relative_url }}#jordi-rodriguez-salleras" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Lucas Cervino" or author == "Lucas Cerviño" %}
+                <a href="{{ '/contributors/' | relative_url }}#lucas-cervino" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% else %}
                 <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
               {% endif %}

@@ -2,7 +2,7 @@
 layout: preprint
 title: "El Abandonado de Chiara Lubich"
 authors:
-  - Jordi Rodriguez Salleras
+  - Jordi Rodríguez Salleras
 keywords: ["Chiara Lubich", "Jesus Forsaken", "theology", "mysticism", "philosophy", "interreligious dialogue", "universal fraternity", "Javier Melloni", "Raimon Panikkar","Slavoj Žižek"]
 discipline: "Philosophy"
 languages: ["English", "Español"]
