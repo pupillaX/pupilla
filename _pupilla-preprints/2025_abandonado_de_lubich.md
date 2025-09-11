@@ -6,8 +6,7 @@ authors:
 keywords: ["Chiara Lubich", "Jesus Forsaken", "theology", "mysticism", "philosophy", "interreligious dialogue", "universal fraternity", "Javier Melloni", "Raimon Panikkar","Slavoj Žižek"]
 discipline: "Philosophy"
 languages: ["English", "Español"]
-date: 2025-08-15
-coming_soon: true
+date: 2025-09-11
 doi: "10.1234/example3"
 abstract: "This study presents a triple interpretative framework for understanding Chiara Lubich's (1920-2008) texts on Jesus Forsaken through theological, mystical, and philosophical perspectives. The central focus is Lubich's interpretation of the crucified Jesus crying out 'My God, my God, why have you forsaken me?' (Mark 15:34), which she positions as the cornerstone of a spirituality aimed at achieving universal fraternity."
 abstracts:
@@ -20,7 +19,7 @@ abstracts:
 
 pdfs:
   - language: "Español"
-    url: "/assets/pdfs/abandonado-lubich-es.pdf"
+    url: "/assets/pdfs/20250911_PUPILLA_ElAbandonoDeChiaraLubich_es.pdf"
     flag: "🇪🇸"
 
 pupilla_citation: "Rodriguez Salleras, J., El Abandonado de Chiara Lubich, Pupilla (2025), https://pupilla.org/preprints/2025-abandonado-de-lubich/"

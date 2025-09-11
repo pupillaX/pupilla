@@ -8,32 +8,46 @@ permalink: /contributors/
 
 
 <div class="contributors-grid">
-  <div class="contributor-card" id="peter-morovic">
+  <div class="contributor-card" id="lucas-cervino">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/peter-morovic.png' | relative_url }}" alt="Peter Morovic" />
+      <img src="{{ '/assets/images/lucas_cervino.png' | relative_url }}" alt="Lucas Cervino" />
     </div>
     <div class="contributor-info">
-      <h2>Peter Morovic</h2>
-      <p class="role">Author, Editor and co-founder</p>
+      <h2>Lucas Cerviño</h2>
+      <p class="role">Author</p>
       
       <div class="bio-section">
         <h3>Short Bio</h3>
-        <p>Ph.D. in Computer Science from the University of East Anglia, Norwich, UK; Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study.</p>
+        <p>Doctor en Teología fundamental y licenciatura eclesial en Misionología. Docente en el Instituto de Misionología (Facultad de Teología San Pablo, Cochabamba-Bolivia) y en el Centro de Estudios Filosóficos y Teológicos (Córdoba, Argentina). Miembro del grupo interdisciplinar de estudios Escuela Abba. Miembro del Consejo Directivo de IUSophia ALC y coordinador de cursos sobre Acompañamiento Espiritual Integral.</p>
       </div>
         
         <div class="contributor-links">
           <h4>Academic & Professional Links</h4>
           <div class="link-group">
-            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=rg5k548AAAAJ&hl=en" target="_blank" rel="noopener">View Publications</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/petermorovic/" target="_blank" rel="noopener">Professional Profile</a></p>
-            <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0002-7759-413X" target="_blank" rel="noopener">0000-0002-7759-413X</a></p>
-            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Peter-Morovic" target="_blank" rel="noopener">Research Profile</a></p>
+            <p><strong>Sophia ALC:</strong> <a href="https://sophiaalc.com/nuestro-equipo/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>Ciudad Nueva:</strong> <a href="https://libros.ciudadnueva.com.ar/etiqueta-producto/lucas-cervino/" target="_blank" rel="noopener">Publishing</a></p>
           </div>
-          
-          <h4>Personal & Blog Links</h4>
+        </div>
+    </div>
+  </div>
+
+  <div class="contributor-card" id="jordi-rodriguez-salleras">
+    <div class="contributor-photo">
+      <img src="{{ '/assets/images/jordi_rodriguez.png' | relative_url }}" alt="Jordi Rodriguez Salleras" />
+    </div>
+    <div class="contributor-info">
+      <h2>Jordi Rodríguez Salleras</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Double Bachelor of Arts degree in Humanities and Law from Universitat Pompeu Fabra, Barcelona, Catalonia (Spain), Masters degree in Eduction from the Universitat de Barcelona, Catalonia, (Spain); working in mathematics and science education as well as applications of AI in education.</p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic & Professional Links</h4>
           <div class="link-group">
-            <p><strong>Bluesky:</strong> <a href="https://bsky.app/profile/pezike.bsky.social" target="_blank" rel="noopener">@pezike.bsky.social</a></p>
-            <p><strong>Medium:</strong> <a href="https://medium.com/@pezike" target="_blank" rel="noopener">Articles & Thoughts</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jordi-rodríguez-salleras/" target="_blank" rel="noopener">Professional Profile</a></p>
           </div>
         </div>
     </div>
@@ -70,50 +84,36 @@ permalink: /contributors/
     </div>
   </div>
 
-  <div class="contributor-card" id="jordi-rodriguez-salleras">
+  <div class="contributor-card" id="peter-morovic">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/jordi_rodriguez.png' | relative_url }}" alt="Jordi Rodriguez Salleras" />
+      <img src="{{ '/assets/images/peter-morovic.png' | relative_url }}" alt="Peter Morovic" />
     </div>
     <div class="contributor-info">
-      <h2>Jordi Rodríguez Salleras</h2>
-      <p class="role">Author</p>
+      <h2>Peter Morovic</h2>
+      <p class="role">Author, Editor and co-founder</p>
       
       <div class="bio-section">
         <h3>Short Bio</h3>
-        <p>Double Bachelor of Arts degree in Humanities and Law from Universitat Pompeu Fabra, Barcelona, Catalonia (Spain), Masters degree in Eduction from the Universitat de Barcelona, Catalonia, (Spain); working in mathematics and science education as well as applications of AI in education.</p>
+        <p>Ph.D. in Computer Science from the University of East Anglia, Norwich, UK; Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study.</p>
       </div>
         
         <div class="contributor-links">
           <h4>Academic & Professional Links</h4>
           <div class="link-group">
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jordi-rodríguez-salleras/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=rg5k548AAAAJ&hl=en" target="_blank" rel="noopener">View Publications</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/petermorovic/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0002-7759-413X" target="_blank" rel="noopener">0000-0002-7759-413X</a></p>
+            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Peter-Morovic" target="_blank" rel="noopener">Research Profile</a></p>
+          </div>
+          
+          <h4>Personal & Blog Links</h4>
+          <div class="link-group">
+            <p><strong>Bluesky:</strong> <a href="https://bsky.app/profile/pezike.bsky.social" target="_blank" rel="noopener">@pezike.bsky.social</a></p>
+            <p><strong>Medium:</strong> <a href="https://medium.com/@pezike" target="_blank" rel="noopener">Articles & Thoughts</a></p>
           </div>
         </div>
     </div>
   </div>
-
-  <!-- <div class="contributor-card" id="lucas-cervino">
-    <div class="contributor-photo">
-      <img src="{{ '/assets/images/lucas_cervino.png' | relative_url }}" alt="Lucas Cervino" />
-    </div>
-    <div class="contributor-info">
-      <h2>Lucas Cerviño</h2>
-      <p class="role">Author</p>
-      
-      <div class="bio-section">
-        <h3>Short Bio</h3>
-        <p>Doctor en Teología fundamental y licenciatura eclesial en Misionología. Docente en el Instituto de Misionología (Facultad de Teología San Pablo, Cochabamba-Bolivia) y en el Centro de Estudios Filosóficos y Teológicos (Córdoba, Argentina). Miembro del grupo interdisciplinar de estudios Escuela Abba.</p>
-      </div>
-        
-        <div class="contributor-links">
-          <h4>Academic & Professional Links</h4>
-          <div class="link-group">
-            <p><strong>Sophia ALC:</strong> <a href="https://sophiaalc.com/nuestro-equipo/" target="_blank" rel="noopener">Professional Profile</a></p>
-            <p><strong>Ciudad Nueva:</strong> <a href="https://libros.ciudadnueva.com.ar/etiqueta-producto/lucas-cervino/" target="_blank" rel="noopener">Publishing</a></p>
-          </div>
-        </div>
-    </div>
-  </div> -->
 
 </div>
 
