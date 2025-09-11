@@ -8,8 +8,8 @@ discipline: "Philosophy"
 languages: ["English", "Italiano"]
 date: 2025-08-15
 coming_soon: true
-doi: "10.1234/example5"
-abstract: "English short abstract."
+#doi: "10.1234/example5"
+abstract: "This article explores Pope Francis's teaching that \"in the heart of God there is a preferential place for the poor\" (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged \"theological locus.\" Through personal testimony from the author's experience with Juan Carlos, a street child in Cochabamba, Bolivia, the text illustrates how encounters with the poor can become living encounters with Christ himself."
 abstracts:
   - language: "English"
     flag: "🇬🇧"

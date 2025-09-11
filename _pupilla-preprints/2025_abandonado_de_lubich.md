@@ -7,7 +7,7 @@ keywords: ["Chiara Lubich", "Jesus Forsaken", "theology", "mysticism", "philosop
 discipline: "Philosophy"
 languages: ["English", "Español"]
 date: 2025-09-11
-doi: "10.1234/example3"
+#doi: "10.1234/example3"
 abstract: "This study presents a triple interpretative framework for understanding Chiara Lubich's (1920-2008) texts on Jesus Forsaken through theological, mystical, and philosophical perspectives. The central focus is Lubich's interpretation of the crucified Jesus crying out 'My God, my God, why have you forsaken me?' (Mark 15:34), which she positions as the cornerstone of a spirituality aimed at achieving universal fraternity."
 abstracts:
   - language: "English"

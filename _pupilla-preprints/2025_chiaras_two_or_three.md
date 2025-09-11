@@ -8,7 +8,7 @@ keywords: ["Chiara Lubich", "Matthew 18:20", "divine presence", "interfaith dial
 discipline: "Philosophy"
 languages: ["English", "Italiano"]
 date: 2025-08-11
-doi: "10.1234/example1"
+#doi: "10.1234/example1"
 abstract: "This paper examines Chiara Lubich's radical reinterpretation of Jesus' promise in Matthew 18:20 about two or three gathered in his name. Drawing from Lubich's mystical insights during the Paradise of '49 and her extensive talks spanning several decades, the study analyzes her revolutionary understanding of who can experience Christ's presence and under what conditions."
 abstracts:
   - language: "English"
