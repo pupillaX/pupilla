@@ -6,7 +6,7 @@ authors:
 keywords: ["Chiara Lubich", "Igino Giordani", "pact of unity", "sapiential experience", "intercultural dialogue", "religious pluralism", "mystical experience", "Focolare Movement", "Raimon Panikkar", "Marià Corbí"]
 discipline: "Philosophy"
 languages: ["English", "Español"]
-date: 2025-08-15
+date: 2025-09-11
 coming_soon: true
 #doi: "10.1234/example4"
 abstract: "This paper explores the possibility of actualizing the Pact of Unity between Chiara Lubich and Igino Giornani (July 16, 1949) within contemporary pluralistic contexts. The author investigates whether this foundational mystical experience of the Focolare Movement can transcend its Catholic confessional framework to embrace intercultural and interreligious dialogue, including non-confessional spiritual approaches."
