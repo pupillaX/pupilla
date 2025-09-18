@@ -86,9 +86,20 @@ Explore our collection of scholarly works:
 ## All Preprints ({{ site['pupilla-preprints'].size }})
 
 <div id="preprints-container" class="preprints-listing">
-  {% assign dated_preprints = site['pupilla-preprints'] | where_exp: 'item', 'item.date' %}
-  {% assign all_preprints = dated_preprints | sort: 'date' | reverse %}
+  {% assign all_preprints = site['pupilla-preprints'] | sort: 'date' | reverse %}
+  {% assign published_preprints = "" | split: "" %}
+  {% assign coming_soon_preprints = "" | split: "" %}
+  
   {% for preprint in all_preprints %}
+    {% if preprint.coming_soon == true %}
+      {% assign coming_soon_preprints = coming_soon_preprints | push: preprint %}
+    {% else %}
+      {% assign published_preprints = published_preprints | push: preprint %}
+    {% endif %}
+  {% endfor %}
+  
+  {% assign sorted_preprints = coming_soon_preprints | concat: published_preprints %}
+  {% for preprint in sorted_preprints %}
     {% assign preprint_languages = '' %}
     {% if preprint.languages %}
       {% assign preprint_languages = preprint.languages | join: ' ' | slugify %}
