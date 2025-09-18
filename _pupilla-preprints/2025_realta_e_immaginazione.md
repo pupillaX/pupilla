@@ -9,7 +9,7 @@ discipline: "Mathematics"
 languages: ["English", "Italiano"]
 date: 2025-09-18
 #doi: "10.1234/example5"
-abstract: "Short abstract."
+abstract: "This essay traces the evolution of the concept of space in mathematics from ancient Greece to modern times, examining the philosophical and cultural implications of this transformation. Beginning with Euclidean geometry as an absolute representation of physical reality, the authors explore how Cartesian coordinate systems introduced a subjective perspective that challenged the notion of absolute space."
 abstracts:
   - language: "English"
     flag: "🇬🇧"
