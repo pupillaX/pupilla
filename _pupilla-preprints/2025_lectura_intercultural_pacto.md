@@ -6,8 +6,7 @@ authors:
 keywords: ["Chiara Lubich", "Igino Giordani", "pact of unity", "sapiential experience", "intercultural dialogue", "religious pluralism", "mystical experience", "Focolare Movement", "Raimon Panikkar", "Marià Corbí"]
 discipline: "Philosophy"
 languages: ["English", "Español"]
-date: 2025-09-11
-coming_soon: true
+date: 2025-09-18
 #doi: "10.1234/example4"
 abstract: "This paper explores the possibility of actualizing the Pact of Unity between Chiara Lubich and Igino Giornani (July 16, 1949) within contemporary pluralistic contexts. The author investigates whether this foundational mystical experience of the Focolare Movement can transcend its Catholic confessional framework to embrace intercultural and interreligious dialogue, including non-confessional spiritual approaches."
 abstracts:
@@ -21,10 +20,10 @@ abstracts:
 
 pdfs:
   - language: "Español"
-    url: "/assets/pdfs/abandonado-lubich-es.pdf"
+    url: "/assets/pdfs/20250918_PUPILLA_LecturaInterculturalPacto.pdf"
     flag: "🇪🇸"
 
-pupilla_citation: "Cerviño, L., Lectura intercultural/pluralista del Pacto de unidad como experiencia sapiencial, Pupilla (2025), https://pupilla.org/preprints/2017-lectura-intercultural-pacto/"
+pupilla_citation: "Cerviño, L., Lectura intercultural/pluralista del Pacto de unidad como experiencia sapiencial, Pupilla (2025), https://pupilla.org/preprints/2025-lectura-intercultural-pacto/"
 pupilla_citation_note: "Originally published in June 2017"
 
 tags:

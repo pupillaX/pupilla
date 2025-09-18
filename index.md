@@ -22,19 +22,19 @@ title: Home
   
   <div class="preprint-grid">
     {% assign all_preprints = site['pupilla-preprints'] | sort: 'date' | reverse %}
-    {% assign dated_items = "" | split: "" %}
-    {% assign coming_soon_items = "" | split: "" %}
+    {% assign published_preprints = "" | split: "" %}
+    {% assign coming_soon_preprints = "" | split: "" %}
     
     {% for preprint in all_preprints %}
-      {% if preprint.date and preprint.coming_soon != true %}
-        {% assign dated_items = dated_items | push: preprint %}
-      {% elsif preprint.coming_soon == true %}
-        {% assign coming_soon_items = coming_soon_items | push: preprint %}
+      {% if preprint.coming_soon == true %}
+        {% assign coming_soon_preprints = coming_soon_preprints | push: preprint %}
+      {% else %}
+        {% assign published_preprints = published_preprints | push: preprint %}
       {% endif %}
     {% endfor %}
     
-    {% assign sorted_items = dated_items | concat: coming_soon_items %}
-    {% assign items = sorted_items | slice: 0, 5 %}
+    {% assign sorted_items = published_preprints | concat: coming_soon_preprints %}
+    {% assign items = sorted_items | slice: 0, 6 %}
     {% for item in items %}
       <article class="preprint-card preprint-card-compact">
         <div class="preprint-meta">
@@ -60,6 +60,10 @@ title: Home
                 <a href="{{ '/contributors/' | relative_url }}#jordi-rodriguez-salleras" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% elsif author == "Lucas Cervino" or author == "Lucas Cerviño" %}
                 <a href="{{ '/contributors/' | relative_url }}#lucas-cervino" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Ugo Gianazza" %}
+                <a href="{{ '/contributors/' | relative_url }}#ugo-gianazza" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Luca Magri" %}
+                <a href="{{ '/contributors/' | relative_url }}#luca-magri" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% else %}
                 {{ author }}{% unless forloop.last %}, {% endunless %}
               {% endif %}

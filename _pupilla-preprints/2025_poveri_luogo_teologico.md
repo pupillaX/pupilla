@@ -6,8 +6,7 @@ authors:
 keywords: ["The poor", "Theological locus", "Pope Francis", "Evangelii Gaudium", "Church renewal", "Trinity", "Jesus Forsaken", "Popular piety", "Social inclusion", "Liberation theology"]
 discipline: "Philosophy"
 languages: ["English", "Italiano"]
-date: 2025-09-11
-coming_soon: true
+date: 2025-09-18
 #doi: "10.1234/example5"
 abstract: "This article explores Pope Francis's teaching that \"in the heart of God there is a preferential place for the poor\" (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged \"theological locus.\" Through personal testimony from the author's experience with Juan Carlos, a street child in Cochabamba, Bolivia, the text illustrates how encounters with the poor can become living encounters with Christ himself."
 abstracts:
@@ -21,10 +20,10 @@ abstracts:
 
 pdfs:
   - language: "Italiano"
-    url: "/assets/pdfs/TBD.pdf"
+    url: "/assets/pdfs/20250918_PUPILLA_IpoveriLuogoTeologico.pdf"
     flag: "🇮🇹"
 
-pupilla_citation: "Cerviño, L., Nel seno della Trinità c’è un posto privilegiato per i poveri: I poveri come «luogo teologico», Pupilla (2025), https://pupilla.org/preprints/2017-lectura-intercultural-pacto/"
+pupilla_citation: "Cerviño, L., Nel seno della Trinità c’è un posto privilegiato per i poveri: I poveri come «luogo teologico», Pupilla (2025), https://pupilla.org/preprints/2025-lectura-intercultural-pacto/"
 pupilla_citation_note: ""
 
 tags:

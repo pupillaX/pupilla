@@ -8,6 +8,53 @@ permalink: /contributors/
 
 
 <div class="contributors-grid">
+  <div class="contributor-card" id="ugo-gianazza">
+    <div class="contributor-photo">
+      <img src="{{ '/assets/images/ugo_gianazza.png' | relative_url }}" alt="Ugo Gianazza" />
+    </div>
+    <div class="contributor-info">
+      <h2>Ugo Gianazza</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Professor of Mathematical Analysis at the Department of Mathematics F. Casorati of the University of Pavia (Italy). Member of the Board of Directors of University of Pavia. Member of the Abba School interdisciplinary centre of study. </p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic & Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=OPkb21QAAAAJ&hl=en" target="_blank" rel="noopener">View Publications</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ugo-gianazza-73baab6/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Ugo-Gianazza" target="_blank" rel="noopener">Research Profile</a></p>
+            <p><strong>Website:</strong> <a href="https://mate.unipv.it/gianazza/" target="_blank" rel="noopener">University</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="contributor-card" id="luca-magri">
+    <div class="contributor-photo">
+      <img src="{{ '/assets/images/luca_magri.png' | relative_url }}" alt="Luca Magri" />
+    </div>
+    <div class="contributor-info">
+      <h2>Luca Magri</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Masters degree in Mathematics from Università degli Studi di Roma “La Sapienza" (Italy). Held research and leadership roles at the ENEL research institute ISMES focusing on seismic assessment and at Telecom Italia FINSIEL. Further leadership roles at the Vatican's Jubilee 2000 and Pilgrimage organizations and the Focolare Movement's Azione per Famiglie Nuove as director, currently a member of the Focolare Movement's global centre. </p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Focolare Movement:</strong> <a href="https://www.focolare.org" target="_blank" rel="noopener">Homepage</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+  
   <div class="contributor-card" id="lucas-cervino">
     <div class="contributor-photo">
       <img src="{{ '/assets/images/lucas_cervino.png' | relative_url }}" alt="Lucas Cervino" />

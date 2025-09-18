@@ -164,6 +164,10 @@ Explore our collection of scholarly works:
                 <a href="{{ '/contributors/' | relative_url }}#jordi-rodriguez-salleras" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% elsif author == "Lucas Cervino" or author == "Lucas Cerviño" %}
                 <a href="{{ '/contributors/' | relative_url }}#lucas-cervino" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Ugo Gianazza" %}
+                <a href="{{ '/contributors/' | relative_url }}#ugo-gianazza" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Luca Magri" %}
+                <a href="{{ '/contributors/' | relative_url }}#luca-magri" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% else %}
                 <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
               {% endif %}
