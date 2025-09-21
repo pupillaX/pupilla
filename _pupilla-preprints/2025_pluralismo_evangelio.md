@@ -6,8 +6,7 @@ authors:
 keywords: ["pluralism", "evangelization", "culture of encounter", "intercultural dialogue", "Pope Francis", "Evangelii Gaudium", "Chiara Lubich", "inculturation", "exchange of gifts", "unity in diversity", "epoch change", "fundamentalism", "relativism", "Gospel and cultures", "mutual love", "mystical experience", "common good"]
 discipline: "Philosophy"
 languages: ["English", "Español"]
-date: 2025-09-18
-coming_soon: True
+date: 2025-09-21
 #doi: "10.1234/example4"
 abstract: "This article examines the relationship between Gospel and cultures within the context of pluralism as a defining characteristic of the current epochal change, explaining the urgency of evangelization as a culture of encounter in service of unity in diversity. Drawing primarily on Pope Francis's magisterium, particularly his Apostolic Exhortation Evangelii Gaudium (2013), and updating Chiara Lubich's intuition about inculturation as an exchange of gifts, the study addresses how the Church must continuously relocate itself within diverse local and global contexts."
 abstracts:

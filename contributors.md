@@ -61,7 +61,7 @@ permalink: /contributors/
     </div>
     <div class="contributor-info">
       <h2>Lucas Cerviño</h2>
-      <p class="role">Author</p>
+      <p class="role">Author, Editor</p>
       
       <div class="bio-section">
         <h3>Short Bio</h3>

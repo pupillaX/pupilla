@@ -6,8 +6,7 @@ authors:
 keywords: ["intercultural dialogue", "dialogical dialogue", "mystical experience", "pluralism", "transconfessional community", "Raimon Panikkar", "mysticism of we", "Latin American pluralism", "religious experience", "interreligious dialogue", "phenomenology of experience", "mutual self-transcendence", "the Real", "communional presence"]
 discipline: "Philosophy"
 languages: ["English", "Español"]
-date: 2025-09-18
-coming_soon: True
+date: 2025-09-21
 #doi: "10.1234/example4"
 abstract: "This article examines the possibility of experiencing intercultural dialogue as \"dialogical dialogue\" (R. Panikkar) that generates a \"mystical experience of we\" (Pope Francis) within the context of contemporary pluralism. The author argues that the current epoch change evidences the emergence of a pluralist stage that challenges Christian faith to give renewed and creative reasons for belief."
 abstracts:
@@ -21,7 +20,7 @@ abstracts:
 
 pdfs:
   - language: "Español"
-    url: "/assets/pdfs/TBD.pdf"
+    url: "/assets/pdfs/20250921_PUPILLA_DialogoInterculturalExperienciaNosotros.pdf"
     flag: "🇪🇸"
 
 pupilla_citation: "Cerviño, L., El diálogo intercultural (e interreligioso) como experiencia mística del nosotros, Pupilla (2025), https://pupilla.org/preprints/2025-dialogo-intercultural-mistica-nosotros/"

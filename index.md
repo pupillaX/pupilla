@@ -17,7 +17,7 @@ title: Home
 <section class="latest-preprints">
   <div class="section-header">
     <h2>Latest preprints</h2>
-    <a href="{{ '/preprints/' | relative_url }}" class="view-all-link">View All {{ site['pupilla-preprints'] | size }} →</a>
+    <a href="{{ '/preprints/' | relative_url }}" class="view-all-link">View All ({{ site['pupilla-preprints'] | size }}) →</a>
   </div>
   
   <div class="preprint-grid">
@@ -30,7 +30,7 @@ title: Home
       {% endunless %}
     {% endfor %}
     
-    {% assign items = published_preprints | slice: 0, 6 %}
+    {% assign items = published_preprints | slice: 0, 12 %}
     {% for item in items %}
       <article class="preprint-card preprint-card-compact">
         <div class="preprint-meta">
