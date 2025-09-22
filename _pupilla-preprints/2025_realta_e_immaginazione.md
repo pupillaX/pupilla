@@ -7,7 +7,7 @@ authors:
 keywords: ["Euclid", "space", "mathematics", "geometry"]
 discipline: "Mathematics"
 languages: ["English", "Italiano"]
-date: 2025-09-18
+date: 2025-09-22
 #doi: "10.1234/example5"
 abstract: "This essay traces the evolution of the concept of space in mathematics from ancient Greece to modern times, examining the philosophical and cultural implications of this transformation. Beginning with Euclidean geometry as an absolute representation of physical reality, the authors explore how Cartesian coordinate systems introduced a subjective perspective that challenged the notion of absolute space."
 abstracts:
@@ -21,7 +21,7 @@ abstracts:
 
 pdfs:
   - language: "Italiano"
-    url: "/assets/pdfs/20250918_PUPILLA_LoSpazioInMatematica.pdf"
+    url: "/assets/pdfs/20250922_PUPILLA_LoSpazioInMatematica.pdf"
     flag: "🇮🇹"
 
 pupilla_citation: "Gianazza, U., Magri, L., Tra realtà e immaginazione. Brevi note e riflessioni a partire dall’evoluzione del concetto di spazio in matematica., Pupilla (2025), https://pupilla.org/preprints/2025-realta-e-immaginazione/"
