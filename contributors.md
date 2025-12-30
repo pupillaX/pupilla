@@ -8,6 +8,32 @@ permalink: /contributors/
 
 
 <div class="contributors-grid">
+  
+  <div class="contributor-card" id="antonino-puglisi">
+    <div class="contributor-photo">
+      <img src="{{ '/assets/images/antonino_puglisi.png' | relative_url }}" alt="Antonino Puglisi" />
+    </div>
+    <div class="contributor-info">
+      <h2>Antonino Puglisi</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p> Masters and PhD degrees in Chemistry from the University of Catania (Italy). Currently European Advisor at the UK Research Innovation. Member of the Abba School interdisciplinary centre of study. </p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic & Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=_thIlpkAAAAJ&hl=en" target="_blank" rel="noopener">View Publications</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/antonino-puglisi-a4086a17/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Antonino-Puglisi" target="_blank" rel="noopener">Research Profile</a></p>
+            <p><strong>Royal Society of Chemistry:</strong> <a href="https://www.rsc.org/people/antonino-puglisi" target="_blank" rel="noopener">Research Profile</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+
   <div class="contributor-card" id="ugo-gianazza">
     <div class="contributor-photo">
       <img src="{{ '/assets/images/ugo_gianazza.png' | relative_url }}" alt="Ugo Gianazza" />

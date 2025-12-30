@@ -179,6 +179,8 @@ Explore our collection of scholarly works:
                 <a href="{{ '/contributors/' | relative_url }}#ugo-gianazza" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% elsif author == "Luca Magri" %}
                 <a href="{{ '/contributors/' | relative_url }}#luca-magri" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Antonino Puglisi" %}
+                <a href="{{ '/contributors/' | relative_url }}#antonino-puglisi" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% else %}
                 <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
               {% endif %}

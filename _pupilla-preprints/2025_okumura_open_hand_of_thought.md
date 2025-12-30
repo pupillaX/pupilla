@@ -1,6 +1,7 @@
 ---
 layout: preprint
-title: "Jesus Forsaken and the Open Hand of Thought: A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition (via Okumura Shōhaku) and Chiara Lubich’s Paradise’49"
+# title: "Jesus Forsaken and the Open Hand of Thought: A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition and Chiara Lubich’s Paradise’49"
+title: "A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition and Chiara Lubich’s Charism of Unity"
 authors:
   - Peter Morovic
   - Ján Morovic
@@ -10,16 +11,23 @@ languages: ["English", "Italiano"]
 date: 2025-11-16
 coming_soon: true
 #doi: "10.1234/example2"
-abstract: ""
+abstract: "This article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: Chiara Lubich’s Catholic mysticism centered on Jesus Forsaken and Uchiyama Kōshō’s Sōtō Zen tradition transmitted through his disciple Okumura Shōhaku, focused on zazen and the practice of “opening the hand of thought” (omoi no tebanashi)."
 abstracts:
   - language: "English"
     flag: "🇬🇧"
-    content: "This comparative study examines the mystical experiences of two twentieth-century spiritual figures: Kosho Uchiyama Roshi and his disciple Shohaku Okumura representing authentic Sōtō Zen practice, and Chiara Lubich developing a Christian mysticism centered on \"Jesus Forsaken.\" Through phenomenological analysis of first-person accounts and complementary commentary, this article identifies striking parallels in their approaches to self-emptying (Uchiyama's \"opening the hand of thought\" and Lubich's deliberate \"self-naughting\"), their understanding of communal awakening as inseparable from individual transformation, and their discovery of fullness through embraced nothingness. Both experiences demonstrate that authentic spiritual realization emerges not through accumulation but through radical letting-go that creates space for ultimate reality to manifest. While acknowledging significant theological and cultural differences between Buddhist and Christian frameworks, this analysis suggests that genuine mystical experience across traditions shares common phenomenological structures, particularly the paradoxical movement through ontological poverty to authentic being and the recognition that individual awakening naturally flowers into commitment to universal interconnectedness. The study contributes to comparative mystical theology by demonstrating how experiential analysis can reveal deep convergences while respecting the irreducible particularity of each tradition, offering resources for contemporary interfaith dialogue and spiritual practice that honor both unity and diversity."
+    content: "This article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: Chiara Lubich’s Catholic mysticism centered on Jesus Forsaken and Uchiyama Kōshō’s Sōtō Zen tradition transmitted through his disciple Okumura Shōhaku, focused on zazen and the practice of “opening the hand of thought” (omoi no tebanashi). While emerging from distinct religious contexts – Catholic Christianity and Japanese Zen Buddhism – both traditions converge around themes of nothingness, the centrality of life in community, radical authenticity, and the non-dual relationship between suffering and liberation. This study argues that these paths reveal a shared experiential core where emptiness (śūnyatā) and fullness (divine fullness) constitute not opposites but interpenetrating, pericoretic realities, offering Ma pathway beyond doctrinal divisions toward lived spiritual praxis."
+  - language: "Italiano"
+    flag: "🇮🇹"
+    content: "Questo articolo intraprende una lettura fenomenologica comparativa di due esperienze spirituali radicali del ventesimo secolo e dei loro carismi: la mistica cattolica di Chiara Lubich incentrata su Gesù Abbandonato e la tradizione Sōtō Zen di Uchiyama Kōshō trasmessa attraverso il suo discepolo Okumura Shōhaku, focalizzata sullo zazen e sulla pratica di \"aprire la mano del pensiero\" (omoi no tebanashi). Pur emergendo da contesti religiosi distinti – il cristianesimo cattolico e il buddhismo Zen giapponese – entrambe le tradizioni convergono attorno ai temi del nulla, della centralità della vita in comunità, dell'autenticità radicale e della relazione non-duale tra sofferenza e liberazione. Questo studio sostiene che questi percorsi rivelano un nucleo esperienziale condiviso in cui il vuoto (śūnyatā) e la pienezza (pienezza divina) costituiscono non opposti ma realtà interpenetranti e pericorètiche, offrendo un cammino oltre le divisioni dottrinali verso una prassi spirituale vissuta."
 pdfs:
   - language: "English"
-    url: "/assets/pdfs/202511_Okumura_en.pdf"
+    url: "/assets/pdfs/202512_Okumura_en.pdf"
     flag: "🇬🇧"
-pupilla_citation: "Morovic, P., & Morovic, J., Jesus Forsaken and the Open Hand of Thought: A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition (via Okumura Shōhaku) and Chiara Lubich’s Paradise’49, Pupilla (2025), https://pupilla.org/preprints/2025-okumura-open-hand-of-thought/"
+  - language: "Italiano"
+    url: "/assets/pdfs/202512_Okumura_it.pdf"
+    flag: "🇮🇹"
+
+pupilla_citation: "Morovic, P., Morovic, J., Jesus Forsaken and the Open Hand of Thought: A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition (via Okumura Shōhaku) and Chiara Lubich’s Paradise’49, Pupilla (2025), https://pupilla.org/preprints/2025-okumura-open-hand-of-thought/"
 
 tags:
   - philosophy

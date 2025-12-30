@@ -58,6 +58,8 @@ title: Home
                 <a href="{{ '/contributors/' | relative_url }}#ugo-gianazza" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% elsif author == "Luca Magri" %}
                 <a href="{{ '/contributors/' | relative_url }}#luca-magri" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Antonino Puglisi" %}
+                <a href="{{ '/contributors/' | relative_url }}#antonino-puglisi" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% else %}
                 {{ author }}{% unless forloop.last %}, {% endunless %}
               {% endif %}
@@ -124,6 +126,8 @@ title: Home
                 <a href="{{ '/contributors/' | relative_url }}#ugo-gianazza" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% elsif author == "Luca Magri" %}
                 <a href="{{ '/contributors/' | relative_url }}#luca-magri" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
+              {% elsif author == "Antonino Puglisi" %}
+                <a href="{{ '/contributors/' | relative_url }}#antonino-puglisi" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
               {% else %}
                 {{ author }}{% unless forloop.last %}, {% endunless %}
               {% endif %}
