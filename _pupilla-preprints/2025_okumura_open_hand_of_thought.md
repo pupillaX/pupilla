@@ -27,7 +27,7 @@ pdfs:
     url: "/assets/pdfs/202512_Okumura_it.pdf"
     flag: "🇮🇹"
 
-pupilla_citation: "Morovic, P., Morovic, J., Jesus Forsaken and the Open Hand of Thought: A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition (via Okumura Shōhaku) and Chiara Lubich’s Paradise’49, Pupilla (2025), https://pupilla.org/preprints/2025-okumura-open-hand-of-thought/"
+pupilla_citation: "Morovic, P., Morovic, J., A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition and Chiara Lubich’s Charism of Unity, Pupilla (2025), https://pupilla.org/preprints/2025-okumura-open-hand-of-thought/"
 
 tags:
   - philosophy
