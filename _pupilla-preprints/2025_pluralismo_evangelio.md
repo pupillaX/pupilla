@@ -20,7 +20,7 @@ abstracts:
 
 pdfs:
   - language: "Español"
-    url: "/assets/pdfs/TBD.pdf"
+    url: "/assets/pdfs/20250921_PUPILLA_PluralismoEvangelio.pdf"
     flag: "🇪🇸"
 
 pupilla_citation: "Cerviño, L., Pluralismo y Evangelio: dialogar para promover una cultura del encuentro, Pupilla (2025), https://pupilla.org/preprints/2025-pluralismo-evangelio/"
