@@ -1,0 +1,55 @@
+---
+layout: null
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ site.lang | default: 'en' }}">
+  <generator uri="https://jekyllrb.com/" version="{{ jekyll.version }}">Jekyll</generator>
+  <link href="{{ '/feed.xml' | absolute_url }}" rel="self" type="application/atom+xml" />
+  <link href="{{ '/' | absolute_url }}" rel="alternate" type="text/html" hreflang="{{ site.lang | default: 'en' }}" />
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ '/feed.xml' | absolute_url }}</id>
+  <title type="html">{{ site.title | xml_escape }}</title>
+  <subtitle>{{ site.description | xml_escape }}</subtitle>
+  <author>
+    <name>{{ site.author | xml_escape }}</name>
+  </author>
+
+  {% assign preprints = site['pupilla-preprints'] | where_exp: "item", "item.coming_soon != true" %}
+  {% assign essays = site['pupilla-essays'] | where_exp: "item", "item.coming_soon != true" %}
+  {% assign all_items = preprints | concat: essays | sort: 'date' | reverse %}
+  {% assign feed_items = all_items | slice: 0, 20 %}
+
+  {% for item in feed_items %}
+  <entry>
+    <title type="html">{{ item.title | xml_escape }}</title>
+    <link href="{{ item.url | absolute_url }}" rel="alternate" type="text/html" title="{{ item.title | xml_escape }}" />
+    <published>{{ item.date | date_to_xmlschema }}</published>
+    <updated>{{ item.date | date_to_xmlschema }}</updated>
+    <id>{{ item.url | absolute_url }}</id>
+    <content type="html" xml:base="{{ item.url | absolute_url }}">
+      {{ item.abstract | default: item.content | strip_html | truncate: 500 | xml_escape }}
+    </content>
+    {% if item.authors %}
+    {% for author in item.authors %}
+    <author>
+      <name>{{ author | xml_escape }}</name>
+    </author>
+    {% endfor %}
+    {% endif %}
+    {% if item.tags %}
+    {% for tag in item.tags %}
+    <category term="{{ tag | xml_escape }}" />
+    {% endfor %}
+    {% endif %}
+    {% if item.collection == 'pupilla-essays' %}
+    <category term="essay" label="Essay" />
+    {% else %}
+    <category term="preprint" label="Preprint" />
+    {% endif %}
+    {% if item.abstract %}
+    <summary type="html">{{ item.abstract | xml_escape }}</summary>
+    {% endif %}
+  </entry>
+  {% endfor %}
+</feed>

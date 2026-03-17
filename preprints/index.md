@@ -1,14 +1,12 @@
 ---
 layout: default
-title: Browse Preprints
+title: Preprints
 permalink: /preprints/
 ---
 
 <section class="browse-header">
-  <h1>Browse Preprints</h1>
+  <h1>Preprints</h1>
   <p>Explore our collection of multidisciplinary research papers</p>
-  <!-- Search commented out - can be restored later -->
-  <!-- {% include search.html %} -->
 </section>
 
 <section class="preprints-listing">

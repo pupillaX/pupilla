@@ -15,7 +15,8 @@
 <nav class="sidebar-nav">
   <ul>
     <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
-    <li><a href="{{ '/preprints/' | relative_url }}" {% if page.url contains '/preprints' %}class="active"{% endif %}>Browse Preprints</a></li>
+    <li><a href="{{ '/preprints/' | relative_url }}" {% if page.url contains '/preprints' %}class="active"{% endif %}>Preprints</a></li>
+    <li><a href="{{ '/essays/' | relative_url }}" {% if page.url contains '/essays' %}class="active"{% endif %}>Essays</a></li>
     <!-- <li><a href="{{ '/submit/' | relative_url }}" {% if page.url == '/submit/' %}class="active"{% endif %}>Submit</a></li> -->
     <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a></li>
     <li><a href="{{ '/contributors/' | relative_url }}" {% if page.url == '/contributors/' %}class="active"{% endif %}>Contributors</a></li>
@@ -25,3 +26,17 @@
 </nav>
 
 <!-- {% include search.html %} -->
+
+<div class="sidebar-subscribe">
+  <p class="subscribe-label">Get notified by email</p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/pupilla"
+    method="post"
+    target="popupwindow"
+    onsubmit="window.open('https://buttondown.com/pupilla', 'popupwindow')"
+    class="subscribe-form"
+  >
+    <input type="email" name="email" placeholder="your@email.com" required />
+    <button type="submit">Subscribe</button>
+  </form>
+</div>

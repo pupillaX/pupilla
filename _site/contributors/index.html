@@ -1,72 +1,903 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <title>Contributors | Pupilla</title>
-<link rel="stylesheet" href="/assets/css/style.css" />
-<link rel="alternate" type="application/atom+xml" title="Pupilla" href="/feed.xml" />
-<link rel="icon" href="/favicon.ico" />
+<meta name="description" content="A multidisciplinary preprint archive with the aim of building bridges and striving for unity in diversity.">
+<link rel="canonical" href="http://0.0.0.0:4000/contributors/">
+<link rel="alternate" type="application/rss+xml" title="Pupilla" href="/feed.xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon_io/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon_io/site.webmanifest">
 
+<!-- Google Analytics - Loaded conditionally with consent -->
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-  document.addEventListener('DOMContentLoaded', function() {
-    var pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
-    pdfLinks.forEach(function(link){
-      link.addEventListener('click', function(){
-        try { gtag('event', 'download', { event_category: 'PDF', event_label: link.href }); } catch(e) {}
-      });
-    });
-  });
-  </script>
+<!-- Analytics will be loaded by cookie consent script -->
 </head>
 <body>
-<header class="site-header">
-  <div class="container">
-    <a class="site-title" href="/">Pupilla</a>
-    <nav class="site-nav">
-      <a href="/">Home</a>
-      <a href="/preprints/">Preprints</a>
-    </nav>
+<!-- Mobile header - visible only on small screens -->
+<header class="mobile-header">
+  <div class="mobile-header-content">
+    <a href="/" class="mobile-logo">
+      <img src="/assets/images/logo.png" alt="Pupilla logo">
+      <span>Pupilla</span>
+    </a>
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
+  
+  <nav class="mobile-nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/preprints/">Preprints</a></li>
+      <li><a href="/essays/">Essays</a></li>
+      <!-- <li><a href="/submit/">Submit</a></li> -->
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contributors/">Contributors</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
 </header>
-
-
 <div class="container layout">
   <aside class="sidebar">
-    <nav class="sidebar-nav">
+    <div class="sidebar-header">
+  <a href="/" class="logo-link">
+    <img src="/assets/images/logo.png" alt="Pupilla logo" class="logo">
+  </a>
+  <div class="site-taglines">
+    <p class="site-tagline en"> A multidisciplinary and multilingual preprint archive with the aim of building bridges and striving for unity in diversity.</p>
+    <!-- <p class="site-tagline en">🇬🇧 A multidisciplinary preprint archive with the aim of building bridges and striving for unity in diversity.</p> -->
+    <!-- <br>
+    <p class="site-tagline it">🇮🇹 Un archivio multidisciplinare di preprint con l'obiettivo di costruire ponti e perseguire l'unità nella diversità.</p>
+    <br>
+    <p class="site-tagline es">🇪🇸 Un archivo multidisciplinario de preprints con el objetivo de construir puentes y buscar la unidad en la diversidad.</p> -->
+  </div>
+</div>
+
+<nav class="sidebar-nav">
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/preprints/">Preprints</a></li>
-    <li><a href="/about/">About</a></li>
-    <li><a href="/contributors/">Contributors</a></li>
-    <li><a href="/contact/">Contact</a></li>
+    <li><a href="/" >Home</a></li>
+    <li><a href="/preprints/" >Preprints</a></li>
+    <li><a href="/essays/" >Essays</a></li>
+    <!-- <li><a href="/submit/" >Submit</a></li> -->
+    <li><a href="/about/" >About</a></li>
+    <li><a href="/contributors/" class="active">Contributors</a></li>
+    <!-- <li><a href="/links/" >Links</a></li> -->
+    <li><a href="/contact/" >Contact</a></li>
   </ul>
 </nav>
 
+<!-- <div class="search-container">
+  <input type="text" id="search-input" placeholder="Search preprints..." aria-label="Search preprints">
+  <button type="button" id="search-button" aria-label="Search">🔍</button>
+  <div id="search-results" class="search-results"></div>
+</div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+  const searchResults = document.getElementById('search-results');
+  
+  // Simple search functionality - you may want to implement Lunr.js for better search
+  function performSearch(query) {
+    if (!query.trim()) {
+      searchResults.style.display = 'none';
+      return;
+    }
+    
+    // This is a basic implementation - in a real site you'd want more sophisticated search
+    const preprints = [
+      
+      {
+        title: "Who are Chiara Lubich&#39;s «two or three»?",
+        authors: "Ján Morovic, Peter Morovic",
+        abstract: "This paper examines Chiara Lubich&#39;s radical reinterpretation of Jesus&#39; promise in Matthew 18:20 about two or three gathered in his name. Drawing from Lubich&#39;s mystical insights during the Paradise of &#39;49 and her extensive talks spanning several decades, the study analyzes her revolutionary understanding of who can experience Christ&#39;s presence and under what conditions.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-chiaras-two-or-three/"
+      },
+      
+      {
+        title: "El Abandonado de Chiara Lubich",
+        authors: "Jordi Rodríguez Salleras",
+        abstract: "This study presents a triple interpretative framework for understanding Chiara Lubich&#39;s (1920-2008) texts on Jesus Forsaken through theological, mystical, and philosophical perspectives. The central focus is Lubich&#39;s interpretation of the crucified Jesus crying out &#39;My God, my God, why have you forsaken me?&#39; (Mark 15:34), which she positions as the cornerstone of a spirituality aimed at achieving universal fraternity.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-abandonado-de-lubich/"
+      },
+      
+      {
+        title: "Lectura intercultural/pluralista del Pacto de unidad como experiencia sapiencial",
+        authors: "Lucas Cerviño",
+        abstract: "This paper explores the possibility of actualizing the Pact of Unity between Chiara Lubich and Igino Giornani (July 16, 1949) within contemporary pluralistic contexts. The author investigates whether this foundational mystical experience of the Focolare Movement can transcend its Catholic confessional framework to embrace intercultural and interreligious dialogue, including non-confessional spiritual approaches.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-lectura-intercultural-pacto/"
+      },
+      
+      {
+        title: "Nel seno della Trinità c’è un posto privilegiato per i poveri: I poveri come «luogo teologico»",
+        authors: "Lucas Cerviño",
+        abstract: "This article explores Pope Francis&#39;s teaching that &quot;in the heart of God there is a preferential place for the poor&quot; (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; Through personal testimony from the author&#39;s experience with Juan Carlos, a street child in Cochabamba, Bolivia, the text illustrates how encounters with the poor can become living encounters with Christ himself.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-poveri-luogo-teologico/"
+      },
+      
+      {
+        title: "El diálogo intercultural (e interreligioso) como experiencia mística del nosotros",
+        authors: "Lucas Cerviño",
+        abstract: "This article examines the possibility of experiencing intercultural dialogue as &quot;dialogical dialogue&quot; (R. Panikkar) that generates a &quot;mystical experience of we&quot; (Pope Francis) within the context of contemporary pluralism. The author argues that the current epoch change evidences the emergence of a pluralist stage that challenges Christian faith to give renewed and creative reasons for belief.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-dialogo-intercultural-mistica-nosotros/"
+      },
+      
+      {
+        title: "Intuizioni e chiavi per una possibile missione interculturale",
+        authors: "Lucas Cerviño",
+        abstract: "This article explores Pope Francis&#39;s teaching that &quot;in the heart of God there is a preferential place for the poor&quot; (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; Through personal testimony from the author&#39;s experience with Juan Carlos, a street child in Cochabamba, Bolivia, the text illustrates how encounters with the poor can become living encounters with Christ himself.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-missione-interculturale/"
+      },
+      
+      {
+        title: "Pluralismo y Evangelio: dialogar para promover una cultura del encuentro",
+        authors: "Lucas Cerviño",
+        abstract: "This article examines the relationship between Gospel and cultures within the context of pluralism as a defining characteristic of the current epochal change, explaining the urgency of evangelization as a culture of encounter in service of unity in diversity. Drawing primarily on Pope Francis&#39;s magisterium, particularly his Apostolic Exhortation Evangelii Gaudium (2013), and updating Chiara Lubich&#39;s intuition about inculturation as an exchange of gifts, the study addresses how the Church must continuously relocate itself within diverse local and global contexts.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-pluralismo-evangelio/"
+      },
+      
+      {
+        title: "Tra realtà e immaginazione. Brevi note e riflessioni a partire dall’evoluzione del concetto di spazio in matematica.",
+        authors: "Ugo Gianazza, Luca Magri",
+        abstract: "This essay traces the evolution of the concept of space in mathematics from ancient Greece to modern times, examining the philosophical and cultural implications of this transformation. Beginning with Euclidean geometry as an absolute representation of physical reality, the authors explore how Cartesian coordinate systems introduced a subjective perspective that challenged the notion of absolute space.",
+        language: "",
+        discipline: "Mathematics",
+        coming_soon: false,
+        url: "/preprints/2025-realta-e-immaginazione/"
+      },
+      
+      {
+        title: "L&#39;ateismo Cristiano di Slavoj Žižek: un dialogo con Chiara Lubich",
+        authors: "Peter Morovic, Ján Morovic",
+        abstract: "This essay examines the thought of Slovenian philosopher Slavoj Žižek on Christianity, with particular attention to his interpretation of God&#39;s death on the cross and the birth of the Holy Spirit as an &#39;egalitarian community.&#39; Through a comparative analysis with Chiara Lubich&#39;s charism of unity, the article highlights surprising convergences between Žižek&#39;s &#39;Christian atheism&#39; and Focolare spirituality.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-zizek-christian-atheism/"
+      },
+      
+      {
+        title: "Science in Europe Between War and Peace",
+        authors: "Antonino Puglisi",
+        abstract: "This article examines the paradoxical relationship between science and society in contemporary Europe, where public trust in science has reached unprecedented levels even as misinformation and political polarization increasingly challenge evidence-based policymaking. Against the backdrop of the COVID-19 pandemic, climate change, and artificial intelligence, the author explores what he terms the &quot;technocratic dilemma&quot; — the tension between expert knowledge and democratic decision-making.",
+        language: "",
+        discipline: "Science",
+        coming_soon: false,
+        url: "/preprints/2025-science-europe-war-peace/"
+      },
+      
+      {
+        title: "A comparative reading of Uchiyama Kosho&#39;s Sōtō Zen tradition and Chiara Lubich&#39;s Charism of Unity",
+        authors: "Peter Morovic, Ján Morovic",
+        abstract: "This article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: Chiara Lubich’s Catholic mysticism centered on Jesus Forsaken and Uchiyama Kōshō’s Sōtō Zen tradition transmitted through his disciple Okumura Shōhaku, focused on zazen and the practice of “opening the hand of thought” (omoi no tebanashi).",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: true,
+        url: "/preprints/2026-okumura-open-hand-of-thought/"
+      }
+      
+    ];
+    
+    const results = preprints.filter(preprint => 
+      preprint.title.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.authors.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.abstract.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.language.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.discipline.toLowerCase().includes(query.toLowerCase()) ||
+      (preprint.coming_soon && query.toLowerCase().includes('coming soon'))
+    );
+    
+    if (results.length > 0) {
+      searchResults.innerHTML = results.slice(0, 5).map(result => 
+        `<a href="${result.url}" class="search-result">
+          <strong>${result.title}</strong>
+          <span class="search-authors">${result.authors}</span>
+        </a>`
+      ).join('');
+      searchResults.style.display = 'block';
+    } else {
+      searchResults.innerHTML = '<div class="no-results">No results found</div>';
+      searchResults.style.display = 'block';
+    }
+  }
+  
+  searchInput.addEventListener('input', function() {
+    performSearch(this.value);
+  });
+  
+  searchButton.addEventListener('click', function() {
+    performSearch(searchInput.value);
+  });
+  
+  // Hide results when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+      searchResults.style.display = 'none';
+    }
+  });
+});
+</script> -->
+
+<div class="sidebar-subscribe">
+  <p class="subscribe-label">Get notified by email</p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/pupilla"
+    method="post"
+    target="popupwindow"
+    onsubmit="window.open('https://buttondown.com/pupilla', 'popupwindow')"
+    class="subscribe-form"
+  >
+    <input type="email" name="email" placeholder="your@email.com" required />
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
   </aside>
-  <main class="content"><h2 id="ján-morovic-co-fondatore-pupilla">Ján Morovic (co-fondatore pupilla)</h2>
-<p>[EN] Ph.D. Color Science from the University of Derby, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School. Married with two children and living in the UK.</p>
+  <main class="content"><h1 id="contributors">Contributors</h1>
 
-<p>[IT] Ph.D. in Scienza del Colore all’Università di Derby, Regno Unito, Principal Technologist presso HP Inc. e membro del centro interdisciplinare di studi Scuola Abbà. Sposato con due figli vive nel Regno Unito.</p>
+<div class="contributors-grid">
 
-<h2 id="peter-morovic-co-fondatore-pupilla">Peter Morovic (co-fondatore pupilla)</h2>
-<p>[EN] Ph.D. in Computer Science from the University of East Anglia, Norwich, UK, Principal Technologist at HP Inc. member of the interdisciplinary centre of study, Abba School. Married and living in Catalunya.</p>
+  <div class="contributor-card" id="elisabeth-ohlbock">
+    <div class="contributor-photo">
+      <img src="/assets/images/contributors/elisabeth_ohlbock.png" alt="Elisabeth Öhlböck" />
+    </div>
+    <div class="contributor-info">
+      <h2>Elisabeth Öhlböck</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Currently working as Psychotherapeutic Counsellor in private practice and the charitable sector. Masters degree in Advancing Practice from Ulster University.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="contributor-card" id="antonino-puglisi">
+    <div class="contributor-photo">
+      <img src="/assets/images/contributors/antonino_puglisi.png" alt="Antonino Puglisi" />
+    </div>
+    <div class="contributor-info">
+      <h2>Antonino Puglisi</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p> Masters and PhD degrees in Chemistry from the University of Catania (Italy). Currently European Advisor at the UK Research Innovation. Member of the Abba School interdisciplinary centre of study. </p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic &amp; Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=_thIlpkAAAAJ&amp;hl=en" target="_blank" rel="noopener">View Publications</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/antonino-puglisi-a4086a17/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Antonino-Puglisi" target="_blank" rel="noopener">Research Profile</a></p>
+            <p><strong>Royal Society of Chemistry:</strong> <a href="https://www.rsc.org/people/antonino-puglisi" target="_blank" rel="noopener">Research Profile</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
 
-<p>[IT] Ph.D. in Scienze della Computazione all’Università dell’East Anglia, Regno Unito, Principal Technologist presso HP Inc. e membro del centro interdisciplinare di studi Scuola Abbà. Sposato e vive in Catalogna.</p>
+  <div class="contributor-card" id="ugo-gianazza">
+    <div class="contributor-photo">
+      <img src="/assets/images/contributors/ugo_gianazza.png" alt="Ugo Gianazza" />
+    </div>
+    <div class="contributor-info">
+      <h2>Ugo Gianazza</h2>
+      <p class="role">Author, Editor</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Professor of Mathematical Analysis at the Department of Mathematics F. Casorati of the University of Pavia (Italy). Member of the Board of Directors of University of Pavia. Member of the Abba School interdisciplinary centre of study. </p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic &amp; Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=OPkb21QAAAAJ&amp;hl=en" target="_blank" rel="noopener">View Publications</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ugo-gianazza-73baab6/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Ugo-Gianazza" target="_blank" rel="noopener">Research Profile</a></p>
+            <p><strong>Website:</strong> <a href="https://mate.unipv.it/gianazza/" target="_blank" rel="noopener">University</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="contributor-card" id="luca-magri">
+    <div class="contributor-photo">
+      <img src="/assets/images/contributors/luca_magri.png" alt="Luca Magri" />
+    </div>
+    <div class="contributor-info">
+      <h2>Luca Magri</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Masters degree in Mathematics from Università degli Studi di Roma “La Sapienza" (Italy). Held research and leadership roles at the ENEL research institute ISMES focusing on seismic assessment and at Telecom Italia FINSIEL. Further leadership roles at the Vatican's Jubilee 2000 and Pilgrimage organizations and the Focolare Movement's Azione per Famiglie Nuove as director, currently a member of the Focolare Movement's global centre. </p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Focolare Movement:</strong> <a href="https://www.focolare.org" target="_blank" rel="noopener">Homepage</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="contributor-card" id="lucas-cervino">
+    <div class="contributor-photo">
+      <img src="/assets/images/contributors/lucas_cervino.png" alt="Lucas Cervino" />
+    </div>
+    <div class="contributor-info">
+      <h2>Lucas Cerviño</h2>
+      <p class="role">Author, Editor</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Doctor en Teología fundamental y licenciatura eclesial en Misionología. Docente en el Instituto de Misionología (Facultad de Teología San Pablo, Cochabamba-Bolivia) y en el Centro de Estudios Filosóficos y Teológicos (Córdoba, Argentina). Miembro del grupo interdisciplinar de estudios Escuela Abba. Miembro del Consejo Directivo de IUSophia ALC y coordinador de cursos sobre Acompañamiento Espiritual Integral.</p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic &amp; Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Sophia ALC:</strong> <a href="https://sophiaalc.com/nuestro-equipo/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>Ciudad Nueva:</strong> <a href="https://libros.ciudadnueva.com.ar/etiqueta-producto/lucas-cervino/" target="_blank" rel="noopener">Publishing</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="contributor-card" id="jordi-rodriguez-salleras">
+    <div class="contributor-photo">
+      <img src="/assets/images/contributors/jordi_rodriguez.png" alt="Jordi Rodriguez Salleras" />
+    </div>
+    <div class="contributor-info">
+      <h2>Jordi Rodríguez Salleras</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Double Bachelor of Arts degree in Humanities and Law from Universitat Pompeu Fabra, Barcelona, Catalonia (Spain), Masters degree in Eduction from the Universitat de Barcelona, Catalonia, (Spain); working in mathematics and science education as well as applications of AI in education.</p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic &amp; Professional Links</h4>
+          <div class="link-group">
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jordi-rodríguez-salleras/" target="_blank" rel="noopener">Professional Profile</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="contributor-card" id="jan-morovic">
+    <div class="contributor-photo">
+      <img src="/assets/images/contributors/jan-morovic.png" alt="Ján Morovic" />
+    </div>
+    <div class="contributor-info">
+      <h2>Ján Morovic</h2>
+      <p class="role">Author, Editor and co-founder</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Ph.D. Color Science from the University of Derby, UK; Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study.</p>
+      </div>
+      
+        <div class="contributor-links">
+          <h4>Academic &amp; Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=BVmnUEMAAAAJ&amp;hl=en" target="_blank" rel="noopener">View Publications</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/janmorovic" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0002-9983-8211" target="_blank" rel="noopener">0000-0002-9983-8211</a></p>
+            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Jan-Morovic" target="_blank" rel="noopener">Research Profile</a></p>
+          </div>
+          
+          <h4>Personal &amp; Blog Links</h4>
+          <div class="link-group">
+            <p><strong>Bluesky:</strong> <a href="https://bsky.app/profile/janmorovic.bsky.social" target="_blank" rel="noopener">@janmorovic.bsky.social</a></p>
+            <p><strong>Blog:</strong> <a href="https://ayebeleef.design.blog/author/jmorovic" target="_blank" rel="noopener">Articles &amp; Thoughts</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="contributor-card" id="peter-morovic">
+    <div class="contributor-photo">
+      <img src="/assets/images/contributors/peter-morovic.png" alt="Peter Morovic" />
+    </div>
+    <div class="contributor-info">
+      <h2>Peter Morovic</h2>
+      <p class="role">Author, Editor and co-founder</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Ph.D. in Computer Science from the University of East Anglia, Norwich, UK; Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study.</p>
+      </div>
+        
+        <div class="contributor-links">
+          <h4>Academic &amp; Professional Links</h4>
+          <div class="link-group">
+            <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=rg5k548AAAAJ&amp;hl=en" target="_blank" rel="noopener">View Publications</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/petermorovic/" target="_blank" rel="noopener">Professional Profile</a></p>
+            <p><strong>ORCID:</strong> <a href="https://orcid.org/0000-0002-7759-413X" target="_blank" rel="noopener">0000-0002-7759-413X</a></p>
+            <p><strong>ResearchGate:</strong> <a href="https://www.researchgate.net/profile/Peter-Morovic" target="_blank" rel="noopener">Research Profile</a></p>
+          </div>
+          
+          <h4>Personal &amp; Blog Links</h4>
+          <div class="link-group">
+            <p><strong>Bluesky:</strong> <a href="https://bsky.app/profile/pezike.bsky.social" target="_blank" rel="noopener">@pezike.bsky.social</a></p>
+            <p><strong>Medium:</strong> <a href="https://medium.com/@pezike" target="_blank" rel="noopener">Articles &amp; Thoughts</a></p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+<p><strong>Interested in contributing?</strong> <a href="/contact/">Contact us</a> directly.
+<!-- Visit our [submission guidelines](/submit/) or [contact us](/contact/) directly. --></p>
+
+<style>
+.contributors-grid {
+  display: grid;
+  gap: var(--spacing-2xl);
+  margin: var(--spacing-2xl) 0;
+}
+
+.contributor-card {
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: var(--spacing-2xl);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-normal);
+}
+
+.contributor-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .contributor-card {
+    display: flex;
+    gap: var(--spacing-2xl);
+    align-items: flex-start;
+  }
+  
+  .contributor-photo {
+    flex-shrink: 0;
+  }
+  
+  .contributor-info {
+    flex: 1;
+  }
+}
+
+.contributor-photo {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.contributor-photo img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--secondary-color);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+  transition: transform var(--transition-normal);
+}
+
+.contributor-photo img:hover {
+  transform: scale(1.05);
+}
+
+.contributor-info h2 {
+  color: var(--primary-color);
+  font-size: 1.875rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.role {
+  color: var(--secondary-color);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.bio-section {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--background-light);
+  border-radius: 8px;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.bio-section h3 {
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bio-section p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.contributor-details {
+  background: var(--background);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.contributor-details p {
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.contributor-details strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.contributor-links {
+  margin-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-light);
+  padding-top: var(--spacing-md);
+}
+
+.contributor-links h4 {
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contributor-links h4:first-child {
+  margin-top: 0;
+}
+
+.link-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.link-group p {
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.875rem;
+}
+
+.link-group a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-normal);
+}
+
+.link-group a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .contributors-grid {
+    gap: var(--spacing-xl);
+  }
+  
+  .contributor-card {
+    padding: var(--spacing-lg);
+    text-align: center;
+  }
+  
+  .contributor-photo {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .contributor-photo img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .bio-section {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .contributor-photo img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .contributor-card {
+    padding: var(--spacing-md);
+  }
+}
+</style>
+
 </main>
 </div>
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Pupilla. All rights reserved.</p>
+  <div class="footer-content">
+    <p>&copy; 2026 Pupilla.</p>
+    <p class="footer-links">
+      <a href="/privacy-policy/">Privacy Policy</a> • 
+      <a href="/contact/">Contact</a> • 
+      <a href="/feed.xml">RSS Feed</a> •
+      <a href="#" id="cookie-settings-link">Cookie Settings</a>
+    </p>
   </div>
 </footer>
 
+<script>
+// Cookie settings link functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const cookieSettingsLink = document.getElementById('cookie-settings-link');
+  if (cookieSettingsLink) {
+    cookieSettingsLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Reset consent and show banner again
+      localStorage.removeItem('cookieConsent');
+      localStorage.removeItem('googleAnalyticsConsent');
+      // Reload page to show consent banner
+      window.location.reload();
+    });
+  }
+});
+</script>
+
+<!-- Mobile menu functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const nav = document.querySelector('.mobile-nav');
+  
+  if (toggle && nav) {
+    toggle.addEventListener('click', function() {
+      nav.classList.toggle('active');
+      toggle.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        nav.classList.remove('active');
+        toggle.classList.remove('active');
+      });
+    });
+  }
+});
+
+// PDF download tracking
+document.addEventListener('DOMContentLoaded', function() {
+  const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+  pdfLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (typeof gtag !== 'undefined') {
+        console.log('PDF download tracked:', this.getAttribute('href'));
+        gtag('event', 'pdf_download', {
+          'file_name': this.getAttribute('href'),
+          'page_title': document.title
+        });
+      } else {
+        console.log('gtag not available');
+      }
+    });
+  });
+});
+</script>
+<!-- GDPR Cookie Consent Banner -->
+<div id="cookie-consent-banner" class="cookie-consent-banner" style="display: none;">
+  <div class="cookie-consent-content">
+    <div class="cookie-consent-text">
+      <h4>🍪 Cookie Notice</h4>
+      <p>We use cookies and similar technologies to improve your experience and analyze site usage. By clicking "Accept All", you consent to our use of cookies for analytics and functionality.</p>
+      <div class="cookie-consent-links">
+        <a href="/privacy-policy/" target="_blank">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="cookie-consent-buttons">
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Reject</button>
+      <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.cookie-consent-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  color: white;
+  padding: 20px;
+  z-index: 9999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.cookie-consent-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cookie-consent-text h4 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cookie-consent-text p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.cookie-consent-links a {
+  color: #4A90E2;
+  text-decoration: underline;
+  font-size: 13px;
+}
+
+.cookie-consent-buttons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cookie-btn-reject {
+  background: #666;
+  color: white;
+}
+
+.cookie-btn-reject:hover {
+  background: #555;
+}
+
+.cookie-btn-accept {
+  background: #4A90E2;
+  color: white;
+}
+
+.cookie-btn-accept:hover {
+  background: #357ABD;
+}
+
+@media (max-width: 768px) {
+  .cookie-consent-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cookie-consent-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .cookie-btn {
+    flex: 1;
+    max-width: 120px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Check if user has already made a choice
+  const consentStatus = localStorage.getItem('cookie-consent');
+  const banner = document.getElementById('cookie-consent-banner');
+  
+  // Show banner if no consent given
+  if (!consentStatus) {
+    banner.style.display = 'block';
+  } else if (consentStatus === 'accepted') {
+    // User previously accepted, load analytics
+    loadGoogleAnalytics();
+  }
+  
+  // Accept button
+  document.getElementById('cookie-accept').addEventListener('click', function() {
+    localStorage.setItem('cookie-consent', 'accepted');
+    banner.style.display = 'none';
+    loadGoogleAnalytics();
+  });
+  
+  // Reject button
+  document.getElementById('cookie-reject').addEventListener('click', function() {
+    localStorage.setItem('cookie-consent', 'rejected');
+    banner.style.display = 'none';
+    // Disable analytics if already loaded
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'denied'
+      });
+    }
+  });
+  
+  function loadGoogleAnalytics() {
+    // Only load if not already loaded
+    if (typeof gtag === 'undefined') {
+      // Load gtag script
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VETQ7ZZ4FM';
+      document.head.appendChild(script);
+      
+      script.onload = function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-VETQ7ZZ4FM', {
+          'send_page_view': true,
+          'anonymize_ip': true
+        });
+        console.log('Google Analytics loaded with consent');
+      };
+    }
+  }
+})();
+</script>
 
 </body>
 </html>

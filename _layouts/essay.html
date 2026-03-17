@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon_io/favicon-32x32.png' | relative_url }}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon_io/favicon-16x16.png' | relative_url }}">
   <link rel="manifest" href="{{ '/assets/images/favicon_io/site.webmanifest' | relative_url }}">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/article.css' | relative_url }}">
 
   {% if site.google_analytics %}
@@ -45,8 +45,7 @@
 <!-- Article Header -->
 <header class="article-header">
   <div class="article-meta-top">
-    Preprint{% if page.discipline %} · {{ page.discipline }}{% endif %}
-    {% if page.coming_soon %}<span class="coming-soon-tag" style="margin-left: 0.5rem;">COMING SOON</span>{% endif %}
+    {% if page.article_type %}{{ page.article_type }}{% else %}Preprint{% if page.discipline %} · {{ page.discipline }}{% endif %}{% endif %}
   </div>
 
   <h1 class="article-title">
@@ -83,8 +82,16 @@
         {% endfor %}
       </div>
       <div class="author-date">
-        {% if page.date and page.coming_soon != true %}{{ page.date | date: '%B %-d, %Y' }}{% endif %}
-        {% if page.abstracts %}{% assign abs_words = page.abstracts | map: 'content' | join: ' ' | number_of_words %}{% assign reading_time = abs_words | divided_by: 200 %}{% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %} · {{ reading_time }} min read{% endif %}
+        {% if page.date %}{{ page.date | date: '%B %-d, %Y' }}{% endif %}
+        {% assign words = content | number_of_words %}
+        {% assign lang_sections = content | split: 'class="lang-content"' %}
+        {% assign num_lang_sections = lang_sections.size | minus: 1 %}
+        {% if num_lang_sections > 1 %}
+          {% assign words = words | divided_by: num_lang_sections %}
+        {% endif %}
+        {% assign reading_time = words | divided_by: 200 %}
+        {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
+        · {{ reading_time }} min read
         {% if page.pdfs and page.pdfs.size > 1 %}
           <span class="lang-toggle" id="langToggle">
             {% for pdf in page.pdfs %}
@@ -136,31 +143,26 @@
 </div>
 {% endif %}
 
-<!-- Abstracts Section (toggled by language, article-body style) -->
+<!-- Epigraphs (optional) -->
+{% if page.epigraphs %}
+<div class="epigraph-section{% if page.epigraphs.size == 1 %} single-epigraph{% endif %}">
+  {% for epigraph in page.epigraphs %}
+  <div class="epigraph">
+    <p>"{{ epigraph.text }}"</p>
+    <cite>{{ epigraph.source }}</cite>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% assign stripped_content = content | strip | strip_newlines %}
 
 <!-- Floating Table of Contents -->
 <aside class="toc-float" id="toc">
   <h5>Contents</h5>
 </aside>
 
-{% if page.abstracts %}
-  <article class="article-body">
-    {% for abstract in page.abstracts %}
-    <div class="lang-content" data-lang="{{ abstract.language }}" {% unless forloop.first %}style="display:none"{% endunless %}>
-      <h2>Abstract</h2>
-      <p>{{ abstract.content }}</p>
-    </div>
-    {% endfor %}
-  </article>
-{% elsif page.abstract %}
-  <article class="article-body">
-    <h2>Abstract</h2>
-    <p>{{ page.abstract }}</p>
-  </article>
-{% endif %}
-
-<!-- Content (if any markdown body exists) -->
-{% assign stripped_content = content | strip | strip_newlines %}
+<!-- Article Body (rendered from markdown content after front matter) -->
 {% if stripped_content != '' %}
   <article class="article-body">
     {{ content }}
@@ -174,6 +176,26 @@
     <span class="clap-count" id="clapCountBig">0 appreciations</span>
   </button>
 </div>
+
+<!-- Author Bios (if provided in front matter) -->
+{% if page.author_bios %}
+<div class="author-bio-section">
+  {% for bio in page.author_bios %}
+  <div class="author-bio">
+    {% assign name_parts = bio.name | split: ' ' %}
+    {% assign initials = '' %}
+    {% for part in name_parts %}
+      {% assign initials = initials | append: part | slice: 0 %}
+    {% endfor %}
+    <div class="bio-avatar">{{ initials | upcase }}</div>
+    <div class="bio-text">
+      <h4>{{ bio.name }}</h4>
+      <p>{{ bio.text }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
 
 <!-- Citation Box -->
 {% if page.pupilla_citation or page.external_citation %}
@@ -189,7 +211,7 @@
   {% endif %}
   {% if page.pupilla_citation %}
   <div class="citation-box-inner">
-    <h4>{% if page.external_citation %}Cite as (Pupilla Preprint){% else %}Cite as{% endif %}</h4>
+    <h4>{% if page.external_citation %}Cite as (Pupilla Preprint){% else %}Cite this article{% endif %}</h4>
     <p>{{ page.pupilla_citation }}</p>
     <button class="citation-copy" onclick="if(navigator.clipboard){navigator.clipboard.writeText(this.closest('.citation-box-inner').querySelector('p').textContent.trim());this.textContent='✓ Copied!';}">
       Copy citation
@@ -208,7 +230,7 @@
 
 <!-- Footer -->
 <footer class="article-site-footer">
-  <p>&copy; {{ 'now' | date: '%Y' }} {{ site.title }} · <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a> · <a href="{{ '/contact/' | relative_url }}">Contact</a> · <a href="{{ '/preprints/' | relative_url }}">Preprints</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
+  <p>&copy; {{ 'now' | date: '%Y' }} {{ site.title }} · <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a> · <a href="{{ '/contact/' | relative_url }}">Contact</a> · <a href="{{ '/essays/' | relative_url }}">Essays</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
 </footer>
 
 {% include cookie-consent.html %}
@@ -244,11 +266,14 @@
   function buildTOC() {
     var toc = document.getElementById('toc');
     if (!toc) return;
+    // Remove old links but keep the h5 title
     var links = toc.querySelectorAll('a');
     for (var j = links.length - 1; j >= 0; j--) links[j].remove();
+    // Assign IDs to all headings once
     document.querySelectorAll('.article-body h2, .article-body h3').forEach(function(h, i) {
       if (!h.id) h.id = 'section-' + i;
     });
+    // Only include visible headings (not inside a hidden lang-content)
     var headings = document.querySelectorAll('.article-body h2, .article-body h3');
     var first = true;
     headings.forEach(function(h) {

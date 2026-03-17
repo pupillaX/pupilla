@@ -17,14 +17,22 @@ collections:
   pupilla-preprints:
     output: true
     permalink: /preprints/:name/
+  pupilla-essays:
+    output: true
+    permalink: /essays/:name/
 
-# Default settings for preprints
+# Default settings for preprints and essays
 defaults:
   - scope:
       path: ""
       type: pupilla-preprints
     values:
       layout: preprint
+  - scope:
+      path: ""
+      type: pupilla-essays
+    values:
+      layout: essay
   - scope:
       path: ""
       type: pages
@@ -36,6 +44,16 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+# Feed configuration — per-collection feeds + combined handled by custom feed.xml
+feed:
+  disable_in_development: false
+  posts_limit: 20
+  collections:
+    pupilla-preprints:
+      path: "/feed/pupilla-preprints.xml"
+    pupilla-essays:
+      path: "/feed/pupilla-essays.xml"
 
 # SEO settings
 lang: en_US

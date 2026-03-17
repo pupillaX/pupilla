@@ -8,10 +8,25 @@ permalink: /contributors/
 
 
 <div class="contributors-grid">
+
+  <div class="contributor-card" id="elisabeth-ohlbock">
+    <div class="contributor-photo">
+      <img src="{{ '/assets/images/contributors/elisabeth_ohlbock.png' | relative_url }}" alt="Elisabeth Öhlböck" />
+    </div>
+    <div class="contributor-info">
+      <h2>Elisabeth Öhlböck</h2>
+      <p class="role">Author</p>
+      
+      <div class="bio-section">
+        <h3>Short Bio</h3>
+        <p>Currently working as Psychotherapeutic Counsellor in private practice and the charitable sector. Masters degree in Advancing Practice from Ulster University.</p>
+      </div>
+    </div>
+  </div>
   
   <div class="contributor-card" id="antonino-puglisi">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/antonino_puglisi.png' | relative_url }}" alt="Antonino Puglisi" />
+      <img src="{{ '/assets/images/contributors/antonino_puglisi.png' | relative_url }}" alt="Antonino Puglisi" />
     </div>
     <div class="contributor-info">
       <h2>Antonino Puglisi</h2>
@@ -36,7 +51,7 @@ permalink: /contributors/
 
   <div class="contributor-card" id="ugo-gianazza">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/ugo_gianazza.png' | relative_url }}" alt="Ugo Gianazza" />
+      <img src="{{ '/assets/images/contributors/ugo_gianazza.png' | relative_url }}" alt="Ugo Gianazza" />
     </div>
     <div class="contributor-info">
       <h2>Ugo Gianazza</h2>
@@ -61,7 +76,7 @@ permalink: /contributors/
   
   <div class="contributor-card" id="luca-magri">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/luca_magri.png' | relative_url }}" alt="Luca Magri" />
+      <img src="{{ '/assets/images/contributors/luca_magri.png' | relative_url }}" alt="Luca Magri" />
     </div>
     <div class="contributor-info">
       <h2>Luca Magri</h2>
@@ -83,7 +98,7 @@ permalink: /contributors/
   
   <div class="contributor-card" id="lucas-cervino">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/lucas_cervino.png' | relative_url }}" alt="Lucas Cervino" />
+      <img src="{{ '/assets/images/contributors/lucas_cervino.png' | relative_url }}" alt="Lucas Cervino" />
     </div>
     <div class="contributor-info">
       <h2>Lucas Cerviño</h2>
@@ -106,7 +121,7 @@ permalink: /contributors/
 
   <div class="contributor-card" id="jordi-rodriguez-salleras">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/jordi_rodriguez.png' | relative_url }}" alt="Jordi Rodriguez Salleras" />
+      <img src="{{ '/assets/images/contributors/jordi_rodriguez.png' | relative_url }}" alt="Jordi Rodriguez Salleras" />
     </div>
     <div class="contributor-info">
       <h2>Jordi Rodríguez Salleras</h2>
@@ -128,7 +143,7 @@ permalink: /contributors/
 
   <div class="contributor-card" id="jan-morovic">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/jan-morovic.png' | relative_url }}" alt="Ján Morovic" />
+      <img src="{{ '/assets/images/contributors/jan-morovic.png' | relative_url }}" alt="Ján Morovic" />
     </div>
     <div class="contributor-info">
       <h2>Ján Morovic</h2>
@@ -159,7 +174,7 @@ permalink: /contributors/
 
   <div class="contributor-card" id="peter-morovic">
     <div class="contributor-photo">
-      <img src="{{ '/assets/images/peter-morovic.png' | relative_url }}" alt="Peter Morovic" />
+      <img src="{{ '/assets/images/contributors/peter-morovic.png' | relative_url }}" alt="Peter Morovic" />
     </div>
     <div class="contributor-info">
       <h2>Peter Morovic</h2>

@@ -1,7 +1,7 @@
 ---
 ---
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* CSS Reset and Base Styles */
 * {
@@ -11,25 +11,27 @@
 }
 
 :root {
-  /* Colors inspired by academic elegance */
+  /* Colors — blue academic palette */
   --primary-color: #1e3a8a;
-  --secondary-color: #3b82f6;
-  --accent-color: #f59e0b;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
+  --secondary-color: #2a60a8;
+  --accent-color: #2a60a8;
+  --accent-light: rgba(42, 96, 168, 0.08);
+  --accent-lighter: rgba(42, 96, 168, 0.04);
+  --text-primary: #1a1a1a;
+  --text-secondary: #555;
+  --text-muted: #888;
   --background: #ffffff;
-  --background-light: #f9fafb;
+  --background-light: #faf8f5;
   --background-card: #ffffff;
-  --border-color: #e5e7eb;
-  --border-light: #f3f4f6;
+  --border-color: #e8e4df;
+  --border-light: #f0ece7;
   --success-color: #10b981;
   --warning-color: #f59e0b;
   --error-color: #ef4444;
   
-  /* Typography */
-  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-serif: 'Crimson Text', Georgia, serif;
+  /* Typography — matching article layout */
+  --font-family-sans: 'Libre Franklin', -apple-system, Helvetica Neue, sans-serif;
+  --font-family-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -56,10 +58,12 @@ body {
   background-color: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-serif);
   font-weight: 600;
   line-height: 1.3;
   margin-bottom: var(--spacing-md);
@@ -266,6 +270,50 @@ a:hover {
   color: white;
   transform: translateX(4px);
 }
+
+/* Sidebar Subscribe Widget */
+.sidebar-subscribe {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.subscribe-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: var(--spacing-sm);
+}
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.subscribe-form input[type="email"] {
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.82rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.subscribe-form input[type="email"]::placeholder { color: rgba(255,255,255,0.45); }
+.subscribe-form input[type="email"]:focus { border-color: rgba(255,255,255,0.6); }
+.subscribe-form button {
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.subscribe-form button:hover { background: rgba(255, 255, 255, 0.32); }
 
 /* Main Content */
 .content {
@@ -518,6 +566,31 @@ html {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.025em;
+}
+
+.type-tag {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 15px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.type-tag.type-essay {
+  background: #eee9e3;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+.type-tag.type-preprint {
+  background: #eee9e3;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.view-all-links {
+  display: flex;
+  gap: var(--spacing-lg);
 }
 
 /* Browse page filter styling */
@@ -841,13 +914,13 @@ html {
   font-size: 0.875rem;
   font-weight: 500;
   transition: all var(--transition-normal);
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 2px 4px rgba(42, 96, 168, 0.2);
   
   &:hover {
     background: var(--primary-color);
     color: white;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 8px rgba(42, 96, 168, 0.3);
   }
   
   &.disabled {
@@ -925,7 +998,7 @@ html {
 
 .pdf-download-btn:hover {
   border-color: var(--secondary-color);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 4px 12px rgba(42, 96, 168, 0.15);
   transform: translateY(-2px);
   color: var(--text-primary);
 }
@@ -978,6 +1051,18 @@ html {
   margin-top: var(--spacing-2xl);
   padding-top: var(--spacing-2xl);
   border-top: 1px solid var(--border-color);
+}
+
+/* Author Copyright */
+.author-copyright {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-md) 0;
+  border-top: 1px solid var(--border-color);
+}
+.author-copyright p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 /* Mobile responsive adjustments for abstracts */

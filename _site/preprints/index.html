@@ -1,97 +1,1660 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Preprints | Pupilla</title>
-<link rel="stylesheet" href="/assets/css/style.css" />
-<link rel="alternate" type="application/atom+xml" title="Pupilla" href="/feed.xml" />
-<link rel="icon" href="/favicon.ico" />
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Browse Preprints | Pupilla</title>
+<meta name="description" content="A multidisciplinary preprint archive with the aim of building bridges and striving for unity in diversity.">
+<link rel="canonical" href="http://0.0.0.0:4000/preprints/">
+<link rel="alternate" type="application/rss+xml" title="Pupilla" href="/feed.xml">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon_io/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon_io/site.webmanifest">
 
+<!-- Google Analytics - Loaded conditionally with consent -->
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-  document.addEventListener('DOMContentLoaded', function() {
-    var pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
-    pdfLinks.forEach(function(link){
-      link.addEventListener('click', function(){
-        try { gtag('event', 'download', { event_category: 'PDF', event_label: link.href }); } catch(e) {}
-      });
-    });
-  });
-  </script>
+<!-- Analytics will be loaded by cookie consent script -->
 </head>
 <body>
-<header class="site-header">
-  <div class="container">
-    <a class="site-title" href="/">Pupilla</a>
-    <nav class="site-nav">
-      <a href="/">Home</a>
-      <a href="/preprints/">Preprints</a>
-    </nav>
+<!-- Mobile header - visible only on small screens -->
+<header class="mobile-header">
+  <div class="mobile-header-content">
+    <a href="/" class="mobile-logo">
+      <img src="/assets/images/logo.png" alt="Pupilla logo">
+      <span>Pupilla</span>
+    </a>
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
+  
+  <nav class="mobile-nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/preprints/">Preprints</a></li>
+      <li><a href="/essays/">Essays</a></li>
+      <!-- <li><a href="/submit/">Submit</a></li> -->
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contributors/">Contributors</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
 </header>
-
-
 <div class="container layout">
   <aside class="sidebar">
-    <nav class="sidebar-nav">
+    <div class="sidebar-header">
+  <a href="/" class="logo-link">
+    <img src="/assets/images/logo.png" alt="Pupilla logo" class="logo">
+  </a>
+  <div class="site-taglines">
+    <p class="site-tagline en"> A multidisciplinary and multilingual preprint archive with the aim of building bridges and striving for unity in diversity.</p>
+    <!-- <p class="site-tagline en">🇬🇧 A multidisciplinary preprint archive with the aim of building bridges and striving for unity in diversity.</p> -->
+    <!-- <br>
+    <p class="site-tagline it">🇮🇹 Un archivio multidisciplinare di preprint con l'obiettivo di costruire ponti e perseguire l'unità nella diversità.</p>
+    <br>
+    <p class="site-tagline es">🇪🇸 Un archivo multidisciplinario de preprints con el objetivo de construir puentes y buscar la unidad en la diversidad.</p> -->
+  </div>
+</div>
+
+<nav class="sidebar-nav">
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/preprints/">Preprints</a></li>
-    <li><a href="/about/">About</a></li>
-    <li><a href="/contributors/">Contributors</a></li>
-    <li><a href="/contact/">Contact</a></li>
+    <li><a href="/" >Home</a></li>
+    <li><a href="/preprints/" class="active">Preprints</a></li>
+    <li><a href="/essays/" >Essays</a></li>
+    <!-- <li><a href="/submit/" >Submit</a></li> -->
+    <li><a href="/about/" >About</a></li>
+    <li><a href="/contributors/" >Contributors</a></li>
+    <!-- <li><a href="/links/" >Links</a></li> -->
+    <li><a href="/contact/" >Contact</a></li>
   </ul>
 </nav>
 
+<!-- <div class="search-container">
+  <input type="text" id="search-input" placeholder="Search preprints..." aria-label="Search preprints">
+  <button type="button" id="search-button" aria-label="Search">🔍</button>
+  <div id="search-results" class="search-results"></div>
+</div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+  const searchResults = document.getElementById('search-results');
+  
+  // Simple search functionality - you may want to implement Lunr.js for better search
+  function performSearch(query) {
+    if (!query.trim()) {
+      searchResults.style.display = 'none';
+      return;
+    }
+    
+    // This is a basic implementation - in a real site you'd want more sophisticated search
+    const preprints = [
+      
+      {
+        title: "Who are Chiara Lubich&#39;s «two or three»?",
+        authors: "Ján Morovic, Peter Morovic",
+        abstract: "This paper examines Chiara Lubich&#39;s radical reinterpretation of Jesus&#39; promise in Matthew 18:20 about two or three gathered in his name. Drawing from Lubich&#39;s mystical insights during the Paradise of &#39;49 and her extensive talks spanning several decades, the study analyzes her revolutionary understanding of who can experience Christ&#39;s presence and under what conditions.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-chiaras-two-or-three/"
+      },
+      
+      {
+        title: "El Abandonado de Chiara Lubich",
+        authors: "Jordi Rodríguez Salleras",
+        abstract: "This study presents a triple interpretative framework for understanding Chiara Lubich&#39;s (1920-2008) texts on Jesus Forsaken through theological, mystical, and philosophical perspectives. The central focus is Lubich&#39;s interpretation of the crucified Jesus crying out &#39;My God, my God, why have you forsaken me?&#39; (Mark 15:34), which she positions as the cornerstone of a spirituality aimed at achieving universal fraternity.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-abandonado-de-lubich/"
+      },
+      
+      {
+        title: "Lectura intercultural/pluralista del Pacto de unidad como experiencia sapiencial",
+        authors: "Lucas Cerviño",
+        abstract: "This paper explores the possibility of actualizing the Pact of Unity between Chiara Lubich and Igino Giornani (July 16, 1949) within contemporary pluralistic contexts. The author investigates whether this foundational mystical experience of the Focolare Movement can transcend its Catholic confessional framework to embrace intercultural and interreligious dialogue, including non-confessional spiritual approaches.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-lectura-intercultural-pacto/"
+      },
+      
+      {
+        title: "Nel seno della Trinità c’è un posto privilegiato per i poveri: I poveri come «luogo teologico»",
+        authors: "Lucas Cerviño",
+        abstract: "This article explores Pope Francis&#39;s teaching that &quot;in the heart of God there is a preferential place for the poor&quot; (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; Through personal testimony from the author&#39;s experience with Juan Carlos, a street child in Cochabamba, Bolivia, the text illustrates how encounters with the poor can become living encounters with Christ himself.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-poveri-luogo-teologico/"
+      },
+      
+      {
+        title: "El diálogo intercultural (e interreligioso) como experiencia mística del nosotros",
+        authors: "Lucas Cerviño",
+        abstract: "This article examines the possibility of experiencing intercultural dialogue as &quot;dialogical dialogue&quot; (R. Panikkar) that generates a &quot;mystical experience of we&quot; (Pope Francis) within the context of contemporary pluralism. The author argues that the current epoch change evidences the emergence of a pluralist stage that challenges Christian faith to give renewed and creative reasons for belief.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-dialogo-intercultural-mistica-nosotros/"
+      },
+      
+      {
+        title: "Intuizioni e chiavi per una possibile missione interculturale",
+        authors: "Lucas Cerviño",
+        abstract: "This article explores Pope Francis&#39;s teaching that &quot;in the heart of God there is a preferential place for the poor&quot; (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; Through personal testimony from the author&#39;s experience with Juan Carlos, a street child in Cochabamba, Bolivia, the text illustrates how encounters with the poor can become living encounters with Christ himself.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-missione-interculturale/"
+      },
+      
+      {
+        title: "Pluralismo y Evangelio: dialogar para promover una cultura del encuentro",
+        authors: "Lucas Cerviño",
+        abstract: "This article examines the relationship between Gospel and cultures within the context of pluralism as a defining characteristic of the current epochal change, explaining the urgency of evangelization as a culture of encounter in service of unity in diversity. Drawing primarily on Pope Francis&#39;s magisterium, particularly his Apostolic Exhortation Evangelii Gaudium (2013), and updating Chiara Lubich&#39;s intuition about inculturation as an exchange of gifts, the study addresses how the Church must continuously relocate itself within diverse local and global contexts.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-pluralismo-evangelio/"
+      },
+      
+      {
+        title: "Tra realtà e immaginazione. Brevi note e riflessioni a partire dall’evoluzione del concetto di spazio in matematica.",
+        authors: "Ugo Gianazza, Luca Magri",
+        abstract: "This essay traces the evolution of the concept of space in mathematics from ancient Greece to modern times, examining the philosophical and cultural implications of this transformation. Beginning with Euclidean geometry as an absolute representation of physical reality, the authors explore how Cartesian coordinate systems introduced a subjective perspective that challenged the notion of absolute space.",
+        language: "",
+        discipline: "Mathematics",
+        coming_soon: false,
+        url: "/preprints/2025-realta-e-immaginazione/"
+      },
+      
+      {
+        title: "L&#39;ateismo Cristiano di Slavoj Žižek: un dialogo con Chiara Lubich",
+        authors: "Peter Morovic, Ján Morovic",
+        abstract: "This essay examines the thought of Slovenian philosopher Slavoj Žižek on Christianity, with particular attention to his interpretation of God&#39;s death on the cross and the birth of the Holy Spirit as an &#39;egalitarian community.&#39; Through a comparative analysis with Chiara Lubich&#39;s charism of unity, the article highlights surprising convergences between Žižek&#39;s &#39;Christian atheism&#39; and Focolare spirituality.",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: false,
+        url: "/preprints/2025-zizek-christian-atheism/"
+      },
+      
+      {
+        title: "Science in Europe Between War and Peace",
+        authors: "Antonino Puglisi",
+        abstract: "This article examines the paradoxical relationship between science and society in contemporary Europe, where public trust in science has reached unprecedented levels even as misinformation and political polarization increasingly challenge evidence-based policymaking. Against the backdrop of the COVID-19 pandemic, climate change, and artificial intelligence, the author explores what he terms the &quot;technocratic dilemma&quot; — the tension between expert knowledge and democratic decision-making.",
+        language: "",
+        discipline: "Science",
+        coming_soon: false,
+        url: "/preprints/2025-science-europe-war-peace/"
+      },
+      
+      {
+        title: "A comparative reading of Uchiyama Kosho&#39;s Sōtō Zen tradition and Chiara Lubich&#39;s Charism of Unity",
+        authors: "Peter Morovic, Ján Morovic",
+        abstract: "This article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: Chiara Lubich’s Catholic mysticism centered on Jesus Forsaken and Uchiyama Kōshō’s Sōtō Zen tradition transmitted through his disciple Okumura Shōhaku, focused on zazen and the practice of “opening the hand of thought” (omoi no tebanashi).",
+        language: "",
+        discipline: "Philosophy",
+        coming_soon: true,
+        url: "/preprints/2026-okumura-open-hand-of-thought/"
+      }
+      
+    ];
+    
+    const results = preprints.filter(preprint => 
+      preprint.title.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.authors.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.abstract.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.language.toLowerCase().includes(query.toLowerCase()) ||
+      preprint.discipline.toLowerCase().includes(query.toLowerCase()) ||
+      (preprint.coming_soon && query.toLowerCase().includes('coming soon'))
+    );
+    
+    if (results.length > 0) {
+      searchResults.innerHTML = results.slice(0, 5).map(result => 
+        `<a href="${result.url}" class="search-result">
+          <strong>${result.title}</strong>
+          <span class="search-authors">${result.authors}</span>
+        </a>`
+      ).join('');
+      searchResults.style.display = 'block';
+    } else {
+      searchResults.innerHTML = '<div class="no-results">No results found</div>';
+      searchResults.style.display = 'block';
+    }
+  }
+  
+  searchInput.addEventListener('input', function() {
+    performSearch(this.value);
+  });
+  
+  searchButton.addEventListener('click', function() {
+    performSearch(searchInput.value);
+  });
+  
+  // Hide results when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+      searchResults.style.display = 'none';
+    }
+  });
+});
+</script> -->
+
+<div class="sidebar-subscribe">
+  <p class="subscribe-label">Get notified by email</p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/pupilla"
+    method="post"
+    target="popupwindow"
+    onsubmit="window.open('https://buttondown.com/pupilla', 'popupwindow')"
+    class="subscribe-form"
+  >
+    <input type="email" name="email" placeholder="your@email.com" required />
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
   </aside>
-  <main class="content"><h1 id="preprints">Preprints</h1>
+  <main class="content"><h1 id="browse-all-preprints">Browse All Preprints</h1>
 
-<ul class="preprint-list">
+<p>Explore our collection of scholarly works:</p>
+
+<div class="browse-controls">
+  <div class="filter-section">
+    <label for="search-input">Search:</label>
+    <input type="text" id="search-input" placeholder="Search titles and abstracts..." />
+    
+    <!-- Discipline filter commented out - can be restored later
+    <label for="discipline-filter">Filter by Discipline:</label>
+    <select id="discipline-filter">
+      <option value="all">All Disciplines</option>
+      
+      
+        
+          <option value="mathematics">Mathematics</option>
+        
+      
+        
+          <option value="philosophy">Philosophy</option>
+        
+      
+        
+          <option value="science">Science</option>
+        
+      
+    </select>
+    -->
+    
+    <label for="language-filter">Filter by Language:</label>
+    <select id="language-filter">
+      <option value="all">All Languages</option>
+      
+      
+      
+      
+        
+          <option value="english">English</option>
+        
+      
+        
+          <option value="español">Español</option>
+        
+      
+        
+          <option value="italiano">Italiano</option>
+        
+      
+    </select>
+    
+    <label for="author-filter">Filter by Author:</label>
+    <select id="author-filter">
+      <option value="all">All Authors</option>
+      
+      
+      
+      
+        
+          <option value="antonino-puglisi">Antonino Puglisi</option>
+        
+      
+        
+          <option value="jordi-rodríguez-salleras">Jordi Rodríguez Salleras</option>
+        
+      
+        
+          <option value="ján-morovic">Ján Morovic</option>
+        
+      
+        
+          <option value="luca-magri">Luca Magri</option>
+        
+      
+        
+          <option value="lucas-cerviño">Lucas Cerviño</option>
+        
+      
+        
+          <option value="peter-morovic">Peter Morovic</option>
+        
+      
+        
+          <option value="ugo-gianazza">Ugo Gianazza</option>
+        
+      
+    </select>
+    
+    <label for="sort-order">Sort by:</label>
+    <select id="sort-order">
+      <option value="date-desc">Newest First</option>
+      <option value="date-asc">Oldest First</option>
+      <option value="title-asc">Title A-Z</option>
+      <option value="title-desc">Title Z-A</option>
+      <option value="author-asc">Author A-Z</option>
+    </select>
+  </div>
+</div>
+
+<h2 id="all-preprints-11">All Preprints (11)</h2>
+
+<div id="preprints-container" class="preprints-listing">
   
   
-    <li>
-      <a href="/preprints/sample2/">L’ateismo Cristiano di Slavoj Žižek</a>
-      
-        <span class="authors">— Peter Morovic, Ján Morovic</span>
-      
-      
-        <span class="discipline">[Philosophy]</span>
-      
-      
-        <time datetime="2025-08-09T00:00:00+02:00">2025-08-09</time>
-      
-    </li>
-  
-    <li>
-      <a href="/preprints/sample1/">Who are Chiara’s “two or three”?</a>
-      
-        <span class="authors">— Ján Morovic, Peter Morovic</span>
-      
-      
-        <span class="discipline">[Philosophy]</span>
-      
-      
-        <time datetime="2025-08-08T00:00:00+02:00">2025-08-08</time>
-      
-    </li>
   
   
-  </ul>
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-italiano" data-date="2026-03-12" data-title="a comparative reading of uchiyama kosho's sōtō zen tradition and chiara lubich's charism of unity" data-author="peter morovic" data-authors="peter-morovic-ján-morovic" data-search="a comparative reading of uchiyama kosho's sōtō zen tradition and chiara lubich's charism of unity this article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: chiara lubich’s catholic mysticism centered on jesus forsaken and uchiyama kōshō’s sōtō zen tradition transmitted through his disciple okumura shōhaku, focused on zazen and the practice of “opening the hand of thought” (omoi no tebanashi). this article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: chiara lubich’s catholic mysticism centered on jesus forsaken and uchiyama kōshō’s sōtō zen tradition transmitted through his disciple okumura shōhaku, focused on zazen and the practice of “opening the hand of thought” (omoi no tebanashi). while emerging from distinct religious contexts – catholic christianity and japanese zen buddhism – both traditions converge around themes of nothingness, the centrality of life in community, radical authenticity, and the non-dual relationship between suffering and liberation. this study argues that these paths reveal a shared experiential core where emptiness (śūnyatā) and fullness (divine fullness) constitute not opposites but interpenetrating, pericoretic realities, offering a pathway beyond doctrinal divisions toward lived spiritual praxis. questo articolo intraprende una lettura fenomenologica comparativa di due esperienze spirituali radicali del ventesimo secolo e dei loro carismi: la mistica cattolica di chiara lubich incentrata su gesù abbandonato e la tradizione sōtō zen di uchiyama kōshō trasmessa attraverso il suo discepolo okumura shōhaku, focalizzata sullo zazen e sulla pratica di &quot;aprire la mano del pensiero&quot; (omoi no tebanashi). pur emergendo da contesti religiosi distinti – il cristianesimo cattolico e il buddhismo zen giapponese – entrambe le tradizioni convergono attorno ai temi del nulla, della centralità della vita in comunità, dell'autenticità radicale e della relazione non-duale tra sofferenza e liberazione. questo studio sostiene che questi percorsi rivelano un nucleo esperienziale condiviso in cui il vuoto (śūnyatā) e la pienezza (pienezza divina) costituiscono non opposti ma realtà interpenetranti e pericorètiche, offrendo un cammino oltre le divisioni dottrinali verso una prassi spirituale vissuta. koshō uchiyama shōhaku okumura buddhism zen soto focolare chiara lubich giuseppe maria zanghì emptiness self-naughting jesus forsaken peter morovic ján morovic">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Italiano</span>
+              
+            
+            
+              <span class="coming-soon-tag">COMING SOON</span>
+            
+          </div>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2026-okumura-open-hand-of-thought/">A comparative reading of Uchiyama Kosho's Sōtō Zen tradition and Chiara Lubich's Charism of Unity</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#peter-morovic" class="author-link">Peter Morovic</a>, 
+              
+            
+              
+                <a href="/contributors/#jan-morovic" class="author-link">Ján Morovic</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: Chiara Lubich’s Catholic mysticism centered on Jesus Forsaken and Uchiyama Kōshō’s Sōtō Zen tradition transmitted through his disciple Okumura Shōhaku, focused on zazen and the practice of “opening the hand of...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2026-okumura-open-hand-of-thought/" class="read-link">Read Article</a>
+          
+            <!-- No PDF buttons shown for coming soon items in browse view -->
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="science" data-languages="english" data-date="2025-12-31" data-title="science in europe between war and peace" data-author="antonino puglisi" data-authors="antonino-puglisi" data-search="science in europe between war and peace this article examines the paradoxical relationship between science and society in contemporary europe, where public trust in science has reached unprecedented levels even as misinformation and political polarization increasingly challenge evidence-based policymaking. against the backdrop of the covid-19 pandemic, climate change, and artificial intelligence, the author explores what he terms the &quot;technocratic dilemma&quot; — the tension between expert knowledge and democratic decision-making. this article examines the paradoxical relationship between science and society in contemporary europe, where public trust in science has reached unprecedented levels even as misinformation and political polarization increasingly challenge evidence-based policymaking. against the backdrop of the covid-19 pandemic, climate change, and artificial intelligence, the author explores what he terms the &quot;technocratic dilemma&quot; — the tension between expert knowledge and democratic decision-making. the piece critically analyzes recent european policy shifts, particularly concerning horizon europe, the world's largest civilian research program, which faces pressure to move away from its founding principles of open international collaboration toward a more closed, defense-oriented approach driven by geopolitical tensions. the author argues that while increased investment in research is welcome, europe risks undermining science's mission by prioritizing competitiveness and strategic autonomy over international cooperation and the integral development of individuals and communities. science eruope war peace horizon european union antonino puglisi">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Science</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-12-31">
+              December 31, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-science-europe-war-peace/">Science in Europe Between War and Peace</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#antonino-puglisi" class="author-link">Antonino Puglisi</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This article examines the paradoxical relationship between science and society in contemporary Europe, where public trust in science has reached unprecedented levels even as misinformation and political polarization increasingly challenge evidence-based policymaking. Against the backdrop of the COVID-19 pandemic, climate change, and artificial i...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-science-europe-war-peace/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-italiano" data-date="2025-11-16" data-title="l'ateismo cristiano di slavoj žižek: un dialogo con chiara lubich" data-author="peter morovic" data-authors="peter-morovic-ján-morovic" data-search="l'ateismo cristiano di slavoj žižek: un dialogo con chiara lubich this essay examines the thought of slovenian philosopher slavoj žižek on christianity, with particular attention to his interpretation of god's death on the cross and the birth of the holy spirit as an 'egalitarian community.' through a comparative analysis with chiara lubich's charism of unity, the article highlights surprising convergences between žižek's 'christian atheism' and focolare spirituality. this essay examines slovenian philosopher slavoj žižek's thought on christianity through a comparative analysis with chiara lubich's charism of unity, revealing surprising convergences between žižek's &quot;christian atheism&quot; and focolare spirituality. both see in jesus forsaken the crucial moment of identification between god and humanity, reject a distant and interventionist god &quot;up there&quot; who manipulates events from outside, and recognize in jesus's presence in the midst of community (the &quot;holy spirit&quot; for žižek, &quot;jesus in the midst&quot; for lubich) the privileged mode of relationship with the divine. žižek, while declaring himself atheist, arrives through a hegelian reading of divine kenosis at a profound understanding of christianity's subversive core, proposing a god who is not transcendent but immanent in human history, entrusting his own destiny to humanity. however, the article also acknowledges the limits of the analogy: while žižek performs a materialist philosophical reinterpretation that eliminates important elements of christian experience such as the resurrection and divine transcendence, lubich instead witnesses to a mystical experience lived from within the church. this unexpected dialogue suggests that the search for truth, when conducted with intellectual honesty and passion for justice, can lead to convergent insights, without ignoring the differences, which open the possibility for further dialogue. questo saggio esamina il pensiero del filosofo sloveno slavoj žižek sul cristianesimo attraverso un’analisi comparativa con il carisma dell’unità di chiara lubich, evidenziando sorprendenti convergenze tra il &quot;cristianesimo ateo&quot; di žižek e la spiritualità focolarina. entrambi vedono in gesù abbandonato il momento cruciale di identificazione tra dio e umanità, rifiutano un dio lontano e interventista &quot;lassù&quot; che manipola gli eventi dall’esterno, e riconoscono nella presenza di gesù in mezzo alla comunità (lo &quot;spirito santo&quot; per žižek, &quot;gesù in mezzo&quot; per lubich) la modalità privilegiata di rapporto con il divino. žižek, pur dichiarandosi ateo, arriva attraverso una lettura hegeliana della kenosis divina a una comprensione profonda del nucleo sovversivo del cristianesimo, proponendo un dio non trascendente ma immanente nella storia umana che affida il proprio destino all’umanità. tuttavia, l’articolo riconosce anche i limiti dell'analogia: mentre žižek compie una rilettura filosofica materialista che elimina elementi importanti della esperienza cristiana come la risurrezione e la trascendenza divina, lubich invece testimonia un’esperienza mistica vissuta dall'interno della chiesa. questo dialogo inaspettato suggerisce che la ricerca della verità, quando condotta con onestà intellettuale e passione per la giustizia, può condurre a intuizioni convergenti, senza ignorare le differenze, che aprono la possibilità di un dialogo ulteriore. slavoj žižek christian atheism holy spirit egalitarian community chiara lubich focolare spirituality comparative theology peter morovic ján morovic">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Italiano</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-11-16">
+              November 16, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-zizek-christian-atheism/">L'ateismo Cristiano di Slavoj Žižek: un dialogo con Chiara Lubich</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#peter-morovic" class="author-link">Peter Morovic</a>, 
+              
+            
+              
+                <a href="/contributors/#jan-morovic" class="author-link">Ján Morovic</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This essay examines the thought of Slovenian philosopher Slavoj Žižek on Christianity, with particular attention to his interpretation of God's death on the cross and the birth of the Holy Spirit as an 'egalitarian community.' Through a comparative analysis with Chiara Lubich's charism of unity, the article highlights surprising convergences bet...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-zizek-christian-atheism/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="mathematics" data-languages="english-italiano" data-date="2025-09-22" data-title="tra realtà e immaginazione. brevi note e riflessioni a partire dall’evoluzione del concetto di spazio in matematica." data-author="ugo gianazza" data-authors="ugo-gianazza-luca-magri" data-search="tra realtà e immaginazione. brevi note e riflessioni a partire dall’evoluzione del concetto di spazio in matematica. this essay traces the evolution of the concept of space in mathematics from ancient greece to modern times, examining the philosophical and cultural implications of this transformation. beginning with euclidean geometry as an absolute representation of physical reality, the authors explore how cartesian coordinate systems introduced a subjective perspective that challenged the notion of absolute space. this essay traces the evolution of the concept of space in mathematics from ancient greece to modern times, examining the philosophical and cultural implications of this transformation. beginning with euclidean geometry as an absolute representation of physical reality, the authors explore how cartesian coordinate systems introduced a subjective perspective that challenged the notion of absolute space. through the example of point-line duality in cartesian planes, they demonstrate how mathematical objects become pure conceptual constructs rather than representations of physical reality. the paper discusses the revolutionary impact of non-euclidean geometries in the 19th century, which definitively separated mathematical space from physical space and established mathematics as an autonomous discipline. this shift raised fundamental questions about the relationship between mathematical knowledge and reality, the foundations of mathematical truth, and the &quot;unreasonable effectiveness&quot; of mathematics in describing the natural world. the authors present various philosophical reflections on these developments, examining the tensions between objective and subjective approaches to mathematical knowledge, the role of mathematics in scientific method, and the implications for understanding truth and reality. they argue that modern mathematics has become a powerful but purely conceptual tool, democratically valid in all its consistent formulations, yet divorced from claims to absolute truth about the physical world. the essay concludes by suggesting that future progress may require interdisciplinary dialogue and proposes that a christian perspective might offer new categories for understanding truth as revealed through multiple complementary viewpoints rather than through a single absolute framework. questo saggio ripercorre l'evoluzione del concetto di spazio in matematica dall'antichità greca ai tempi moderni, esaminando le implicazioni filosofiche e culturali di questa trasformazione. partendo dalla geometria euclidea come rappresentazione assoluta della realtà fisica, gli autori esplorano come il sistema di coordinate cartesiane abbia introdotto una prospettiva soggettiva che ha messo in discussione la nozione di spazio assoluto. attraverso l'esempio della dualità punto-retta nei piani cartesiani, dimostrano come gli oggetti matematici diventino pure costruzioni concettuali anziché rappresentazioni della realtà fisica. il lavoro discute l'impatto rivoluzionario delle geometrie non euclidee nel xix secolo, che hanno definitivamente separato lo spazio matematico da quello fisico e hanno stabilito la matematica come disciplina autonoma. questo cambiamento ha sollevato questioni fondamentali sul rapporto tra conoscenza matematica e realtà, sui fondamenti della verità matematica e sulla &quot;irragionevole efficacia&quot; della matematica nel descrivere il mondo naturale. gli autori presentano varie riflessioni filosofiche su questi sviluppi, esaminando le tensioni tra approcci oggettivi e soggettivi alla conoscenza matematica, il ruolo della matematica nel metodo scientifico e le implicazioni per la comprensione della verità e della realtà. sostengono che la matematica moderna è diventata uno strumento potente ma puramente concettuale, democraticamente valido in tutte le sue formulazioni coerenti, ma svincolato da pretese di verità assoluta sul mondo fisico. il saggio si conclude suggerendo che il progresso futuro potrebbe richiedere un dialogo interdisciplinare e propone che una prospettiva cristiana possa offrire nuove categorie per comprendere la verità come rivelata attraverso molteplici punti di vista complementari anziché attraverso un unico quadro assoluto. euclid space mathematics geometry ugo gianazza luca magri">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Mathematics</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Italiano</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-09-22">
+              September 22, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-realta-e-immaginazione/">Tra realtà e immaginazione. Brevi note e riflessioni a partire dall’evoluzione del concetto di spazio in matematica.</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#ugo-gianazza" class="author-link">Ugo Gianazza</a>, 
+              
+            
+              
+                <a href="/contributors/#luca-magri" class="author-link">Luca Magri</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This essay traces the evolution of the concept of space in mathematics from ancient Greece to modern times, examining the philosophical and cultural implications of this transformation. Beginning with Euclidean geometry as an absolute representation of physical reality, the authors explore how Cartesian coordinate systems introduced a subjective...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-realta-e-immaginazione/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-español" data-date="2025-09-21" data-title="pluralismo y evangelio: dialogar para promover una cultura del encuentro" data-author="lucas cerviño" data-authors="lucas-cerviño" data-search="pluralismo y evangelio: dialogar para promover una cultura del encuentro this article examines the relationship between gospel and cultures within the context of pluralism as a defining characteristic of the current epochal change, explaining the urgency of evangelization as a culture of encounter in service of unity in diversity. drawing primarily on pope francis's magisterium, particularly his apostolic exhortation evangelii gaudium (2013), and updating chiara lubich's intuition about inculturation as an exchange of gifts, the study addresses how the church must continuously relocate itself within diverse local and global contexts. this article examines the relationship between gospel and cultures within the context of pluralism as a defining characteristic of the current epochal change, explaining the urgency of evangelization as a culture of encounter in service of unity in diversity. drawing primarily on pope francis's magisterium, particularly his apostolic exhortation evangelii gaudium (2013), and updating chiara lubich's intuition about inculturation as an exchange of gifts, the study addresses how the church must continuously relocate itself within diverse local and global contexts. the author argues that pluralism, while challenging faith by relativizing certainties, presents a historic opportunity for the church to revitalize, rethink, and reorganize itself beyond the extremes of fundamentalism and relativism. the proposed intercultural path promotes harmony by evidencing the constitutive interrelation of all reality, transforming the perception of difference from alius (stranger, threat) to alter (neighbor, companion) and ultimately to frater (brother/sister). evangelization is reconceptualized not as imposing cultural forms but as generating dialogue experiences that facilitate exchange of gifts through intercultural encounter. this approach requires both horizontal reciprocity in human relations and vertical openness to transcendent mystery. the methodology emphasizes dialogue as the privileged path for promoting unity, creating spaces where spiritual experiences emerge from plural encounters. the ultimate goal is fostering a culture of encounter that promotes common good and human dignity while enabling enrichment between different approaches to the ineffable mystery. este artículo examina la relación entre evangelio y culturas en el contexto del pluralismo como rasgo determinante del cambio de época, explicitando la urgencia de una evangelización como cultura del encuentro al servicio de la unidad en la diferencia. basándose principalmente en el magisterio del papa francisco, particularmente su exhortación apostólica evangelii gaudium (2013), y actualizando la intuición de chiara lubich sobre la inculturación como intercambio de dones, el estudio aborda cómo la iglesia debe reubicarse continuamente en diversos contextos locales y globales. el autor argumenta que el pluralismo, aunque desafía la fe relativizando las certezas, presenta una oportunidad histórica para que la iglesia se revitalice, repiense y reorganice más allá de los extremos del fundamentalismo y relativismo. el camino intercultural propuesto promueve la armonía evidenciando la interrelación constitutiva de toda la realidad, transformando la percepción de la diferencia de alius (extraño, amenaza) a alter (vecino, compañero) y finalmente a frater (hermano/hermana). la evangelización se reconceptualiza no como imposición de formas culturales sino como generación de experiencias dialógicas que facilitan el intercambio de dones a través del encuentro intercultural. este enfoque requiere tanto reciprocidad horizontal en las relaciones humanas como apertura vertical al misterio trascendente. la metodología enfatiza el diálogo como camino privilegiado para promover la unidad, creando espacios donde emergen experiencias espirituales desde encuentros plurales. el objetivo final es fomentar una cultura del encuentro que promueva el bien común y la dignidad humana mientras posibilita el enriquecimiento entre diferentes aproximaciones al misterio inefable. pluralism evangelization culture of encounter intercultural dialogue pope francis evangelii gaudium chiara lubich inculturation exchange of gifts unity in diversity epoch change fundamentalism relativism gospel and cultures mutual love mystical experience common good lucas cerviño">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Español</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-09-21">
+              September 21, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-pluralismo-evangelio/">Pluralismo y Evangelio: dialogar para promover una cultura del encuentro</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#lucas-cervino" class="author-link">Lucas Cerviño</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This article examines the relationship between Gospel and cultures within the context of pluralism as a defining characteristic of the current epochal change, explaining the urgency of evangelization as a culture of encounter in service of unity in diversity. Drawing primarily on Pope Francis's magisterium, particularly his Apostolic Exhortation...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-pluralismo-evangelio/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-español" data-date="2025-09-21" data-title="el diálogo intercultural (e interreligioso) como experiencia mística del nosotros" data-author="lucas cerviño" data-authors="lucas-cerviño" data-search="el diálogo intercultural (e interreligioso) como experiencia mística del nosotros this article examines the possibility of experiencing intercultural dialogue as &quot;dialogical dialogue&quot; (r. panikkar) that generates a &quot;mystical experience of we&quot; (pope francis) within the context of contemporary pluralism. the author argues that the current epoch change evidences the emergence of a pluralist stage that challenges christian faith to give renewed and creative reasons for belief. this article examines the possibility of experiencing intercultural dialogue as &quot;dialogical dialogue&quot; (r. panikkar) that generates a &quot;mystical experience of we&quot; (pope francis) within the context of contemporary pluralism. the author argues that the current epoch change evidences the emergence of a pluralist stage that challenges christian faith to give renewed and creative reasons for belief. in latin america, pluralism presents the opportunity to live cultural diversity as gift and mutual enrichment toward intercultural coexistence. using phenomenology and philosophy of religion, the study explores how authentic intercultural dialogue can become a religious experience through encounters with difference perceived as alter (neighbor) rather than alius (stranger). drawing on panikkar's framework of dialogical dialogue and his phenomenology of mystical experience [e = e (l.m.i.r.a)], the author proposes that intercultural dialogue in plural spaces can generate a transconfessional community subject capable of mystical experience of the real. this experience maintains individual religious or spiritual identities while creating communion through mutual self-transcendence. the methodology integrates interiorality and exteriority, avoiding both fundamentalism and relativism through vertical openness to mystery and horizontal reciprocity. the ultimate goal is transforming pluralist spaces into epiphanic locations where the communional presence of the real manifests as gift, generating wisdom for collaborative action toward authentic reality. este artículo examina la posibilidad de vivenciar el diálogo intercultural como &quot;diálogo dialógico&quot; (r. panikkar) que genera una &quot;experiencia mística del nosotros&quot; (papa francisco) en el contexto del pluralismo contemporáneo. el autor argumenta que el cambio de época actual evidencia la emergencia de una etapa pluralista que desafía a la fe cristiana a dar razones renovadas y creativas de la creencia. en américa latina, el pluralismo presenta la oportunidad de vivir la diversidad cultural como don y enriquecimiento mutuo hacia la convivencia intercultural. utilizando la fenomenología y filosofía de la religión, el estudio explora cómo el auténtico diálogo intercultural puede convertirse en experiencia religiosa a través de encuentros con la diferencia percibida como alter (prójimo) en lugar de alius (extraño). basándose en el marco del diálogo dialógico de panikkar y su fenomenología de la experiencia mística [e = e (l.m.i.r.a)], el autor propone que el diálogo intercultural en espacios plurales puede generar un sujeto comunitario transconfesional capaz de experiencia mística de lo real. esta experiencia mantiene las identidades religiosas o espirituales individuales mientras crea comunión a través de la autotrascendencia mutua. la metodología integra interioridad y exterioridad, evitando tanto el fundamentalismo como el relativismo mediante la apertura vertical al misterio y la reciprocidad horizontal. el objetivo final es transformar los espacios pluralistas en lugares epifánicos donde la presencia comunional de lo real se manifiesta como don, generando sabiduría para la acción colaborativa hacia la realidad auténtica. intercultural dialogue dialogical dialogue mystical experience pluralism transconfessional community raimon panikkar mysticism of we latin american pluralism religious experience interreligious dialogue phenomenology of experience mutual self-transcendence the real communional presence lucas cerviño">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Español</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-09-21">
+              September 21, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-dialogo-intercultural-mistica-nosotros/">El diálogo intercultural (e interreligioso) como experiencia mística del nosotros</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#lucas-cervino" class="author-link">Lucas Cerviño</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This article examines the possibility of experiencing intercultural dialogue as "dialogical dialogue" (R. Panikkar) that generates a "mystical experience of we" (Pope Francis) within the context of contemporary pluralism. The author argues that the current epoch change evidences the emergence of a pluralist stage that challenges Christian faith ...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-dialogo-intercultural-mistica-nosotros/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-italiano" data-date="2025-09-21" data-title="intuizioni e chiavi per una possibile missione interculturale" data-author="lucas cerviño" data-authors="lucas-cerviño" data-search="intuizioni e chiavi per una possibile missione interculturale this article explores pope francis's teaching that &quot;in the heart of god there is a preferential place for the poor&quot; (evangelii gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; through personal testimony from the author's experience with juan carlos, a street child in cochabamba, bolivia, the text illustrates how encounters with the poor can become living encounters with christ himself. this article explores the complementary relationship between christian mission and interculturality, proposing an intercultural mission paradigm that reads intercultural challenges as signs of the times. the author develops an intercultural theological hermeneutics that emphasizes dialogue, conversion, and mutual fecundation through encounter with otherness. drawing on octavio paz's literary reflection on the present and the gospel narrative of jesus and the syrophoenician woman (mark 7:24-30), the study demonstrates how authentic intercultural encounters reveal new dimensions of god's mystery and transform both participants. the proposed intercultural mission operates from frontier zones as new missionary geography, emphasizing relationship over territory, and seeking to generate alternative forms of coexistence in complex, pluralistic societies. the methodology integrates testimony, dialogue, and proclamation while developing wisdom through engagement with diverse cultural and scientific knowledge systems. the ultimate goal is promoting intercultural coexistence that generates life alternatives in the present, fostering contemplative attitudes that experience god through dialogue with diversity rather than intimistic spirituality. questo articolo esplora la relazione complementare tra missione cristiana e interculturalità, proponendo un paradigma di missione interculturale che legge le sfide interculturali come segni dei tempi. l'autore sviluppa un'ermeneutica teologica interculturale che sottolinea il dialogo, la conversione e la fecondazione reciproca attraverso l'incontro con l'alterità. basandosi sulla riflessione letteraria di octavio paz sul presente e sulla narrazione evangelica di gesù e la donna sirofenicia (marco 7,24-30), lo studio dimostra come gli autentici incontri interculturali rivelino nuove dimensioni del mistero di dio e trasformino entrambi i partecipanti. la missione interculturale proposta opera dalle zone di frontiera come nuova geografia missionaria, enfatizzando la relazione piuttosto che il territorio, e cercando di generare forme alternative di convivenza nelle società complesse e pluralistiche. la metodologia integra testimonianza, dialogo e annuncio sviluppando una sapienza attraverso l'impegno con diversi sistemi di conoscenza culturali e scientifici. l'obiettivo finale è promuovere una convivenza interculturale che generi alternative di vita nel presente, favorendo atteggiamenti contemplativi che sperimentano dio attraverso il dialogo con la diversità piuttosto che attraverso una spiritualità intimista. intercultural mission theological hermeneutics otherness frontier zones intercultural dialogue present moment missio dei mutual conversion intercultural coexistence lucas cerviño">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Italiano</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-09-21">
+              September 21, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-missione-interculturale/">Intuizioni e chiavi per una possibile missione interculturale</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#lucas-cervino" class="author-link">Lucas Cerviño</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This article explores Pope Francis's teaching that "in the heart of God there is a preferential place for the poor" (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged "theological locus." Through personal testimony from the author's experience with Juan Carlos, a street child in C...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-missione-interculturale/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-italiano" data-date="2025-09-18" data-title="nel seno della trinità c’è un posto privilegiato per i poveri: i poveri come «luogo teologico»" data-author="lucas cerviño" data-authors="lucas-cerviño" data-search="nel seno della trinità c’è un posto privilegiato per i poveri: i poveri come «luogo teologico» this article explores pope francis's teaching that &quot;in the heart of god there is a preferential place for the poor&quot; (evangelii gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; through personal testimony from the author's experience with juan carlos, a street child in cochabamba, bolivia, the text illustrates how encounters with the poor can become living encounters with christ himself. this article explores pope francis's teaching that &quot;in the heart of god there is a preferential place for the poor&quot; (evangelii gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; through personal testimony from the author's experience with juan carlos, a street child in cochabamba, bolivia, the text illustrates how encounters with the poor can become living encounters with christ himself. the article analyzes two dimensions of francis's pontificate: the socioeconomic level calling for social inclusion of the poor as a fundamental issue of our time, and the deeper ecclesial level where privileging the poor becomes essential for church renewal. drawing on the prophetic witness of archbishop oscar romero, the author proposes concrete pastoral approaches across multiple areas of christian life - from the use of goods and evangelization to prayer, liturgy, and community formation. the paper argues that the poor, through their precariousness and vulnerability, constitute a &quot;theological locus&quot; where god's presence is revealed, serving as a privileged gateway to divine encounter. ultimately, the text presents a vision where being with and for the poor occurs precisely through remaining in the bosom of the trinity, finding in jesus abandoned the bridge between human suffering and divine love. questo articolo esplora l'insegnamento di papa francesco secondo cui &quot;nel cuore di dio c'è un posto preferenziale per i poveri&quot; (evangelii gaudium 197), esaminando le implicazioni teologiche e pastorali del riconoscere i poveri come &quot;luogo teologico&quot; privilegiato. attraverso la testimonianza personale dell'esperienza dell'autore con juan carlos, un bambino di strada a cochabamba in bolivia, il testo illustra come gli incontri con i poveri possano diventare incontri viventi con cristo stesso. l'articolo analizza due dimensioni del pontificato di francesco: il livello socioeconomico che richiama all'inclusione sociale dei poveri come questione fondamentale del nostro tempo, e il livello più profondo ed ecclesiale dove privilegiare i poveri diventa essenziale per il rinnovamento della chiesa. attingendo dalla testimonianza profetica dell'arcivescovo oscar romero, l'autore propone approcci pastorali concreti attraverso molteplici ambiti della vita cristiana - dall'uso dei beni all'evangelizzazione, dalla preghiera e liturgia alla formazione comunitaria. il saggio sostiene che i poveri, attraverso la loro precarietà e vulnerabilità, costituiscono un &quot;luogo teologico&quot; dove si rivela la presenza di dio, fungendo da porta privilegiata per l'incontro divino. in ultima analisi, il testo presenta una visione dove essere con e per i poveri avviene proprio rimanendo nel seno della trinità, trovando in gesù abbandonato il ponte tra la sofferenza umana e l'amore divino. the poor theological locus pope francis evangelii gaudium church renewal trinity jesus forsaken popular piety social inclusion liberation theology lucas cerviño">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Italiano</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-09-18">
+              September 18, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-poveri-luogo-teologico/">Nel seno della Trinità c’è un posto privilegiato per i poveri: I poveri come «luogo teologico»</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#lucas-cervino" class="author-link">Lucas Cerviño</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This article explores Pope Francis's teaching that "in the heart of God there is a preferential place for the poor" (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged "theological locus." Through personal testimony from the author's experience with Juan Carlos, a street child in C...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-poveri-luogo-teologico/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-español" data-date="2025-09-18" data-title="lectura intercultural/pluralista del pacto de unidad como experiencia sapiencial" data-author="lucas cerviño" data-authors="lucas-cerviño" data-search="lectura intercultural/pluralista del pacto de unidad como experiencia sapiencial this paper explores the possibility of actualizing the pact of unity between chiara lubich and igino giornani (july 16, 1949) within contemporary pluralistic contexts. the author investigates whether this foundational mystical experience of the focolare movement can transcend its catholic confessional framework to embrace intercultural and interreligious dialogue, including non-confessional spiritual approaches. this paper explores the possibility of actualizing the pact of unity between chiara lubich and igino giornani (july 16, 1949) within contemporary pluralistic contexts. the author investigates whether this foundational mystical experience of the focolare movement can transcend its catholic confessional framework to embrace intercultural and interreligious dialogue, including non-confessional spiritual approaches. the study is situated within the context of emerging pluralism as a defining characteristic of our current epoch, particularly relevant to latin america's diverse sociocultural reality. the author proposes reading the pact of unity as a sapiential experience that can accommodate human diversity while maintaining its essential unity. this approach challenges both fundamentalism and relativism by promoting reciprocal relationships that honor difference while seeking common ground. drawing on the phenomenology of religious experience and incorporating insights from raimon panikkar's dialogical dialogue and marià corbí's secular method of silencing, the paper argues that the pact's wisdom emerges from communal experience lived through diversity. the author presents a framework where individual &quot;empty chalices&quot; contribute to a communal receptacle capable of infinite tonalities, allowing the sapiential experience to be expressed through various cultural, religious, and existential perspectives without losing its transcendent core. the paper concludes by suggesting practical methods for cultivating the interior conditions necessary for this transconfessional sapiential experience, proposing equivalences between christian practices and secular approaches to accessing absolute reality. este trabajo explora la posibilidad de actualizar el pacto de unidad entre chiara lubich e igino giordani (16 de julio de 1949) dentro de contextos pluralistas contemporáneos. el autor investiga si esta experiencia mística fundacional del movimiento de los focolares puede trascender su marco confesional católico para abrazar el diálogo intercultural e interreligioso, incluyendo enfoques espirituales no confesionales. el estudio se sitúa en el contexto del pluralismo emergente como característica definitoria de nuestra época actual, particularmente relevante para la realidad sociocultural diversa de latinoamérica. el autor propone leer el pacto de unidad como una experiencia sapiencial que puede acoger la diversidad humana manteniendo su unidad esencial. este enfoque desafía tanto el fundamentalismo como el relativismo promoviendo relaciones recíprocas que honran la diferencia mientras buscan terreno común. basándose en la fenomenología de la experiencia religiosa e incorporando perspectivas del diálogo dialógico de raimon panikkar y el método laico de silenciamiento de marià corbí, el trabajo argumenta que la sabiduría del pacto emerge de la experiencia comunitaria vivida desde la diversidad. el autor presenta un marco donde los &quot;cálices vacíos&quot; individuales contribuyen a un receptáculo comunitario capaz de infinitas tonalidades, permitiendo que la experiencia sapiencial se exprese a través de diversas perspectivas culturales, religiosas y existenciales sin perder su núcleo trascendente. el trabajo concluye sugiriendo métodos prácticos para cultivar las condiciones interiores necesarias para esta experiencia sapiencial transconfesional, proponiendo equivalencias entre las prácticas cristianas y los enfoques seculares para acceder a la realidad absoluta. chiara lubich igino giordani pact of unity sapiential experience intercultural dialogue religious pluralism mystical experience focolare movement raimon panikkar marià corbí lucas cerviño">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Español</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-09-18">
+              September 18, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-lectura-intercultural-pacto/">Lectura intercultural/pluralista del Pacto de unidad como experiencia sapiencial</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#lucas-cervino" class="author-link">Lucas Cerviño</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This paper explores the possibility of actualizing the Pact of Unity between Chiara Lubich and Igino Giornani (July 16, 1949) within contemporary pluralistic contexts. The author investigates whether this foundational mystical experience of the Focolare Movement can transcend its Catholic confessional framework to embrace intercultural and inter...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-lectura-intercultural-pacto/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-español" data-date="2025-09-11" data-title="el abandonado de chiara lubich" data-author="jordi rodríguez salleras" data-authors="jordi-rodríguez-salleras" data-search="el abandonado de chiara lubich this study presents a triple interpretative framework for understanding chiara lubich's (1920-2008) texts on jesus forsaken through theological, mystical, and philosophical perspectives. the central focus is lubich's interpretation of the crucified jesus crying out 'my god, my god, why have you forsaken me?' (mark 15:34), which she positions as the cornerstone of a spirituality aimed at achieving universal fraternity. this study presents a triple interpretative framework for understanding chiara lubich's (1920-2008) texts on jesus forsaken through theological, mystical, and philosophical perspectives. the central focus is lubich's interpretation of the crucified jesus crying out 'my god, my god, why have you forsaken me?' (mark 15:34), which she positions as the cornerstone of a spirituality aimed at achieving universal fraternity. this interdisciplinary analysis examines texts written between 1949-1951 to determine their contemporary relevance. the theological reading explores the figure of the forsaken within scriptural tradition, examining the dual nature of christ and the call to complete self-donation. the mystical reading investigates the contemplative dimension of lubich's writings, demonstrating how the forsaken becomes a transformative symbol that fosters relational subjectivity and fraternal openness. the philosophical reading presents the forsaken as a charitable ethics that responds to postmodern critiques of metaphysical thinking, offering a factual philosophy that addresses the relationship between individual and world. through contemporary authors' perspectives, this work demonstrates that lubich's concept of jesus forsaken remains relevant as an ethical foundation for modern fraternity, transcending confessional boundaries to speak to catholic, transconfessional, and secular contexts alike. este trabajo presenta una triple perspectiva interpretativa de los textos de chiara lubich (1920-2008) sobre jesús abandonado a través de enfoques teológicos, místicos y filosóficos. el estudio se centra en la interpretación de lubich del jesús crucificado que grita &quot;dios mío, dios mío, ¿por qué me has abandonado?&quot; (mc 15,34), posicionándolo como piedra angular de una espiritualidad orientada hacia la fraternidad universal. este análisis interdisciplinario examina textos escritos entre 1949-1951 para determinar su vigencia contemporánea. la lectura teológica explora la figura del abandonado dentro de la tradición escriturística, examinando la doble naturaleza de cristo y la llamada a la donación completa. la lectura mística investiga la dimensión contemplativa de los escritos de lubich, demostrando cómo el abandonado se convierte en símbolo transformador que fomenta la subjetividad relacional y la apertura fraternal. la lectura filosófica presenta al abandonado como una ética caritativa que responde a las críticas posmodernas del pensamiento metafísico, ofreciendo una filosofía fáctica que aborda la relación entre individuo y mundo. a través de perspectivas de autores contemporáneos, este trabajo demuestra que el concepto de jesús abandonado de lubich mantiene su relevancia como fundamento ético para la fraternidad moderna, trascendiendo fronteras confesionales para dialogar con contextos católicos, transconfesionales y seculares. chiara lubich jesus forsaken theology mysticism philosophy interreligious dialogue universal fraternity javier melloni raimon panikkar slavoj žižek jordi rodríguez salleras">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Español</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-09-11">
+              September 11, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-abandonado-de-lubich/">El Abandonado de Chiara Lubich</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#jordi-rodriguez-salleras" class="author-link">Jordi Rodríguez Salleras</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This study presents a triple interpretative framework for understanding Chiara Lubich's (1920-2008) texts on Jesus Forsaken through theological, mystical, and philosophical perspectives. The central focus is Lubich's interpretation of the crucified Jesus crying out 'My God, my God, why have you forsaken me?' (Mark 15:34), which she positions as ...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-abandonado-de-lubich/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+    
+    
+    
+    
+    
+    
+    
+    <article class="preprint-item" data-discipline="philosophy" data-languages="english-italiano" data-date="2025-08-11" data-title="who are chiara lubich's «two or three»?" data-author="ján morovic" data-authors="ján-morovic-peter-morovic" data-search="who are chiara lubich's «two or three»? this paper examines chiara lubich's radical reinterpretation of jesus' promise in matthew 18:20 about two or three gathered in his name. drawing from lubich's mystical insights during the paradise of '49 and her extensive talks spanning several decades, the study analyzes her revolutionary understanding of who can experience christ's presence and under what conditions. this paper examines chiara lubich's radical reinterpretation of jesus' promise in matthew 18:20 about two or three gathered in his name. drawing from lubich's mystical insights during the paradise of '49 and her extensive talks spanning several decades, the study analyzes her revolutionary understanding of who can experience christ's presence and under what conditions. lubich's interpretation challenges traditional ecclesiastical boundaries by proposing that jesus deliberately left the identity of the two or three anonymous, extending the possibility of divine encounter beyond conventional religious categories. through analysis of her writings and speeches to diverse audiences—from catholic bishops to muslim communities and buddhist teachers—the paper demonstrates that lubich envisioned anyone as potentially capable of experiencing christ's presence, regardless of denominational affiliation, age, or social status. however, this universal accessibility is coupled with demanding spiritual requirements. lubich insists that christ's presence manifests only through reciprocal love modeled after jesus' complete self-emptying—a love willing to extend to the point of death. the paper explores this paradox between universal possibility and rigorous conditions, revealing how lubich's vision offers a theological foundation for authentic interfaith dialogue. the study concludes that while lubich's two or three can include people of various faiths and ages, the essential requirement remains constant: mutual love characterized by total self-sacrifice. this interpretation provides a pathway for experiencing shared divine presence that depends not on formal religious identity but on the transformative quality of human relationships. questo studio esamina la radicale reinterpretazione di chiara lubich della promessa di gesù in matteo 18:20 sui due o tre riuniti nel suo nome. attingendo alle intuizioni mistiche della lubich durante il paradiso del '49 e ai suoi numerosi discorsi nell'arco di diversi decenni, lo studio analizza la sua comprensione rivoluzionaria di chi può sperimentare la presenza di cristo e a quali condizioni. l'interpretazione della lubich sfida i confini ecclesiastici tradizionali proponendo che gesù abbia deliberatamente lasciato anonima l'identità dei due o tre, estendendo la possibilità dell'incontro divino oltre le categorie religiose convenzionali. attraverso l'analisi dei suoi scritti e discorsi a pubblici diversi—dai vescovi cattolici alle comunità musulmane e ai maestri buddisti—lo studio dimostra che la lubich immaginava chiunque come potenzialmente capace di sperimentare la presenza di cristo, indipendentemente dall'appartenenza confessionale, dall'età o dallo status sociale. tuttavia, questa accessibilità universale è accoppiata a esigenti requisiti spirituali. la lubich insiste che la presenza di cristo si manifesta solo attraverso l'amore reciproco modellato sul completo svuotamento di sé di gesù—un amore disposto ad estendersi fino al punto della morte. lo studio esplora questo paradosso tra possibilità universale e condizioni rigorose, rivelando come la visione della lubich offra un fondamento teologico per il dialogo interreligioso autentico. lo studio conclude che mentre i due o tre della lubich possono includere persone di varie fedi ed età, il requisito essenziale rimane costante: l'amore reciproco caratterizzato dal totale sacrificio di sé. questa interpretazione fornisce un percorso per sperimentare la presenza divina condivisa che non dipende dall'identità religiosa formale ma dalla qualità trasformativa delle relazioni umane. chiara lubich matthew 18:20 divine presence interfaith dialogue reciprocal love spiritual community ján morovic peter morovic">
+      <div class="preprint-content">
+        <div class="preprint-meta">
+          <div class="tags-section">
+            <!-- Discipline badge commented out - can be restored later
+            
+              <span class="discipline-badge">Philosophy</span>
+            
+            -->
+            
+              
+                <span class="language-badge">English</span>
+              
+                <span class="language-badge">Italiano</span>
+              
+            
+            
+          </div>
+          
+            <time class="publish-date" datetime="2025-08-11">
+              August 11, 2025
+            </time>
+          
+        </div>
+        
+        <h3 class="preprint-title">
+          <a href="/preprints/2025-chiaras-two-or-three/">Who are Chiara Lubich's «two or three»?</a>
+        </h3>
+        
+        
+          <p class="preprint-authors">
+            
+              
+                <a href="/contributors/#jan-morovic" class="author-link">Ján Morovic</a>, 
+              
+            
+              
+                <a href="/contributors/#peter-morovic" class="author-link">Peter Morovic</a>
+              
+            
+          </p>
+        
+        
+        
+          <p class="preprint-summary">This paper examines Chiara Lubich's radical reinterpretation of Jesus' promise in Matthew 18:20 about two or three gathered in his name. Drawing from Lubich's mystical insights during the Paradise of '49 and her extensive talks spanning several decades, the study analyzes her revolutionary understanding of who can experience Christ's presence an...</p>
+        
+        
+        <div class="preprint-links">
+          <a href="/preprints/2025-chiaras-two-or-three/" class="read-link">Read Article</a>
+          
+            
+          
+          
+        </div>
+      </div>
+    </article>
+  
+</div>
+
+<div id="no-results" class="no-results" style="display: none;">
+  <p>No preprints match your current search and filters. Try adjusting your search terms or filter settings.</p>
+</div>
+
+<!-- Browse by Discipline section commented out - can be restored later
+## Browse by Discipline
+
+<div class="discipline-overview">
+  
+  
+    
+      
+      <div class="discipline-summary">
+        <h4>
+          <a href="#" onclick="filterByDiscipline('mathematics'); return false;">
+            Mathematics
+          </a>
+        </h4>
+        <span class="count">1 preprint</span>
+      </div>
+    
+  
+    
+      
+      <div class="discipline-summary">
+        <h4>
+          <a href="#" onclick="filterByDiscipline('philosophy'); return false;">
+            Philosophy
+          </a>
+        </h4>
+        <span class="count">9 preprints</span>
+      </div>
+    
+  
+    
+      
+      <div class="discipline-summary">
+        <h4>
+          <a href="#" onclick="filterByDiscipline('science'); return false;">
+            Science
+          </a>
+        </h4>
+        <span class="count">1 preprint</span>
+      </div>
+    
+  
+</div>
+End of commented discipline section -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const disciplineFilter = document.getElementById('discipline-filter');
+  const languageFilter = document.getElementById('language-filter');
+  const authorFilter = document.getElementById('author-filter');
+  const searchInput = document.getElementById('search-input');
+  const sortOrder = document.getElementById('sort-order');
+  const preprintsContainer = document.getElementById('preprints-container');
+  const noResults = document.getElementById('no-results');
+  
+  function filterAndSort() {
+    const selectedDiscipline = disciplineFilter ? disciplineFilter.value : 'all';
+    const selectedLanguage = languageFilter.value;
+    const selectedAuthor = authorFilter.value;
+    const searchQuery = searchInput.value.toLowerCase().trim();
+    const selectedSort = sortOrder.value;
+    const preprints = Array.from(document.querySelectorAll('.preprint-item'));
+    
+    // Filter
+    let visibleCount = 0;
+    preprints.forEach(preprint => {
+      const discipline = preprint.dataset.discipline;
+      const languages = preprint.dataset.languages;
+      const authors = preprint.dataset.authors;
+      const searchContent = preprint.dataset.search;
+      
+      const disciplineMatch = selectedDiscipline === 'all' || discipline === selectedDiscipline;
+      const languageMatch = selectedLanguage === 'all' || (languages && languages.split('-').includes(selectedLanguage));
+      const authorMatch = selectedAuthor === 'all' || (authors && authors.includes(selectedAuthor));
+      const searchMatch = searchQuery === '' || (searchContent && searchContent.includes(searchQuery));
+      
+      const shouldShow = disciplineMatch && languageMatch && authorMatch && searchMatch;
+      preprint.style.display = shouldShow ? 'block' : 'none';
+      if (shouldShow) visibleCount++;
+    });
+    
+    // Show/hide no results message
+    if (visibleCount === 0) {
+      noResults.style.display = 'block';
+    } else {
+      noResults.style.display = 'none';
+    }
+    
+    // Sort visible items
+    const visiblePreprints = preprints.filter(p => p.style.display !== 'none');
+    visiblePreprints.sort((a, b) => {
+      switch(selectedSort) {
+        case 'date-desc':
+          return new Date(b.dataset.date) - new Date(a.dataset.date);
+        case 'date-asc':
+          return new Date(a.dataset.date) - new Date(b.dataset.date);
+        case 'title-asc':
+          return a.dataset.title.localeCompare(b.dataset.title);
+        case 'title-desc':
+          return b.dataset.title.localeCompare(a.dataset.title);
+        case 'author-asc':
+          return a.dataset.author.localeCompare(b.dataset.author);
+        default:
+          return 0;
+      }
+    });
+    
+    // Reorder in DOM
+    visiblePreprints.forEach(preprint => {
+      preprintsContainer.appendChild(preprint);
+    });
+  }
+  
+  // Add event listeners only if elements exist
+  if (disciplineFilter) {
+    disciplineFilter.addEventListener('change', filterAndSort);
+  }
+  languageFilter.addEventListener('change', filterAndSort);
+  authorFilter.addEventListener('change', filterAndSort);
+  searchInput.addEventListener('input', filterAndSort);
+  sortOrder.addEventListener('change', filterAndSort);
+  
+  // Global function for discipline links
+  window.filterByDiscipline = function(discipline) {
+    if (disciplineFilter) {
+      disciplineFilter.value = discipline;
+      filterAndSort();
+      document.getElementById('preprints-container').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+});
+</script>
+
+<style>
+.browse-controls {
+  background: var(--background-light);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.search-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.filter-section {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-section label {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.filter-section select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+.filter-section input[type="text"] {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 200px;
+  transition: border-color var(--transition-fast);
+}
+
+.filter-section input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+  font-size: 0.875rem;
+}
+
+.preprints-listing {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.preprint-item {
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  transition: all var(--transition-fast);
+}
+
+.preprint-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.preprint-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.preprint-item .tags-section {
+  margin-bottom: 0;
+}
+
+/* Override preprint-content styling for browse view */
+.preprint-item .preprint-content {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.discipline-badge {
+  background: var(--secondary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.publish-date {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.preprint-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.preprint-title a:hover {
+  color: var(--secondary-color);
+}
+
+.preprint-authors {
+  color: var(--text-secondary);
+  margin: var(--spacing-sm) 0;
+  font-weight: 500;
+}
+
+.preprint-summary {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.preprint-links {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.preprint-links a {
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.read-link {
+  color: var(--secondary-color);
+}
+
+.pdf-link {
+  color: var(--accent-color);
+}
+
+.doi-link {
+  color: var(--text-muted);
+}
+
+.discipline-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border-color);
+}
+
+.discipline-summary {
+  padding: var(--spacing-md);
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.discipline-summary h4 {
+  margin-bottom: var(--spacing-xs);
+}
+
+.discipline-summary a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.discipline-summary a:hover {
+  color: var(--secondary-color);
+}
+
+.discipline-summary .count {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--text-muted);
+  background: var(--background-light);
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-section > * {
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .preprint-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .discipline-overview {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .discipline-overview {
+    grid-template-columns: 1fr;
+  }
+  
+  .preprint-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+}
+</style>
 
 </main>
 </div>
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Pupilla. All rights reserved.</p>
+  <div class="footer-content">
+    <p>&copy; 2026 Pupilla.</p>
+    <p class="footer-links">
+      <a href="/privacy-policy/">Privacy Policy</a> • 
+      <a href="/contact/">Contact</a> • 
+      <a href="/feed.xml">RSS Feed</a> •
+      <a href="#" id="cookie-settings-link">Cookie Settings</a>
+    </p>
   </div>
 </footer>
 
+<script>
+// Cookie settings link functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const cookieSettingsLink = document.getElementById('cookie-settings-link');
+  if (cookieSettingsLink) {
+    cookieSettingsLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Reset consent and show banner again
+      localStorage.removeItem('cookieConsent');
+      localStorage.removeItem('googleAnalyticsConsent');
+      // Reload page to show consent banner
+      window.location.reload();
+    });
+  }
+});
+</script>
+
+<!-- Mobile menu functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const nav = document.querySelector('.mobile-nav');
+  
+  if (toggle && nav) {
+    toggle.addEventListener('click', function() {
+      nav.classList.toggle('active');
+      toggle.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        nav.classList.remove('active');
+        toggle.classList.remove('active');
+      });
+    });
+  }
+});
+
+// PDF download tracking
+document.addEventListener('DOMContentLoaded', function() {
+  const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+  pdfLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (typeof gtag !== 'undefined') {
+        console.log('PDF download tracked:', this.getAttribute('href'));
+        gtag('event', 'pdf_download', {
+          'file_name': this.getAttribute('href'),
+          'page_title': document.title
+        });
+      } else {
+        console.log('gtag not available');
+      }
+    });
+  });
+});
+</script>
+<!-- GDPR Cookie Consent Banner -->
+<div id="cookie-consent-banner" class="cookie-consent-banner" style="display: none;">
+  <div class="cookie-consent-content">
+    <div class="cookie-consent-text">
+      <h4>🍪 Cookie Notice</h4>
+      <p>We use cookies and similar technologies to improve your experience and analyze site usage. By clicking "Accept All", you consent to our use of cookies for analytics and functionality.</p>
+      <div class="cookie-consent-links">
+        <a href="/privacy-policy/" target="_blank">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="cookie-consent-buttons">
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Reject</button>
+      <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Accept All</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.cookie-consent-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  color: white;
+  padding: 20px;
+  z-index: 9999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.cookie-consent-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cookie-consent-text h4 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cookie-consent-text p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.cookie-consent-links a {
+  color: #4A90E2;
+  text-decoration: underline;
+  font-size: 13px;
+}
+
+.cookie-consent-buttons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cookie-btn-reject {
+  background: #666;
+  color: white;
+}
+
+.cookie-btn-reject:hover {
+  background: #555;
+}
+
+.cookie-btn-accept {
+  background: #4A90E2;
+  color: white;
+}
+
+.cookie-btn-accept:hover {
+  background: #357ABD;
+}
+
+@media (max-width: 768px) {
+  .cookie-consent-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cookie-consent-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .cookie-btn {
+    flex: 1;
+    max-width: 120px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Check if user has already made a choice
+  const consentStatus = localStorage.getItem('cookie-consent');
+  const banner = document.getElementById('cookie-consent-banner');
+  
+  // Show banner if no consent given
+  if (!consentStatus) {
+    banner.style.display = 'block';
+  } else if (consentStatus === 'accepted') {
+    // User previously accepted, load analytics
+    loadGoogleAnalytics();
+  }
+  
+  // Accept button
+  document.getElementById('cookie-accept').addEventListener('click', function() {
+    localStorage.setItem('cookie-consent', 'accepted');
+    banner.style.display = 'none';
+    loadGoogleAnalytics();
+  });
+  
+  // Reject button
+  document.getElementById('cookie-reject').addEventListener('click', function() {
+    localStorage.setItem('cookie-consent', 'rejected');
+    banner.style.display = 'none';
+    // Disable analytics if already loaded
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'denied'
+      });
+    }
+  });
+  
+  function loadGoogleAnalytics() {
+    // Only load if not already loaded
+    if (typeof gtag === 'undefined') {
+      // Load gtag script
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VETQ7ZZ4FM';
+      document.head.appendChild(script);
+      
+      script.onload = function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-VETQ7ZZ4FM', {
+          'send_page_view': true,
+          'anonymize_ip': true
+        });
+        console.log('Google Analytics loaded with consent');
+      };
+    }
+  }
+})();
+</script>
 
 </body>
 </html>

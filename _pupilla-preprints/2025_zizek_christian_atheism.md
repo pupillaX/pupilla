@@ -1,6 +1,11 @@
 ---
 layout: preprint
 title: "L'ateismo Cristiano di Slavoj Žižek: un dialogo con Chiara Lubich"
+titles:
+  - language: "English"
+    content: "The Christian Atheism of Slavoj Žižek: a dialogue with Chiara Lubich"
+  - language: "Italiano"
+    content: "L'ateismo Cristiano di Slavoj Žižek: un dialogo con Chiara Lubich"
 authors:
   - Peter Morovic
   - Ján Morovic

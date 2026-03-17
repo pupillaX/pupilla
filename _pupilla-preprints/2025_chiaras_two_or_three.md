@@ -1,6 +1,11 @@
 ---
 layout: preprint
 title: "Who are Chiara Lubich's «two or three»?"
+titles:
+  - language: "English"
+    content: "Who are Chiara Lubich’s “two or three”?"
+  - language: "Italiano"
+    content: "Chi sono i «due o tre» di Chiara Lubich?"
 authors:
   - Ján Morovic
   - Peter Morovic

@@ -1,14 +1,20 @@
 ---
 layout: preprint
-# title: "Jesus Forsaken and the Open Hand of Thought: A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition and Chiara Lubich’s Paradise’49"
-title: "A comparative reading of Uchiyama Kosho’s Sōtō Zen tradition and Chiara Lubich’s Charism of Unity"
+# title: "Jesus Forsaken and the Open Hand of Thought: A comparative reading of Uchiyama Kosho's Sōtō Zen tradition and Chiara Lubich's Paradise'49"
+title: "A comparative reading of Uchiyama Kosho's Sōtō Zen tradition and Chiara Lubich's Charism of Unity"
+titles:
+  - language: "English"
+    content: "A comparative reading of Uchiyama Kosho's Sōtō Zen tradition and Chiara Lubich's Charism of Unity"
+  - language: "Italiano"
+    content: "Una lettura comparativa della tradizione Sōtō Zen di Uchiyama Kōshō e del Carisma dell'Unità di Chiara Lubich"
+subtitle: "A Comparative Reading of Chiara Lubich's Paradise'49 and Uchiyama Kōshō's Sōtō Zen Tradition"
 authors:
   - Peter Morovic
   - Ján Morovic
 keywords: ["Koshō Uchiyama", "Shōhaku Okumura", "Buddhism", "Zen", "Soto", "Focolare", "Chiara Lubich", "Giuseppe Maria Zanghì", "Emptiness", "Self-naughting", "Jesus Forsaken"]
 discipline: "Philosophy"
 languages: ["English", "Italiano"]
-date: 2025-11-16
+date: 2026-03-12
 coming_soon: true
 #doi: "10.1234/example2"
 abstract: "This article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: Chiara Lubich’s Catholic mysticism centered on Jesus Forsaken and Uchiyama Kōshō’s Sōtō Zen tradition transmitted through his disciple Okumura Shōhaku, focused on zazen and the practice of “opening the hand of thought” (omoi no tebanashi)."
