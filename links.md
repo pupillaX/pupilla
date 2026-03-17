@@ -4,7 +4,7 @@ title: Links
 permalink: /links/
 ---
 
-Here are some valuable resources and related publications that complement our preprint collection:
+Here are some valuable resources and related publications that complement our article collection:
 
 ### Focolare Movement Resources
 

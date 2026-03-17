@@ -3,10 +3,10 @@
   <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
   <link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en_US" />
-  <updated>2026-03-17T20:40:48+01:00</updated>
+  <updated>2026-03-17T21:01:01+01:00</updated>
   <id>http://0.0.0.0:4000/feed.xml</id>
   <title type="html">Pupilla</title>
-  <subtitle>A multidisciplinary preprint archive with the aim of building bridges and striving for unity in diversity.</subtitle>
+  <subtitle>A multidisciplinary archive with the aim of building bridges and striving for unity in diversity.</subtitle>
   <author>
     <name>Pupilla Team</name>
   </author>
@@ -78,7 +78,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This article examines the paradoxical relationship between science and society in contemporary Europe, where public trust in science has reached unprecedented levels even as misinformation and political polarization increasingly challenge evidence-based policymaking. Against the backdrop of the COVID-19 pandemic, climate change, and artificial intelligence, the author explores what he terms the &quot;technocratic dilemma&quot; — the tension between expert knowledge and democratic decision-making.</summary>
@@ -113,7 +113,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This essay examines the thought of Slovenian philosopher Slavoj Žižek on Christianity, with particular attention to his interpretation of God&apos;s death on the cross and the birth of the Holy Spirit as an &apos;egalitarian community.&apos; Through a comparative analysis with Chiara Lubich&apos;s charism of unity, the article highlights surprising convergences between Žižek&apos;s &apos;Christian atheism&apos; and Focolare spirituality.</summary>
@@ -148,7 +148,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This essay traces the evolution of the concept of space in mathematics from ancient Greece to modern times, examining the philosophical and cultural implications of this transformation. Beginning with Euclidean geometry as an absolute representation of physical reality, the authors explore how Cartesian coordinate systems introduced a subjective perspective that challenged the notion of absolute space.</summary>
@@ -179,7 +179,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This article examines the relationship between Gospel and cultures within the context of pluralism as a defining characteristic of the current epochal change, explaining the urgency of evangelization as a culture of encounter in service of unity in diversity. Drawing primarily on Pope Francis&apos;s magisterium, particularly his Apostolic Exhortation Evangelii Gaudium (2013), and updating Chiara Lubich&apos;s intuition about inculturation as an exchange of gifts, the study addresses how the Church must continuously relocate itself within diverse local and global contexts.</summary>
@@ -210,7 +210,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This article examines the possibility of experiencing intercultural dialogue as &quot;dialogical dialogue&quot; (R. Panikkar) that generates a &quot;mystical experience of we&quot; (Pope Francis) within the context of contemporary pluralism. The author argues that the current epoch change evidences the emergence of a pluralist stage that challenges Christian faith to give renewed and creative reasons for belief.</summary>
@@ -241,7 +241,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This article explores Pope Francis&apos;s teaching that &quot;in the heart of God there is a preferential place for the poor&quot; (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; Through personal testimony from the author&apos;s experience with Juan Carlos, a street child in Cochabamba, Bolivia, the text illustrates how encounters with the poor can become living encounters with Christ himself.</summary>
@@ -272,7 +272,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This article explores Pope Francis&apos;s teaching that &quot;in the heart of God there is a preferential place for the poor&quot; (Evangelii Gaudium 197), examining the theological and pastoral implications of recognizing the poor as a privileged &quot;theological locus.&quot; Through personal testimony from the author&apos;s experience with Juan Carlos, a street child in Cochabamba, Bolivia, the text illustrates how encounters with the poor can become living encounters with Christ himself.</summary>
@@ -303,7 +303,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This paper explores the possibility of actualizing the Pact of Unity between Chiara Lubich and Igino Giornani (July 16, 1949) within contemporary pluralistic contexts. The author investigates whether this foundational mystical experience of the Focolare Movement can transcend its Catholic confessional framework to embrace intercultural and interreligious dialogue, including non-confessional spiritual approaches.</summary>
@@ -334,7 +334,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This study presents a triple interpretative framework for understanding Chiara Lubich&apos;s (1920-2008) texts on Jesus Forsaken through theological, mystical, and philosophical perspectives. The central focus is Lubich&apos;s interpretation of the crucified Jesus crying out &apos;My God, my God, why have you forsaken me?&apos; (Mark 15:34), which she positions as the cornerstone of a spirituality aimed at achieving universal fraternity.</summary>
@@ -371,7 +371,7 @@
     
     
     
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     
     
     <summary type="html">This paper examines Chiara Lubich&apos;s radical reinterpretation of Jesus&apos; promise in Matthew 18:20 about two or three gathered in his name. Drawing from Lubich&apos;s mystical insights during the Paradise of &apos;49 and her extensive talks spanning several decades, the study analyzes her revolutionary understanding of who can experience Christ&apos;s presence and under what conditions.</summary>

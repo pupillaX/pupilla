@@ -16,16 +16,16 @@ abstracts:
   - language: "English"
     flag: "🇬🇧"
     content: "In this article, a psychotherapeutic counsellor reflects on how to be present with suffering, drawing on the life of Christ and insights from psychotherapy. Exploring Jesus Crucified and Forsaken as God's identification with human pain, and Chiara Lubich's bridal mysticism of encountering Jesus Forsaken within every suffering, the author connects these spiritual insights with psychological concepts from Gestalt therapy, Acceptance and Commitment Therapy, and Logotherapy."
-pdfs:
-  - language: "English"
-    url: "/assets/pdfs/Being with Suffering_Article.docx"
-    flag: "🇬🇧"
+# pdfs:
+#   - language: "English"
+#     url: "/assets/pdfs/Being with Suffering_Article.docx"
+#     flag: "🇬🇧"
 
 pupilla_citation: "Öhlböck, E., Being with Suffering – Reflections of a psychotherapeutic counsellor looking at Jesus on the cross, Pupilla (2026), https://pupilla.org/essays/2026-being-with-suffering/"
 
 author_bios:
   - name: "Elisabeth Öhlböck"
-    text: "Psychotherapeutic counsellor whose work integrates Christian spirituality with insights from contemporary psychotherapy."
+    text: "Currently working as Psychotherapeutic Counsellor in private practice and the charitable sector. Masters degree in Advancing Practice from Ulster University."
 
 tags:
   - psychology

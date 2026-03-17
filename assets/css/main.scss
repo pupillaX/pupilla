@@ -578,14 +578,14 @@ html {
   letter-spacing: 0.04em;
 }
 .type-tag.type-essay {
-  background: #eee9e3;
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
 }
-.type-tag.type-preprint {
-  background: #eee9e3;
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
+.type-tag.type-article {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
 }
 
 .view-all-links {

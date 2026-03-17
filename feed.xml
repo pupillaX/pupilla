@@ -45,7 +45,7 @@ permalink: /feed.xml
     {% if item.collection == 'pupilla-essays' %}
     <category term="essay" label="Essay" />
     {% else %}
-    <category term="preprint" label="Preprint" />
+    <category term="article" label="Article" />
     {% endif %}
     {% if item.abstract %}
     <summary type="html">{{ item.abstract | xml_escape }}</summary>

@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Preprints
+title: Articles
 permalink: /preprints/
 ---
 
 <section class="browse-header">
-  <h1>Preprints</h1>
+  <h1>Articles</h1>
   <p>Explore our collection of multidisciplinary research papers</p>
 </section>
 

@@ -33,7 +33,7 @@
       {{ site.title }}
     </a>
     <div class="topbar-nav">
-      <a href="{{ '/preprints/' | relative_url }}">Preprints</a>
+      <a href="{{ '/preprints/' | relative_url }}">Articles</a>
       <a href="{{ '/essays/' | relative_url }}">Essays</a>
       <a href="{{ '/about/' | relative_url }}">About</a>
       <a href="{{ '/contributors/' | relative_url }}">Contributors</a>
@@ -45,7 +45,7 @@
 <!-- Article Header -->
 <header class="article-header">
   <div class="article-meta-top">
-    {% if page.article_type %}{{ page.article_type }}{% else %}Preprint{% if page.discipline %} · {{ page.discipline }}{% endif %}{% endif %}
+    {% if page.article_type %}{{ page.article_type }}{% else %}Essay{% if page.discipline %} · {{ page.discipline }}{% endif %}{% endif %}
   </div>
 
   <h1 class="article-title">

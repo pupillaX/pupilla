@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Browse Preprints
+title: Browse Articles
 permalink: /preprints/
 ---
 
-# Browse All Preprints
+# Browse All Articles
 
 Explore our collection of scholarly works:
 
@@ -83,7 +83,7 @@ Explore our collection of scholarly works:
   </div>
 </div>
 
-## All Preprints ({{ site['pupilla-preprints'].size }})
+## All Articles ({{ site['pupilla-preprints'].size }})
 
 <div id="preprints-container" class="preprints-listing">
   {% assign all_preprints = site['pupilla-preprints'] | sort: 'date' | reverse %}
@@ -215,7 +215,7 @@ Explore our collection of scholarly works:
 </div>
 
 <div id="no-results" class="no-results" style="display: none;">
-  <p>No preprints match your current search and filters. Try adjusting your search terms or filter settings.</p>
+  <p>No articles match your current search and filters. Try adjusting your search terms or filter settings.</p>
 </div>
 
 <!-- Browse by Discipline section commented out - can be restored later

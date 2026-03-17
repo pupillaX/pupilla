@@ -18,7 +18,7 @@ title: Home
   <div class="section-header">
     <h2>Latest</h2>
     <span class="view-all-links">
-      <a href="{{ '/preprints/' | relative_url }}" class="view-all-link">Preprints ({{ site['pupilla-preprints'] | size }}) →</a>
+      <a href="{{ '/preprints/' | relative_url }}" class="view-all-link">Articles ({{ site['pupilla-preprints'] | size }}) →</a>
       <a href="{{ '/essays/' | relative_url }}" class="view-all-link">Essays ({{ site['pupilla-essays'] | size }}) →</a>
     </span>
   </div>
@@ -45,7 +45,7 @@ title: Home
           {% if item.collection == 'pupilla-essays' %}
             <span class="type-tag type-essay">ESSAY</span>
           {% else %}
-            <span class="type-tag type-preprint">PREPRINT</span>
+            <span class="type-tag type-article">ARTICLE</span>
           {% endif %}
           {% if item.date %}
             <span class="date">{{ item.date | date: '%b %d, %Y' }}</span>

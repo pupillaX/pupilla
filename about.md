@@ -6,7 +6,7 @@ permalink: /about/
 
 ### Our Mission
 
-Pupilla is a curated multidisciplinary preprint archive dedicated to fostering scholarly dialogue and research inspired by the desire to build bridges of fraternal relationships among individuals, between cultural groups and in every area of society. We provide a platform where researchers from diverse fields can share their work, insights, and discoveries in pursuit of knowledge that bridges disciplines, cultures, and perspectives.
+Pupilla is a curated multidisciplinary archive dedicated to fostering scholarly dialogue and research inspired by the desire to build bridges of fraternal relationships among individuals, between cultural groups and in every area of society. We provide a platform where researchers from diverse fields can share their work, insights, and discoveries in pursuit of knowledge that bridges disciplines, cultures, and perspectives.
 
 ### Our Vision
 
@@ -16,7 +16,7 @@ Our vision is rooted in the conviction that knowledge flourishes when shared acr
 
 ### What we offer
 
-- **Preprint articles** across multiple disciplines including philosophy, theology, spirituality, mathematics, natural sciences and interdisciplinary studies
+- **Articles** across multiple disciplines including philosophy, theology, spirituality, mathematics, natural sciences and interdisciplinary studies
 - **Multilingual publications** primarily in English, Italian and Spanish, open to other languages
 - **Original research** that explores themes of unity, dialogue, and human relationships
 - **Scholarly essays** that bridge academic rigor with spiritual insight

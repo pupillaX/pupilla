@@ -33,7 +33,7 @@
       {{ site.title }}
     </a>
     <div class="topbar-nav">
-      <a href="{{ '/preprints/' | relative_url }}">Preprints</a>
+      <a href="{{ '/preprints/' | relative_url }}">Articles</a>
       <a href="{{ '/essays/' | relative_url }}">Essays</a>
       <a href="{{ '/about/' | relative_url }}">About</a>
       <a href="{{ '/contributors/' | relative_url }}">Contributors</a>
@@ -45,7 +45,7 @@
 <!-- Article Header -->
 <header class="article-header">
   <div class="article-meta-top">
-    Preprint{% if page.discipline %} · {{ page.discipline }}{% endif %}
+    Article{% if page.discipline %} · {{ page.discipline }}{% endif %}
     {% if page.coming_soon %}<span class="coming-soon-tag" style="margin-left: 0.5rem;">COMING SOON</span>{% endif %}
   </div>
 
@@ -208,7 +208,7 @@
 
 <!-- Footer -->
 <footer class="article-site-footer">
-  <p>&copy; {{ 'now' | date: '%Y' }} {{ site.title }} · <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a> · <a href="{{ '/contact/' | relative_url }}">Contact</a> · <a href="{{ '/preprints/' | relative_url }}">Preprints</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
+  <p>&copy; {{ 'now' | date: '%Y' }} {{ site.title }} · <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a> · <a href="{{ '/contact/' | relative_url }}">Contact</a> · <a href="{{ '/preprints/' | relative_url }}">Articles</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
 </footer>
 
 {% include cookie-consent.html %}
