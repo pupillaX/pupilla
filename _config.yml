@@ -81,6 +81,15 @@ exclude:
   - .git
   - .sass-cache
   - _drafts
+  - _templates            # mockups / templates, not for publishing
+  - assets/pdfs/private    # private preview PDFs — never publish
+  - "assets/pdfs/*.docx"   # source manuscripts — never publish
+  - "*.docx"
+  - jekyll.log
+  - check-ssl.sh
+  - restart-server.sh
+  - start-server.sh
+  - MULTI_LANGUAGE_PDF_GUIDE.md
 
 # Include files
 include:

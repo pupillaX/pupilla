@@ -9,3 +9,7 @@ Gemfile.lock
 *.swp
 *.swo
 *~
+
+# Source manuscripts and private preview PDFs — keep local, never commit/publish
+*.docx
+assets/pdfs/private/

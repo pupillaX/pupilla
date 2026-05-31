@@ -1,0 +1,35 @@
+name: Build site
+
+# Verifies the site builds cleanly on every push / PR to main.
+# This does NOT change how the site is deployed — pupilla.org is still
+# served by GitHub Pages' built-in build from the default branch. This
+# job just catches build errors (bad Liquid, broken front matter, etc.)
+# before they reach the live auto-build.
+#
+# To switch to deploying from this workflow instead (which also lets
+# custom _plugins/ run in production), set Settings → Pages → Source to
+# "GitHub Actions" and add an actions/deploy-pages step. See README.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true   # runs bundle install and caches gems
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
