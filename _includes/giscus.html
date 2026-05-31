@@ -1,0 +1,29 @@
+{%- comment -%}
+giscus comments + reactions, backed by GitHub Discussions.
+Renders only once site.giscus.repo_id and category_id are filled in
+(_config.yml), so it's safe to ship before the GitHub-side setup is done.
+Setup: enable Discussions on the repo, install the giscus app, then copy
+the repo_id / category_id from https://giscus.app into _config.yml.
+{%- endcomment -%}
+{%- if site.giscus.repo_id != '' and site.giscus.category_id != '' -%}
+<section class="article-discussion" id="discussion">
+  <h2>Discussion</h2>
+  <p class="discussion-intro">Pupilla exists to foster dialogue. Sign in with GitHub to comment or react — thoughtful responses are warmly welcomed.</p>
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ site.giscus.repo }}"
+          data-repo-id="{{ site.giscus.repo_id }}"
+          data-category="{{ site.giscus.category }}"
+          data-category-id="{{ site.giscus.category_id }}"
+          data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
+          data-strict="1"
+          data-reactions-enabled="{{ site.giscus.reactions_enabled | default: 1 }}"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="{{ site.giscus.theme | default: 'light' }}"
+          data-lang="{{ site.giscus.lang | default: 'en' }}"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</section>
+{%- endif -%}

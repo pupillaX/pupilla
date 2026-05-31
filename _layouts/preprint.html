@@ -200,6 +200,9 @@
 </div>
 {% endif %}
 
+<!-- Discussion -->
+{% include giscus.html %}
+
 <!-- Footer -->
 <footer class="article-site-footer">
   <p>&copy; {{ 'now' | date: '%Y' }} {{ site.title }} · <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a> · <a href="{{ '/contact/' | relative_url }}">Contact</a> · <a href="{{ '/preprints/' | relative_url }}">Articles</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
@@ -346,9 +349,6 @@
   }
 
 </script>
-
-<!-- Hypothes.is -->
-<script src="https://hypothes.is/embed.js" async></script>
 
 </body>
 </html>
