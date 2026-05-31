@@ -71,9 +71,9 @@ social:
 # below. The Discussion section stays hidden until both IDs are filled in.
 giscus:
   repo: "pupillaX/pupilla"
-  repo_id: ""            # <-- paste from giscus.app
-  category: "Comments"   # Discussions category to post under
-  category_id: ""        # <-- paste from giscus.app
+  repo_id: "R_kgDOPbA_TQ"              # <-- paste from giscus.app
+  category: "Comments"                 # Discussions category to post under
+  category_id: "DIC_kwDOPbA_Tc4C-N8P"  # <-- paste from giscus.app
   mapping: "pathname"
   reactions_enabled: 1
   theme: "light"
