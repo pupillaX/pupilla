@@ -76,7 +76,7 @@ giscus:
   category_id: "DIC_kwDOPbA_Tc4C-N8P"  # <-- paste from giscus.app
   mapping: "pathname"
   reactions_enabled: 1
-  theme: "light"
+  theme: "/assets/css/giscus.css"   # custom theme (default light + site font); use "light" for stock
   lang: "en"
 
 # Build settings

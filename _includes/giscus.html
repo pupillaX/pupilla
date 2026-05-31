@@ -19,7 +19,7 @@ the repo_id / category_id from https://giscus.app into _config.yml.
           data-reactions-enabled="{{ site.giscus.reactions_enabled | default: 1 }}"
           data-emit-metadata="0"
           data-input-position="top"
-          data-theme="{{ site.giscus.theme | default: 'light' }}"
+          data-theme="{% if site.giscus.theme contains '/' %}{{ site.giscus.theme | absolute_url }}{% else %}{{ site.giscus.theme | default: 'light' }}{% endif %}"
           data-lang="{{ site.giscus.lang | default: 'en' }}"
           data-loading="lazy"
           crossorigin="anonymous"
