@@ -1,0 +1,24 @@
+# Maps author display names (as used in article front matter) to their
+# anchor on the Contributors page. Used by _includes/author-link.html.
+# `aliases` lists alternate spellings (e.g. without accents) that may appear
+# in older front matter so the link still resolves.
+- name: "Elisabeth Öhlböck"
+  slug: elisabeth-ohlbock
+  aliases: ["Elisabeth Ohlbock"]
+- name: "Antonino Puglisi"
+  slug: antonino-puglisi
+- name: "Ugo Gianazza"
+  slug: ugo-gianazza
+- name: "Luca Magri"
+  slug: luca-magri
+- name: "Lucas Cerviño"
+  slug: lucas-cervino
+  aliases: ["Lucas Cervino"]
+- name: "Jordi Rodríguez Salleras"
+  slug: jordi-rodriguez-salleras
+  aliases: ["Jordi Rodriguez Salleras"]
+- name: "Ján Morovic"
+  slug: jan-morovic
+  aliases: ["Jan Morovic"]
+- name: "Peter Morovic"
+  slug: peter-morovic

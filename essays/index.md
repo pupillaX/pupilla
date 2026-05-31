@@ -148,17 +148,7 @@ Explore our collection of full-text essays:
         
         {% if article.authors %}
           <p class="preprint-authors">
-            {% for author in article.authors %}
-              {% if author == "Elisabeth Öhlböck" %}
-                <a href="{{ '/contributors/' | relative_url }}#elisabeth-ohlbock" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Ján Morovic" %}
-                <a href="{{ '/contributors/' | relative_url }}#jan-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Peter Morovic" %}
-                <a href="{{ '/contributors/' | relative_url }}#peter-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% else %}
-                <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
-              {% endif %}
-            {% endfor %}
+            {% for author in article.authors %}{% include author-link.html author=author %}{% unless forloop.last %}, {% endunless %}{% endfor %}
           </p>
         {% endif %}
         

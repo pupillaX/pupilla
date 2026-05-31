@@ -166,25 +166,7 @@ Explore our collection of scholarly works:
         
         {% if preprint.authors %}
           <p class="preprint-authors">
-            {% for author in preprint.authors %}
-              {% if author == "Ján Morovic" %}
-                <a href="{{ '/contributors/' | relative_url }}#jan-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Peter Morovic" %}
-                <a href="{{ '/contributors/' | relative_url }}#peter-morovic" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Jordi Rodriguez Salleras" or author == "Jordi Rodríguez Salleras" %}
-                <a href="{{ '/contributors/' | relative_url }}#jordi-rodriguez-salleras" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Lucas Cervino" or author == "Lucas Cerviño" %}
-                <a href="{{ '/contributors/' | relative_url }}#lucas-cervino" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Ugo Gianazza" %}
-                <a href="{{ '/contributors/' | relative_url }}#ugo-gianazza" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Luca Magri" %}
-                <a href="{{ '/contributors/' | relative_url }}#luca-magri" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% elsif author == "Antonino Puglisi" %}
-                <a href="{{ '/contributors/' | relative_url }}#antonino-puglisi" class="author-link">{{ author }}</a>{% unless forloop.last %}, {% endunless %}
-              {% else %}
-                <span class="author">{{ author }}</span>{% unless forloop.last %}, {% endunless %}
-              {% endif %}
-            {% endfor %}
+            {% for author in preprint.authors %}{% include author-link.html author=author %}{% unless forloop.last %}, {% endunless %}{% endfor %}
           </p>
         {% endif %}
         

@@ -1,0 +1,13 @@
+{%- comment -%}
+Renders a single author name, linked to their Contributors anchor when known.
+Usage: {% include author-link.html author=author %}
+Looks the name up in _data/contributors.yml (by name or alias) so accented
+names resolve correctly — `slugify` mangles characters like á/ö, so we never
+slugify the display name here. Falls back to plain text for unknown authors.
+The caller is responsible for any separator (comma, &amp;) between authors.
+{%- endcomment -%}
+{%- assign _slug = '' -%}
+{%- for c in site.data.contributors -%}
+{%- if c.name == include.author or c.aliases contains include.author -%}{%- assign _slug = c.slug -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+{%- if _slug != '' -%}<a href="{{ '/contributors/' | relative_url }}#{{ _slug }}" class="author-link">{{ include.author }}</a>{%- else -%}{{ include.author }}{%- endif -%}
