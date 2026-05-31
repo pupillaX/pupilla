@@ -779,64 +779,6 @@ body {
   .article-discussion { padding: 2rem 1.5rem 1rem; }
 }
 
-/* ============ CLAP / APPRECIATION ============ */
-.clap-section {
-  max-width: var(--reading-width);
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  border-top: 1px solid var(--border-light);
-}
-.clap-big {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  cursor: pointer;
-  padding: 1rem;
-  transition: transform 0.15s;
-  background: none;
-  border: none;
-}
-.clap-big:hover { transform: scale(1.05); }
-.clap-big:active { transform: scale(0.95); }
-.clap-circle {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  transition: all 0.25s;
-  background: var(--bg);
-}
-.clap-big:hover .clap-circle {
-  border-color: var(--accent);
-  background: var(--accent-light);
-}
-.clap-big.active .clap-circle {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: #fff;
-  animation: clapPop 0.3s ease;
-}
-@keyframes clapPop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-.clap-count {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-.action-btn.clapped { color: var(--accent); }
-.action-btn.clapped svg { fill: var(--accent); }
-
-
-
 /* ============ AUTO LEDE (first paragraph) ============ */
 .article-body > p:first-child,
 .article-body > .lang-content > p:first-child {
