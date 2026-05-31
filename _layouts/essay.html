@@ -76,10 +76,7 @@
     </div>
     <div class="author-info">
       <div class="author-names">
-        {% for author in page.authors %}
-          {% assign author_slug = author | slugify %}
-          <a href="{{ '/contributors/' | relative_url }}#{{ author_slug }}">{{ author }}</a>{% unless forloop.last %} &amp; {% endunless %}
-        {% endfor %}
+        {% for author in page.authors %}{% include author-link.html author=author %}{% unless forloop.last %} &amp; {% endunless %}{% endfor %}
       </div>
       <div class="author-date">
         {% if page.date %}{{ page.date | date: '%B %-d, %Y' }}{% endif %}
@@ -109,12 +106,9 @@
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
       <span id="clapCount">0</span>
     </button>
-    <button class="action-btn" onclick="if(navigator.clipboard){navigator.clipboard.writeText(window.location.href);this.querySelector('span').textContent='Copied!';}">
+    <button class="action-btn" onclick="shareArticle(this)">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7.217 10.907a2.25 2.25 0 000 2.186m0-2.186c.18-.33.413-.634.69-.893a2.25 2.25 0 013.182 0l1.414 1.414a2.25 2.25 0 010 3.182l-1.162 1.162m0 0a2.25 2.25 0 01-3.133-.098l-.03-.03m3.163-3.034l1.414-1.414a2.25 2.25 0 000-3.182l-1.162-1.162a2.25 2.25 0 00-3.182 0l-.69.893"/></svg>
       <span>Share</span>
-    </button>
-    <button class="action-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/></svg>
     </button>
     <div class="action-spacer"></div>
     {% if page.pdfs %}
@@ -329,6 +323,21 @@
       block.style.display = block.getAttribute('data-lang') === lang ? '' : 'none';
     });
     buildTOC();
+  }
+
+  // ---- Share (native share sheet on mobile, copy-link fallback) ----
+  function shareArticle(btn) {
+    var shareData = { title: document.title, url: window.location.href };
+    if (navigator.share) {
+      navigator.share(shareData).catch(function() {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href);
+      var span = btn.querySelector('span');
+      if (span) {
+        span.textContent = 'Copied!';
+        setTimeout(function() { span.textContent = 'Share'; }, 2000);
+      }
+    }
   }
 
   // ---- Clap functionality ----
