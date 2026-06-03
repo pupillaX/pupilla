@@ -58,7 +58,11 @@
     {% endif %}
   </h1>
 
-  {% if page.subtitle %}
+  {% if page.subtitles %}
+    {% for s in page.subtitles %}
+    <p class="article-subtitle lang-content" data-lang="{{ s.language }}" {% unless forloop.first %}style="display:none"{% endunless %}>{{ s.content }}</p>
+    {% endfor %}
+  {% elsif page.subtitle %}
   <p class="article-subtitle">{{ page.subtitle }}</p>
   {% endif %}
 

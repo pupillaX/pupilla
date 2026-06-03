@@ -8,6 +8,11 @@ titles:
   - language: "Italiano"
     content: "Gesù Abbandonato e la Mano Aperta del Pensiero"
 subtitle: "A Comparative Reading of Chiara Lubich’s Paradise’49 and Uchiyama Kōshō’s Sōtō Zen Tradition"
+subtitles:
+  - language: "English"
+    content: "A Comparative Reading of Chiara Lubich’s Paradise’49 and Uchiyama Kōshō’s Sōtō Zen Tradition"
+  - language: "Italiano"
+    content: "Una lettura comparativa del Paradiso ’49 di Chiara Lubich e della tradizione Zen Sōtō di Uchiyama Kōshō"
 authors:
   - Peter Morovic
   - Ján Morovic
