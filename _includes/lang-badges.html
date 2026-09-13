@@ -1,0 +1,10 @@
+{%- comment -%}
+Renders the language badges for an article/essay item, e.g. EN IT.
+Usage: {% include lang-badges.html item=item %}
+Reads item.languages, falling back to the languages declared on pdfs/abstracts.
+Each badge is a flex child of .archive-meta, so spacing comes from its gap.
+{%- endcomment -%}
+{%- assign _langs = include.item.languages -%}
+{%- unless _langs -%}{%- assign _langs = include.item.pdfs | map: 'language' -%}{%- endunless -%}
+{%- unless _langs -%}{%- assign _langs = include.item.abstracts | map: 'language' -%}{%- endunless -%}
+{%- if _langs -%}{%- for l in _langs -%}<span class="lang-badge" title="{{ l }}">{% include lang-badge.html language=l %}</span>{%- endfor -%}{%- endif -%}

@@ -14,7 +14,7 @@ discipline: "Philosophy"
 languages: ["English", "Italiano"]
 date: 2025-11-16
 # coming_soon: true
-#doi: "10.1234/example2"
+#doi: "10.5281/zenodo.XXXXXXX"  # TODO: paste the Zenodo DOI, then remove the leading # to publish it
 abstract: "This essay examines the thought of Slovenian philosopher Slavoj Žižek on Christianity, with particular attention to his interpretation of God's death on the cross and the birth of the Holy Spirit as an 'egalitarian community.' Through a comparative analysis with Chiara Lubich's charism of unity, the article highlights surprising convergences between Žižek's 'Christian atheism' and Focolare spirituality."
 abstracts:
   - language: "English"

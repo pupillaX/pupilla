@@ -1,0 +1,18 @@
+{%- comment -%}
+Returns a short language code (EN, IT, ES …) for a language name — a typographic
+replacement for emoji flags, which don't render on Windows and conflate language
+with nationality. Outputs the code only; the caller wraps it (e.g. in a span with
+class="lang-badge"). Usage: {% include lang-badge.html language=lang %}
+{%- endcomment -%}
+{%- assign _l = include.language | downcase | strip -%}
+{%- case _l -%}
+{%- when 'english' -%}EN
+{%- when 'italiano','italian' -%}IT
+{%- when 'español','espanol','spanish' -%}ES
+{%- when 'deutsch','german' -%}DE
+{%- when 'français','francais','french' -%}FR
+{%- when 'català','catala','catalan' -%}CA
+{%- when 'português','portugues','portuguese' -%}PT
+{%- when '日本語','japanese' -%}JA
+{%- else -%}{{ include.language | upcase | truncate: 2, '' }}
+{%- endcase -%}

@@ -1,24 +1,113 @@
-# Maps author display names (as used in article front matter) to their
-# anchor on the Contributors page. Used by _includes/author-link.html.
-# `aliases` lists alternate spellings (e.g. without accents) that may appear
-# in older front matter so the link still resolves.
+# Single source of truth for contributors.
+# Drives the Contributors page (contributors.md) AND author links across the
+# site (via _includes/author-link.html — matched by `name` or an alias).
+# To add a contributor: add an entry here + drop a photo in
+# assets/images/contributors/. `aliases` lists alternate spellings (e.g. without
+# accents) that may appear in article front matter.
+#
+# Fields: name, slug (anchor + author-link target), aliases, role, photo
+# (filename under assets/images/contributors/), bio, links [{label, url}].
+
 - name: "Elisabeth Öhlböck"
   slug: elisabeth-ohlbock
   aliases: ["Elisabeth Ohlbock"]
+  role: "Author"
+  photo: elisabeth_ohlbock.png
+  bio: "Currently working as Psychotherapeutic Counsellor in private practice and the charitable sector. Masters degree in Advancing Practice from Ulster University."
+  links: []
+
 - name: "Antonino Puglisi"
   slug: antonino-puglisi
+  role: "Author"
+  photo: antonino_puglisi.png
+  bio: "Masters and PhD degrees in Chemistry from the University of Catania (Italy). Currently European Advisor at UK Research and Innovation. Member of the Abba School interdisciplinary centre of study."
+  links:
+    - label: "Google Scholar"
+      url: "https://scholar.google.com/citations?user=_thIlpkAAAAJ&hl=en"
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/antonino-puglisi-a4086a17/"
+    - label: "ResearchGate"
+      url: "https://www.researchgate.net/profile/Antonino-Puglisi"
+    - label: "Royal Society of Chemistry"
+      url: "https://www.rsc.org/people/antonino-puglisi"
+
 - name: "Ugo Gianazza"
   slug: ugo-gianazza
+  role: "Author, Editor"
+  photo: ugo_gianazza.png
+  bio: "Professor of Mathematical Analysis at the Department of Mathematics F. Casorati of the University of Pavia (Italy). Member of the Board of Directors of the University of Pavia. Member of the Abba School interdisciplinary centre of study."
+  links:
+    - label: "Google Scholar"
+      url: "https://scholar.google.com/citations?user=OPkb21QAAAAJ&hl=en"
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/ugo-gianazza-73baab6/"
+    - label: "ResearchGate"
+      url: "https://www.researchgate.net/profile/Ugo-Gianazza"
+    - label: "University"
+      url: "https://mate.unipv.it/gianazza/"
+
 - name: "Luca Magri"
   slug: luca-magri
+  role: "Author"
+  photo: luca_magri.png
+  bio: "Masters degree in Mathematics from Università degli Studi di Roma “La Sapienza” (Italy). Held research and leadership roles at the ENEL research institute ISMES focusing on seismic assessment and at Telecom Italia FINSIEL. Further leadership roles at the Vatican's Jubilee 2000 and Pilgrimage organizations and the Focolare Movement's Azione per Famiglie Nuove as director, currently a member of the Focolare Movement's global centre."
+  links:
+    - label: "Focolare Movement"
+      url: "https://www.focolare.org"
+
 - name: "Lucas Cerviño"
   slug: lucas-cervino
   aliases: ["Lucas Cervino"]
+  role: "Author, Editor"
+  photo: lucas_cervino.png
+  bio: "Doctor en Teología fundamental y licenciatura eclesial en Misionología. Docente en el Instituto de Misionología (Facultad de Teología San Pablo, Cochabamba-Bolivia) y en el Centro de Estudios Filosóficos y Teológicos (Córdoba, Argentina). Miembro del grupo interdisciplinar de estudios Escuela Abba. Miembro del Consejo Directivo de IUSophia ALC y coordinador de cursos sobre Acompañamiento Espiritual Integral."
+  links:
+    - label: "Sophia ALC"
+      url: "https://sophiaalc.com/nuestro-equipo/"
+    - label: "Ciudad Nueva"
+      url: "https://libros.ciudadnueva.com.ar/etiqueta-producto/lucas-cervino/"
+
 - name: "Jordi Rodríguez Salleras"
   slug: jordi-rodriguez-salleras
   aliases: ["Jordi Rodriguez Salleras"]
+  role: "Author"
+  photo: jordi_rodriguez.png
+  bio: "Double Bachelor of Arts degree in Humanities and Law from Universitat Pompeu Fabra, Barcelona, Catalonia (Spain); Masters degree in Education from the Universitat de Barcelona, Catalonia (Spain). Works in mathematics and science education as well as applications of AI in education."
+  links:
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/jordi-rodríguez-salleras/"
+
 - name: "Ján Morovic"
   slug: jan-morovic
   aliases: ["Jan Morovic"]
+  role: "Author, Editor, co-founder"
+  photo: jan-morovic.png
+  bio: "Ph.D. in Colour Science from the University of Derby (UK); Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study."
+  links:
+    - label: "Google Scholar"
+      url: "https://scholar.google.com/citations?user=BVmnUEMAAAAJ&hl=en"
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/janmorovic"
+    - label: "ORCID"
+      url: "https://orcid.org/0000-0002-9983-8211"
+    - label: "ResearchGate"
+      url: "https://www.researchgate.net/profile/Jan-Morovic"
+    - label: "Blog"
+      url: "https://ayebeleef.design.blog/author/jmorovic"
+
 - name: "Peter Morovic"
   slug: peter-morovic
+  role: "Author, Editor, co-founder"
+  photo: peter-morovic.png
+  bio: "Ph.D. in Computer Science from the University of East Anglia, Norwich (UK); Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study."
+  links:
+    - label: "Google Scholar"
+      url: "https://scholar.google.com/citations?user=rg5k548AAAAJ&hl=en"
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/petermorovic/"
+    - label: "ORCID"
+      url: "https://orcid.org/0000-0002-7759-413X"
+    - label: "ResearchGate"
+      url: "https://www.researchgate.net/profile/Peter-Morovic"
+    - label: "Medium"
+      url: "https://medium.com/@pezike"

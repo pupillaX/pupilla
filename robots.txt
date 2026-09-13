@@ -1,0 +1,12 @@
+---
+# Served at /robots.txt (front matter makes Jekyll process the Liquid below).
+layout: null
+sitemap: false
+---
+User-agent: *
+Allow: /
+
+# Block internal preview PDFs (also excluded from the build).
+Disallow: /assets/pdfs/private/
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}

@@ -8,6 +8,13 @@ export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 export RUBYOPT="-r ${SCRIPT_DIR}/_plugins/ruby4_compat.rb"
 
+# Force a UTF-8 locale. Without it the shell inherits LANG=C (US-ASCII) and the
+# old Sass (3.7.4) that ships with github-pages reads the Primer theme's
+# UTF-8 .scss files as US-ASCII, failing with:
+#   Invalid US-ASCII character "\xE2" ... typography.scss
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Start Jekyll development server
 echo "Starting Jekyll development server..."
 echo "Site will be available at: http://localhost:4000"

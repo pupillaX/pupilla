@@ -1,55 +1,75 @@
 ---
 layout: preprint
-title: "Your Article Title Here"
-authors:
-  - First Author Name
-  - Second Author Name
-discipline: "Philosophy" # or "Theology", "Interfaith Studies", etc.
-languages: ["English", "Español"] # List all languages with abstracts
-date: 2025-08-30 # Publication date
-coming_soon: true # Set to false when ready to publish
-doi: "10.1234/example" # DOI if available
-abstract: "Brief abstract in default language for compatibility."
+# ── Title ───────────────────────────────────────────────────────────────
+# `title` is the canonical (usually English) title used in listings, <title>,
+# and citations. For a multilingual article, also provide `titles` so the title
+# switches with the language toggle. IMPORTANT: every language array below
+# (titles, subtitles, abstracts, pdfs) must use the SAME language label spelling
+# (e.g. "English", "Italiano") — the toggle and PDF switcher match on it.
+title: "Your Article Title"
+titles:
+  - language: "English"
+    content: "Your Article Title"
+  - language: "Italiano"
+    content: "Titolo del tuo articolo"
 
-# Multiple language abstracts
+# Subtitle — also language-aware (optional). Keep `subtitle` as the English
+# fallback; `subtitles` switches with the language toggle.
+subtitle: "An optional subtitle"
+subtitles:
+  - language: "English"
+    content: "An optional subtitle"
+  - language: "Italiano"
+    content: "Un sottotitolo facoltativo"
+
+authors:
+  - First Author
+  - Second Author          # names must match _data/contributors.yml to link
+
+discipline: "Philosophy"   # e.g. Philosophy, Theology, Interfaith Studies
+keywords: ["keyword one", "keyword two"]
+languages: ["English", "Italiano"]   # drives the EN/IT badges in listings
+date: 2026-01-01           # publication date (YYYY-MM-DD)
+coming_soon: false         # true = listed as "Coming soon", no PDF shown
+# doi: "10.5281/zenodo.XXXX"         # uncomment when a DOI is minted
+
+# Short abstract (single language) — used for SEO/meta and list summaries.
+abstract: "One- or two-sentence summary in the primary language."
+
+# Full abstracts, one per language (shown on the article page, toggled).
 abstracts:
   - language: "English"
-    flag: "🇬🇧"
-    content: "Your detailed English abstract here..."
-  - language: "Español"
-    flag: "🇪🇸"
-    content: "Your detailed Spanish abstract here..."
+    content: "Full English abstract…"
+  - language: "Italiano"
+    content: "Abstract completo in italiano…"
 
-# PDF files (only include languages where PDFs will be available)
+# PDFs, one per language. Filename convention:
+# YYYYMMDD_PUPILLA_ShortName_xx.pdf — place files in assets/pdfs/.
 pdfs:
   - language: "English"
-    url: "/assets/pdfs/your-file-en.pdf"
-    flag: "🇬🇧"
-  - language: "Español"
-    url: "/assets/pdfs/your-file-es.pdf"
-    flag: "🇪🇸"
+    url: "/assets/pdfs/YYYYMMDD_PUPILLA_ShortName_en.pdf"
+  - language: "Italiano"
+    url: "/assets/pdfs/YYYYMMDD_PUPILLA_ShortName_it.pdf"
 
-# CITATION INFORMATION
-# Standard Pupilla citation (always include this)
-pupilla_citation: "Author, A., & Author, B. (2025). Your Article Title Here. Pupilla. https://doi.org/10.1234/example"
-pupilla_citation_note: "Optional note about the Pupilla publication"
+# How to cite this Pupilla preprint (always include).
+pupilla_citation: "Author, A., Author, B., Your Article Title, Pupilla (2026), https://pupilla.org/preprints/YYYY-short-name/"
 
-# External citation (only if this is a reprint of existing work like thesis, journal article, etc.)
-external_citation: "Author, A. (2024). Original Title. Journal Name or University."
-external_citation_note: "Optional note explaining the relationship to original publication"
-
-tags:
-  - tag1
-  - tag2
-  - tag3
+# Only if this reprints prior work (thesis, journal article, etc.):
+# external_citation: "Author, A. (2025). Original Title. Journal / University."
+# external_citation_note: "Optional note on the relationship to the original."
 ---
 
-Your article content goes here in Markdown format.
+<!--
+  Most articles are abstract + PDF only, in which case leave the body empty.
+  If you want full text on the page, write it in Markdown below; for
+  multilingual full text, wrap each language so the toggle works:
 
-## Section Heading
-
-Your content...
-
-### Subsection
-
-More content...
+  <div class="lang-content" data-lang="English">
+  ## Section heading
+  Your text…
+  </div>
+  <div class="lang-content" data-lang="Italiano" style="display:none">
+  ## Titolo della sezione
+  Il tuo testo…
+  </div>
+-->

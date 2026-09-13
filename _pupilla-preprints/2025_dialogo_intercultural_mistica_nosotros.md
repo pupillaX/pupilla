@@ -7,7 +7,7 @@ keywords: ["intercultural dialogue", "dialogical dialogue", "mystical experience
 discipline: "Philosophy"
 languages: ["English", "Español"]
 date: 2025-09-21
-#doi: "10.1234/example4"
+#doi: "10.5281/zenodo.XXXXXXX"  # TODO: paste the Zenodo DOI, then remove the leading # to publish it
 abstract: "This article examines the possibility of experiencing intercultural dialogue as \"dialogical dialogue\" (R. Panikkar) that generates a \"mystical experience of we\" (Pope Francis) within the context of contemporary pluralism. The author argues that the current epoch change evidences the emergence of a pluralist stage that challenges Christian faith to give renewed and creative reasons for belief."
 abstracts:
   - language: "English"

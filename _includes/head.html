@@ -1,21 +1,113 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="bqbqngdYwBRfr_8zsaKEI8WioqW0G1kD3HGxJpJ0_DY">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<title>{% if page.title %}{{ page.title | escape }} | {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+
+{%- comment -%} ---- Shared title / description / image used across meta ---- {%- endcomment -%}
+{%- if page.title -%}{%- capture page_title -%}{{ page.title | strip_html | escape }} | {{ site.title | escape }}{%- endcapture -%}{%- else -%}{%- assign page_title = site.title | escape -%}{%- endif -%}
+{%- capture page_desc -%}{% if page.abstract %}{{ page.abstract | strip_html | strip_newlines | truncate: 300 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 300 }}{% else %}{{ site.description }}{% endif %}{%- endcapture -%}
+{%- assign page_desc = page_desc | strip -%}
+{%- assign og_image = page.image | default: '/assets/images/logo.png' | absolute_url -%}
+{%- assign canonical_url = page.url | replace:'index.html','' | absolute_url -%}
+{%- if page.layout == 'preprint' or page.layout == 'essay' -%}{%- assign og_type = 'article' -%}{%- else -%}{%- assign og_type = 'website' -%}{%- endif -%}
+
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ page_desc | truncate: 160 }}">
+<link rel="canonical" href="{{ canonical_url }}">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp, Slack, iMessage…) -->
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:title" content="{{ page.title | default: site.title | strip_html | escape }}">
+<meta property="og:description" content="{{ page_desc | truncate: 200 }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:locale" content="{{ site.lang | default: 'en_US' }}">
+{%- if og_type == 'article' %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- for author in page.authors %}
+<meta property="article:author" content="{{ author | escape }}">
+{%- endfor -%}
+{%- for kw in page.keywords %}
+<meta property="article:tag" content="{{ kw | escape }}">
+{%- endfor -%}
+{%- endif %}
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | default: site.title | strip_html | escape }}">
+<meta name="twitter:description" content="{{ page_desc | truncate: 200 }}">
+<meta name="twitter:image" content="{{ og_image }}">
+{%- if site.twitter %}
+<meta name="twitter:site" content="@{{ site.twitter }}">
+{%- endif %}
+
+{%- comment -%} ---- Google Scholar / Highwire citation tags (articles & essays) ---- {%- endcomment -%}
+{%- if page.layout == 'preprint' or page.layout == 'essay' %}
+<meta name="citation_title" content="{{ page.title | strip_html | escape }}">
+{%- for author in page.authors %}
+<meta name="citation_author" content="{{ author | escape }}">
+{%- endfor -%}
+{%- if page.date %}
+<meta name="citation_publication_date" content="{{ page.date | date: '%Y/%m/%d' }}">
+<meta name="citation_online_date" content="{{ page.date | date: '%Y/%m/%d' }}">
+{%- endif %}
+<meta name="citation_journal_title" content="{{ site.title | escape }}">
+<meta name="citation_publisher" content="{{ site.title | escape }}">
+<meta name="citation_abstract_html_url" content="{{ canonical_url }}">
+{%- for lang in page.languages %}
+<meta name="citation_language" content="{{ lang | escape }}">
+{%- endfor -%}
+{%- if page.pdfs %}{%- for pdf in page.pdfs %}
+<meta name="citation_pdf_url" content="{{ pdf.url | absolute_url }}">
+{%- endfor -%}{%- elsif page.pdf %}
+<meta name="citation_pdf_url" content="{{ page.pdf | absolute_url }}">
+{%- endif -%}
+{%- if page.doi %}
+<meta name="citation_doi" content="{{ page.doi }}">
+{%- endif %}
+{%- endif %}
+
+<!-- JSON-LD structured data -->
+{%- if page.layout == 'preprint' or page.layout == 'essay' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": {% if page.layout == 'preprint' %}"ScholarlyArticle"{% else %}"Article"{% endif %},
+  "headline": {{ page.title | strip_html | jsonify }},
+  "description": {{ page_desc | jsonify }},
+  "url": {{ canonical_url | jsonify }},
+  "mainEntityOfPage": {{ canonical_url | jsonify }},
+  "image": {{ og_image | jsonify }},
+  {% if page.date %}"datePublished": {{ page.date | date_to_xmlschema | jsonify }},{% endif %}
+  {% if page.keywords %}"keywords": {{ page.keywords | join: ", " | jsonify }},{% endif %}
+  "inLanguage": {{ page.languages | default: site.lang | jsonify }},
+  "author": [{% for author in page.authors %}{ "@type": "Person", "name": {{ author | jsonify }} }{% unless forloop.last %}, {% endunless %}{% endfor %}],
+  "publisher": { "@type": "Organization", "name": {{ site.title | jsonify }}, "logo": { "@type": "ImageObject", "url": {{ '/assets/images/logo.png' | absolute_url | jsonify }} } },
+  "isAccessibleForFree": true
+}
+</script>
+{%- else %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ site.title | jsonify }},
+  "url": {{ site.url | append: site.baseurl | jsonify }},
+  "description": {{ site.description | jsonify }}
+}
+</script>
+{%- endif %}
+
 <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
-<link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+<link rel="stylesheet" href="{{ "/assets/css/site.css" | relative_url }}">
 <link rel="icon" type="image/x-icon" href="{{ "/assets/images/favicon_io/favicon.ico" | relative_url }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ "/assets/images/favicon_io/apple-touch-icon.png" | relative_url }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ "/assets/images/favicon_io/favicon-32x32.png" | relative_url }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ "/assets/images/favicon_io/favicon-16x16.png" | relative_url }}">
 <link rel="manifest" href="{{ "/assets/images/favicon_io/site.webmanifest" | relative_url }}">
 
-<!-- Google Analytics - Loaded conditionally with consent -->
-{% if site.google_analytics %}
-<!-- Analytics will be loaded by cookie consent script -->
-{% endif %}
+<!-- Google Analytics loaded conditionally by the cookie-consent script -->

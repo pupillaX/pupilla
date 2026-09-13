@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'en' }}">
 <head>{% include head.html %}</head>
 <body>
-{% include header.html %}
-<div class="container layout">
-  <aside class="sidebar">
-    {% include sidebar.html %}
-  </aside>
-  <main class="content">{{ content }}</main>
-</div>
-{% include footer.html %}
+{% include topbar.html %}
+<main class="page">{{ content }}</main>
+{% include site-footer.html %}
 {% include cookie-consent.html %}
 </body>
 </html>

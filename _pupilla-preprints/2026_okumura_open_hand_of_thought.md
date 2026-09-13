@@ -21,7 +21,7 @@ discipline: "Philosophy"
 languages: ["English", "Italiano"]
 date: 2026-05-31
 coming_soon: false
-#doi: "10.1234/example2"
+#doi: "10.5281/zenodo.XXXXXXX"  # TODO: paste the Zenodo DOI, then remove the leading # to publish it
 abstract: "This article undertakes a comparative phenomenological reading of two radical twentieth-century spiritual experiences and their charisms: Chiara Lubich’s Catholic mysticism centered on Jesus Forsaken and Uchiyama Kōshō’s Sōtō Zen tradition transmitted through his disciple Okumura Shōhaku, focused on zazen and the practice of “opening the hand of thought” (omoi no tebanashi)."
 abstracts:
   - language: "English"

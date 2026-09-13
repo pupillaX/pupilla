@@ -7,7 +7,7 @@ keywords: ["pluralism", "evangelization", "culture of encounter", "intercultural
 discipline: "Philosophy"
 languages: ["English", "Español"]
 date: 2025-09-21
-#doi: "10.1234/example4"
+#doi: "10.5281/zenodo.XXXXXXX"  # TODO: paste the Zenodo DOI, then remove the leading # to publish it
 abstract: "This article examines the relationship between Gospel and cultures within the context of pluralism as a defining characteristic of the current epochal change, explaining the urgency of evangelization as a culture of encounter in service of unity in diversity. Drawing primarily on Pope Francis's magisterium, particularly his Apostolic Exhortation Evangelii Gaudium (2013), and updating Chiara Lubich's intuition about inculturation as an exchange of gifts, the study addresses how the Church must continuously relocate itself within diverse local and global contexts."
 abstracts:
   - language: "English"

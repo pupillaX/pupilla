@@ -4,12 +4,23 @@ title: "Being with Suffering"
 titles:
   - language: "English"
     content: "Being with Suffering"
+  - language: "Italiano"
+    content: "Stare con la sofferenza"
+  - language: "Español"
+    content: "Estar con el sufrimiento"
 subtitle: "Reflections of a psychotherapeutic counsellor looking at Jesus on the cross"
+subtitles:
+  - language: "English"
+    content: "Reflections of a psychotherapeutic counsellor looking at Jesus on the cross"
+  - language: "Italiano"
+    content: "Riflessioni di una consulente psicoterapeutica davanti a Gesù in croce"
+  - language: "Español"
+    content: "Reflexiones de una consejera psicoterapeuta contemplando a Jesús en la cruz"
 authors:
   - Elisabeth Öhlböck
 keywords: ["Suffering", "Jesus Forsaken", "Chiara Lubich", "Psychotherapy", "Gestalt therapy", "Bridal mysticism", "Viktor Frankl", "Steven Hayes", "Acceptance"]
 discipline: "Psychology / Spirituality"
-languages: ["English"]
+languages: ["English", "Italiano", "Español"]
 date: 2026-03-17
 abstract: "In this article, a psychotherapeutic counsellor reflects on how to be present with suffering, drawing on the life of Christ and insights from psychotherapy. Exploring Jesus Crucified and Forsaken as God's identification with human pain, and Chiara Lubich's bridal mysticism of encountering Jesus Forsaken within every suffering, the author connects these spiritual insights with psychological concepts from Gestalt therapy, Acceptance and Commitment Therapy, and Logotherapy."
 abstracts:

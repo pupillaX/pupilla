@@ -1,46 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title | escape }} — {{ site.title | escape }}</title>
-  <meta name="description" content="{% if page.abstract %}{{ page.abstract | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
-  <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon_io/favicon.ico' | relative_url }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/favicon_io/apple-touch-icon.png' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon_io/favicon-32x32.png' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon_io/favicon-16x16.png' | relative_url }}">
-  <link rel="manifest" href="{{ '/assets/images/favicon_io/site.webmanifest' | relative_url }}">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/article.css' | relative_url }}">
-
-  {% if site.google_analytics %}
-  <!-- Analytics will be loaded by cookie consent script -->
-  {% endif %}
-</head>
+<head>{% include head.html %}</head>
 <body>
 
 <!-- Progress Bar -->
 <div class="progress-bar" id="progressBar"></div>
 
-<!-- Top Navigation -->
-<nav class="topbar" id="topbar">
-  <div class="topbar-inner">
-    <a href="{{ '/' | relative_url }}" class="topbar-logo">
-      <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="{{ site.title }} logo" class="topbar-logo-img">
-      {{ site.title }}
-    </a>
-    <div class="topbar-nav">
-      <a href="{{ '/preprints/' | relative_url }}">Articles</a>
-      <a href="{{ '/essays/' | relative_url }}">Essays</a>
-      <a href="{{ '/about/' | relative_url }}">About</a>
-      <a href="{{ '/contributors/' | relative_url }}">Contributors</a>
-      <a href="{{ '/contact/' | relative_url }}">Contact</a>
-    </div>
-  </div>
-</nav>
+{% include topbar.html %}
 
 <!-- Article Header -->
 <header class="article-header">
@@ -167,7 +133,7 @@
   {% if page.external_citation %}
   <div class="citation-box-inner" style="margin-bottom: 1rem;">
     <h4>Cite as (Original Publication)</h4>
-    <p>{{ page.external_citation }}{% if page.external_citation_note %}<br><em>{{ page.external_citation_note }}</em>{% endif %}</p>
+    <p>{% include linkify.html text=page.external_citation %}{% if page.external_citation_note %}<br><em>{{ page.external_citation_note }}</em>{% endif %}</p>
     <button class="citation-copy" onclick="if(navigator.clipboard){navigator.clipboard.writeText(this.closest('.citation-box-inner').querySelector('p').textContent.trim());this.textContent='✓ Copied!';}">
       Copy citation
     </button>
@@ -176,7 +142,7 @@
   {% if page.pupilla_citation %}
   <div class="citation-box-inner">
     <h4>{% if page.external_citation %}Cite as (Pupilla Preprint){% else %}Cite as{% endif %}</h4>
-    <p>{{ page.pupilla_citation }}</p>
+    <p>{% include linkify.html text=page.pupilla_citation %}</p>
     <button class="citation-copy" onclick="if(navigator.clipboard){navigator.clipboard.writeText(this.closest('.citation-box-inner').querySelector('p').textContent.trim());this.textContent='✓ Copied!';}">
       Copy citation
     </button>
@@ -195,10 +161,7 @@
 <!-- Discussion -->
 {% include giscus.html %}
 
-<!-- Footer -->
-<footer class="article-site-footer">
-  <p>&copy; {{ 'now' | date: '%Y' }} {{ site.title }} · <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a> · <a href="{{ '/contact/' | relative_url }}">Contact</a> · <a href="{{ '/preprints/' | relative_url }}">Articles</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
-</footer>
+{% include site-footer.html %}
 
 {% include cookie-consent.html %}
 

@@ -1,0 +1,11 @@
+{%- comment -%}
+Outputs `include.text` with its URL turned into a clickable link, preserving all
+original spacing. Used in the citation boxes so the Pupilla permalink and the
+external DOI link are clickable. Pure Liquid (no plugin); the copy-citation button
+still copies the full text unchanged, because the link's visible text is the URL.
+Assumes at most one http(s) URL (the citations carry one, at the end).
+Usage: {% include linkify.html text=page.pupilla_citation %}
+{%- endcomment -%}
+{%- assign _t = include.text -%}
+{%- if _t contains 'https://' -%}{%- assign _scheme = 'https://' -%}{%- elsif _t contains 'http://' -%}{%- assign _scheme = 'http://' -%}{%- else -%}{%- assign _scheme = '' -%}{%- endif -%}
+{%- if _scheme == '' -%}{{ _t }}{%- else -%}{%- assign _p = _t | split: _scheme -%}{%- assign _tail = _p[1] -%}{%- assign _url = _tail | split: ' ' | first -%}{{ _p[0] }}<a href="{{ _scheme }}{{ _url }}" target="_blank" rel="noopener">{{ _scheme }}{{ _url }}</a>{{ _tail | remove_first: _url }}{%- endif -%}

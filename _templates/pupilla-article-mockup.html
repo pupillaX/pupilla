@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jesus Forsaken and the Open Hand of Thought — Pupilla</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --sans: 'Libre Franklin', -apple-system, Helvetica Neue, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --bg: #fff;
+    --bg-warm: #faf8f5;
+    --accent: #b4532a;
+    --accent-light: rgba(180, 83, 42, 0.08);
+    --accent-lighter: rgba(180, 83, 42, 0.04);
+    --border: #e8e4df;
+    --border-light: #f0ece7;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --reading-width: 680px;
+    --wide-width: 900px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--serif);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ============ TOP BAR ============ */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    transition: box-shadow 0.3s ease;
+  }
+  .topbar.scrolled { box-shadow: var(--shadow-sm); }
+
+  .topbar-inner {
+    max-width: var(--wide-width);
+    margin: 0 auto;
+    padding: 0.6rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .topbar-logo {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .topbar-logo .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .topbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .topbar-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .topbar-nav a:hover { color: var(--accent); }
+
+  /* ============ PROGRESS BAR ============ */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accent);
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* ============ ARTICLE HEADER ============ */
+  .article-header {
+    max-width: var(--wide-width);
+    margin: 0 auto;
+    padding: 4rem 2rem 2.5rem;
+  }
+
+  .article-meta-top {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+
+  .article-title {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    max-width: 800px;
+  }
+
+  .article-subtitle {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 700px;
+  }
+
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .author-avatars {
+    display: flex;
+    gap: -0.3rem;
+  }
+
+  .author-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.72rem;
+    color: #fff;
+  }
+  .author-avatar:first-child { background: var(--accent); margin-right: -8px; z-index: 1; }
+  .author-avatar:last-child { background: #5a7a6b; }
+
+  .author-info {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+  }
+  .author-names {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .author-names a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .author-names a:hover { color: var(--accent); }
+  .author-date {
+    color: var(--text-muted);
+    font-size: 0.76rem;
+  }
+
+  /* ============ ARTICLE ACTIONS ============ */
+  .article-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 0;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .action-btn:hover {
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+  .action-btn svg { width: 18px; height: 18px; }
+  .action-btn.clapped { color: var(--accent); }
+  .action-btn.clapped svg { fill: var(--accent); }
+
+  .action-spacer { flex: 1; }
+
+  .pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid rgba(180, 83, 42, 0.15);
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .pdf-btn:hover {
+    background: rgba(180, 83, 42, 0.14);
+    border-color: rgba(180, 83, 42, 0.3);
+  }
+  .pdf-btn svg { width: 14px; height: 14px; }
+
+  /* ============ EPIGRAPHS ============ */
+  .epigraph-section {
+    max-width: var(--reading-width);
+    margin: 2.5rem auto 3rem;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .epigraph {
+    padding: 1.2rem 0;
+    border-top: 2px solid var(--border);
+  }
+
+  .epigraph p {
+    font-style: italic;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+  }
+
+  .epigraph cite {
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* ============ MAIN ARTICLE BODY ============ */
+  .article-body {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .article-body p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+
+  .article-body p.lede {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* Section headings */
+  .article-body h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin: 3rem 0 1.2rem;
+    line-height: 1.3;
+  }
+
+  .article-body h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--text);
+    margin: 2.2rem 0 1rem;
+    line-height: 1.4;
+  }
+
+  /* Blockquotes */
+  .article-body blockquote {
+    margin: 1.8rem 0 1.8rem 0;
+    padding: 0 0 0 1.5rem;
+    border-left: 3px solid var(--accent);
+    position: relative;
+  }
+
+  .article-body blockquote p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* Emphasis and links */
+  .article-body em { font-style: italic; }
+  .article-body strong { font-weight: 600; }
+
+  .article-body a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(180, 83, 42, 0.25);
+    transition: border-color 0.2s;
+  }
+  .article-body a:hover { border-bottom-color: var(--accent); }
+
+  /* ============ SIDENOTES / FOOTNOTES ============ */
+  .footnote-ref {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--accent);
+    cursor: pointer;
+    vertical-align: super;
+    line-height: 0;
+    padding: 0 0.15rem;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .footnote-ref:hover { color: #8a3a18; }
+
+  /* Tooltip footnote */
+  .fn-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text);
+    color: #eee;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.7rem 0.9rem;
+    border-radius: 6px;
+    width: 320px;
+    max-width: 90vw;
+    z-index: 50;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    pointer-events: none;
+  }
+  .fn-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--text);
+  }
+  .footnote-ref:hover .fn-tooltip {
+    display: block;
+  }
+
+  /* ============ SEPARATOR / SECTION BREAK ============ */
+  .section-break {
+    text-align: center;
+    margin: 2.5rem 0;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+  }
+
+  /* ============ HIGHLIGHT SELECTION ============ */
+  ::selection {
+    background: rgba(180, 83, 42, 0.15);
+    color: var(--text);
+  }
+
+  /* ============ HIGHLIGHT POPUP ============ */
+  .highlight-popup {
+    display: none;
+    position: absolute;
+    background: var(--text);
+    color: #fff;
+    border-radius: 5px;
+    padding: 0.35rem 0.6rem;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    gap: 0.6rem;
+    z-index: 60;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    align-items: center;
+  }
+  .highlight-popup.visible { display: flex; }
+  .highlight-popup button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .highlight-popup button:hover { opacity: 1; }
+  .highlight-popup button svg { width: 16px; height: 16px; }
+  .highlight-popup::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--text);
+  }
+
+  /* ============ TAGS / KEYWORDS ============ */
+  .article-tags {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-warm);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .tag:hover {
+    background: var(--accent-light);
+    border-color: rgba(180, 83, 42, 0.2);
+    color: var(--accent);
+  }
+
+  /* ============ CLAP FOOTER ============ */
+  .clap-section {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .clap-big {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    padding: 1rem;
+    transition: transform 0.15s;
+  }
+  .clap-big:hover { transform: scale(1.05); }
+  .clap-big:active { transform: scale(0.95); }
+
+  .clap-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.25s;
+    background: var(--bg);
+  }
+  .clap-big:hover .clap-circle {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+  .clap-big.active .clap-circle {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+    animation: clapPop 0.3s ease;
+  }
+
+  @keyframes clapPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .clap-count {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* ============ AUTHOR BIO FOOTER ============ */
+  .author-bio-section {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .author-bio {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .author-bio .bio-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #fff;
+  }
+
+  .author-bio .bio-text h4 {
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  .author-bio .bio-text p {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* ============ CITATION BOX ============ */
+  .citation-box {
+    max-width: var(--reading-width);
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+  }
+  .citation-box-inner {
+    background: var(--bg-warm);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+  }
+  .citation-box-inner h4 {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+  .citation-box-inner p {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .citation-copy {
+    margin-top: 0.6rem;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .citation-copy:hover { text-decoration: underline; }
+
+  /* ============ HYPOTHES.IS SIDEBAR INDICATOR ============ */
+  .hypothesis-indicator {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-warm);
+    border: 1px solid var(--border);
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    padding: 0.8rem 0.5rem;
+    writing-mode: vertical-rl;
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    z-index: 80;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .hypothesis-indicator:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+    padding-right: 0.8rem;
+  }
+  .hypothesis-indicator svg {
+    width: 14px;
+    height: 14px;
+    transform: rotate(90deg);
+  }
+
+  /* ============ TABLE OF CONTENTS (floating) ============ */
+  .toc-float {
+    position: fixed;
+    left: max(calc((100vw - var(--wide-width)) / 2 - 220px), 16px);
+    top: 120px;
+    width: 200px;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    z-index: 50;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .toc-float.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .toc-float h5 {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .toc-float a {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.25rem 0 0.25rem 0.7rem;
+    border-left: 2px solid var(--border-light);
+    line-height: 1.4;
+    transition: all 0.2s;
+  }
+  .toc-float a:hover { color: var(--accent); }
+  .toc-float a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ============ FOOTER ============ */
+  .site-footer {
+    background: var(--bg-warm);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+  .site-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .site-footer a:hover { color: var(--accent); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1200px) {
+    .toc-float { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    html { font-size: 16px; }
+    .article-title { font-size: 2rem; }
+    .article-subtitle { font-size: 1.15rem; }
+    .article-header { padding: 2.5rem 1.5rem 1.5rem; }
+    .article-body { padding: 0 1.5rem 3rem; }
+    .epigraph-section {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0 1.5rem;
+    }
+    .hypothesis-indicator { display: none; }
+  }
+
+  /* ============ "CONTINUE READING" FADE ============ */
+  .article-body .truncated-fade {
+    position: relative;
+  }
+  .article-body .truncated-fade::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(transparent, var(--bg));
+    pointer-events: none;
+  }
+
+  .continue-reading {
+    text-align: center;
+    padding: 1rem 0 3rem;
+    max-width: var(--reading-width);
+    margin: 0 auto;
+  }
+  .continue-btn {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .continue-btn:hover {
+    background: #9a4522;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(180, 83, 42, 0.3);
+  }
+  .continue-note {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+  }
+
+  /* ============ LANGUAGE TOGGLE ============ */
+  .lang-toggle {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    margin-left: 0.5rem;
+  }
+  .lang-toggle a {
+    padding: 0.25rem 0.6rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    border: none;
+  }
+  .lang-toggle a.active {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+  .lang-toggle a:not(.active):hover {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  /* Smooth entrance animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .article-header { animation: fadeUp 0.6s ease both; }
+  .epigraph-section { animation: fadeUp 0.6s 0.1s ease both; }
+  .article-body { animation: fadeUp 0.6s 0.2s ease both; }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Top Navigation -->
+<nav class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="topbar-logo">
+      <span class="dot"></span>
+      Pupilla
+    </a>
+    <div class="topbar-nav">
+      <a href="/preprints/">Articles</a>
+      <a href="/about/">About</a>
+      <a href="/contributors/">Contributors</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Floating Table of Contents -->
+<aside class="toc-float" id="toc">
+  <h5>Contents</h5>
+  <a href="#introduction" class="active">Introduction</a>
+  <a href="#methodology">Methodology</a>
+  <a href="#biographical">Biographical Contexts</a>
+  <a href="#nothingness">Nothingness as Gateway</a>
+  <a href="#coincidence">Coincidence of Opposites</a>
+  <a href="#implications">Practical Implications</a>
+  <a href="#conclusion">Conclusion</a>
+</aside>
+
+<!-- Hypothes.is sidebar indicator -->
+<div class="hypothesis-indicator" title="Open annotations">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+  Annotate
+</div>
+
+<!-- Article Header -->
+<header class="article-header">
+  <div class="article-meta-top">Preprint · Comparative Theology</div>
+
+  <h1 class="article-title">Jesus Forsaken and the Open Hand of Thought</h1>
+
+  <p class="article-subtitle">
+    A Comparative Reading of Chiara Lubich's <em>Paradise&rsquo;49</em> and Uchiyama Kōshō's Sōtō Zen Tradition
+  </p>
+
+  <div class="author-row">
+    <div class="author-avatars">
+      <div class="author-avatar">PM</div>
+      <div class="author-avatar">JM</div>
+    </div>
+    <div class="author-info">
+      <div class="author-names">
+        <a href="/contributors/#peter-morovic">Peter Morovic</a> &amp;
+        <a href="/contributors/#jan-morovic">Ján Morovic</a>
+      </div>
+      <div class="author-date">
+        January 2, 2026 · 45 min read
+        <span class="lang-toggle">
+          <a href="#" class="active">EN</a>
+          <a href="#">IT</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-actions">
+    <button class="action-btn" id="clapBtn" onclick="handleClap()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+      <span id="clapCount">24</span>
+    </button>
+    <button class="action-btn" onclick="alert('Annotations coming soon via Hypothes.is')">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+      <span>3</span>
+    </button>
+    <div class="action-spacer"></div>
+    <button class="action-btn" onclick="navigator.clipboard && navigator.clipboard.writeText(window.location.href); this.querySelector('span').textContent='Copied!'">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7.217 10.907a2.25 2.25 0 000 2.186m0-2.186c.18-.33.413-.634.69-.893a2.25 2.25 0 013.182 0l1.414 1.414a2.25 2.25 0 010 3.182l-1.162 1.162m0 0a2.25 2.25 0 01-3.133-.098l-.03-.03m3.163-3.034l1.414-1.414a2.25 2.25 0 000-3.182l-1.162-1.162a2.25 2.25 0 00-3.182 0l-.69.893"/></svg>
+      <span>Share</span>
+    </button>
+    <button class="action-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/></svg>
+    </button>
+    <a class="pdf-btn" href="/assets/pdfs/20260102_okumura_lubich_en.pdf">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+      PDF
+    </a>
+  </div>
+</header>
+
+<!-- Epigraphs -->
+<div class="epigraph-section">
+  <div class="epigraph">
+    <p>"Putting my right and left hands together as one, I just bow. Just bow to become one with Buddha and God. Just bow to become one with everything I encounter."</p>
+    <cite>Kōshō Uchiyama Roshi</cite>
+  </div>
+  <div class="epigraph">
+    <p>"And the vision of God beneath things, which gave unity to creation, was stronger than the things themselves; the unity of the whole was stronger than the distinction among the things."</p>
+    <cite>Chiara Lubich, Paradise&rsquo;49 §18</cite>
+  </div>
+</div>
+
+<!-- Highlight popup (shown on text selection) -->
+<div class="highlight-popup" id="highlightPopup">
+  <button>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59"/></svg>
+    Highlight
+  </button>
+  <button onclick="alert('Annotation via Hypothes.is — integration demo')">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+    Note
+  </button>
+  <button>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7.217 10.907a2.25 2.25 0 000 2.186m0-2.186c.18-.33.413-.634.69-.893a2.25 2.25 0 013.182 0l1.414 1.414a2.25 2.25 0 010 3.182"/></svg>
+    Share
+  </button>
+</div>
+
+<!-- Article Body -->
+<article class="article-body">
+
+  <p class="lede" id="introduction">This article undertakes a comparative phenomenological reading of two radical, twentieth-century spiritual experiences and their charisms: Chiara Lubich's Catholic mysticism centered on Jesus Forsaken and Uchiyama Kōshō's Sōtō Zen tradition transmitted through his disciple Okumura Shōhaku, focused on <em>zazen</em><span class="footnote-ref">1<span class="fn-tooltip">Zazen (坐禅) means "sitting meditation".</span></span> and the practice of "opening the hand of thought" (<em>omoi no tebanashi</em><span class="footnote-ref">2<span class="fn-tooltip">Omoi no tebanashi (想いの手放し): 想 (omoi) represents "thought," 手 (te) means "hand," 放し (hanashi) means "release" or "letting go."</span></span>).</p>
+
+  <p>While emerging from distinct contexts — Catholic Christianity and Japanese Zen Buddhism — both traditions converge around themes of nothingness, the centrality of life in community, radical authenticity, and the non-dual relationship between suffering and liberation. This study argues that these paths reveal a shared experiential core where emptiness (suffering or separation) and fullness (liberation or oneness) constitute not opposites but interpenetrating, <em>perichoretic</em> realities, offering a pathway beyond doctrinal divisions toward a shared and lived spiritual praxis.</p>
+
+  <h2 id="introduction-section">Introduction: Towards an Experiential Hermeneutics</h2>
+
+  <p>The comparative study of mystical traditions faces an inherent methodological tension: how to honor the specificity of each tradition's doctrinal framework while identifying genuine resonances in lived experience. As Rowan Williams observes<span class="footnote-ref">3<span class="fn-tooltip">R. Williams, Address to St Paul's Theological Centre, 2012</span></span>, doctrinal language functions as a boundary marker — "whatever you say, it has got to be at least this" — rather than an exhaustive map of transcendent reality.</p>
+
+  <p>This essay adopts what might be called an <em>experiential hermeneutics</em>, focusing not primarily on doctrinal formulations but on the lived realities these formulations attempt to express: "reality is superior to ideas"<span class="footnote-ref">4<span class="fn-tooltip">Pope Francis to Jesuits in Ireland, June, 2022</span></span>.</p>
+
+  <p>With this in mind, we examine two twentieth-century movements that share a commitment to radical authenticity and experiential practice over institutional form: Chiara Lubich's spirituality of unity, emerging from the crucible of World War II northern Italy, and the lineage of Uchiyama Kōshō Rōshi, also born out of the ashes of 20th century wars, transmitted to the West through his disciple Okumura Shōhaku, representing a purified return to Dōgen Zenji's original Sōtō Zen vision<span class="footnote-ref">5<span class="fn-tooltip">Okumura Shōhaku, <em>Realizing Genjōkoan: The Key to Dōgen's Shōbōgenzō</em>, Wisdom Publications, 2010.</span></span>.</p>
+
+  <h2 id="methodology">Methodology: The Legitimacy of Comparative Mysticism</h2>
+
+  <p>The comparative study of mystical experiences across religious traditions remains contested terrain. The perennialist position, articulated by Aldous Huxley's <em>Perennial Philosophy</em><span class="footnote-ref">6<span class="fn-tooltip">Huxley, A. (1945). <em>The perennial philosophy</em>. London: Chatto &amp; Windus.</span></span> and popularized by scholars like Frithjof Schuon<span class="footnote-ref">7<span class="fn-tooltip">Schuon argued that authentic mystical experience transcends mental constructs, offering immediate contact with the Divine Reality that underlies all religious forms.</span></span>, holds that mystical experiences across traditions point to a single, ineffable <em>Ultimate Reality</em>, with doctrinal differences representing merely superficial cultural variations.</p>
+
+  <p>Others, like Steven Katz, have forcefully challenged this approach, arguing that "there are no pure (i.e., unmediated) experiences"<span class="footnote-ref">8<span class="fn-tooltip">Katz, Steven T. "Language, Epistemology, and Mysticism." In <em>Mysticism and Philosophical Analysis</em>, ed. Steven T. Katz, Oxford University Press (1978).</span></span> — that Buddhist practitioners experience <em>śūnyatā</em> precisely because their tradition teaches them to, while Christian mystics encounter the divine Trinity for the same reason.</p>
+
+  <p>Raimon Panikkar<span class="footnote-ref">9<span class="fn-tooltip">Raimon Panikkar's "diatopical hermeneutics" — a dialogical method acknowledging that different traditions emerge from different <em>topoi</em> yet can engage in mutual interpretation without reduction.</span></span> instead offers a middle path through what he calls <em>diatopical hermeneutics</em> — a dialogical method acknowledging that different traditions emerge from different <em>topoi</em> (places of understanding) yet can engage in mutual interpretation without reduction. Panikkar's concept of <em>homeomorphic equivalents</em> suggests that different traditions may develop analogous — not identical — structures addressing similar existential concerns.</p>
+
+  <div class="section-break">· · ·</div>
+
+  <h2 id="biographical">Biographical and Historical Contexts</h2>
+
+  <h3>Chiara Lubich and the Birth of Focolare</h3>
+
+  <p>Chiara Lubich (1920–2008) grew up in Trent, northern Italy, in a family marked by both religious devotion and anti-fascist commitment. During the Allied bombing of Trent in World War II, Lubich and her first companions (all women) found refuge in shelters, taking with them only the Gospel, which they resolved to live "word by word" at a time when reading and interpreting the Gospels was the exclusive purview of clergy.</p>
+
+  <p>The experience culminated in what became known as the <em>Paradise '49</em>, a mystical experience unprecedented in Catholic tradition for its communitarian dimension. Lubich describes her entry into contemplative experience with striking phenomenological detail<span class="footnote-ref">11<span class="fn-tooltip"><em>Paradise '49</em>, § 28–30</span></span>:</p>
+
+  <blockquote>
+    <p>"I had, therefore, entered into the Bosom of the Father, which appeared to the eyes of my soul as an abyss that was immense, cosmic. And it was all gold and flames above, below, to the right and to the left. Outside of us remained what is created. We had entered into the Uncreated. I could not distinguish what was in Paradise but that did not disturb me. It was infinite, but I felt at home."</p>
+  </blockquote>
+
+  <p>Central to this vision is Jesus Forsaken on the cross, understood not merely as one moment in salvation history but as the ontological key to all reality. Giuseppe Maria Zanghí, one of Lubich's close collaborators and principal theological interpreters, articulates this radical claim: Jesus Forsaken is not "a moment to pass through to enter the light" but "the light itself." This inverts conventional Christian spirituality, which typically views the cross as necessary but preliminary.</p>
+
+  <h3>Uchiyama Kōshō and Okumura Shōhaku: Return to the Source</h3>
+
+  <p>Uchiyama Kōshō Rōshi (1912–1998) came to Zen practice after studying Western philosophy and religion, bringing an unusual comparative perspective to Sōtō Zen. His tenure as abbot of Antaiji temple (1965–1975) established it as a center for rigorous <em>zazen</em> practice stripped of ceremonial additions.</p>
+
+  <p>Uchiyama's central teaching, <em>omoi no tebanashi</em> (literally: letting go of thought), is expressed through a kinesthetic metaphor: the hand naturally grasps, but true freedom lies in opening. As Okumura explains:</p>
+
+  <blockquote>
+    <p>"'Opening the hand of thought' is the very act of zazen. It is the original Buddhist practice of not grasping and clinging, the practice of freedom, as it occurs in this very moment in your mind."</p>
+  </blockquote>
+
+  <div class="section-break">· · ·</div>
+
+  <h2 id="nothingness">Nothingness as Gateway: The Phenomenology of Emptiness</h2>
+
+  <h3>Jesus Forsaken: The Divine Nothingness</h3>
+
+  <p>At the heart of Lubich's mysticism stands a radical choice of Jesus Forsaken. This moment of absolute dereliction, traditionally interpreted as the nadir of Christ's passion, becomes for Lubich the apex and key to all reality.</p>
+
+  <blockquote>
+    <p>"Jesus Forsaken is vanity and the Word; he is that which passes away and that which remains because he is Human-Divine, and as human he is everything that is created, which is vanity of vanities, and as Divine he is the fire that consumes in itself all things, nothingness, divinizing it. Jesus Forsaken breathed into himself all the vanities and the vanities became him and he is God. No longer is there emptiness upon earth, nor in Heaven; there is <em>God</em>."</p>
+  </blockquote>
+
+  <h3>Opening the Hand of Thought: Buddhist Śūnyatā</h3>
+
+  <p>Uchiyama's poem, composed near the end of his life, crystallizes his teaching:</p>
+
+  <blockquote>
+    <p>"Though poor, never poor<br>
+    Though sick, never sick<br>
+    Though aging, never aging<br>
+    Though dying, never dying<br>
+    Reality prior to division —<br>
+    Herein lies unlimited depth."</p>
+  </blockquote>
+
+  <p>This interpenetration (<em>sōsoku</em> in Japanese) is not synthesis but simultaneity — <em>both and</em> instead of <em>either or</em> — the recognition that apparent opposites constitute a single reality viewed from different angles.</p>
+
+  <div class="truncated-fade">
+    <h2 id="coincidence">The Coincidence of Opposites</h2>
+    <p>Despite emerging from radically different theological, cultural and philosophical frameworks, both traditions articulate a similar experiential structure. For Lubich, Jesus Forsaken — the moment of absolute divine abandonment — becomes the point of greatest divine presence. For Uchiyama, the emptiness recognized in <em>zazen</em> is not mere absence but "reality prior to division" — the boundless <em>Dharmakāya</em> that manifests in and as all phenomena. Both traditions point toward a reality that transcends and includes apparent opposites&hellip;</p>
+  </div>
+
+</article>
+
+<!-- Continue Reading -->
+<div class="continue-reading">
+  <button class="continue-btn" onclick="alert('In the real site, this would expand the full article or scroll down. The full article continues with sections on Coincidence of Opposites, Trinitarian Dimensions, Willed Dispossession, Practical Implications, and Methodological Reflections.')">Continue reading</button>
+  <p class="continue-note">Article continues for approximately 25 more minutes</p>
+</div>
+
+<!-- Tags -->
+<div class="article-tags">
+  <a href="#" class="tag">Chiara Lubich</a>
+  <a href="#" class="tag">Jesus Forsaken</a>
+  <a href="#" class="tag">Uchiyama Kōshō</a>
+  <a href="#" class="tag">Sōtō Zen</a>
+  <a href="#" class="tag">Comparative Mysticism</a>
+  <a href="#" class="tag">Raimon Panikkar</a>
+  <a href="#" class="tag">Śūnyatā</a>
+  <a href="#" class="tag">Diatopical Hermeneutics</a>
+  <a href="#" class="tag">Paradise '49</a>
+  <a href="#" class="tag">Buddhist-Christian Dialogue</a>
+</div>
+
+<!-- Clap Section -->
+<div class="clap-section">
+  <div class="clap-big" id="clapBig" onclick="handleBigClap()">
+    <div class="clap-circle" id="clapCircle">👏</div>
+    <span class="clap-count" id="clapCountBig">24 appreciations</span>
+  </div>
+</div>
+
+<!-- Author Bios -->
+<div class="author-bio-section">
+  <div class="author-bio">
+    <div class="bio-avatar" style="background: var(--accent);">PM</div>
+    <div class="bio-text">
+      <h4>Peter Morovic</h4>
+      <p>Researcher in comparative mysticism and interreligious dialogue. His work focuses on bridging Christian and Buddhist contemplative traditions through rigorous academic analysis, with particular attention to Chiara Lubich's charism of unity and Sōtō Zen Buddhism.</p>
+    </div>
+  </div>
+  <div class="author-bio">
+    <div class="bio-avatar" style="background: #5a7a6b;">JM</div>
+    <div class="bio-text">
+      <h4>Ján Morovic</h4>
+      <p>Co-author and collaborator on interdisciplinary research spanning theology, philosophy, and contemplative practice.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Citation Box -->
+<div class="citation-box">
+  <div class="citation-box-inner">
+    <h4>Cite this article</h4>
+    <p>Morovic, P., Morovic, J., "Jesus Forsaken and the Open Hand of Thought: A Comparative Reading of Chiara Lubich's <em>Paradise '49</em> and Uchiyama Kōshō's Sōtō Zen Tradition," <em>Pupilla</em> (2026), https://pupilla.org/preprints/2025-okumura-open-hand-of-thought/</p>
+    <button class="citation-copy" onclick="navigator.clipboard && navigator.clipboard.writeText('Morovic, P., Morovic, J., Jesus Forsaken and the Open Hand of Thought, Pupilla (2026)'); this.textContent='✓ Copied!'">
+      Copy citation
+    </button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <p>© 2026 Pupilla · <a href="/privacy-policy/">Privacy Policy</a> · <a href="/contact/">Contact</a> · <a href="/feed.xml">RSS</a></p>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const winH = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = (window.scrollY / winH) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+
+    // Topbar shadow
+    document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 10);
+
+    // TOC visibility
+    const toc = document.getElementById('toc');
+    toc.classList.toggle('visible', window.scrollY > 400);
+
+    // TOC active state
+    const sections = ['introduction', 'methodology', 'biographical', 'nothingness', 'coincidence', 'implications', 'conclusion'];
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const el = document.getElementById(sections[i]);
+      if (el && window.scrollY >= el.offsetTop - 200) {
+        toc.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+        const activeLink = toc.querySelector(`a[href="#${sections[i]}"]`);
+        if (activeLink) activeLink.classList.add('active');
+        break;
+      }
+    }
+  });
+
+  // Clap functionality
+  let clapCount = 24;
+
+  function handleClap() {
+    clapCount++;
+    updateClaps();
+    document.getElementById('clapBtn').classList.add('clapped');
+  }
+
+  function handleBigClap() {
+    clapCount++;
+    updateClaps();
+    const circle = document.getElementById('clapCircle');
+    const big = document.getElementById('clapBig');
+    big.classList.add('active');
+    setTimeout(() => big.classList.remove('active'), 300);
+  }
+
+  function updateClaps() {
+    document.getElementById('clapCount').textContent = clapCount;
+    document.getElementById('clapCountBig').textContent = clapCount + ' appreciations';
+  }
+
+  // Text selection highlight popup
+  const popup = document.getElementById('highlightPopup');
+  document.addEventListener('mouseup', (e) => {
+    const sel = window.getSelection();
+    if (sel.rangeCount && sel.toString().trim().length > 0 && e.target.closest('.article-body')) {
+      const range = sel.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+      popup.classList.add('visible');
+      popup.style.left = (rect.left + rect.width / 2 - popup.offsetWidth / 2) + 'px';
+      popup.style.top = (rect.top + window.scrollY - 50) + 'px';
+    } else if (!e.target.closest('.highlight-popup')) {
+      popup.classList.remove('visible');
+    }
+  });
+</script>
+
+</body>
+</html>

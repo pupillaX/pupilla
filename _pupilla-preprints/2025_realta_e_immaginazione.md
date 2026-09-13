@@ -8,7 +8,7 @@ keywords: ["Euclid", "space", "mathematics", "geometry"]
 discipline: "Mathematics"
 languages: ["English", "Italiano"]
 date: 2025-09-22
-#doi: "10.1234/example5"
+#doi: "10.5281/zenodo.XXXXXXX"  # TODO: paste the Zenodo DOI, then remove the leading # to publish it
 abstract: "This essay traces the evolution of the concept of space in mathematics from ancient Greece to modern times, examining the philosophical and cultural implications of this transformation. Beginning with Euclidean geometry as an absolute representation of physical reality, the authors explore how Cartesian coordinate systems introduced a subjective perspective that challenged the notion of absolute space."
 abstracts:
   - language: "English"

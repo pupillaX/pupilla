@@ -1,0 +1,44 @@
+<nav class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a href="{{ '/' | relative_url }}" class="topbar-logo">
+      <img src="{{ '/assets/images/logo-mark.png' | relative_url }}" alt="{{ site.title }} logo" class="topbar-logo-img">
+      <span class="topbar-wordmark">{{ site.title }}</span>
+    </a>
+    <button class="topbar-toggle" id="topbarToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="topbar-nav" id="topbarNav">
+      <a href="{{ '/preprints/' | relative_url }}" {% if page.url contains '/preprints' %}class="active"{% endif %}>Articles</a>
+      <a href="{{ '/essays/' | relative_url }}" {% if page.url contains '/essays' %}class="active"{% endif %}>Essays</a>
+      <a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about' %}class="active"{% endif %}>About</a>
+      <a href="{{ '/contributors/' | relative_url }}" {% if page.url contains '/contributors' %}class="active"{% endif %}>Contributors</a>
+      <a href="{{ '/contact/' | relative_url }}" {% if page.url contains '/contact' %}class="active"{% endif %}>Contact</a>
+    </div>
+  </div>
+</nav>
+<script>
+(function() {
+  var t = document.getElementById('topbarToggle'),
+      n = document.getElementById('topbarNav'),
+      bar = document.getElementById('topbar');
+  if (t && n) {
+    t.addEventListener('click', function() {
+      var open = n.classList.toggle('open');
+      t.classList.toggle('open', open);
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    n.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        n.classList.remove('open');
+        t.classList.remove('open');
+        t.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+  if (bar) {
+    window.addEventListener('scroll', function() {
+      bar.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  }
+})();
+</script>

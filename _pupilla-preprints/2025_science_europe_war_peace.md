@@ -8,7 +8,7 @@ discipline: "Science"
 languages: ["English"]
 date: 2025-12-31
 coming_soon: false
-#doi: "10.1234/example2"
+#doi: "10.5281/zenodo.XXXXXXX"  # TODO: paste the Zenodo DOI, then remove the leading # to publish it
 abstract: "This article examines the paradoxical relationship between science and society in contemporary Europe, where public trust in science has reached unprecedented levels even as misinformation and political polarization increasingly challenge evidence-based policymaking. Against the backdrop of the COVID-19 pandemic, climate change, and artificial intelligence, the author explores what he terms the \"technocratic dilemma\" — the tension between expert knowledge and democratic decision-making."
 abstracts:
   - language: "English"
