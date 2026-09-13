@@ -7,6 +7,20 @@
 #
 # Fields: name, slug (anchor + author-link target), aliases, role, photo
 # (filename under assets/images/contributors/), bio, links [{label, url}].
+#
+# NOTE: newest contributors go at the TOP of this list — the Contributors page
+# renders entries in file order.
+
+- name: "Josep Bofill"
+  slug: josep-bofill
+  role: "Author"
+  photo: josep_bofill.png
+  bio: "Josep is a long-time contributor and former director of LAR magazine (formerly Ciutat Nova). A teacher by training and experience, he is also a writer and communicator passionate about dialogue and building bridges from the peripheries."
+  links:
+    - label: "Blog"
+      url: "https://josepbofill.pika.page"
+    - label: "Revista LAR"
+      url: "https://www.ciudadnueva.com/revistalar/quienes-somos"
 
 - name: "Elisabeth Öhlböck"
   slug: elisabeth-ohlbock
