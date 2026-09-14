@@ -6,6 +6,8 @@ titles:
     content: "Quan Patti va conèixer Lleó"
   - language: "Español"
     content: "Cuando Patti conoció a León"
+  - language: "English"
+    content: "When Patti Met Leo"
 
 subtitle: "Una amistat improbable"
 subtitles:
@@ -13,13 +15,15 @@ subtitles:
     content: "Una amistat improbable"
   - language: "Español"
     content: "Una amistad improbable"
+  - language: "English"
+    content: "An Improbable Friendship"
 
 authors:
   - Josep Bofill
 
 discipline: "Culture / Spirituality"
 keywords: ["Patti Smith", "Lleó XIV", "León XIV", "Robert Prevost", "Antonio Spadaro", "amistat", "espiritualitat", "música"]
-languages: ["Català", "Español"]
+languages: ["Català", "Español", "English"]
 date: 2026-09-13
 coming_soon: false
 
@@ -43,7 +47,7 @@ La vella rockera —que amb 79 anys encara clava cops de peu als amplificadors�
 
 —Hi, hi (*hola*)
 
-Era una referència directa a l'inici del seu tema [*Wave*](https://youtu.be/SX8rW34A-Uk), de 1979, un sorprenent tribut al papa Joan Pau I, que havia mort recentment. Aleshores, amb 32 anys, a Patti Smith ja se la veia com una estrella del rock. Reverenciava el «poeta maleït» Arthur Rimbaud i era molt més fàcil associar-la amb rockers rebels com Jim Morrison o Lou Reed que amb poetes místics catòlics. Tanmateix, en aquell tema ja establia un vincle afectiu amb un papa: [*Hi. Hi. I was running after you for a long time. I was watching for you... actually I've watched you for a long time.*](https://genius.com/Patti-smith-group-wave-lyrics) *(Hola. Hola. Fa molt que et perseguia. T'estava observant... de fet, fa molt de temps que t'observo).* El tema acaba així: *I aixeco la mà i et saludo / I el món aixeca la mà també / i dic, «Sant Pare, t'estimo» / i el món diu «Jo també t'estimo»*.
+Era una referència directa a l'inici del seu tema [*Wave*](https://youtu.be/SX8rW34A-Uk), de 1979, un sorprenent tribut al papa Joan Pau I, que havia mort recentment. Aleshores, amb 32 anys, a Patti Smith ja se la veia com una estrella del rock. Reverenciava el «poeta maleït» Arthur Rimbaud i era molt més fàcil associar-la amb rockers rebels com Jim Morrison o Lou Reed que amb poetes místics catòlics. Tanmateix, en aquell tema ja establia un vincle afectiu amb un papa: [*Hi. Hi. I was running after you for a long time. I was watching for you... actually I've watched you for a long time.*](https://genius.com/Patti-smith-group-wave-lyrics) *(Hola. Hola. Fa molt que et perseguia. T'estava observant... de fet, fa molt de temps que t'observo).*
 
 *Wave* és l'últim tema d'un àlbum amb el mateix títol que comença amb una declaració d'amor al seu futur marit ([*Frederick*](https://youtu.be/a-befOtn9GQ)) i acaba, com hem vist, amb un missatge d'afecte universal. Sembla que Lleó XIV coneixia la peça i li va seguir el joc:
 
@@ -73,7 +77,7 @@ La vieja roquera —que a sus 79 años todavía pega patadas a los amplificadore
 
 —Hi, hi (*hola*)
 
-Era una referencia directa al inicio de su tema [*Wave*](https://youtu.be/SX8rW34A-Uk), de 1979, un sorprendente tributo al papa Juan Pablo I, que había fallecido recientemente. Entonces, con 32 años, a Patti Smith ya se la veía como una estrella del rock. Reverenciaba al «poeta maldito» Arthur Rimbaud y era mucho más fácil asociarla con roqueros rebeldes como Jim Morrison o Lou Reed que con poetas místicos católicos. Sin embargo, en aquel tema ya establecía un vínculo afectivo con un papa: [*Hi. Hi. I was running after you for a long time. I was watching for you... actually I've watched you for a long time.*](https://genius.com/Patti-smith-group-wave-lyrics) *(Hola, hola. Hace mucho que te perseguía. Te estaba observando... de hecho, hace mucho que te observo).* El tema acaba así: *Y levanto la mano y te saludo / Y el mundo levanta la mano también / y digo, «Santo Padre, te quiero» / y el mundo dice «Yo también te quiero»*.
+Era una referencia directa al inicio de su tema [*Wave*](https://youtu.be/SX8rW34A-Uk), de 1979, un sorprendente tributo al papa Juan Pablo I, que había fallecido recientemente. Entonces, con 32 años, a Patti Smith ya se la veía como una estrella del rock. Reverenciaba al «poeta maldito» Arthur Rimbaud y era mucho más fácil asociarla con roqueros rebeldes como Jim Morrison o Lou Reed que con poetas místicos católicos. Sin embargo, en aquel tema ya establecía un vínculo afectivo con un papa: [*Hi. Hi. I was running after you for a long time. I was watching for you... actually I've watched you for a long time.*](https://genius.com/Patti-smith-group-wave-lyrics) *(Hola, hola. Hace mucho que te perseguía. Te estaba observando... de hecho, hace mucho que te observo).*
 
 *Wave* es el último tema de un álbum con el mismo título. Empieza con una declaración de amor a su futuro marido ([*Frederick*](https://youtu.be/a-befOtn9GQ)) y termina, como hemos visto, con un mensaje de afecto universal. Parece que León XIV conocía la pieza y le siguió el juego:
 
@@ -90,5 +94,35 @@ Huyendo de cualquier etiqueta, Patti Smith tampoco acepta que se la reduzca a ni
 El 31 de julio, al otro lado de aquella fría mesa vaticana, el interlocutor de la roquera, el papa de Roma, también rezumaba humanidad. Ya le habíamos descubierto esta faceta cuando nos visitó a primeros de junio. Su expresión entre tímida y familiar nos «desarmó» a todos: obispos, niños, prisioneros, diputados, jóvenes... Sus gestos eran tan intencionados como espontáneos. Y esto toca los corazones.
 
 La hipótesis es clara: estas dos «p» -Patti y papa- son dos espíritus libres que vuelan muy por encima de las etiquetas que quieren encasillarlos. Está claro, viven esta libertad en contextos casi opuestos, uno al frente de una de las instituciones más antiguas de la humanidad y, la otra, expresamente fuera de cualquier organización. Pero están comprometidos con nuestro mundo, como demuestra su charla y todo aquello que dicen y hacen. Quizás ambos se identifican con la conocida máxima de San Agustín: «ama y haz lo que quieras».
+
+</div>
+
+<div class="lang-content" data-lang="English" markdown="1" style="display:none">
+
+What could the godmother of Punk and the pope have in common? Patti Smith and Leo XIV were both born in Chicago, eight years apart, but neither of them stayed there. They don't follow the same baseball team either, and it's easy to imagine their paths rarely crossed. It also seems obvious that they share no cultural or social points of reference. But... what if the story were a different one?
+
+To begin with, Antonio Spadaro, a Jesuit intellectual very close to Pope Francis, [described the meeting](https://bsky.app/profile/antoniospadaro.bsky.social/post/3mrxuxhcnuc2j) of 31 July between Patricia Lee Smith and Robert Francis Prevost as "a conversation between two old friends exchanging memories woven from words, music, dreams, visions and hopes." Friends, even though they had never met. Indeed, the singer, poet and writer has said that the morning after the meeting she already missed her new friend — as if they still had things left to say to each other. Predictably, on social media some were scandalised by a meeting they considered "heretical."
+
+The old rocker — who at 79 still kicks over her amplifiers — [trembled like a leaf](https://youtu.be/atLJJ4KFpVA) when she greeted the pope. They sat face to face at the wooden table of a solemn Vatican hall, and Patti Smith broke the ice with her original, carefree style, yet at the same time with a voice that was trembling, mischievous and shy:
+
+—Hi, hi
+
+It was a direct reference to the opening of her song [*Wave*](https://youtu.be/SX8rW34A-Uk), from 1979, a surprising tribute to Pope John Paul I, who had recently died. Back then, at 32, Patti Smith was already seen as a rock star. She revered the "poète maudit" Arthur Rimbaud, and it was far easier to associate her with rebel rockers like Jim Morrison or Lou Reed than with Catholic mystic poets. And yet, in that song she was already forging an affectionate bond with a pope: [*Hi. Hi. I was running after you for a long time. I was watching for you... actually I've watched you for a long time.*](https://genius.com/Patti-smith-group-wave-lyrics)
+
+*Wave* is the last track of an album of the same name that opens with a declaration of love to her future husband ([*Frederick*](https://youtu.be/a-befOtn9GQ)) and ends, as we have seen, with a message of universal affection. Leo XIV apparently knew the piece and played along:
+
+—*Hi*.
+
+The conversation lasted 40 minutes and they discussed matters that occupy and concern them both: peace, human rights, social justice... Father Spadaro interprets the encounter this way: "When that door opened, something happened... a spark was lit, a moment that brought instants of lightness, but also a deep sense of emotion and of a shared mission in this challenging world." Forty-six years after *Wave*, that imagined friendship with a pope had, at last, become real.
+
+This was not the first time nerves gave the American artist a hard time at a sacred moment. Ten years ago, [accepting the Nobel on behalf of Bob Dylan](https://youtu.be/941PHEJHCwU) in Stockholm, she forgot the words halfway through her rendition of *A hard rain's gonna fall*, like a child standing on a chair, going blank while reciting the Christmas poem. Her nerves betrayed her, but she won over the solemn auditorium. A rebel even when she doesn't mean to be.
+
+If we look closely, though, this human dimension of fragility, warmth, tenderness and familiarity has always been part of her essence. In fact, she never considered herself a rock star, and when she saw she was in danger of becoming one, after the album we've mentioned, she married another rebel rock star, Fred *Sonic* Smith; they left the stage and spent almost a decade living a quiet domestic life with their two children. Real bonds, not appearances, have always been her foundation.
+
+Fleeing from every label, Patti Smith likewise refuses to be reduced to any of her other facets: neither poet nor writer, though she is both. In fact, today many followers no longer ask her to sign LP covers, but the flaps of her books. Whether in the electricity her rock band spits out, in the poems and lyrics of her songs, or in her chronicles, there always emerges a humanity "disarmed and disarming," to borrow an expression from her new friend, Robert Prevost. And this reaches everyone: in the Vatican as much as in the neighbourhood of Queens.
+
+On 31 July, on the other side of that cold Vatican table, the rocker's interlocutor, the Bishop of Rome, also exuded humanity. We had already discovered this side of him when he visited us in early June. His expression, at once shy and familiar, "disarmed" us all: bishops, children, prisoners, members of parliament, young people... His gestures were as deliberate as they were spontaneous. And that touches hearts.
+
+The theory is simple: these two "P"s — Patti and pope — are two free spirits who soar far above the labels that seek to pigeonhole them. True, they live this freedom in almost opposite contexts, one at the head of one of humanity's oldest institutions and the other, deliberately, outside any organisation. But they are committed to our world, as their conversation and everything they say and do make clear. Perhaps they both identify with Saint Augustine's famous maxim: "love, and do what you will."
 
 </div>
