@@ -17,6 +17,7 @@ abstracts:
 pdfs:
   - language: "English"
     url: "/assets/pdfs/20251231_PUPILLA_ScienceinEuropeWarandPeace_en.pdf"
+    pages: 6
     flag: "🇬🇧"
 pupilla_citation: "Puglisi, A., Science in Europe Between War and Peace, Pupilla (2025), https://pupilla.org/preprints/2025-science-europe-war-peace/"
 pupilla_citation_note: "To be published in Italian in Rivista Nuova Umanità."

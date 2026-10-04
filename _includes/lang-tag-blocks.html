@@ -1,0 +1,17 @@
+{%- comment -%}
+Adds a lang="xx" attribute to every language block in an essay/article body, so screen
+readers pronounce each version correctly and search engines know its language — without
+authors having to type it in each Markdown file. Blocks are the
+<div class="lang-content" data-lang="Català"> wrappers used by the language toggle.
+Usage: {% include lang-tag-blocks.html html=content %}
+{%- endcomment -%}
+{%- assign _h = include.html -%}
+{%- assign _h = _h | replace: 'data-lang="English"', 'data-lang="English" lang="en"' -%}
+{%- assign _h = _h | replace: 'data-lang="Italiano"', 'data-lang="Italiano" lang="it"' | replace: 'data-lang="Italian"', 'data-lang="Italian" lang="it"' -%}
+{%- assign _h = _h | replace: 'data-lang="Español"', 'data-lang="Español" lang="es"' | replace: 'data-lang="Spanish"', 'data-lang="Spanish" lang="es"' -%}
+{%- assign _h = _h | replace: 'data-lang="Català"', 'data-lang="Català" lang="ca"' | replace: 'data-lang="Catalan"', 'data-lang="Catalan" lang="ca"' -%}
+{%- assign _h = _h | replace: 'data-lang="Deutsch"', 'data-lang="Deutsch" lang="de"' | replace: 'data-lang="German"', 'data-lang="German" lang="de"' -%}
+{%- assign _h = _h | replace: 'data-lang="Français"', 'data-lang="Français" lang="fr"' | replace: 'data-lang="French"', 'data-lang="French" lang="fr"' -%}
+{%- assign _h = _h | replace: 'data-lang="Português"', 'data-lang="Português" lang="pt"' | replace: 'data-lang="Portuguese"', 'data-lang="Portuguese" lang="pt"' -%}
+{%- assign _h = _h | replace: 'data-lang="日本語"', 'data-lang="日本語" lang="ja"' | replace: 'data-lang="Japanese"', 'data-lang="Japanese" lang="ja"' -%}
+{{ _h }}

@@ -39,6 +39,11 @@ tags:
 
 <div class="lang-content" data-lang="Català" markdown="1">
 
+<figure class="article-figure">
+<img src="/assets/images/essays/2026-quan-patti-va-coneixer-lleo/patti-smith-lleo-xiv.jpg" alt="El papa Lleó XIV, de perfil, somriu a Patti Smith, que l'espera a la porta amb les mans juntes davant la cara.">
+<figcaption>Patti Smith i el papa Lleó XIV, durant la seva audiència al Vaticà (31 de juliol de 2026). <cite>Foto: <a href="https://www.vaticannews.va/en/pope/news/2026-07/pope-leo-xiv-patti-smith-meeting-singer-poet-vatican.html" target="_blank" rel="noopener">Vatican Media</a></cite></figcaption>
+</figure>
+
 Què poden tenir en comú la padrina del Punk amb el papa? Patti Smith i Lleó XIV van néixer a Chicago amb vuit anys de diferència, però cap dels dos s'hi va quedar. Tampoc segueixen el mateix equip de beisbol i és fàcil imaginar que no s'han trobat gaire. També sembla obvi que no tenen referents culturals o socials en comú. Però... i si la pel·lícula fos una altra?
 
 D'entrada, Antonio Spadaro, un intel·lectual jesuïta molt proper al papa Francesc, [va descriure la reunió](https://bsky.app/profile/antoniospadaro.bsky.social/post/3mrxuxhcnuc2j) del 31 de juliol entre Patricia Lee Smith i Robert Francis Prevost com «una conversa entre dos vells amics que intercanvien records teixits amb paraules, música, somnis, visions i esperances». Amics, tot i no haver-se vist mai. Efectivament, la cantant, poeta i escriptora ha explicat que l'endemà de la trobada ja trobava a faltar el seu nou amic. Com si encara els haguessin quedat coses per dir-se. Lògicament, a les xarxes socials alguns es van escandalitzar davant d'una reunió que consideraven "herètica".
@@ -69,6 +74,11 @@ La hipòtesi és clara: aquestes dues «P» -Patti i papa- són dos esperits lli
 
 <div class="lang-content" data-lang="Español" markdown="1" style="display:none">
 
+<figure class="article-figure">
+<img src="/assets/images/essays/2026-quan-patti-va-coneixer-lleo/patti-smith-lleo-xiv.jpg" alt="El papa León XIV, de perfil, sonríe a Patti Smith, que lo espera en la puerta con las manos juntas ante el rostro.">
+<figcaption>Patti Smith y el papa León XIV, durante su audiencia en el Vaticano (31 de julio de 2026). <cite>Foto: <a href="https://www.vaticannews.va/en/pope/news/2026-07/pope-leo-xiv-patti-smith-meeting-singer-poet-vatican.html" target="_blank" rel="noopener">Vatican Media</a></cite></figcaption>
+</figure>
+
 ¿Qué puede tener en común la madrina del punk con el papa? Patti Smith y León XIV nacieron en Chicago con ocho años de diferencia, pero ninguno de los dos permaneció por allí. Tampoco siguen el mismo equipo de béisbol y seguramente no han coincidido en muchas ocasiones. Parece obvio que no tienen referentes culturales o sociales en común. Pero... ¿Y si la película fuera distinta?
 
 De entrada, Antonio Spadaro, un intelectual jesuita muy cercano al papa Francisco, [describió la reunión](https://bsky.app/profile/antoniospadaro.bsky.social/post/3mrxuxhcnuc2j) del 31 de julio entre Patricia Lee Smith y Robert Francis Prevost como «una conversación entre dos viejos amigos que intercambian recuerdos tejidos con palabras, música, sueños, visiones y esperanzas». Amigos, a pesar de no haberse visto nunca antes. La cantante, poeta y escritora ha explicado que a la mañana siguiente ya echaba de menos a su nuevo amigo. Como si aún les hubiesen quedado cosas por decirse. Lógicamente, en las redes sociales algunos se escandalizaron ante una reunión que consideraban "herética".
@@ -98,6 +108,11 @@ La hipótesis es clara: estas dos «p» -Patti y papa- son dos espíritus libres
 </div>
 
 <div class="lang-content" data-lang="English" markdown="1" style="display:none">
+
+<figure class="article-figure">
+<img src="/assets/images/essays/2026-quan-patti-va-coneixer-lleo/patti-smith-lleo-xiv.jpg" alt="Pope Leo XIV, in profile, smiles at Patti Smith, who waits at the doorway with her hands clasped before her face.">
+<figcaption>Patti Smith and Pope Leo XIV during their audience at the Vatican (31 July 2026). <cite>Photo: <a href="https://www.vaticannews.va/en/pope/news/2026-07/pope-leo-xiv-patti-smith-meeting-singer-poet-vatican.html" target="_blank" rel="noopener">Vatican Media</a></cite></figcaption>
+</figure>
 
 What could the godmother of Punk and the pope have in common? Patti Smith and Leo XIV were both born in Chicago, eight years apart, but neither of them stayed there. They don't follow the same baseball team either, and it's easy to imagine their paths rarely crossed. It also seems obvious that they share no cultural or social points of reference. But... what if the story were a different one?
 

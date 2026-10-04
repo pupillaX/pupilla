@@ -56,7 +56,7 @@ feed:
       path: "/feed/pupilla-essays.xml"
 
 # SEO settings
-lang: en_US
+lang: en
 logo: /assets/images/logo.png
 social:
   name: Pupilla
@@ -99,24 +99,12 @@ exclude:
   - _drafts
   - _templates            # mockups / templates, not for publishing
   - assets/pdfs/private    # private preview PDFs — never publish
+  - assets/pdfs/tmp        # working/staging files — never publish
   - "assets/pdfs/*.docx"   # source manuscripts — never publish
   - "*.docx"
   - jekyll.log
   - check-ssl.sh
   - restart-server.sh
   - start-server.sh
-  - MULTI_LANGUAGE_PDF_GUIDE.md
-
-# Include files
-include:
-  - _pages
-
-# Sass settings
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# Archive settings
-archive:
-  type: monthly
-  layout: archive
+  - zenodo                 # local deposit kit, not site content
+  - scripts                # build/maintenance helpers

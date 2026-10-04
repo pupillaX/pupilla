@@ -18,7 +18,8 @@ permalink: /preprints/
       <option value="all">All</option>
       {% assign all_languages = '' | split: '' %}
       {% for preprint in all_preprints %}
-        {% if preprint.languages %}{% for lang in preprint.languages %}{% assign all_languages = all_languages | push: lang %}{% endfor %}{% endif %}
+        {% include text-langs.html item=preprint %}
+        {% if text_langs %}{% for lang in text_langs %}{% assign all_languages = all_languages | push: lang %}{% endfor %}{% endif %}
       {% endfor %}
       {% assign languages = all_languages | uniq | sort %}
       {% for language in languages %}<option value="{{ language | slugify }}">{{ language }}</option>{% endfor %}
@@ -50,7 +51,7 @@ permalink: /preprints/
   {% for preprint in all_preprints %}
     {% comment %} Build per-value slug lists so multi-word names survive {% endcomment %}
     {% capture author_slugs %}{% for a in preprint.authors %}{{ a | slugify }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
-    {% capture lang_slugs %}{% for l in preprint.languages %}{{ l | slugify }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
+    {% include text-langs.html item=preprint %}{% capture lang_slugs %}{% for l in text_langs %}{{ l | slugify }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
     {% capture search_content %}{{ preprint.title }} {{ preprint.authors | join: ' ' }} {{ preprint.abstract }} {{ preprint.keywords | join: ' ' }}{% if preprint.abstracts %}{% for a in preprint.abstracts %} {{ a.content }}{% endfor %}{% endif %}{% endcapture %}
     <article class="archive-item"
       data-date="{{ preprint.date | date: '%Y-%m-%d' }}"
@@ -88,4 +89,4 @@ permalink: /preprints/
 
 <div id="no-results" class="no-results" style="display: none;">No articles match your search and filters.</div>
 
-<script src="{{ '/assets/js/browse-filter.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/browse-filter.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

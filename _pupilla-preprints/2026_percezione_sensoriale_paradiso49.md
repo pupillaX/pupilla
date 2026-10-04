@@ -26,6 +26,7 @@ abstracts:
 pdfs:
   - language: "Italiano"
     url: "/assets/pdfs/20260913_PUPILLA_PercezioneSensorialeVisivaParadiso_it.pdf"
+    pages: 22
     flag: "🇮🇹"
 
 # The scientific core of this article was published in English in a peer-reviewed journal.

@@ -57,12 +57,34 @@ Multilingual articles use parallel arrays (`titles`, `subtitles`, `abstracts`,
 across all of them** (e.g. `"Italiano"` everywhere) — the language toggle and
 PDF switcher match on it. See the template comments.
 
+Language details handled for you:
+
+- The first language in `languages:` is the default (its code becomes `<html lang>`);
+  every language block in an essay body is tagged with the right `lang=` automatically.
+- **Every language gets its own page** (`/essays/<slug>/es/`, `/preprints/<slug>/it/`, …) with
+  its own title, `<html lang>`, canonical URL and `hreflang` links, so each version can be
+  shared and indexed separately. The default language keeps the plain URL. Old `?lang=es`
+  links redirect to the right page.
+- These pages are thin stubs in `language-versions/`, **generated** — after adding or changing
+  `languages:` run `python3 scripts/make-language-pages.py` and commit the result.
+  (`--check` verifies they're up to date and runs in CI; GitHub Pages can't run plugins,
+  which is why they're committed rather than generated at build time.)
+- `languages:` = languages the page *text* (title, abstract, essay body) is available in.
+  The EN/IT **badges** in listings show the language of the *full text*: PDF languages for
+  articles, `languages:` for essays.
+- Add `pages: N` to each `pdfs:` entry; it's shown in the article header (“14 pages”).
+
 ## Project layout
 
 - `_layouts/` — `default` (pages), `preprint` (articles), `essay`.
 - `_includes/` — shared chrome (`head`, `topbar`, `site-footer`), plus
   `giscus`, `author-link`, `lang-badge`.
 - `_data/contributors.yml` — single source for contributors + author links.
-- `assets/css/` — `site.css` (design system) and `giscus.css` (comment widget).
+- `assets/css/` — `site.css` (design system), `fonts.css` (self-hosted fonts, files in
+  `assets/fonts/`; no Google Fonts requests) and `giscus.css` (comment widget).
+- `assets/js/browse-filter.js` — search/filter for the browse pages: accent-insensitive,
+  multi-word, and kept in the URL (`?q=…&language=…&author=…&sort=…`) so lists can be shared.
+- Working files that must never be published (source manuscripts, drafts) go in
+  `assets/pdfs/private/` or `assets/pdfs/tmp/` — both are excluded from the build and git.
 - Comments/reactions are [giscus](https://giscus.app), backed by GitHub
   Discussions; configured under `giscus:` in `_config.yml`.

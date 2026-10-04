@@ -22,7 +22,8 @@ authors:
 
 discipline: "Spirituality"
 keywords: ["keyword one", "keyword two"]
-languages: ["English"]            # drives the EN/IT badges in listings
+languages: ["English"]            # first = default; each extra language gets its own page and
+                                  # drives the listing badges — run scripts/make-language-pages.py
 date: 2026-01-01
 coming_soon: false
 

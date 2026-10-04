@@ -9,7 +9,7 @@
   --mono: 'JetBrains Mono', monospace;
   --text: #1a1a1a;
   --text-secondary: #555;
-  --text-muted: #888;
+  --text-muted: #6b6b6b;   /* 5.3:1 on white — meets WCAG AA (was #888, 3.5:1) */
   --bg: #fff;
   --bg-warm: #faf8f5;
   --accent: #2a60a8;
@@ -447,6 +447,47 @@ body {
   font-style: normal;
 }
 
+/* Figure with caption — every image the SAME HEIGHT so none dominates,
+   whether portrait or landscape. Caption matches the .image-caption style. */
+.article-body .article-figure {
+  margin: 2.4rem auto;
+  text-align: center;
+}
+.article-body .article-figure img {
+  display: block;
+  height: 300px;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: var(--shadow-md);
+}
+.article-body .article-figure figcaption {
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-top: 0.7rem;
+}
+.article-body .article-figure figcaption cite {
+  font-style: italic;
+}
+
+/* Paired images: two side by side (same height), sharing one caption */
+.article-body .image-pair .pair-imgs {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+  align-items: center;
+}
+.article-body .image-pair .pair-imgs img {
+  flex: 0 0 auto;
+}
+@media (max-width: 560px) {
+  .article-body .article-figure img { height: auto; max-height: 260px; }
+  .article-body .image-pair .pair-imgs { flex-direction: column; }
+}
+
 /* ============ SEPARATOR / SECTION BREAK ============ */
 .section-break {
   text-align: center;
@@ -483,6 +524,7 @@ body {
   text-decoration: none;
   transition: all 0.2s;
 }
+a.tag:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .tag:hover {
   background: var(--accent-light);
   border-color: rgba(42, 96, 168, 0.2);
@@ -1052,7 +1094,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #9a6a00;
+  color: #7d5500;
   background: rgba(245,158,11,0.13);
   border-radius: 10px;
   padding: 0.14rem 0.5rem;
@@ -1236,3 +1278,81 @@ body {
   .page { padding: 1.8rem 1.5rem 3rem; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
 }
+
+/* ============ COOKIE CONSENT ============
+   Compact, on-brand bottom bar. Reject and Accept share size, weight and shape so neither is
+   favoured; only the colour differs. */
+.cookie-consent-banner {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08);
+  padding: 0.85rem 1.2rem calc(0.85rem + env(safe-area-inset-bottom));
+  font-family: var(--sans);
+}
+.cookie-consent-content {
+  max-width: var(--wide-width); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.4rem;
+}
+.cookie-consent-text { min-width: 0; }
+.cookie-consent-title { margin: 0 0 0.15rem; font-size: 0.8rem; font-weight: 700; color: var(--text); }
+.cookie-consent-text p { margin: 0; font-size: 0.78rem; line-height: 1.5; color: var(--text-secondary); }
+.cookie-consent-text a { color: var(--accent); text-decoration: underline; white-space: nowrap; }
+.cookie-consent-buttons { display: flex; gap: 0.6rem; flex-shrink: 0; }
+.cookie-btn {
+  font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
+  min-width: 5.2rem; padding: 0.55rem 1.1rem; border: 0; border-radius: 8px;
+  color: #fff; cursor: pointer;
+}
+#cookie-reject { background: #444; }
+#cookie-reject:hover { background: #2b2b2b; }
+#cookie-accept { background: var(--accent); }
+#cookie-accept:hover { background: #1f4d8a; }
+.cookie-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 600px) {
+  .cookie-consent-banner { padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom)); }
+  .cookie-consent-content { flex-direction: column; align-items: stretch; gap: 0.6rem; }
+  .cookie-consent-buttons { gap: 0.5rem; }
+  .cookie-btn { flex: 1; padding: 0.6rem 0.8rem; }
+}
+
+/* "On Pupilla" — each contributor's pieces, generated from the articles' and essays' authors */
+.contributor-works { margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--border-light); }
+.contributor-info .works-label {
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 600; font-style: normal;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted);
+  margin: 0 0 0.45rem;
+}
+.works-count { font-weight: 500; margin-left: 0.25rem; }
+.contributor-works ul { list-style: none; margin: 0; padding: 0; }
+.contributor-works li {
+  display: flex; align-items: baseline; gap: 0.6rem;
+  margin: 0 0 0.4rem; font-family: var(--sans); font-size: 0.84rem; line-height: 1.45;
+}
+.contributor-works li a { color: var(--text); text-decoration: none; border-bottom: none; }
+.contributor-works li a:hover { color: var(--accent); text-decoration: underline; }
+.contributor-works .type-tag { flex: 0 0 4.1rem; text-align: center; }
+.contributor-works .work-text { min-width: 0; }
+.contributor-works .work-year { font-size: 0.72rem; color: var(--text-muted); margin-left: 0.3rem; white-space: nowrap; }
+
+/* Related pieces at the foot of an article/essay (see _includes/related.html) */
+.related { max-width: var(--reading-width); margin: 2.4rem auto 0; padding: 0 2rem; }
+.related .section-header { margin-top: 0; }
+.related .archive-title { font-size: 1.05rem; margin-bottom: 0.1rem; }
+.related .archive-item { padding: 0.9rem 0; }
+@media (max-width: 700px) { .related { padding: 0 1.5rem; } }
+
+/* 404 page */
+.notfound-lead { font-size: 1.15rem; color: var(--text-secondary); max-width: 38rem; }
+.notfound-search { margin: 1.6rem 0 0.6rem; max-width: 38rem; }
+.notfound-search label { display: block; font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+.notfound-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.notfound-row input { flex: 1 1 14rem; font-family: var(--sans); font-size: 0.9rem; padding: 0.55rem 0.8rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
+.notfound-row input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.notfound-row button { font-family: var(--sans); font-size: 0.82rem; font-weight: 600; padding: 0.55rem 1rem; border: 0; border-radius: 8px; background: var(--accent); color: #fff; cursor: pointer; }
+.notfound-row button:hover { background: #1f4d8a; }
+.notfound-links { list-style: none; padding: 0; margin: 0; }
+.notfound-links li { margin: 0 0 0.35rem; font-family: var(--sans); font-size: 0.95rem; }
+
+/* Language code on the PDF button ("PDF · ES"), replacing the emoji flag */
+.pdf-btn .pdf-lang { font-size: 0.7em; font-weight: 600; letter-spacing: 0.05em; margin-left: 0.3rem; padding: 0.04rem 0.32rem; border: 1px solid currentColor; border-radius: 4px; opacity: 0.85; vertical-align: 0.05em; }

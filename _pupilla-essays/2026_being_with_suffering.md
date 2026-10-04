@@ -54,8 +54,8 @@ When I look at Jesus on the cross, I'm aware that I'm in the presence of a myste
 
 In my room, I have a small print of a painting by Jean-Georges Cornélius (23 January 1880, Strasbourg - 3 June 1963, Ploubazlanec), a French painter, that speaks to me. For me, it is the expression of a mystery that I cannot understand, only grasp in glimpses:
 
-![Painting by Jean-Georges Cornélius — The mystery of the cross](/assets/images/essays/2026-being-with-suffering/cornelius_painting.png){: .article-image }
-*Painting by Jean-Georges Cornélius*
+![Painting by Jean-Georges Cornélius — The mystery of the cross](/assets/images/essays/2026-being-with-suffering/cornelius_painting.jpg){: .article-image }
+*Jean-Georges Cornélius (1880–1963), “Jéhovah devient notre Père”*
 {: .image-caption }
 
 The painting speaks about the mystery of the cross, the mystery that God becomes human suffering, rather than doing something to it. It tells us that in Jesus, God reveals to us that even though his love doesn't protect us from anything, he mysteriously sustains us in all things.
@@ -121,8 +121,8 @@ Quando guardo Gesù in croce, sono consapevole di trovarmi di fronte a un mister
 
 Nel mio studio ho una piccola riproduzione di un dipinto di Jean-Georges Cornélius (23 gennaio 1880, Strasburgo - 3 giugno 1963, Ploubazlanec), pittore francese, che mi parla nel profondo. Per me, è l'espressione di un mistero che non riesco a comprendere, ma solo a cogliere a tratti:
 
-![Dipinto di Jean-Georges Cornélius — Il mistero della croce](/assets/images/essays/2026-being-with-suffering/cornelius_painting.png){: .article-image }
-*Dipinto di Jean-Georges Cornélius*
+![Dipinto di Jean-Georges Cornélius — Il mistero della croce](/assets/images/essays/2026-being-with-suffering/cornelius_painting.jpg){: .article-image }
+*Jean-Georges Cornélius (1880–1963), «Jéhovah devient notre Père»*
 {: .image-caption }
 
 Il dipinto parla del mistero della croce, del mistero che Dio diventa la sofferenza umana, invece di fare qualcosa ad essa. Ci dice che in Gesù, Dio ci rivela che, sebbene il suo amore non ci protegga da nulla, ci sostiene misteriosamente in tutto.
@@ -188,8 +188,8 @@ Cuando miro a Jesús en la cruz, soy consciente de estar frente a un misterio. L
 
 En mi consulta tengo una pequeña reproducción de un cuadro de Jean-Georges Cornélius (23 de enero de 1880, Estrasburgo - 3 de junio de 1963, Ploubazlanec), un pintor francés, que me habla. Para mí, es la expresión de un misterio que no puedo comprender, solo captar en destellos:
 
-![Cuadro de Jean-Georges Cornélius — El misterio de la cruz](/assets/images/essays/2026-being-with-suffering/cornelius_painting.png){: .article-image }
-*Cuadro de Jean-Georges Cornélius*
+![Cuadro de Jean-Georges Cornélius — El misterio de la cruz](/assets/images/essays/2026-being-with-suffering/cornelius_painting.jpg){: .article-image }
+*Jean-Georges Cornélius (1880–1963), «Jéhovah devient notre Père»*
 {: .image-caption }
 
 El cuadro habla del misterio de la cruz, del misterio de que Dios se convierte en el sufrimiento humano, en lugar de hacer algo al respecto. Nos dice que en Jesús, Dios nos revela que aunque su amor no nos protege de nada, nos sostiene misteriosamente en todo.

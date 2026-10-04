@@ -28,7 +28,9 @@ authors:
 
 discipline: "Philosophy"   # e.g. Philosophy, Theology, Interfaith Studies
 keywords: ["keyword one", "keyword two"]
-languages: ["English", "Italiano"]   # drives the EN/IT badges in listings
+languages: ["English", "Italiano"]   # languages of title/abstract; first = default. Each non-default
+                                     # language gets its own page — run scripts/make-language-pages.py
+                                     # (listing badges come from the pdfs: languages below)
 date: 2026-01-01           # publication date (YYYY-MM-DD)
 coming_soon: false         # true = listed as "Coming soon", no PDF shown
 # doi: "10.5281/zenodo.XXXX"         # uncomment when a DOI is minted
@@ -48,8 +50,10 @@ abstracts:
 pdfs:
   - language: "English"
     url: "/assets/pdfs/YYYYMMDD_PUPILLA_ShortName_en.pdf"
+    pages: 0        # page count, shown in the header
   - language: "Italiano"
     url: "/assets/pdfs/YYYYMMDD_PUPILLA_ShortName_it.pdf"
+    pages: 0
 
 # How to cite this Pupilla preprint (always include).
 pupilla_citation: "Author, A., Author, B., Your Article Title, Pupilla (2026), https://pupilla.org/preprints/YYYY-short-name/"

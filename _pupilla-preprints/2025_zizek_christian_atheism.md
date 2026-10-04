@@ -26,9 +26,11 @@ abstracts:
 pdfs:
   - language: "English"
     url: "/assets/pdfs/20251116_PUPILLA_ZizekLubich_en.pdf"
+    pages: 7
     flag: "🇬🇧"
   - language: "Italiano"
     url: "/assets/pdfs/20251116_PUPILLA_ZizekLubich_it.pdf"
+    pages: 7
     flag: "🇮🇹"
 
 pupilla_citation: "Morovic, P., Morovic, J., L'ateismo Cristiano di Slavoj Žižek: un dialogo con Chira Lubich, Pupilla (2025), https://pupilla.org/preprints/2025-zizek-christian-atheism/"

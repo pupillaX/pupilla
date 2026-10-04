@@ -22,6 +22,7 @@ abstracts:
 pdfs:
   - language: "Italiano"
     url: "/assets/pdfs/20250922_PUPILLA_LoSpazioInMatematica.pdf"
+    pages: 20
     flag: "🇮🇹"
 
 pupilla_citation: "Gianazza, U., Magri, L., Tra realtà e immaginazione. Brevi note e riflessioni a partire dall’evoluzione del concetto di spazio in matematica., Pupilla (2025), https://pupilla.org/preprints/2025-realta-e-immaginazione/"

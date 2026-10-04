@@ -1,0 +1,9 @@
+{%- comment -%}
+Sets `text_langs` (an array of language names) to the languages the FULL TEXT is available in:
+the languages of the item's PDFs for an article, or its `languages:` for an essay (whose body
+is on the page). An article's `languages:` can also list languages that only have an abstract
+or title — those give the reader a language switch but must not count as "available in …".
+Usage: {% include text-langs.html item=item %}   then use {{ text_langs }}
+{%- endcomment -%}
+{%- assign text_langs = include.item.pdfs | map: 'language' -%}
+{%- if text_langs == nil or text_langs.size == 0 -%}{%- assign text_langs = include.item.languages -%}{%- endif -%}

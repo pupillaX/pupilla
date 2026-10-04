@@ -14,7 +14,7 @@ the repo_id / category_id from https://giscus.app into _config.yml.
           data-repo-id="{{ site.giscus.repo_id }}"
           data-category="{{ site.giscus.category }}"
           data-category-id="{{ site.giscus.category_id }}"
-          data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
+          {% if page.variant_of %}data-mapping="specific" data-term="{{ doc.url | remove_first: '/' }}"{% else %}data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"{% endif %}
           data-strict="1"
           data-reactions-enabled="{{ site.giscus.reactions_enabled | default: 1 }}"
           data-emit-metadata="0"

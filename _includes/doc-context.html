@@ -1,0 +1,24 @@
+{%- comment -%}
+Sets up "which document, in which language" for every layout and for head.html. Idempotent.
+  doc          the document being presented. Normally the page itself; for a language page
+               (front matter `variant_of: /essays/slug/`) it is the source essay/article.
+  view_lang    language name shown on this page ("Català"), view_code its ISO code ("ca")
+  view_title / view_subtitle / view_abstract / view_summary   the versions for that language, falling back to the default
+  view_pdf     the PDF for that language, falling back to the first PDF
+  view_content the rendered body to pick the language block from
+{%- endcomment -%}
+{%- if page.variant_of -%}{%- assign doc = site.documents | where: 'url', page.variant_of | first -%}{%- else -%}{%- assign doc = page -%}{%- endif -%}
+{%- assign view_lang = page.lang_view | default: doc.languages.first -%}
+{%- if view_lang -%}{%- capture view_code -%}{%- include lang-code.html language=view_lang -%}{%- endcapture -%}{%- else -%}{%- assign view_code = site.lang | default: 'en' -%}{%- endif -%}
+{%- assign view_code = view_code | strip -%}
+{%- assign _vt = doc.titles | where: 'language', view_lang | first -%}
+{%- assign view_title = _vt.content | default: doc.title -%}
+{%- assign _vs = doc.subtitles | where: 'language', view_lang | first -%}
+{%- assign view_subtitle = _vs.content | default: doc.subtitle -%}
+{%- assign _va = doc.abstracts | where: 'language', view_lang | first -%}
+{%- assign view_abstract = _va.content | default: doc.abstract -%}
+{%- comment -%} view_summary: what search results and link previews show. The default language keeps the curated short `abstract:`; other languages use their own abstract. {%- endcomment -%}
+{%- if view_lang == doc.languages.first -%}{%- assign view_summary = doc.abstract | default: view_abstract -%}{%- else -%}{%- assign view_summary = view_abstract -%}{%- endif -%}
+{%- assign _vp = doc.pdfs | where: 'language', view_lang | first -%}
+{%- assign view_pdf = _vp | default: doc.pdfs.first -%}
+{%- if page.variant_of -%}{%- assign view_content = doc.content -%}{%- else -%}{%- assign view_content = content -%}{%- endif -%}

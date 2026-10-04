@@ -21,6 +21,7 @@ abstracts:
 pdfs:
   - language: "Español"
     url: "/assets/pdfs/20250918_PUPILLA_LecturaInterculturalPacto.pdf"
+    pages: 7
     flag: "🇪🇸"
 
 pupilla_citation: "Cerviño, L., Lectura intercultural/pluralista del Pacto de unidad como experiencia sapiencial, Pupilla (2025), https://pupilla.org/preprints/2025-lectura-intercultural-pacto/"

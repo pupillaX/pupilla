@@ -1,0 +1,18 @@
+{%- comment -%}
+Returns the ISO 639-1 code (en, it, es, ca …) for a language name, for use in
+lang="…" attributes, JSON-LD inLanguage and citation_language. Outputs the code
+only. Companion to lang-badge.html (which returns the uppercase display badge).
+Usage: {% capture c %}{% include lang-code.html language=lang %}{% endcapture %}
+{%- endcomment -%}
+{%- assign _l = include.language | downcase | strip -%}
+{%- case _l -%}
+{%- when 'english' -%}en
+{%- when 'italiano','italian' -%}it
+{%- when 'español','espanol','spanish' -%}es
+{%- when 'deutsch','german' -%}de
+{%- when 'français','francais','french' -%}fr
+{%- when 'català','catala','catalan' -%}ca
+{%- when 'português','portugues','portuguese' -%}pt
+{%- when '日本語','japanese' -%}ja
+{%- else -%}{{ _l | slice: 0, 2 }}
+{%- endcase -%}

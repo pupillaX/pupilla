@@ -25,9 +25,11 @@ abstracts:
 pdfs:
   - language: "English"
     url: "/assets/pdfs/20250815_PUPILLA_ChiarasTwoOrThree_en.pdf"
+    pages: 8
     flag: "🇬🇧"
   - language: "Italiano" 
     url: "/assets/pdfs/20250815_PUPILLA_ChiarasTwoOrThree_it.pdf"
+    pages: 8
     flag: "🇮🇹"
 
 pupilla_citation: "Morovic, J., Morovic, P., Who are Chiara Lubich's 'two or three'?, Pupilla (2025), https://pupilla.org/preprints/2025-chiaras-two-or-three/"

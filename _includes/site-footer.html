@@ -26,8 +26,19 @@ document.addEventListener('DOMContentLoaded', function() {
   var c = document.getElementById('cookie-settings-link');
   if (c) c.addEventListener('click', function(e) {
     e.preventDefault();
-    localStorage.removeItem('cookieConsent');
-    localStorage.removeItem('googleAnalyticsConsent');
+    // Same key the banner script (cookie-consent.html) reads and writes.
+    localStorage.removeItem('cookie-consent');
+    // Withdrawing consent should also remove analytics cookies already set.
+    var host = location.hostname.split('.');
+    var domains = ['', location.hostname, host.length > 2 ? '.' + host.slice(-2).join('.') : '.' + location.hostname];
+    document.cookie.split(';').forEach(function(ck) {
+      var name = ck.split('=')[0].trim();
+      if (/^_ga($|_)|^_gid$|^_gat/.test(name)) {
+        domains.forEach(function(d) {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? '; domain=' + d : '');
+        });
+      }
+    });
     window.location.reload();
   });
   document.querySelectorAll('a[href$=".pdf"]').forEach(function(link) {

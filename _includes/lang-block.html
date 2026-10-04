@@ -1,0 +1,10 @@
+{%- comment -%}
+Returns only the body block for one language out of a multi-language essay body (the
+<div class="lang-content" data-lang="Català"> wrappers), unhidden and tagged with lang="xx".
+If the body has no such blocks, or none for that language, it is returned unchanged.
+Usage: {% include lang-block.html html=view_content lang=view_lang %}
+{%- endcomment -%}
+{%- assign _marker = '<div class="lang-content" data-lang="' -%}
+{%- assign _parts = include.html | split: _marker -%}
+{%- capture _picked -%}{%- for part in _parts offset: 1 -%}{%- assign _name = part | split: '"' | first -%}{%- if _name == include.lang -%}{{ _marker }}{{ part | replace: ' style="display:none"', '' }}{%- endif -%}{%- endfor -%}{%- endcapture -%}
+{%- if _picked contains _marker -%}{%- include lang-tag-blocks.html html=_picked -%}{%- else -%}{{ include.html }}{%- endif -%}

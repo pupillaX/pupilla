@@ -3,7 +3,7 @@
 <head>{% include head.html %}</head>
 <body>
 {% include topbar.html %}
-<main class="page">{{ content }}</main>
+<main class="page">{% unless content contains '<h1' %}<h1>{{ page.title }}</h1>{% endunless %}{{ content }}</main>
 {% include site-footer.html %}
 {% include cookie-consent.html %}
 </body>

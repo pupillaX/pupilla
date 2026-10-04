@@ -14,7 +14,7 @@
 - name: "Josep Bofill"
   slug: josep-bofill
   role: "Author"
-  photo: josep_bofill.png
+  photo: josep_bofill.jpg
   bio: "Josep is a long-time contributor and former director of LAR magazine (formerly Ciutat Nova). A teacher by training and experience, he is also a writer and communicator passionate about dialogue and building bridges from the peripheries."
   links:
     - label: "Blog"
@@ -26,14 +26,14 @@
   slug: elisabeth-ohlbock
   aliases: ["Elisabeth Ohlbock"]
   role: "Author"
-  photo: elisabeth_ohlbock.png
+  photo: elisabeth_ohlbock.jpg
   bio: "Currently working as Psychotherapeutic Counsellor in private practice and the charitable sector. Masters degree in Advancing Practice from Ulster University."
   links: []
 
 - name: "Antonino Puglisi"
   slug: antonino-puglisi
   role: "Author"
-  photo: antonino_puglisi.png
+  photo: antonino_puglisi.jpg
   bio: "Masters and PhD degrees in Chemistry from the University of Catania (Italy). Currently European Advisor at UK Research and Innovation. Member of the Abba School interdisciplinary centre of study."
   links:
     - label: "Google Scholar"
@@ -48,7 +48,7 @@
 - name: "Ugo Gianazza"
   slug: ugo-gianazza
   role: "Author, Editor"
-  photo: ugo_gianazza.png
+  photo: ugo_gianazza.jpg
   bio: "Professor of Mathematical Analysis at the Department of Mathematics F. Casorati of the University of Pavia (Italy). Member of the Board of Directors of the University of Pavia. Member of the Abba School interdisciplinary centre of study."
   links:
     - label: "Google Scholar"
@@ -63,7 +63,7 @@
 - name: "Luca Magri"
   slug: luca-magri
   role: "Author"
-  photo: luca_magri.png
+  photo: luca_magri.jpg
   bio: "Masters degree in Mathematics from Università degli Studi di Roma “La Sapienza” (Italy). Held research and leadership roles at the ENEL research institute ISMES focusing on seismic assessment and at Telecom Italia FINSIEL. Further leadership roles at the Vatican's Jubilee 2000 and Pilgrimage organizations and the Focolare Movement's Azione per Famiglie Nuove as director, currently a member of the Focolare Movement's global centre."
   links:
     - label: "Focolare Movement"
@@ -73,7 +73,7 @@
   slug: lucas-cervino
   aliases: ["Lucas Cervino"]
   role: "Author, Editor"
-  photo: lucas_cervino.png
+  photo: lucas_cervino.jpg
   bio: "Doctor en Teología fundamental y licenciatura eclesial en Misionología. Docente en el Instituto de Misionología (Facultad de Teología San Pablo, Cochabamba-Bolivia) y en el Centro de Estudios Filosóficos y Teológicos (Córdoba, Argentina). Miembro del grupo interdisciplinar de estudios Escuela Abba. Miembro del Consejo Directivo de IUSophia ALC y coordinador de cursos sobre Acompañamiento Espiritual Integral."
   links:
     - label: "Sophia ALC"
@@ -85,7 +85,7 @@
   slug: jordi-rodriguez-salleras
   aliases: ["Jordi Rodriguez Salleras"]
   role: "Author"
-  photo: jordi_rodriguez.png
+  photo: jordi_rodriguez.jpg
   bio: "Double Bachelor of Arts degree in Humanities and Law from Universitat Pompeu Fabra, Barcelona, Catalonia (Spain); Masters degree in Education from the Universitat de Barcelona, Catalonia (Spain). Works in mathematics and science education as well as applications of AI in education."
   links:
     - label: "LinkedIn"
@@ -95,7 +95,7 @@
   slug: jan-morovic
   aliases: ["Jan Morovic"]
   role: "Author, Editor, co-founder"
-  photo: jan-morovic.png
+  photo: jan-morovic.jpg
   bio: "Ph.D. in Colour Science from the University of Derby (UK); Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study."
   links:
     - label: "Google Scholar"
@@ -112,7 +112,7 @@
 - name: "Peter Morovic"
   slug: peter-morovic
   role: "Author, Editor, co-founder"
-  photo: peter-morovic.png
+  photo: peter-morovic.jpg
   bio: "Ph.D. in Computer Science from the University of East Anglia, Norwich (UK); Principal Technologist at HP Inc.; member of the Abba School interdisciplinary centre of study."
   links:
     - label: "Google Scholar"

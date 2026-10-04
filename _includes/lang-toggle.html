@@ -1,0 +1,17 @@
+{%- comment -%}
+Language switch for a piece that exists in several languages: one real link per language
+(the default language keeps the plain URL, the others live at /…/slug/<code>/). A link is only
+shown if that language's page exists, so it can never point at a 404.
+{%- endcomment -%}
+{%- if doc.languages.size > 1 -%}
+<span class="lang-toggle" id="langToggle" role="group" aria-label="Language">
+{%- for l in doc.languages -%}
+  {%- capture _c -%}{%- include lang-code.html language=l -%}{%- endcapture -%}{%- assign _c = _c | strip -%}
+  {%- if forloop.first -%}{%- assign _href = doc.url -%}{%- assign _ok = true -%}
+  {%- else -%}{%- assign _href = doc.url | append: _c | append: '/' -%}{%- assign _p = site.pages | where: 'url', _href | first -%}{%- if _p -%}{%- assign _ok = true -%}{%- else -%}{%- assign _ok = false -%}{%- endif -%}{%- endif -%}
+  {%- if _ok %}
+  <a href="{{ _href | relative_url }}" hreflang="{{ _c }}" lang="{{ _c }}" title="{{ l }}"{% if l == view_lang %} class="active" aria-current="page"{% endif %}>{% include lang-badge.html language=l %}</a>
+  {%- endif -%}
+{%- endfor %}
+</span>
+{%- endif -%}

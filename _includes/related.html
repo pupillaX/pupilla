@@ -1,0 +1,46 @@
+{%- comment -%}
+"Related" list for the foot of an article or essay: up to 3 other pieces, ranked by what they
+share with the current one — authors (3 points each), keywords (2 each), discipline (1) —
+newest first on ties. Nothing is shown if nothing is related. Fully automatic, no front matter.
+Usage: {% include related.html %}            (uses the current page)
+       {% include related.html item=doc %}   (when a layout renders on behalf of another document)
+{%- endcomment -%}
+{%- assign _cur = include.item | default: page -%}
+{%- assign _pool = site['pupilla-preprints'] | concat: site['pupilla-essays'] -%}
+{%- assign _ranked = '' | split: '' -%}
+{%- for it in _pool -%}
+  {%- unless it.url == _cur.url or it.coming_soon -%}
+    {%- assign _score = 0 -%}
+    {%- for a in it.authors -%}{%- if _cur.authors contains a -%}{%- assign _score = _score | plus: 3 -%}{%- endif -%}{%- endfor -%}
+    {%- for k in it.keywords -%}{%- if _cur.keywords contains k -%}{%- assign _score = _score | plus: 2 -%}{%- endif -%}{%- endfor -%}
+    {%- if it.discipline and it.discipline == _cur.discipline -%}{%- assign _score = _score | plus: 1 -%}{%- endif -%}
+    {%- if _score > 0 -%}
+      {%- capture _row -%}{{ _score | plus: 1000 }}{{ it.date | date: '%Y%m%d' }}|{{ it.url }}{%- endcapture -%}
+      {%- assign _ranked = _ranked | push: _row -%}
+    {%- endif -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- assign _ranked = _ranked | sort | reverse -%}
+{%- if _ranked.size > 0 -%}
+<section class="related" aria-labelledby="related-title">
+  <div class="section-header"><h2 id="related-title">Related</h2></div>
+  <div class="archive-list">
+    {%- for row in _ranked limit: 3 -%}
+      {%- assign _url = row | split: '|' | last -%}
+      {%- for it in _pool -%}{%- if it.url == _url %}
+    <article class="archive-item">
+      <div class="archive-meta">
+        {% if it.collection == 'pupilla-essays' %}<span class="type-tag type-essay">Essay</span>{% else %}<span class="type-tag type-article">Article</span>{% endif %}
+        {% include lang-badges.html item=it %}
+        <span class="archive-date">{{ it.date | date: '%b %-d, %Y' }}</span>
+      </div>
+      <h3 class="archive-title"><a href="{{ it.url | relative_url }}">{{ it.title }}</a></h3>
+      {%- if it.authors %}
+      <p class="archive-authors">{{ it.authors | join: ', ' }}</p>
+      {%- endif %}
+    </article>
+      {%- endif -%}{%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}

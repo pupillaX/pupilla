@@ -21,6 +21,7 @@ abstracts:
 pdfs:
   - language: "Italiano"
     url: "/assets/pdfs/20250918_PUPILLA_IpoveriLuogoTeologico.pdf"
+    pages: 6
     flag: "🇮🇹"
 
 pupilla_citation: "Cerviño, L., Nel seno della Trinità c’è un posto privilegiato per i poveri: I poveri come «luogo teologico», Pupilla (2025), https://pupilla.org/preprints/2025-lectura-intercultural-pacto/"

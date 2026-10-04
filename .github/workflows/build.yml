@@ -29,6 +29,9 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true   # runs bundle install and caches gems
 
+      - name: Check language pages are up to date
+        run: python3 scripts/make-language-pages.py --check
+
       - name: Build with Jekyll
         run: bundle exec jekyll build --trace
         env:

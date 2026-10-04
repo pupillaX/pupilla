@@ -4,8 +4,6 @@ title: Contact
 permalink: /contact/
 ---
 
-## Contact Pupilla
-
 We welcome comments, inquiries, proposals for submissions and collaboration. Please don't hesitate to reach out to us at [pupillarXiv@gmail.com](mailto:pupillarXiv@gmail.com)
 
 <!-- ## General Inquiries

@@ -18,7 +18,8 @@ permalink: /essays/
       <option value="all">All</option>
       {% assign all_languages = '' | split: '' %}
       {% for essay in all_essays %}
-        {% if essay.languages %}{% for lang in essay.languages %}{% assign all_languages = all_languages | push: lang %}{% endfor %}{% endif %}
+        {% include text-langs.html item=essay %}
+        {% if text_langs %}{% for lang in text_langs %}{% assign all_languages = all_languages | push: lang %}{% endfor %}{% endif %}
       {% endfor %}
       {% assign languages = all_languages | uniq | sort %}
       {% for language in languages %}<option value="{{ language | slugify }}">{{ language }}</option>{% endfor %}
@@ -49,7 +50,7 @@ permalink: /essays/
 <div id="browse-list" class="archive-list">
   {% for essay in all_essays %}
     {% capture author_slugs %}{% for a in essay.authors %}{{ a | slugify }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
-    {% capture lang_slugs %}{% for l in essay.languages %}{{ l | slugify }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
+    {% include text-langs.html item=essay %}{% capture lang_slugs %}{% for l in text_langs %}{{ l | slugify }}{% unless forloop.last %}|{% endunless %}{% endfor %}{% endcapture %}
     {% capture search_content %}{{ essay.title }} {{ essay.authors | join: ' ' }} {{ essay.abstract }} {{ essay.keywords | join: ' ' }}{% if essay.abstracts %}{% for a in essay.abstracts %} {{ a.content }}{% endfor %}{% endif %}{% endcapture %}
     <article class="archive-item"
       data-date="{{ essay.date | date: '%Y-%m-%d' }}"
@@ -87,4 +88,4 @@ permalink: /essays/
 
 <div id="no-results" class="no-results" style="display: none;">No essays match your search and filters.</div>
 
-<script src="{{ '/assets/js/browse-filter.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/browse-filter.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

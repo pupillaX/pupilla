@@ -33,9 +33,11 @@ abstracts:
 pdfs:
   - language: "English"
     url: "/assets/pdfs/20260531_PUPILLA_OkumuraLubich_en.pdf"
+    pages: 14
     flag: "🇬🇧"
   - language: "Italiano"
     url: "/assets/pdfs/20260531_PUPILLA_OkumuraLubich_it.pdf"
+    pages: 15
     flag: "🇮🇹"
 
 pupilla_citation: "Morovic, P., Morovic, J., Jesus Forsaken and the Open Hand of Thought: A Comparative Reading of Chiara Lubich’s Paradise’49 and Uchiyama Kōshō’s Sōtō Zen Tradition, Pupilla (2026), https://pupilla.org/preprints/2026-okumura-open-hand-of-thought/"

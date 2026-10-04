@@ -21,6 +21,7 @@ abstracts:
 pdfs:
   - language: "Italiano"
     url: "/assets/pdfs/20250921_PUPILLA_MissioneInterculturale.pdf"
+    pages: 9
     flag: "🇮🇹"
 
 pupilla_citation: "Cerviño, L., Intuizioni e chiavi per una possibile missione interculturale, Pupilla (2025), https://pupilla.org/preprints/2025-missione-interculturale/"

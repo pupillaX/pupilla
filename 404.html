@@ -1,0 +1,27 @@
+---
+layout: default
+title: Page not found
+permalink: /404.html
+sitemap: false
+noindex: true
+---
+
+<p class="notfound-lead">We couldn't find that page. It may have moved, or the link may be mistyped.</p>
+
+<form class="notfound-search" method="get" action="{{ '/preprints/' | relative_url }}" role="search">
+  <label for="notfound-q">Search the archive</label>
+  <div class="notfound-row">
+    <input id="notfound-q" type="search" name="q" placeholder="Title, author, keyword…" autocomplete="off">
+    <button type="submit">Search articles</button>
+    <button type="submit" formaction="{{ '/essays/' | relative_url }}">Search essays</button>
+  </div>
+</form>
+
+<h2>Or start here</h2>
+<ul class="notfound-links">
+  <li><a href="{{ '/' | relative_url }}">Home — the latest articles and essays</a></li>
+  <li><a href="{{ '/preprints/' | relative_url }}">Browse all articles</a></li>
+  <li><a href="{{ '/essays/' | relative_url }}">Browse all essays</a></li>
+  <li><a href="{{ '/contributors/' | relative_url }}">Contributors</a></li>
+  <li><a href="{{ '/contact/' | relative_url }}">Contact us</a></li>
+</ul>

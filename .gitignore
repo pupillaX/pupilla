@@ -13,6 +13,10 @@ Gemfile.lock
 # Source manuscripts and private preview PDFs — keep local, never commit/publish
 *.docx
 assets/pdfs/private/
+assets/pdfs/tmp/
 
 # Local Zenodo deposit kit (helper scripts + metadata, not site content)
 /zenodo/
+
+# Local server log
+jekyll.log

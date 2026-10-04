@@ -1,0 +1,14 @@
+{%- comment -%}
+Maps an ISO 639-1 code to an Open Graph locale (language_TERRITORY), e.g. ca → ca_ES.
+Usage: {% capture loc %}{% include lang-locale.html code='ca' %}{% endcapture %}
+{%- endcomment -%}
+{%- case include.code -%}
+{%- when 'ca' -%}ca_ES
+{%- when 'es' -%}es_ES
+{%- when 'it' -%}it_IT
+{%- when 'de' -%}de_DE
+{%- when 'fr' -%}fr_FR
+{%- when 'pt' -%}pt_PT
+{%- when 'ja' -%}ja_JP
+{%- else -%}en_US
+{%- endcase -%}

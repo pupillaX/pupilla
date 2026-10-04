@@ -1,5 +1,7 @@
+{%- include doc-context.html -%}
+{%- capture view_block -%}{%- include lang-block.html html=view_content lang=view_lang -%}{%- endcapture -%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ view_code }}">
 <head>{% include head.html %}</head>
 <body>
 
@@ -11,31 +13,19 @@
 <!-- Article Header -->
 <header class="article-header">
   <div class="article-meta-top">
-    {% if page.article_type %}{{ page.article_type }}{% else %}Essay{% if page.discipline %} · {{ page.discipline }}{% endif %}{% endif %}
+    {% if doc.article_type %}{{ doc.article_type }}{% else %}Essay{% if doc.discipline %} · {{ doc.discipline }}{% endif %}{% endif %}
   </div>
 
-  <h1 class="article-title">
-    {% if page.titles %}
-      {% for t in page.titles %}
-        <span class="lang-content" data-lang="{{ t.language }}" {% unless forloop.first %}style="display:none"{% endunless %}>{{ t.content }}</span>
-      {% endfor %}
-    {% else %}
-      {{ page.title }}
-    {% endif %}
-  </h1>
+  <h1 class="article-title">{{ view_title }}</h1>
 
-  {% if page.subtitles %}
-    {% for s in page.subtitles %}
-    <p class="article-subtitle lang-content" data-lang="{{ s.language }}" {% unless forloop.first %}style="display:none"{% endunless %}>{{ s.content }}</p>
-    {% endfor %}
-  {% elsif page.subtitle %}
-  <p class="article-subtitle">{{ page.subtitle }}</p>
+  {% if view_subtitle %}
+  <p class="article-subtitle">{{ view_subtitle }}</p>
   {% endif %}
 
-  {% if page.authors %}
+  {% if doc.authors %}
   <div class="author-row">
     <div class="author-avatars">
-      {% for author in page.authors %}
+      {% for author in doc.authors %}
         {% assign name_parts = author | split: ' ' %}
         {% assign initials = '' %}
         {% for part in name_parts %}
@@ -46,33 +36,15 @@
     </div>
     <div class="author-info">
       <div class="author-names">
-        {% for author in page.authors %}{% include author-link.html author=author %}{% unless forloop.last %} &amp; {% endunless %}{% endfor %}
+        {% for author in doc.authors %}{% include author-link.html author=author %}{% unless forloop.last %} &amp; {% endunless %}{% endfor %}
       </div>
       <div class="author-date">
-        {% if page.date %}{{ page.date | date: '%B %-d, %Y' }}{% endif %}
-        {% assign words = content | number_of_words %}
-        {% assign lang_sections = content | split: 'class="lang-content"' %}
-        {% assign num_lang_sections = lang_sections.size | minus: 1 %}
-        {% if num_lang_sections > 1 %}
-          {% assign words = words | divided_by: num_lang_sections %}
-        {% endif %}
+        {% if doc.date %}{{ doc.date | date: '%B %-d, %Y' }}{% endif %}
+        {% assign words = view_block | number_of_words %}
         {% assign reading_time = words | divided_by: 200 %}
         {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
         · {{ reading_time }} min read
-        {%- comment -%} Language toggle: driven by page.languages so content-only
-        (no-PDF) multilingual essays can switch too. Attaches a per-language PDF
-        URL when one exists. {%- endcomment -%}
-        {%- assign toggle_langs = page.languages -%}
-        {%- unless toggle_langs -%}{%- assign toggle_langs = page.pdfs | map: 'language' -%}{%- endunless -%}
-        {% if toggle_langs.size > 1 %}
-          <span class="lang-toggle" id="langToggle">
-            {% for lang in toggle_langs %}
-              {%- assign pdf_url = '' -%}
-              {%- if page.pdfs -%}{%- for pdf in page.pdfs -%}{%- if pdf.language == lang -%}{%- assign pdf_url = pdf.url -%}{%- endif -%}{%- endfor -%}{%- endif -%}
-              <a href="#" data-lang="{{ lang }}"{% if pdf_url != '' %} data-pdf-url="{{ pdf_url | relative_url }}"{% endif %} {% if forloop.first %}class="active"{% endif %} onclick="switchLang(this); return false;">{% include lang-badge.html language=lang %}</a>
-            {% endfor %}
-          </span>
-        {% endif %}
+        {% include lang-toggle.html %}
       </div>
     </div>
   </div>
@@ -84,16 +56,15 @@
       <span>Share</span>
     </button>
     <div class="action-spacer"></div>
-    {% if page.pdfs %}
-      {% assign first_pdf = page.pdfs | first %}
-      {% unless page.coming_soon %}
-      <a class="pdf-btn" id="pdfDownloadBtn" href="{{ first_pdf.url | relative_url }}" target="_blank" rel="noopener">
+    {% if doc.pdfs %}
+      {% unless doc.coming_soon %}
+      <a class="pdf-btn" id="pdfDownloadBtn" href="{{ view_pdf.url | relative_url }}" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-        PDF <span id="pdfLangLabel">{{ first_pdf.flag }}</span>
+        PDF <span class="pdf-lang">{% include lang-badge.html language=view_pdf.language %}</span>
       </a>
       {% endunless %}
-    {% elsif page.pdf and page.coming_soon != true %}
-      <a class="pdf-btn" href="{{ page.pdf | relative_url }}" target="_blank" rel="noopener">
+    {% elsif doc.pdf and doc.coming_soon != true %}
+      <a class="pdf-btn" href="{{ doc.pdf | relative_url }}" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
         PDF
       </a>
@@ -102,18 +73,18 @@
 </header>
 
 <!-- Keywords -->
-{% if page.keywords %}
+{% if doc.keywords %}
 <div class="article-tags">
-  {% for keyword in page.keywords %}
-    <span class="tag">{{ keyword }}</span>
+  {% for keyword in doc.keywords %}
+    <a class="tag" href="{{ '/essays/' | relative_url }}?q={{ keyword | uri_escape }}" title="Find more essays about “{{ keyword | escape }}”">{{ keyword }}</a>
   {% endfor %}
 </div>
 {% endif %}
 
 <!-- Epigraphs (optional) -->
-{% if page.epigraphs %}
-<div class="epigraph-section{% if page.epigraphs.size == 1 %} single-epigraph{% endif %}">
-  {% for epigraph in page.epigraphs %}
+{% if doc.epigraphs %}
+<div class="epigraph-section{% if doc.epigraphs.size == 1 %} single-epigraph{% endif %}">
+  {% for epigraph in doc.epigraphs %}
   <div class="epigraph">
     <p>"{{ epigraph.text }}"</p>
     <cite>{{ epigraph.source }}</cite>
@@ -122,7 +93,7 @@
 </div>
 {% endif %}
 
-{% assign stripped_content = content | strip | strip_newlines %}
+{% assign stripped_content = view_block | strip | strip_newlines %}
 
 <!-- Floating Table of Contents -->
 <aside class="toc-float" id="toc">
@@ -132,14 +103,14 @@
 <!-- Article Body (rendered from markdown content after front matter) -->
 {% if stripped_content != '' %}
   <article class="article-body">
-    {{ content }}
+    {{ view_block }}
   </article>
 {% endif %}
 
 <!-- Author Bios (if provided in front matter) -->
-{% if page.author_bios %}
+{% if doc.author_bios %}
 <div class="author-bio-section">
-  {% for bio in page.author_bios %}
+  {% for bio in doc.author_bios %}
   <div class="author-bio">
     {% assign name_parts = bio.name | split: ' ' %}
     {% assign initials = '' %}
@@ -157,21 +128,21 @@
 {% endif %}
 
 <!-- Citation Box -->
-{% if page.pupilla_citation or page.external_citation %}
+{% if doc.pupilla_citation or doc.external_citation %}
 <div class="citation-box">
-  {% if page.external_citation %}
+  {% if doc.external_citation %}
   <div class="citation-box-inner" style="margin-bottom: 1rem;">
     <h4>Cite as (Original Publication)</h4>
-    <p>{% include linkify.html text=page.external_citation %}{% if page.external_citation_note %}<br><em>{{ page.external_citation_note }}</em>{% endif %}</p>
+    <p>{% include linkify.html text=doc.external_citation %}{% if doc.external_citation_note %}<br><em>{{ doc.external_citation_note }}</em>{% endif %}</p>
     <button class="citation-copy" onclick="if(navigator.clipboard){navigator.clipboard.writeText(this.closest('.citation-box-inner').querySelector('p').textContent.trim());this.textContent='✓ Copied!';}">
       Copy citation
     </button>
   </div>
   {% endif %}
-  {% if page.pupilla_citation %}
+  {% if doc.pupilla_citation %}
   <div class="citation-box-inner">
-    <h4>{% if page.external_citation %}Cite as (Pupilla Preprint){% else %}Cite this article{% endif %}</h4>
-    <p>{% include linkify.html text=page.pupilla_citation %}</p>
+    <h4>{% if doc.external_citation %}Cite as (Pupilla Preprint){% else %}Cite this article{% endif %}</h4>
+    <p>{% include linkify.html text=doc.pupilla_citation %}</p>
     <button class="citation-copy" onclick="if(navigator.clipboard){navigator.clipboard.writeText(this.closest('.citation-box-inner').querySelector('p').textContent.trim());this.textContent='✓ Copied!';}">
       Copy citation
     </button>
@@ -181,11 +152,14 @@
 {% endif %}
 
 <!-- Author Copyright -->
-{% if page.authors %}
+{% if doc.authors %}
 <div class="author-copyright">
-  <p>&copy; {{ page.date | date: '%Y' }} {{ page.authors | join: ', ' }}. All rights reserved. Published on {{ site.title }}.</p>
+  <p>&copy; {{ doc.date | date: '%Y' }} {{ doc.authors | join: ', ' }}. All rights reserved. Published on {{ site.title }}.</p>
 </div>
 {% endif %}
+
+<!-- Related pieces -->
+{% include related.html item=doc %}
 
 <!-- Discussion -->
 {% include giscus.html %}
@@ -266,24 +240,6 @@
     });
   });
 
-  // ---- Language toggle ----
-  function switchLang(el) {
-    var lang = el.getAttribute('data-lang');
-    var pdfUrl = el.getAttribute('data-pdf-url');
-    var toggle = document.getElementById('langToggle');
-    if (toggle) {
-      toggle.querySelectorAll('a').forEach(function(a) { a.classList.remove('active'); });
-      el.classList.add('active');
-    }
-    var pdfBtn = document.getElementById('pdfDownloadBtn');
-    if (pdfBtn && pdfUrl) pdfBtn.setAttribute('href', pdfUrl);
-    var pdfLabel = document.getElementById('pdfLangLabel');
-    if (pdfLabel) pdfLabel.textContent = el.textContent.trim();
-    document.querySelectorAll('.lang-content').forEach(function(block) {
-      block.style.display = block.getAttribute('data-lang') === lang ? '' : 'none';
-    });
-    buildTOC();
-  }
 
   // ---- Share (native share sheet on mobile, copy-link fallback) ----
   function shareArticle(btn) {
@@ -301,6 +257,8 @@
   }
 
 </script>
+
+{% include lang-switch.html %}
 
 </body>
 </html>

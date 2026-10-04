@@ -20,6 +20,7 @@ abstracts:
 pdfs:
   - language: "Español"
     url: "/assets/pdfs/20250911_PUPILLA_ElAbandonoDeChiaraLubich_es.pdf"
+    pages: 54
     flag: "🇪🇸"
 
 pupilla_citation: "Rodriguez Salleras, J., El Abandonado de Chiara Lubich, Pupilla (2025), https://pupilla.org/preprints/2025-abandonado-de-lubich/"

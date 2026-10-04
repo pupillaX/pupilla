@@ -21,6 +21,7 @@ abstracts:
 pdfs:
   - language: "Español"
     url: "/assets/pdfs/20250921_PUPILLA_DialogoInterculturalExperienciaNosotros.pdf"
+    pages: 20
     flag: "🇪🇸"
 
 pupilla_citation: "Cerviño, L., El diálogo intercultural (e interreligioso) como experiencia mística del nosotros, Pupilla (2025), https://pupilla.org/preprints/2025-dialogo-intercultural-mistica-nosotros/"
