@@ -2,6 +2,7 @@
 layout: default
 title: Links
 permalink: /links/
+published: false   # hidden for now; remove this line to republish
 ---
 
 Here are some valuable resources and related publications that complement our article collection:
