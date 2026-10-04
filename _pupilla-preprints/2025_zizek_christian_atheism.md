@@ -1,6 +1,6 @@
 ---
 layout: preprint
-title: "L'ateismo Cristiano di Slavoj Žižek: un dialogo con Chiara Lubich"
+title: "The Christian Atheism of Slavoj Žižek: a dialogue with Chiara Lubich"
 titles:
   - language: "English"
     content: "The Christian Atheism of Slavoj Žižek: a dialogue with Chiara Lubich"
@@ -33,7 +33,7 @@ pdfs:
     pages: 7
     flag: "🇮🇹"
 
-pupilla_citation: "Morovic, P., Morovic, J., L'ateismo Cristiano di Slavoj Žižek: un dialogo con Chira Lubich, Pupilla (2025), https://pupilla.org/preprints/2025-zizek-christian-atheism/"
+pupilla_citation: "Morovic, P., Morovic, J., The Christian Atheism of Slavoj Žižek: a dialogue with Chiara Lubich, Pupilla (2025), https://pupilla.org/preprints/2025-zizek-christian-atheism/"
 
 tags:
   - philosophy
