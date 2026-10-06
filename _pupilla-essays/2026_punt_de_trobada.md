@@ -3,14 +3,14 @@ layout: essay
 title: "Punt de trobada"
 subtitle: "La creu, espai comú, punt de trobada universal"
 authors:
-  - Francesc Brunes
+  - Francesc Brunés
 discipline: "Spirituality"
 keywords: ["creu", "unitat", "Chiara Lubich", "Gesù Abbandonato", "Paradís '49", "fraternitat universal", "espiritualitat"]
 languages: ["Català"]
 date: 2026-10-07
 coming_soon: false
 abstract: "Un assaig espiritual que llegeix la creu com un «punt de trobada» universal: en el buit que s'obre amb el crit d'abandó de Jesús hi ha un espai comú, sense etiquetes ni exclusions, on tota la humanitat pot trobar-se en allò que comparteix. Inspirat en el carisma de la unitat de Chiara Lubich i el Paradís '49."
-pupilla_citation: "Brunes, F., Punt de trobada. La creu, espai comú, punt de trobada universal, Pupilla (2026), https://pupilla.org/essays/2026-punt-de-trobada/"
+pupilla_citation: "Brunés, F., Punt de trobada. La creu, espai comú, punt de trobada universal, Pupilla (2026), https://pupilla.org/essays/2026-punt-de-trobada/"
 tags:
   - spirituality
   - theology
@@ -27,7 +27,7 @@ Una creu es forma quan quatre camins s’entrecreuen. Quatre camins que podrien 
 <img src="/assets/images/essays/2026-punt-de-trobada/figura-1.jpg" alt="Escultura de ferro d'una figura amb el centre buit">
 <img src="/assets/images/essays/2026-punt-de-trobada/crist-2.jpeg" alt="Crist crucificat">
 </div>
-<figcaption>A l'esquerra, <em>Mélancolie</em>, escultura d'Albert György (Ginebra). A la dreta, el Crist de ferro de l'església de Santa Maria de les Neus (el Port de la Selva), obra de Demetri Kontos. <cite>Fotos: <a href="https://commons.wikimedia.org/wiki/File:Melancholia_Sculpture_Lake_Geneva.jpg" target="_blank" rel="noopener">Ranga Sampath</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons (retallada); Crist del Port de la Selva, Francesc Brunes</cite></figcaption>
+<figcaption>A l'esquerra, <em>Mélancolie</em>, escultura d'Albert György (Ginebra). A la dreta, el Crist de ferro de l'església de Santa Maria de les Neus (el Port de la Selva), obra de Demetri Kontos. <cite>Fotos: <a href="https://commons.wikimedia.org/wiki/File:Melancholia_Sculpture_Lake_Geneva.jpg" target="_blank" rel="noopener">Ranga Sampath</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons (retallada); Crist del Port de la Selva, Francesc Brunés</cite></figcaption>
 </figure>
 
 I les trobades acostumen a ser generadores. La trobada de dos buits que són conscients que només l’Amor pot apaivagar la seva set d’immensitat, segurament, resulta extremadament fecunda. Aquests darrers anys he anat transitant un camí que m’ha fet anar d’un buit a l’altre. Del buit immens deixat per l’absència d’una vida sense paraules i plena a vesar d’amor, a aquell buit d’Amor, empara i recer de tots els altres buits. Aquest camí m’ha portat a explorar la profunditat de la condició humana en un recorregut d’anada i tornada entre el més íntim de l’ésser humà i la seva capacitat relacional. Un camí que més aviat és una espiral que permet a la persona descobrir, en la fondària del seu ésser, la seva intrínseca capacitat de relació; i en la riquesa del seu teixit de relacions, la seva més profunda humanitat. Una espiral que, amb sorpresa, he descobert que conflueix en un punt de trobada, en un espai comú. El Crist de ferro de l’església del Port de la Selva podria anomenar-se *La creu de tothom*. Segurament no és així, però aquell buit al centre de la figura del crucificat ho suggereix. Un encreuament de camins, un espai obert, buit, on la humanitat s’hi pot aplegar.
