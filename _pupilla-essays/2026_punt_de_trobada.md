@@ -7,7 +7,7 @@ authors:
 discipline: "Spirituality"
 keywords: ["creu", "unitat", "Chiara Lubich", "Gesù Abbandonato", "Paradís '49", "fraternitat universal", "espiritualitat"]
 languages: ["Català"]
-date: 2026-10-06
+date: 2026-10-07
 coming_soon: false
 abstract: "Un assaig espiritual que llegeix la creu com un «punt de trobada» universal: en el buit que s'obre amb el crit d'abandó de Jesús hi ha un espai comú, sense etiquetes ni exclusions, on tota la humanitat pot trobar-se en allò que comparteix. Inspirat en el carisma de la unitat de Chiara Lubich i el Paradís '49."
 pupilla_citation: "Brunes, F., Punt de trobada. La creu, espai comú, punt de trobada universal, Pupilla (2026), https://pupilla.org/essays/2026-punt-de-trobada/"
