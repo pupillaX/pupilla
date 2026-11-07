@@ -13,10 +13,39 @@
 
 {%- comment -%} ---- Shared title / description / image used across meta ---- {%- endcomment -%}
 {%- assign home_tagline = 'a pre-print archive for dialogue between disciplines and traditions' -%}
-{%- if page.url == '/' -%}{%- capture page_title -%}{{ site.title | escape }} — {{ home_tagline }}{%- endcapture -%}{%- assign og_title = page_title -%}
-{%- elsif page.seo_title -%}{%- capture page_title -%}{{ page.seo_title | escape }} | {{ site.title | escape }}{%- endcapture -%}{%- assign og_title = page.seo_title | escape -%}
-{%- elsif view_title -%}{%- capture page_title -%}{{ view_title | strip_html | escape }} | {{ site.title | escape }}{%- endcapture -%}{%- assign og_title = view_title | strip_html | escape -%}
-{%- else -%}{%- assign page_title = site.title | escape -%}{%- assign og_title = page_title -%}{%- endif -%}
+{%- comment -%} <title> is kept to 70 characters at most (Bing flags longer ones; Google cuts them off).
+  Social cards (og_title) and Scholar's citation_title keep the full title. {%- endcomment -%}
+{%- assign max_title = 70 -%}
+{%- if page.url == '/' -%}
+  {%- capture page_title -%}{{ site.title }} — a pre-print archive for interdisciplinary dialogue{%- endcapture -%}
+  {%- capture og_title -%}{{ site.title }} — {{ home_tagline }}{%- endcapture -%}
+{%- else -%}
+  {%- assign _t = page.seo_title | default: view_title | default: site.title | strip_html | strip -%}
+  {%- assign og_title = _t -%}
+  {%- capture page_title -%}{{ _t }} | {{ site.title }}{%- endcapture -%}
+  {%- if _t == site.title -%}{%- assign page_title = _t -%}
+  {%- elsif page_title.size > max_title -%}
+    {%- assign page_title = _t -%}
+    {%- if page_title.size > max_title and page_title contains ' (' and page_title contains ')' -%}
+      {%- assign _a = page_title | split: ' (' | first -%}{%- assign _b = page_title | split: ')' | last -%}
+      {%- assign page_title = _a | append: _b -%}
+    {%- endif -%}
+    {%- if page_title.size > max_title -%}
+      {%- assign _main = '' -%}
+      {%- if page_title contains ': ' -%}{%- assign _main = page_title | split: ': ' | first -%}{%- elsif page_title contains '. ' -%}{%- assign _main = page_title | split: '. ' | first -%}{%- endif -%}
+      {%- if _main.size >= 25 -%}
+        {%- capture _with -%}{{ _main }} | {{ site.title }}{%- endcapture -%}
+        {%- if _with.size <= max_title -%}{%- assign page_title = _with -%}{%- else -%}{%- assign page_title = _main -%}{%- endif -%}
+      {%- else -%}
+        {%- assign _words = page_title | split: ' ' -%}{%- assign _acc = '' -%}
+        {%- for w in _words -%}{%- capture _try -%}{% if _acc != '' %}{{ _acc }} {% endif %}{{ w }}{%- endcapture -%}{%- if _try.size < max_title -%}{%- assign _acc = _try -%}{%- else -%}{%- break -%}{%- endif -%}{%- endfor -%}
+        {%- assign _aw = _acc | split: ' ' -%}{%- assign _last = _aw | last -%}{%- if _last.size <= 3 and _aw.size > 1 -%}{%- assign _acc = _aw | pop | join: ' ' -%}{%- endif -%}
+        {%- assign page_title = _acc | append: '…' -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign page_title = page_title | escape -%}{%- assign og_title = og_title | escape -%}
 {%- capture page_desc -%}{% if view_summary %}{{ view_summary | strip_html | strip_newlines | truncate: 300 }}{% elsif page.description %}{{ page.description }}{% elsif doc.excerpt %}{{ doc.excerpt | strip_html | strip_newlines | truncate: 300 }}{% else %}{{ site.description }}{% endif %}{%- endcapture -%}
 {%- assign page_desc = page_desc | strip -%}
 {%- assign og_image = doc.image | default: '/assets/images/og-image.png' | absolute_url -%}
