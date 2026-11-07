@@ -15,7 +15,7 @@ subtitles:
   - language: "Español"
     content: "La cruz, espacio común, punto de encuentro universal"
   - language: "English"
-    content: "The cross, common space, universal point of encounter"
+    content: "The Cross, Common Space, Universal Point of Encounter"
 authors:
   - Francesc Brunés
 discipline: "Spirituality"
