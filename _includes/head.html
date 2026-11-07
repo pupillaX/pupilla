@@ -14,9 +14,10 @@
 {%- comment -%} ---- Shared title / description / image used across meta ---- {%- endcomment -%}
 {%- assign home_tagline = 'a pre-print archive for dialogue between disciplines and traditions' -%}
 {%- if page.url == '/' -%}{%- capture page_title -%}{{ site.title | escape }} — {{ home_tagline }}{%- endcapture -%}{%- assign og_title = page_title -%}
+{%- elsif page.seo_title -%}{%- capture page_title -%}{{ page.seo_title | escape }} | {{ site.title | escape }}{%- endcapture -%}{%- assign og_title = page.seo_title | escape -%}
 {%- elsif view_title -%}{%- capture page_title -%}{{ view_title | strip_html | escape }} | {{ site.title | escape }}{%- endcapture -%}{%- assign og_title = view_title | strip_html | escape -%}
 {%- else -%}{%- assign page_title = site.title | escape -%}{%- assign og_title = page_title -%}{%- endif -%}
-{%- capture page_desc -%}{% if view_summary %}{{ view_summary | strip_html | strip_newlines | truncate: 300 }}{% elsif doc.excerpt %}{{ doc.excerpt | strip_html | strip_newlines | truncate: 300 }}{% else %}{{ site.description }}{% endif %}{%- endcapture -%}
+{%- capture page_desc -%}{% if view_summary %}{{ view_summary | strip_html | strip_newlines | truncate: 300 }}{% elsif page.description %}{{ page.description }}{% elsif doc.excerpt %}{{ doc.excerpt | strip_html | strip_newlines | truncate: 300 }}{% else %}{{ site.description }}{% endif %}{%- endcapture -%}
 {%- assign page_desc = page_desc | strip -%}
 {%- assign og_image = doc.image | default: '/assets/images/og-image.png' | absolute_url -%}
 {%- assign canonical_url = page.url | replace:'index.html','' | absolute_url -%}
@@ -113,7 +114,9 @@
   {% if doc.date %}"datePublished": {{ doc.date | date_to_xmlschema | jsonify }},{% endif %}
   {% if doc.keywords %}"keywords": {{ doc.keywords | join: ", " | jsonify }},{% endif %}
   "inLanguage": {% if page.layout == 'preprint' %}{{ text_codes | jsonify }}{% else %}{{ page_lang | jsonify }}{% endif %},
-  "author": [{% for author in doc.authors %}{ "@type": "Person", "name": {{ author | jsonify }} }{% unless forloop.last %}, {% endunless %}{% endfor %}],
+  "author": [{% for author in doc.authors %}{%- assign _p = nil -%}{%- for c in site.data.contributors -%}{%- if c.name == author or c.aliases contains author -%}{%- assign _p = c -%}{%- endif -%}{%- endfor -%}
+    { "@type": "Person", "name": {{ author | jsonify }}{% if _p %}, "url": {{ '/contributors/#' | append: _p.slug | absolute_url | jsonify }}{%- assign _same = '' | split: '' -%}{%- for l in _p.links -%}{%- assign _u = l.url | downcase -%}{%- if _u contains 'orcid.org' or _u contains 'scholar.google' or _u contains 'linkedin.com' or _u contains 'researchgate.net' or _u contains 'academia.edu' or _u contains 'pika.page' or _u contains 'wordpress.com' or _u contains 'wikipedia.org' -%}{%- assign _same = _same | push: l.url -%}{%- endif -%}{%- endfor -%}{% if _same.size > 0 %}, "sameAs": {{ _same | jsonify }}{% endif %}{% endif %} }{% unless forloop.last %},{% endunless %}{% endfor %}],
+  "isPartOf": { "@type": "WebSite", "name": {{ site.title | jsonify }}, "url": {{ site.url | append: site.baseurl | append: '/' | jsonify }} },
   "publisher": { "@type": "Organization", "name": {{ site.title | jsonify }}, "logo": { "@type": "ImageObject", "url": {{ '/assets/images/logo.png' | absolute_url | jsonify }} } },
   "isAccessibleForFree": true
 }
@@ -122,10 +125,27 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": {{ site.title | jsonify }},
-  "url": {{ site.url | append: site.baseurl | jsonify }},
-  "description": {{ site.description | jsonify }}
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": {{ site.url | append: '/#website' | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "alternateName": "Pupilla pre-print archive",
+      "url": {{ site.url | append: site.baseurl | append: '/' | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "inLanguage": ["en", "it", "es", "ca"],
+      "publisher": { "@id": {{ site.url | append: '/#organization' | jsonify }} }
+    },
+    {
+      "@type": "Organization",
+      "@id": {{ site.url | append: '/#organization' | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "url": {{ site.url | append: site.baseurl | append: '/' | jsonify }},
+      "logo": {{ '/assets/images/logo.png' | absolute_url | jsonify }},
+      "email": {{ site.email | jsonify }}{% if site.social.links %},
+      "sameAs": {{ site.social.links | jsonify }}{% endif %}
+    }
+  ]
 }
 </script>
 {%- endif %}

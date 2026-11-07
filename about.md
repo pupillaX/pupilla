@@ -2,6 +2,8 @@
 layout: default
 title: About
 permalink: /about/
+seo_title: "About Pupilla, an open pre-print archive"
+description: "Pupilla is a free, multilingual pre-print archive for articles and essays that put disciplines and traditions in dialogue — mysticism, philosophy, science and mathematics. How it works and who is behind it."
 ---
 
 ## Our Mission

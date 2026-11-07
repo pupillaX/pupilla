@@ -2,6 +2,8 @@
 layout: default
 title: Essays
 permalink: /essays/
+seo_title: "Essays on spirituality, culture and dialogue"
+description: "Essays in Catalan, Spanish, Italian and English on spirituality, culture and dialogue: shorter, personal pieces that build bridges between traditions. Free to read online."
 ---
 
 # Essays

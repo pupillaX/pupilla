@@ -98,8 +98,7 @@ exclude:
   - .sass-cache
   - _drafts
   - _templates            # mockups / templates, not for publishing
-  - assets/pdfs/private    # private preview PDFs — never publish
-  - assets/pdfs/tmp        # working/staging files — never publish
+  - assets/pdfs/private    # local-only working files (manuscripts, drafts, previews) — never publish
   - "assets/pdfs/*.docx"   # source manuscripts — never publish
   - "*.docx"
   - jekyll.log

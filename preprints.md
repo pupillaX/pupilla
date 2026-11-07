@@ -2,6 +2,8 @@
 layout: default
 title: Browse Articles
 permalink: /preprints/
+seo_title: "Articles: multilingual pre-prints on mysticism and science"
+description: "Open-access pre-prints in English, Italian, Spanish and Catalan on mysticism, theology, philosophy, vision science and mathematics — including studies of Chiara Lubich and intercultural dialogue. Free PDFs."
 ---
 
 # Articles

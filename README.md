@@ -85,6 +85,6 @@ Language details handled for you:
 - `assets/js/browse-filter.js` — search/filter for the browse pages: accent-insensitive,
   multi-word, and kept in the URL (`?q=…&language=…&author=…&sort=…`) so lists can be shared.
 - Working files that must never be published (source manuscripts, drafts) go in
-  `assets/pdfs/private/` or `assets/pdfs/tmp/` — both are excluded from the build and git.
+  `assets/pdfs/private/` — it is excluded from the build and from git (local only).
 - Comments/reactions are [giscus](https://giscus.app), backed by GitHub
   Discussions; configured under `giscus:` in `_config.yml`.

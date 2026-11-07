@@ -2,6 +2,7 @@
 layout: default
 title: Contact
 permalink: /contact/
+description: "Get in touch with Pupilla: submit an article or essay, ask a question or propose a collaboration."
 ---
 
 We welcome comments, inquiries, proposals for submissions and collaboration. Please don't hesitate to reach out to us at [pupillarXiv@gmail.com](mailto:pupillarXiv@gmail.com)

@@ -2,6 +2,7 @@
 layout: default
 title: Privacy Policy
 permalink: /privacy-policy/
+description: "How Pupilla handles your data: optional analytics cookies, comments via GitHub, newsletter, hosting and self-hosted fonts."
 ---
 
 # Privacy Policy

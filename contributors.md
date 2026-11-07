@@ -2,6 +2,8 @@
 layout: default
 title: Contributors
 permalink: /contributors/
+seo_title: "Contributors: authors and editors"
+description: "The authors and editors who publish on Pupilla — theologians, philosophers, scientists, mathematicians and writers — with short biographies, links and their works on the site."
 ---
 
 # Contributors
