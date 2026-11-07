@@ -1,0 +1,51 @@
+name: Notify search engines (IndexNow)
+
+# After content changes reach main, tell Bing (and the other IndexNow engines:
+# Yandex, Seznam, Naver; Bing feeds DuckDuckGo, Yahoo and Ecosia) which pages to
+# recrawl. Google does not use IndexNow; it reads the sitemap.
+#
+# The key file e74ef6c3c6232de809fad1f1a955107f.txt at the site root proves we own
+# pupilla.org. If you ever change the key, rename that file and update KEY below.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "_pupilla-preprints/**"
+      - "_pupilla-essays/**"
+      - "language-versions/**"
+      - "*.md"
+      - "essays/**"
+  workflow_dispatch:
+
+env:
+  KEY: e74ef6c3c6232de809fad1f1a955107f
+  HOST: pupilla.org
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for GitHub Pages to publish this commit
+        run: sleep 180
+
+      - name: Submit sitemap URLs to IndexNow
+        run: |
+          set -euo pipefail
+          curl -fsS "https://$HOST/sitemap.xml" \
+            | grep -o '<loc>[^<]*</loc>' | sed -e 's/<loc>//' -e 's/<\/loc>//' \
+            | grep -v '\.pdf$' > urls.txt
+          echo "Submitting $(wc -l < urls.txt) URLs"
+          python3 - <<'PY'
+          import json, os
+          urls = [u.strip() for u in open("urls.txt") if u.strip()]
+          body = {"host": os.environ["HOST"], "key": os.environ["KEY"],
+                  "keyLocation": f"https://{os.environ['HOST']}/{os.environ['KEY']}.txt",
+                  "urlList": urls}
+          json.dump(body, open("body.json", "w"))
+          PY
+          code=$(curl -s -o resp.txt -w '%{http_code}' -X POST "https://api.indexnow.org/indexnow" \
+                   -H 'Content-Type: application/json; charset=utf-8' --data @body.json)
+          echo "IndexNow responded HTTP $code"; cat resp.txt || true
+          # 200 = accepted, 202 = accepted (key validation pending)
+          [ "$code" = "200" ] || [ "$code" = "202" ]
